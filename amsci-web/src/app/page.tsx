@@ -1,52 +1,68 @@
-import Image from "next/image";
+import Link from "next/link";
+import { CATEGORIES } from "@/types/product";
+import { getAllProducts } from "@/data/products";
+import { ProductCard } from "@/components/ProductCard";
 
 export default function Home() {
-	return (
-		<div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-			<main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-				<Image className="dark:invert" src="/next.svg" alt="Next.js logo" width={180} height={38} priority />
-				<ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-					<li className="mb-2 tracking-[-.01em]">
-						Get started by editing{" "}
-						<code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-							src/app/page.tsx
-						</code>
-						.
-					</li>
-					<li className="tracking-[-.01em]">Save and see your changes instantly.</li>
-				</ol>
+	const featured = getAllProducts().slice(0, 4);
 
-				<div className="flex gap-4 items-center flex-col sm:flex-row">
-					<a
-						className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-						href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						Read our docs
-					</a>
+	return (
+		<div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+			<section className="rounded-xl bg-slate-900 px-6 py-12 text-white sm:px-12">
+				<div className="max-w-2xl">
+					<h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
+						Scientific &amp; STEM supplies for schools and institutions
+					</h1>
+					<p className="mt-4 text-slate-300">
+						American Scientific is a wholesale distributor, manufacturer, and exporter serving
+						educators, districts, and laboratories. Browse the catalog and sign in for your
+						account-specific pricing.
+					</p>
+					<div className="mt-6 flex flex-wrap gap-3">
+						<Link
+							href="/products"
+							className="rounded-md bg-blue-600 px-5 py-2.5 text-sm font-semibold transition-colors hover:bg-blue-500"
+						>
+							Browse Catalog
+						</Link>
+						<button
+							type="button"
+							className="rounded-md border border-slate-600 px-5 py-2.5 text-sm font-semibold text-slate-200 transition-colors hover:bg-slate-800"
+						>
+							Request an Account
+						</button>
+					</div>
 				</div>
-			</main>
-			<footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-				<a
-					className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-					href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<Image aria-hidden src="/file.svg" alt="File icon" width={16} height={16} />
-					Learn
-				</a>
-				<a
-					className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-					href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<Image aria-hidden src="/globe.svg" alt="Globe icon" width={16} height={16} />
-					Go to nextjs.org →
-				</a>
-			</footer>
+			</section>
+
+			<section className="mt-12">
+				<h2 className="text-lg font-semibold text-slate-900">Shop by category</h2>
+				<div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-4">
+					{CATEGORIES.map((category) => (
+						<Link
+							key={category}
+							href={`/products?category=${encodeURIComponent(category)}`}
+							className="rounded-lg border border-slate-200 bg-white p-5 text-sm font-medium text-slate-800 transition-colors hover:border-blue-300 hover:text-blue-700"
+						>
+							{category}
+						</Link>
+					))}
+				</div>
+			</section>
+
+			<section className="mt-12">
+				<div className="flex items-baseline justify-between">
+					<h2 className="text-lg font-semibold text-slate-900">Featured products</h2>
+					<Link href="/products" className="text-sm font-medium text-blue-700 hover:underline">
+						View all →
+					</Link>
+				</div>
+				<div className="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+					{featured.map((product) => (
+						<ProductCard key={product.internalId} product={product} />
+					))}
+				</div>
+			</section>
 		</div>
 	);
 }
