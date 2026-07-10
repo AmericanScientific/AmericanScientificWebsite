@@ -1,0 +1,65 @@
+/**
+ * Product shape for the American Scientific storefront.
+ *
+ * NetSuite is the system of record; this type mirrors the NetSuite → storefront
+ * field map documented in CLAUDE.md §3. The storefront is a thin, read-only layer
+ * over NetSuite and must never be treated as a second source of truth.
+ *
+ * NOTE: this is the shell. Values here come from a local mock dataset only —
+ * nothing in this file talks to NetSuite yet.
+ */
+export interface Product {
+	/**
+	 * NetSuite `internalId`. Canonical product key and upsert identity.
+	 * Everything keys off this, never the SKU.
+	 */
+	internalId: string;
+
+	/** NetSuite `itemid`. Human-facing SKU (e.g. "088-90142"); display/lookup only. */
+	sku: string;
+
+	/**
+	 * Web product title. Derived in NetSuite from
+	 * `storedisplayname → displayname → itemid` (first non-null wins).
+	 */
+	title: string;
+
+	/** Web product description (NetSuite `storeDescription`). May be empty. */
+	description: string;
+
+	/**
+	 * Base/list price (NetSuite price level 1).
+	 *
+	 * B2B pricing is tiered per customer with quantity breaks and is resolved
+	 * live against NetSuite per account in the real build. In this shell the
+	 * number is the base tier only — a placeholder for `resolvePrice(...)`.
+	 */
+	price: number;
+
+	/** Product image URL (NetSuite `custitem_imageurltext`). */
+	imageUrl: string;
+
+	/**
+	 * Category path derived from NetSuite `class`, split on " : " into a
+	 * parent → child hierarchy. The top level is used for site navigation.
+	 */
+	category: string;
+
+	/** Grade levels this product targets (NetSuite `custitem_grades`). */
+	grades: string[];
+}
+
+/** The four top-level catalog categories used for navigation. */
+export const CATEGORIES = [
+	"Chemistry",
+	"Laboratory",
+	"Life Science",
+	"Physics & Physical Science",
+] as const;
+
+export type Category = (typeof CATEGORIES)[number];
+
+/** URL-safe slug for a product detail route. SKU is stable and unique, so we key on it. */
+export function productSlug(product: Product): string {
+	return product.sku.toLowerCase();
+}
