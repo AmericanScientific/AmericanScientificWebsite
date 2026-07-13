@@ -1,27 +1,46 @@
 import type { Product } from "@/types/product";
+import { categoryTheme } from "@/lib/categoryTheme";
+import { CategoryIcon } from "@/components/CategoryIcon";
 
 /**
  * Placeholder product image.
  *
  * The real storefront renders `product.imageUrl` (NetSuite `custitem_imageurltext`).
- * In the shell we have no images, so we draw a labeled swatch keyed off the SKU —
- * enough to size and lay out the catalog without wiring up remote image domains.
+ * The shell has no photos, so we render an intentional, category-accented gradient
+ * tile with the family icon and SKU — cohesive branding without wiring up remote
+ * image domains.
  */
-export function ProductImage({ product, className = "" }: { product: Product; className?: string }) {
-	const initials = product.category
-		.split(/\s|&/)
-		.filter(Boolean)
-		.slice(0, 2)
-		.map((w) => w[0]?.toUpperCase())
-		.join("");
+export function ProductImage({
+	product,
+	className = "",
+	iconClassName = "h-16 w-16",
+}: {
+	product: Product;
+	className?: string;
+	iconClassName?: string;
+}) {
+	const theme = categoryTheme(product.category);
 
 	return (
 		<div
-			className={`flex flex-col items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200 text-slate-400 ${className}`}
+			className={`relative overflow-hidden bg-gradient-to-br ${theme.tile} ${className}`}
 			aria-hidden="true"
 		>
-			<span className="text-3xl font-semibold tracking-wide">{initials}</span>
-			<span className="mt-1 text-xs font-medium uppercase tracking-wider">{product.sku}</span>
+			{/* Soft light bloom */}
+			<div className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-white/20 blur-2xl" />
+			<div className="pointer-events-none absolute inset-0 opacity-20 [background-image:radial-gradient(rgba(255,255,255,0.6)_1px,transparent_1px)] [background-size:16px_16px]" />
+
+			{/* Family icon watermark */}
+			<div className="absolute inset-0 flex items-center justify-center text-white/90">
+				<CategoryIcon slug={product.category} className={iconClassName} />
+			</div>
+
+			{/* SKU chip */}
+			<div className="absolute bottom-2.5 left-2.5">
+				<span className="rounded-md bg-black/25 px-2 py-1 text-[11px] font-semibold uppercase tracking-wider text-white/90 backdrop-blur-sm">
+					{product.sku}
+				</span>
+			</div>
 		</div>
 	);
 }

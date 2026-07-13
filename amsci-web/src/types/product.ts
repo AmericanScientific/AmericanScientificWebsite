@@ -40,24 +40,17 @@ export interface Product {
 	imageUrl: string;
 
 	/**
-	 * Category path derived from NetSuite `class`, split on " : " into a
-	 * parent → child hierarchy. The top level is used for site navigation.
+	 * Leaf category slug, referencing a leaf node in `src/data/categories.ts`.
+	 *
+	 * Derived from NetSuite `class` (split on " : " into parent → child, the child
+	 * being this leaf). The parent is resolved via the taxonomy, so we store only
+	 * the most specific level here.
 	 */
 	category: string;
 
 	/** Grade levels this product targets (NetSuite `custitem_grades`). */
 	grades: string[];
 }
-
-/** The four top-level catalog categories used for navigation. */
-export const CATEGORIES = [
-	"Chemistry",
-	"Laboratory",
-	"Life Science",
-	"Physics & Physical Science",
-] as const;
-
-export type Category = (typeof CATEGORIES)[number];
 
 /** URL-safe slug for a product detail route. SKU is stable and unique, so we key on it. */
 export function productSlug(product: Product): string {

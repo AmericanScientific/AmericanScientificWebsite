@@ -50,3 +50,9 @@ next-env.d.ts
 
 
 !.dev.vars.example
+
+# PII / private data (e.g. WordPress user export for account migration) — never commit
+/private/
+*.sql.gz
+wp_users*.sql
+wp_users*.csv
