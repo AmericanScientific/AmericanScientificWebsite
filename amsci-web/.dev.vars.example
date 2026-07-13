@@ -1,0 +1,21 @@
+# NetSuite integration secrets — TEMPLATE (safe to commit; no real values).
+#
+# Local dev:   copy this file to `.dev.vars` and fill in real values.
+#              `.dev.vars` is git-ignored, so secrets never leave your machine.
+# Deployed:    set each as a Worker secret instead of committing it:
+#                  wrangler secret put NS_CONSUMER_KEY
+#                  wrangler secret put NS_CONSUMER_SECRET
+#                  wrangler secret put NS_TOKEN
+#                  wrangler secret put NS_TOKEN_SECRET
+#              (NS_ACCOUNT is not sensitive; it can be a plain var.)
+#
+# Auth model: Token-Based Authentication (OAuth 1.0a, HMAC-SHA256).
+# Account 4093468 · SuiteTalk REST + SuiteQL (CLAUDE.md §9).
+
+NEXTJS_ENV=development
+
+NS_ACCOUNT=4093468
+NS_CONSUMER_KEY=your-consumer-key
+NS_CONSUMER_SECRET=your-consumer-secret
+NS_TOKEN=your-token-id
+NS_TOKEN_SECRET=your-token-secret

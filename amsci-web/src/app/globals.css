@@ -1,17 +1,141 @@
 @import "tailwindcss";
 
-:root {
-	--background: #f8fafc;
-	--foreground: #0f172a;
+/*
+ * American Scientific design system.
+ * Brand palette is derived from the am-sci logo: crimson "am-" → plum → science
+ * blue "sci". The site is a light, product-forward B2B catalog with dramatic
+ * dark, brand-mesh accent sections (hero, CTA band, footer).
+ */
+@theme {
+	--font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+	--font-display: var(--font-space-grotesk), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+	--color-brand-red: #c1121f;
+	--color-brand-red-deep: #8f0f18;
+	--color-brand-plum: #7a2f8f;
+	--color-brand-blue: #1391d5;
+	--color-brand-blue-deep: #0a6ea8;
+	--color-ink: #0a0f1c;
+	--color-ink-soft: #121a2e;
 }
 
-@theme inline {
-	--color-background: var(--background);
-	--color-foreground: var(--foreground);
+:root {
+	color-scheme: light;
+}
+
+html {
+	scroll-behavior: smooth;
 }
 
 body {
-	background: var(--background);
-	color: var(--foreground);
-	font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	background: #f6f7fb;
+	color: #0b1220;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+::selection {
+	background: color-mix(in oklab, var(--color-brand-blue) 28%, transparent);
+}
+
+/* ── Brand gradient helpers ─────────────────────────────────────────────── */
+.brand-gradient {
+	background-image: linear-gradient(
+		100deg,
+		var(--color-brand-red),
+		var(--color-brand-plum) 52%,
+		var(--color-brand-blue)
+	);
+}
+
+.brand-gradient-text {
+	background-image: linear-gradient(
+		100deg,
+		var(--color-brand-red),
+		var(--color-brand-plum) 50%,
+		var(--color-brand-blue)
+	);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+}
+
+.brand-gradient-text-light {
+	background-image: linear-gradient(100deg, #ff6b74, #d59be6 48%, #6fd0ff 100%);
+	background-image: linear-gradient(100deg, #ff8087, #e2acef 45%, #6fd0ff);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+}
+
+/* ── Dark hero surface: ink base + brand radial mesh ─────────────────────── */
+.hero-surface {
+	background-color: var(--color-ink);
+	background-image:
+		radial-gradient(58% 80% at 12% 8%, color-mix(in oklab, var(--color-brand-red) 55%, transparent), transparent 62%),
+		radial-gradient(52% 72% at 92% 18%, color-mix(in oklab, var(--color-brand-blue) 55%, transparent), transparent 60%),
+		radial-gradient(80% 60% at 62% 108%, color-mix(in oklab, var(--color-brand-plum) 42%, transparent), transparent 60%);
+}
+
+.grid-overlay {
+	background-image:
+		linear-gradient(to right, rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+		linear-gradient(to bottom, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+	background-size: 46px 46px;
+	-webkit-mask-image: radial-gradient(circle at 50% 35%, black, transparent 80%);
+	mask-image: radial-gradient(circle at 50% 35%, black, transparent 80%);
+}
+
+/* ── Faint dot grid for light sections ───────────────────────────────────── */
+.dot-grid {
+	background-image: radial-gradient(rgba(15, 23, 42, 0.055) 1px, transparent 1px);
+	background-size: 22px 22px;
+}
+
+/* ── Motion ──────────────────────────────────────────────────────────────── */
+.card-hover {
+	transition:
+		transform 0.28s cubic-bezier(0.2, 0.7, 0.2, 1),
+		box-shadow 0.28s ease,
+		border-color 0.28s ease;
+}
+.card-hover:hover {
+	transform: translateY(-4px);
+}
+
+.flyout {
+	transform: translateY(6px);
+	transition:
+		opacity 0.18s ease,
+		transform 0.18s ease,
+		visibility 0.18s;
+}
+.group:hover .flyout,
+.group:focus-within .flyout {
+	transform: translateY(0);
+}
+
+@keyframes floaty {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-9px);
+	}
+}
+.floaty {
+	animation: floaty 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+	.card-hover,
+	.flyout,
+	.floaty {
+		transition: none;
+		animation: none;
+	}
 }
