@@ -68,6 +68,96 @@ body {
 	color: transparent;
 }
 
+/* ── Category nav: gradient rolls through the letters on hover ───────────── */
+@keyframes category-roll {
+	from { background-position: 0% 50%; }
+	to { background-position: -200% 50%; }
+}
+/*
+ * Solid ink at rest (Tailwind text color); on hover/focus the category's word is
+ * painted with a gradient that rolls through every category's hero color and
+ * loops. Ends of the gradient match so the loop is seamless. Reduced-motion
+ * users still get the gradient, just held still.
+ */
+.nav-category,
+.nav-category-active {
+	--cat-gradient: linear-gradient(
+		90deg,
+		#991519,  /* deep red */
+		#d0232a,  /* red */
+		#0088ce,  /* blue */
+		#991519   /* loop back to deep red */
+	);
+}
+/*
+ * The rolling-gradient letters, shared by two states:
+ *  - `:hover` / `:focus-visible` — wakes up on the word you point at;
+ *  - `.nav-category-active` — the current page stays lit, continuing the pattern.
+ */
+.nav-category:hover,
+.nav-category:focus-visible,
+.nav-category-active {
+	background-image: var(--cat-gradient);
+	background-size: 200% 100%;
+	background-repeat: repeat;
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+	animation: category-roll 14s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+	.nav-category:hover,
+	.nav-category:focus-visible,
+	.nav-category-active {
+		animation: none;
+	}
+}
+
+/* ── Flip logo: each hover flips it like a pancake (rotateX), same direction ─ */
+/*
+ * The rotation angle (--flip-deg) is driven by JS and only ever INCREASES by 180°
+ * per hover, so the logo keeps spinning the same way and doesn't rewind on
+ * mouse-leave: hover → alternate, leave, hover → back to original, and so on.
+ */
+.flip-logo {
+	display: inline-flex;
+	perspective: 900px;
+}
+/*
+ * Both faces are stacked in the same grid cell (no absolute positioning, so
+ * nothing can stretch and there's no layout shift). Each keeps its own natural
+ * aspect via width:auto, and the two can carry DIFFERENT heights — the emblem at
+ * the header size, the wider wordmark a touch shorter so it doesn't read
+ * oversized — both vertically centered.
+ */
+.flip-logo-inner {
+	display: grid;
+	align-items: center;
+	justify-items: start;
+	transform-style: preserve-3d;
+	transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+	transform: rotateX(var(--flip-deg, 0deg));
+}
+.flip-face {
+	grid-area: 1 / 1;
+	width: auto;
+	max-width: none;
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+}
+.flip-front {
+	height: 2.75rem; /* emblem — matches the original h-11 logo */
+}
+.flip-back {
+	height: var(--flip-alt-height, 1.85rem); /* wordmark — shorter so it's optically balanced */
+	transform: rotateX(180deg);
+}
+@media (prefers-reduced-motion: reduce) {
+	.flip-logo-inner {
+		transition: none;
+	}
+}
+
 /* ── Dark hero surface: ink base + brand radial mesh ─────────────────────── */
 .hero-surface {
 	background-color: var(--color-ink);
