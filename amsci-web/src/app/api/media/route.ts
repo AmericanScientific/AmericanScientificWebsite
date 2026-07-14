@@ -1,4 +1,4 @@
-import { isAllowedMediaHost } from "@/lib/media";
+import { decodeMediaSrc, isAllowedMediaHost } from "@/lib/media";
 
 /**
  * Image proxy for NetSuite media.
@@ -25,7 +25,16 @@ function candidateUrls(raw: string): string[] {
 async function tryFetch(url: string): Promise<Response | null> {
 	try {
 		const res = await fetch(url, {
-			headers: { Accept: "image/*", "User-Agent": "amsci-web/image-proxy" },
+			// Present as a real browser: NetSuite's File Cabinet WAF serves an HTML
+			// block page (not the image) to requests carrying a non-browser UA from
+			// datacenter IP ranges (e.g. Cloudflare's). A residential IP is lenient,
+			// which is why this only broke once deployed. Mimic Chrome to pass.
+			headers: {
+				Accept: "image/avif,image/webp,image/apng,image/*,*/*;q=0.8",
+				"User-Agent":
+					"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
+				"Accept-Language": "en-US,en;q=0.9",
+			},
 			redirect: "follow",
 		});
 		return res;
@@ -35,8 +44,21 @@ async function tryFetch(url: string): Promise<Response | null> {
 }
 
 export async function GET(request: Request): Promise<Response> {
-	const src = new URL(request.url).searchParams.get("src");
-	if (!src) return new Response("Missing src", { status: 400 });
+	const token = new URL(request.url).searchParams.get("src");
+	if (!token) return new Response("Missing src", { status: 400 });
+
+	// `src` is base64url(originalUrl). (Legacy callers may still pass a raw
+	// http(s) URL; accept that too so old links don't break.)
+	let src: string;
+	if (/^https?:\/\//i.test(token)) {
+		src = token;
+	} else {
+		try {
+			src = decodeMediaSrc(token);
+		} catch {
+			return new Response("Invalid src", { status: 400 });
+		}
+	}
 
 	let target: URL;
 	try {
