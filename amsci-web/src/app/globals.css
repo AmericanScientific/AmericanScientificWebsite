@@ -200,9 +200,43 @@ body {
 		transform 0.18s ease,
 		visibility 0.18s;
 }
-.group:hover .flyout,
-.group:focus-within .flyout {
+.group:hover .flyout {
 	transform: translateY(0);
+}
+
+/* ── Category hero banner ────────────────────────────────────────────────────
+   Decorative layers painted over each category's own theme gradient: a soft
+   light bloom (top-left), a depth burn (bottom-right), and a fine dot grid that
+   fades out to the right. All white/black, so it works on every category color
+   without anything hard-coded per category. Content sits above at z-10. */
+.cat-hero {
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+}
+.cat-hero::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	pointer-events: none;
+	/* Luminous, not muddy: a bright sheen sweeping from the top-left and a very
+	   gentle depth toward the bottom-right — no heavy black. */
+	background:
+		radial-gradient(75% 130% at 8% -25%, rgba(255, 255, 255, 0.55), transparent 58%),
+		radial-gradient(90% 130% at 100% 125%, rgba(0, 0, 0, 0.12), transparent 68%);
+}
+.cat-hero::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	pointer-events: none;
+	opacity: 0.08;
+	background-image: radial-gradient(rgba(255, 255, 255, 0.9) 1px, transparent 1.5px);
+	background-size: 26px 26px;
+	-webkit-mask-image: linear-gradient(105deg, #000, transparent 62%);
+	mask-image: linear-gradient(105deg, #000, transparent 62%);
 }
 
 @keyframes floaty {
