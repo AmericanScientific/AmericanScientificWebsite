@@ -1,15 +1,43 @@
 import Link from "next/link";
 import { getTopLevelCategories } from "@/data/categories";
 import { categoryTheme } from "@/lib/categoryTheme";
-import { getAllProducts, getLeafProductCounts } from "@/data/products";
+import { getAllProducts, getLeafProductCounts, getProductsByParent } from "@/data/products";
+import { productSlug } from "@/types/product";
+import { mediaProxyUrl } from "@/lib/media";
 import { ProductCard } from "@/components/ProductCard";
 import { CategoryIcon } from "@/components/CategoryIcon";
+import { HeroCategoryTiles } from "@/components/HeroCategoryTiles";
+import type { BubbleItem } from "@/components/CategoryBubbles";
 
-export default function Home() {
-	const products = getAllProducts();
+/** Max product images shipped per category for the hero bubble collage. */
+const BUBBLES_PER_CATEGORY = 30;
+
+/** Build the per-category image pool for the hero bubbles (server-side, so the
+ *  full catalog never ships to the client). Only products with a usable image. */
+async function buildBubbleData(): Promise<Record<string, BubbleItem[]>> {
+	const out: Record<string, BubbleItem[]> = {};
+	for (const category of getTopLevelCategories()) {
+		const items: BubbleItem[] = [];
+		for (const p of await getProductsByParent(category.slug)) {
+			const src = mediaProxyUrl(p.imageUrl);
+			if (!src) continue;
+			items.push({ id: p.internalId, slug: productSlug(p), title: p.title, src });
+			if (items.length >= BUBBLES_PER_CATEGORY) break;
+		}
+		out[category.slug] = items;
+	}
+	return out;
+}
+
+/** Re-read the cron-synced catalog from D1 at most this often (seconds). */
+export const revalidate = 300;
+
+export default async function Home() {
+	const products = await getAllProducts();
 	const featured = products.slice(0, 4);
 	const categories = getTopLevelCategories();
-	const counts = getLeafProductCounts();
+	const counts = await getLeafProductCounts();
+	const bubblesByCategory = await buildBubbleData();
 
 	return (
 		<>
@@ -50,30 +78,7 @@ export default function Home() {
 
 					{/* Floating glass category tiles */}
 					<div className="relative hidden lg:block">
-						<div className="grid grid-cols-2 gap-4">
-							{categories.map((category, i) => {
-								const theme = categoryTheme(category.slug);
-								return (
-									<Link
-										key={category.slug}
-										href={category.external ? `/${category.slug}` : `/product-category/${category.slug}`}
-										className={`card-hover group rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-md hover:bg-white/10 ${
-											i % 2 === 1 ? "mt-6" : ""
-										}`}
-									>
-										<span className={`flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br text-white shadow-lg ${theme.tile}`}>
-											<CategoryIcon slug={category.slug} className="h-6 w-6" />
-										</span>
-										<p className="mt-3 text-sm font-semibold text-white">{category.name}</p>
-										<p className="text-xs text-slate-400">
-											{category.children?.length
-												? `${category.children.length} subcategories`
-												: "Explore"}
-										</p>
-									</Link>
-								);
-							})}
-						</div>
+						<HeroCategoryTiles bubblesByCategory={bubblesByCategory} />
 					</div>
 				</div>
 
@@ -109,7 +114,7 @@ export default function Home() {
 					</Link>
 				</div>
 
-				<div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+				<div className="mt-8 grid auto-rows-fr grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
 					{categories.map((category) => {
 						const theme = categoryTheme(category.slug);
 						const childCount = category.children?.length ?? 0;

@@ -11,8 +11,11 @@ export const metadata: Metadata = {
 	description: "Browse American Scientific's wholesale catalog of STEM and laboratory products.",
 };
 
-export default function ProductsPage() {
-	const products = getAllProducts();
+/** Re-read the cron-synced catalog from D1 at most this often (seconds). */
+export const revalidate = 300;
+
+export default async function ProductsPage() {
+	const products = await getAllProducts();
 	const categories = getTopLevelCategories();
 
 	return (

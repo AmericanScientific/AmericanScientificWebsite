@@ -11,9 +11,13 @@ import { ProductCard } from "@/components/ProductCard";
 import { AddToOrderButton } from "@/components/AddToOrderButton";
 import { CategoryIcon } from "@/components/CategoryIcon";
 
-/** Pre-render a detail page for every mock product. */
-export function generateStaticParams() {
-	return getAllProducts().map((product) => ({ slug: productSlug(product) }));
+/** Re-read the cron-synced catalog from D1 at most this often (seconds). */
+export const revalidate = 300;
+
+/** Pre-render a detail page for every product (routes enumerated from the seed). */
+export async function generateStaticParams() {
+	const products = await getAllProducts();
+	return products.map((product) => ({ slug: productSlug(product) }));
 }
 
 export async function generateMetadata({
@@ -22,7 +26,7 @@ export async function generateMetadata({
 	params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
 	const { slug } = await params;
-	const product = getProductBySlug(slug);
+	const product = await getProductBySlug(slug);
 	if (!product) return { title: "Product not found" };
 	return {
 		title: product.title,
@@ -32,13 +36,13 @@ export async function generateMetadata({
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
 	const { slug } = await params;
-	const product = getProductBySlug(slug);
+	const product = await getProductBySlug(slug);
 	if (!product) notFound();
 
 	const leafName = getCategoryName(product.category);
 	const parent = getParentOfLeaf(product.category);
 	const theme = categoryTheme(product.category);
-	const related = getProductsByLeaf(product.category)
+	const related = (await getProductsByLeaf(product.category))
 		.filter((p) => p.internalId !== product.internalId)
 		.slice(0, 4);
 

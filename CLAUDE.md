@@ -260,6 +260,54 @@ plugin, no manual re-entry (quote-vs-order and payment terms per §8).
 **Principles:** NetSuite is authoritative and the cache is disposable; personalized pricing/stock is
 resolved live per account, never baked into public pages; all NetSuite access is server-side.
 
+### 5.1 IMPLEMENTED (2026-07-14): automatic NetSuite → D1 catalog sync
+
+Layer 1 above (catalog freshness) is **built**. We chose **Cloudflare Cron + D1** over Postgres/a
+push-webhook for the first version (human approved **Workers Paid** for cron/D1). Layer 2 (live
+per-account pricing/stock), order write-back, and customer auth remain TODO.
+
+**Components (all in `amsci-web/`):**
+- **`db/schema.sql`** — D1 schema. `products` (one row per online item; `gallery`/`grades` are JSON
+  text; `synced_at` stamps each row so a full run can prune items that left the catalog) + `sync_meta`
+  (single-row status: last run, count, ok/error, duration).
+- **`src/lib/catalog/sync-core.ts`** — `fetchFullCatalog(client, account, opts)`: the NetSuite →
+  `CatalogRecord[]` engine (population `isonline='T' AND isinactive='F'`, File-Cabinet images, base
+  prices). Runtime-agnostic (Web Crypto client), so it runs in **both** the CLI and the Worker.
+  Supports `{ limit, modifiedAfter }` (incremental).
+- **`src/lib/catalog/d1.ts`** — `readCatalogFromD1`, `upsertProducts` (batched), `pruneStale`,
+  `get/setSyncMeta`. **`src/lib/catalog/types.ts`** — the shared `CatalogRecord`.
+- **`sync-worker/`** — the second Worker (§5 integration service). `scheduled()` = cron → full sync +
+  prune; `fetch()` = `GET /health` (status) and token-guarded `POST /sync?token=…` (manual /
+  `?mode=incremental`). Own `sync-worker/wrangler.jsonc` (cron `*/30 * * * *`, `DB` binding).
+- **`src/data/catalog-source.ts`** — `getCatalog()`: reads D1 (`env.DB`) at runtime; **falls back to
+  `catalog.json`** at build time / local `next dev` / empty D1. `src/data/products.ts` accessors are
+  now **async**; catalog/product pages `await` them and set `export const revalidate = 300` (ISR).
+  `generateStaticParams` still enumerates routes from the JSON seed (no D1 at build).
+- **`scripts/backfill-catalog.ts`** — unchanged behavior, now uses `sync-core` (still writes
+  `catalog.json`, which remains the seed + safety fallback). **`scripts/catalog-to-sql.mjs`** — emits
+  seed SQL from `catalog.json` (`node scripts/catalog-to-sql.mjs > seed.sql`).
+
+**Data flow:** NetSuite ──cron (30m)──▶ `amsci-sync` Worker ──▶ D1 `products` ──ISR (5m)──▶ storefront.
+Freshness ≈ ≤30 min (cron) + ≤5 min (ISR). Tighten the cron only within NetSuite governance; sub-minute
+should use incremental (already supported) rather than more frequent full syncs.
+
+**One-time setup (needs the human's Cloudflare login):**
+1. `cd amsci-web && wrangler login`
+2. `wrangler d1 create amsci-catalog` → paste the printed `database_id` into **both**
+   `wrangler.jsonc` and `sync-worker/wrangler.jsonc` (replace `REPLACE_WITH_D1_DATABASE_ID`).
+3. `wrangler d1 execute amsci-catalog --remote --file=db/schema.sql`
+4. Seed prod once: `node scripts/catalog-to-sql.mjs > seed.sql && wrangler d1 execute amsci-catalog --remote --file=seed.sql` (or just let the first cron run fill it).
+5. Sync-worker secrets: `wrangler secret put NS_ACCOUNT -c sync-worker/wrangler.jsonc` (repeat for
+   `NS_CONSUMER_KEY`, `NS_CONSUMER_SECRET`, `NS_TOKEN`, `NS_TOKEN_SECRET`, and a random `SYNC_TOKEN`).
+6. Deploy both: `wrangler deploy` (storefront) and `wrangler deploy -c sync-worker/wrangler.jsonc`.
+7. Verify: `curl https://amsci-sync.<subdomain>.workers.dev/health`; trigger once with
+   `POST /sync?token=<SYNC_TOKEN>`.
+
+**Local test (no auth):** `wrangler d1 execute amsci-catalog --local --file=db/schema.sql`; seed via
+`catalog-to-sql.mjs` + `--local`; `npm run preview` reads local D1 (verified: a D1-only sentinel title
+rendered on the product page, proving D1 reads over the JSON fallback). `next dev` has no D1 binding →
+always uses the JSON fallback.
+
 ---
 
 ## 6. Working conventions & how to operate
