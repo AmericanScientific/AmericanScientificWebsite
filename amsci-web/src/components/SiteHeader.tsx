@@ -2,6 +2,8 @@ import Link from "next/link";
 import { getTopLevelCategories } from "@/data/categories";
 import { categoryTheme } from "@/lib/categoryTheme";
 import { CategoryIcon } from "@/components/CategoryIcon";
+import { NavCategoryLink } from "@/components/NavCategoryLink";
+import { FlipLogo } from "@/components/FlipLogo";
 
 /**
  * Sticky, glassmorphic site header.
@@ -29,17 +31,7 @@ export function SiteHeader() {
 			<div className="border-b border-slate-200/70 bg-white/80 backdrop-blur-xl">
 				<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 					<div className="flex items-center justify-between gap-4 py-3">
-						<Link href="/" aria-label="American Scientific — home" className="flex items-center">
-							{/* Plain <img> avoids wiring a Cloudflare image loader in the shell. */}
-							{/* eslint-disable-next-line @next/next/no-img-element */}
-							<img
-								src="/am-sci-logo.png"
-								alt="American Scientific"
-								className="h-11 w-auto transition-transform duration-300 hover:scale-[1.02]"
-								width={308}
-								height={110}
-							/>
-						</Link>
+						<FlipLogo />
 
 						<div className="flex items-center gap-2 sm:gap-3">
 							<button
@@ -71,12 +63,13 @@ export function SiteHeader() {
 					<nav aria-label="Product categories" className="-mx-1 hidden pb-2 md:block">
 						<ul className="flex flex-wrap items-center gap-x-1 text-sm font-medium">
 							<li>
-								<Link
+								<NavCategoryLink
 									href="/products"
-									className="inline-flex items-center rounded-full px-3 py-1.5 text-slate-700 transition-colors hover:bg-slate-100 hover:text-slate-900"
+									matchSlug="all"
+									className="inline-flex items-center rounded-full px-3 py-1.5 text-slate-700 transition-colors hover:bg-slate-100"
 								>
 									All Products
-								</Link>
+								</NavCategoryLink>
 							</li>
 
 							{categories.map((category) => {
@@ -89,27 +82,29 @@ export function SiteHeader() {
 								if (!hasChildren) {
 									return (
 										<li key={category.slug}>
-											<Link
+											<NavCategoryLink
 												href={href}
-												className="inline-flex items-center rounded-full px-3 py-1.5 text-slate-700 transition-colors hover:bg-slate-100 hover:text-slate-900"
+												matchSlug={category.slug}
+												className="inline-flex items-center rounded-full px-3 py-1.5 text-slate-700 transition-colors hover:bg-slate-100"
 											>
 												{category.name}
-											</Link>
+											</NavCategoryLink>
 										</li>
 									);
 								}
 
 								return (
 									<li key={category.slug} className="group relative">
-										<Link
+										<NavCategoryLink
 											href={href}
-											className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-slate-700 transition-colors hover:bg-slate-100 hover:text-slate-900 group-focus-within:bg-slate-100"
+											matchSlug={category.slug}
+											className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-slate-700 transition-colors hover:bg-slate-100 group-focus-within:bg-slate-100"
 										>
 											{category.name}
 											<svg viewBox="0 0 24 24" className="h-3.5 w-3.5 text-slate-400 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
 												<path d="m6 9 6 6 6-6" />
 											</svg>
-										</Link>
+										</NavCategoryLink>
 
 										{/* Flyout */}
 										<div className="flyout invisible absolute left-0 top-full z-30 pt-2 opacity-0 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">

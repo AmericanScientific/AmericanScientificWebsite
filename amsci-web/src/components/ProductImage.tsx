@@ -1,14 +1,16 @@
 import type { Product } from "@/types/product";
 import { categoryTheme } from "@/lib/categoryTheme";
 import { CategoryIcon } from "@/components/CategoryIcon";
+import { mediaProxyUrl } from "@/lib/media";
 
 /**
- * Placeholder product image.
+ * Product image.
  *
- * The real storefront renders `product.imageUrl` (NetSuite `custitem_imageurltext`).
- * The shell has no photos, so we render an intentional, category-accented gradient
- * tile with the family icon and SKU — cohesive branding without wiring up remote
- * image domains.
+ * Renders the real NetSuite image (`product.imageUrl`, a public File Cabinet URL)
+ * routed through our `/api/media` proxy — which fetches it server-side and
+ * re-serves over our origin, fixing NetSuite's cross-origin hotlink block and any
+ * mixed content. When a product has no image (a handful of items), we fall back to
+ * a category-accented gradient tile with the family icon and SKU.
  */
 export function ProductImage({
 	product,
@@ -20,6 +22,21 @@ export function ProductImage({
 	iconClassName?: string;
 }) {
 	const theme = categoryTheme(product.category);
+	const src = mediaProxyUrl(product.imageUrl);
+
+	if (src) {
+		return (
+			<div className={`relative overflow-hidden bg-white ${className}`}>
+				{/* eslint-disable-next-line @next/next/no-img-element */}
+				<img
+					src={src}
+					alt={product.title}
+					className="h-full w-full object-contain p-3"
+					loading="lazy"
+				/>
+			</div>
+		);
+	}
 
 	return (
 		<div

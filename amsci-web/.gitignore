@@ -56,3 +56,6 @@ next-env.d.ts
 *.sql.gz
 wp_users*.sql
 wp_users*.csv
+
+# throwaway backfill sample (dev only)
+src/data/catalog.sample.json

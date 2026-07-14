@@ -7,6 +7,7 @@
  */
 import { NetSuiteClient } from "./client";
 import { getEnv, type RawEnv } from "./env";
+import { absoluteMediaUrl } from "./images";
 
 export interface NetSuiteItem {
 	internalId: string;
@@ -16,7 +17,14 @@ export interface NetSuiteItem {
 	sku: string;
 	/** storedescription (raw; has \r\n + "•" bullets — shape with parseDescription). */
 	description: string;
-	/** custitem_imageurltext (raw; may be http — coerce with toHttps). */
+	/**
+	 * Product image, absolute URL. Sourced from the native File Cabinet field
+	 * `storeDisplayImage` (public `4093468.app.netsuite.com/core/media/...` long-hash
+	 * URLs that load without a login — verified across the catalog). Falls back to
+	 * `custitem_imageurltext` only when no File Cabinet image is set; note that field
+	 * mostly holds login-gated `shopping.na1`/`system.na1` URLs that DON'T load, which
+	 * is why we prefer the File Cabinet. Route through mediaProxyUrl for display.
+	 */
 	imageUrl: string | null;
 	/** custitemtg_url (Teacher's Guide PDF). */
 	teachersGuideUrl: string | null;
@@ -56,11 +64,15 @@ export async function fetchNetSuiteItem(
 
 	const client = NetSuiteClient.fromEnv(env);
 
+	const account = (env.NS_ACCOUNT ?? "").trim();
+
 	const itemQuery =
-		"SELECT id, storedisplayname, itemid, storedescription, custitem_imageurltext, " +
-		"custitemtg_url, custitemyoutubeembedcode, BUILTIN.DF(custitem_grades) AS grades, " +
-		"custitem_size AS size, BUILTIN.DF(class) AS category, searchkeywords " +
-		`FROM item WHERE id = ${id}`;
+		"SELECT i.id, i.storedisplayname, i.itemid, i.storedescription, i.custitem_imageurltext, " +
+		"i.custitemtg_url, i.custitemyoutubeembedcode, BUILTIN.DF(i.custitem_grades) AS grades, " +
+		"i.custitem_size AS size, BUILTIN.DF(i.class) AS category, i.searchkeywords, " +
+		"f.url AS filecabinet_url " +
+		"FROM item i LEFT JOIN file f ON f.id = i.storedisplayimage " +
+		`WHERE i.id = ${id}`;
 	const priceQuery =
 		`SELECT unitPrice AS unitprice FROM pricing WHERE item = ${id} AND priceLevel = 1 AND priceQty = 1`;
 
@@ -75,12 +87,20 @@ export async function fetchNetSuiteItem(
 	const priceRaw = pricePage.items[0]?.unitprice ?? pricePage.items[0]?.unitPrice;
 	const basePrice = priceRaw != null && priceRaw !== "" ? Number(priceRaw) : null;
 
+	// Prefer the File Cabinet image (public, verified) over custitem_imageurltext
+	// (mostly login-gated na1 URLs). Both are absolute after this resolution.
+	const fileUrl = field(row, "filecabinet_url");
+	const imageUrl =
+		fileUrl && account
+			? absoluteMediaUrl(fileUrl, account)
+			: field(row, "custitem_imageurltext");
+
 	return {
 		internalId: field(row, "id") ?? id,
 		title: field(row, "storedisplayname") ?? field(row, "itemid") ?? "Untitled item",
 		sku: field(row, "itemid") ?? "",
 		description: field(row, "storedescription") ?? "",
-		imageUrl: field(row, "custitem_imageurltext"),
+		imageUrl,
 		teachersGuideUrl: field(row, "custitemtg_url"),
 		youtubeEmbed: field(row, "custitemyoutubeembedcode"),
 		grades: field(row, "grades"),
