@@ -14,6 +14,9 @@ import { CategoryIcon } from "@/components/CategoryIcon";
  * category URLs for SEO (CLAUDE.md §8). Lists the products in a single leaf
  * category.
  */
+/** Re-read the cron-synced catalog from D1 at most this often (seconds). */
+export const revalidate = 300;
+
 export function generateStaticParams() {
 	return getTopLevelCategories().flatMap((parent) =>
 		(parent.children ?? []).map((child) => ({ parent: parent.slug, child: child.slug })),
@@ -44,7 +47,7 @@ export default async function LeafCategoryPage({
 	const category = getChildCategory(parent, child);
 	if (!parentCategory || !category) notFound();
 
-	const products = getProductsByLeaf(child);
+	const products = await getProductsByLeaf(child);
 	const theme = categoryTheme(parentCategory.slug);
 
 	return (

@@ -15,6 +15,9 @@ import { CategoryIcon } from "@/components/CategoryIcon";
  * every product beneath it. Standalone top-level categories (e.g. Special) are
  * included; external sources (PHYWE) have their own route and are excluded.
  */
+/** Re-read the cron-synced catalog from D1 at most this often (seconds). */
+export const revalidate = 300;
+
 export function generateStaticParams() {
 	return getTopLevelCategories()
 		.filter((c) => !c.external)
@@ -44,8 +47,8 @@ export default async function ParentCategoryPage({
 	const category = getParentCategory(parent);
 	if (!category || category.external) notFound();
 
-	const products = getProductsByParent(parent);
-	const counts = getLeafProductCounts();
+	const products = await getProductsByParent(parent);
+	const counts = await getLeafProductCounts();
 	const theme = categoryTheme(category.slug);
 
 	return (

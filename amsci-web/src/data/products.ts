@@ -1,3 +1,4 @@
+import { cache } from "react";
 import type { Product } from "@/types/product";
 import { productSlug } from "@/types/product";
 import {
@@ -6,36 +7,21 @@ import {
 	findLeafByName,
 	CATEGORY_TREE,
 } from "@/data/categories";
-import catalogRaw from "@/data/catalog.json";
+import { getCatalog } from "@/data/catalog-source";
+import type { CatalogRecord } from "@/lib/catalog/types";
 
 /**
- * Storefront catalog — sourced from NetSuite.
+ * Storefront catalog — sourced from NetSuite via the disposable cache.
  *
- * This module reads `catalog.json`, the cache produced by
- * `scripts/backfill-catalog.ts` (NetSuite `item WHERE isonline='T' AND
- * isinactive='F'`, CLAUDE.md §3/§5). NetSuite is the system of record; this cache
- * is disposable and rebuilt by re-running the backfill (later: D1 + live sync).
- * Nothing here is authored by hand.
+ * Reads through `getCatalog()` (src/data/catalog-source.ts): D1 at runtime (the
+ * cron-synced cache), falling back to the committed `catalog.json` snapshot at
+ * build time / locally. NetSuite is the system of record; this module maps the
+ * cache down to the render-facing `Product`. Per-account tiered price/stock is
+ * resolved LIVE elsewhere — `price` here is base (level 1) only.
  *
- * The on-disk record is a superset of `Product`; we map it down to the shape the
- * storefront renders. Per-account tiered price/stock is resolved LIVE elsewhere
- * (`resolvePrice`), never baked into this cache — `price` here is base (level 1).
+ * All accessors are async (D1 is a runtime, per-request source) and memoized per
+ * render via React `cache()`.
  */
-interface CatalogRecord {
-	internalId: string;
-	sku: string;
-	title: string;
-	description: string;
-	price: number | null;
-	image: string | null;
-	gallery: string[];
-	grades: string[];
-	categoryName: string | null;
-	itemType: string | null;
-	size: string | null;
-	searchKeywords: string | null;
-	lastModified: string | null;
-}
 
 /**
  * Map a NetSuite `class` display name to a taxonomy slug (Product.category):
@@ -54,26 +40,29 @@ function slugForClass(name: string | null): string {
 	return "special";
 }
 
-/** The catalog, mapped to the storefront Product shape. Built once at module load. */
-export const PRODUCTS: Product[] = (catalogRaw as CatalogRecord[]).map((c) => ({
-	internalId: c.internalId,
-	sku: c.sku,
-	title: c.title || c.sku || "Untitled item",
-	description: c.description ?? "",
-	price: c.price ?? 0,
-	imageUrl: c.image ?? "",
-	category: slugForClass(c.categoryName),
-	grades: c.grades ?? [],
-}));
-
-/** All products. */
-export function getAllProducts(): Product[] {
-	return PRODUCTS;
+function toProduct(c: CatalogRecord): Product {
+	return {
+		internalId: c.internalId,
+		sku: c.sku,
+		title: c.title || c.sku || "Untitled item",
+		description: c.description ?? "",
+		price: c.price ?? 0,
+		imageUrl: c.image ?? "",
+		category: slugForClass(c.categoryName),
+		grades: c.grades ?? [],
+	};
 }
 
+/** The catalog mapped to the storefront Product shape. Memoized per render. */
+export const getAllProducts = cache(async (): Promise<Product[]> => {
+	const catalog = await getCatalog();
+	return catalog.map(toProduct);
+});
+
 /** Products in a single leaf category (by leaf slug). */
-export function getProductsByLeaf(leafSlug: string): Product[] {
-	return PRODUCTS.filter((p) => p.category === leafSlug);
+export async function getProductsByLeaf(leafSlug: string): Promise<Product[]> {
+	const products = await getAllProducts();
+	return products.filter((p) => p.category === leafSlug);
 }
 
 /**
@@ -82,25 +71,28 @@ export function getProductsByLeaf(leafSlug: string): Product[] {
  * Parents with subcategories match any of their leaf slugs. Standalone top-level
  * categories (e.g. Special) have products assigned directly to the parent slug.
  */
-export function getProductsByParent(parentSlug: string): Product[] {
+export async function getProductsByParent(parentSlug: string): Promise<Product[]> {
 	const parent = getParentCategory(parentSlug);
 	if (!parent) return [];
+	const products = await getAllProducts();
 	if (parent.children?.length) {
 		const leaves = new Set(parent.children.map((c) => c.slug));
-		return PRODUCTS.filter((p) => leaves.has(p.category) || p.category === parentSlug);
+		return products.filter((p) => leaves.has(p.category) || p.category === parentSlug);
 	}
-	return PRODUCTS.filter((p) => p.category === parentSlug);
+	return products.filter((p) => p.category === parentSlug);
 }
 
 /** Look up one product by its detail-page slug (derived from SKU). */
-export function getProductBySlug(slug: string): Product | undefined {
-	return PRODUCTS.find((p) => productSlug(p) === slug.toLowerCase());
+export async function getProductBySlug(slug: string): Promise<Product | undefined> {
+	const products = await getAllProducts();
+	return products.find((p) => productSlug(p) === slug.toLowerCase());
 }
 
 /** Count of products in each leaf category slug. Handy for nav/landing badges. */
-export function getLeafProductCounts(): Record<string, number> {
+export async function getLeafProductCounts(): Promise<Record<string, number>> {
+	const products = await getAllProducts();
 	const counts: Record<string, number> = {};
 	for (const leaf of getAllLeafCategories()) counts[leaf.slug] = 0;
-	for (const p of PRODUCTS) counts[p.category] = (counts[p.category] ?? 0) + 1;
+	for (const p of products) counts[p.category] = (counts[p.category] ?? 0) + 1;
 	return counts;
 }

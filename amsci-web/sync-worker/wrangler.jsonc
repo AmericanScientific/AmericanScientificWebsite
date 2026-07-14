@@ -1,0 +1,29 @@
+{
+	"$schema": "../node_modules/wrangler/config-schema.json",
+	"name": "amsci-sync",
+	"main": "index.ts",
+	"compatibility_date": "2026-07-09",
+	"compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+	"observability": { "enabled": true },
+
+	// Cron: full catalog sync from NetSuite → D1. Every 30 minutes.
+	// Adjust cadence here; go more frequent only if NetSuite governance allows.
+	"triggers": {
+		"crons": ["*/30 * * * *"]
+	},
+
+	// Same D1 database the storefront reads (create once: `wrangler d1 create amsci-catalog`,
+	// then paste the id here AND in ../wrangler.jsonc).
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "amsci-catalog",
+			"database_id": "53ff7b8e-d672-43d4-aa39-9682003a07e2"
+		}
+	]
+
+	// Secrets (set with `wrangler secret put <NAME> -c sync-worker/wrangler.jsonc`):
+	//   NS_ACCOUNT, NS_CONSUMER_KEY, NS_CONSUMER_SECRET, NS_TOKEN, NS_TOKEN_SECRET
+	//   SYNC_TOKEN  (any random string; guards POST /sync)
+	// Locally, `wrangler dev` reads these from .dev.vars.
+}

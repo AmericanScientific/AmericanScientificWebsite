@@ -229,3 +229,18 @@ body {
 		animation: none;
 	}
 }
+
+/* ── Category "morph" tiles ──────────────────────────────────────────────────
+   Entrance for the expanded tile in <HeroCategoryTiles>. The expand/dissolve
+   logic lives in that client component (state-driven, to avoid hover flicker);
+   this is only the soft fade-in for the panel as it takes over the grid. */
+@keyframes catMorphIn {
+	from {
+		opacity: 0.3;
+		transform: scale(0.96);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}

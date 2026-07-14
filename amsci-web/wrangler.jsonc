@@ -32,6 +32,17 @@
 			"service": "amsci-web"
 		}
 	],
+	// Catalog cache, populated by the `amsci-sync` Worker on a cron schedule.
+	// Create once (`wrangler d1 create amsci-catalog`) and paste the id here AND
+	// in sync-worker/wrangler.jsonc. The storefront reads this at runtime via
+	// src/data/catalog-source.ts, falling back to catalog.json when absent.
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "amsci-catalog",
+			"database_id": "53ff7b8e-d672-43d4-aa39-9682003a07e2"
+		}
+	],
 	"observability": {
 		"enabled": true
 	},
