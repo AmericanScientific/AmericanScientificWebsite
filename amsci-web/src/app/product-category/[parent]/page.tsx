@@ -2,10 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getTopLevelCategories, getParentCategory } from "@/data/categories";
-import { categoryTheme } from "@/lib/categoryTheme";
 import { getProductsByParent, getLeafProductCounts } from "@/data/products";
 import { ProductGrid } from "@/components/ProductGrid";
-import { CategoryIcon } from "@/components/CategoryIcon";
+import { CategoryHero } from "@/components/CategoryHero";
 
 /**
  * Top-level category landing page.
@@ -49,36 +48,10 @@ export default async function ParentCategoryPage({
 
 	const products = await getProductsByParent(parent);
 	const counts = await getLeafProductCounts();
-	const theme = categoryTheme(category.slug);
 
 	return (
 		<div>
-			{/* Themed header banner */}
-			<div className={`bg-gradient-to-br ${theme.tile}`}>
-				<div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-					<nav className="text-sm text-white/70" aria-label="Breadcrumb">
-						<Link href="/products" className="hover:text-white">
-							Catalog
-						</Link>
-						<span className="mx-2">/</span>
-						<span className="text-white">{category.name}</span>
-					</nav>
-					<div className="mt-4 flex items-center gap-4">
-						<span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/15 text-white ring-1 ring-white/25 backdrop-blur">
-							<CategoryIcon slug={category.slug} className="h-9 w-9" />
-						</span>
-						<div>
-							<h1 className="font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">
-								{category.name}
-							</h1>
-							<p className="mt-1 text-sm text-white/80">
-								{products.length} {products.length === 1 ? "product" : "products"} · Sign in for
-								your account pricing
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
+			<CategoryHero themeSlug={category.slug} title={category.name} count={products.length} />
 
 			<div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
 				{/* Subcategories */}
