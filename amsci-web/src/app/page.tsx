@@ -7,6 +7,7 @@ import { mediaProxyUrl } from "@/lib/media";
 import { ProductCard } from "@/components/ProductCard";
 import { CategoryIcon } from "@/components/CategoryIcon";
 import { HeroCategoryTiles } from "@/components/HeroCategoryTiles";
+import { SecretCircles } from "@/components/SecretCircles";
 import type { BubbleItem } from "@/components/CategoryBubbles";
 
 /** Max product images shipped per category for the hero bubble collage. */
@@ -194,6 +195,11 @@ export default async function Home() {
 						</div>
 					</div>
 				</div>
+			</section>
+
+			{/* Four circles under the CTA band — hidden sequence puzzle. */}
+			<section className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
+				<SecretCircles />
 			</section>
 		</>
 	);
