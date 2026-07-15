@@ -10,7 +10,8 @@
  * helpers so the CLI backfill and this Worker stay in lockstep.
  *
  * Triggers:
- *   - scheduled(): cron → full sync + prune.
+ *   - scheduled(): two crons (see wrangler.jsonc) — the hourly one (FULL_CRON)
+ *       runs a full sync + prune; every other cron runs a cheap incremental.
  *   - fetch():  GET /health         → last sync status (public, read-only).
  *               POST /sync?token=…  → manual sync (token-guarded via SYNC_TOKEN).
  */
@@ -85,10 +86,18 @@ async function recordFailure(env: SyncEnv, err: unknown): Promise<void> {
 	}
 }
 
+/** The hourly cron that performs a FULL sync + prune; all others are incremental. */
+const FULL_CRON = "0 * * * *";
+
 export default {
-	async scheduled(_event: ScheduledController, env: SyncEnv, ctx: ExecutionContext): Promise<void> {
+	async scheduled(event: ScheduledController, env: SyncEnv, ctx: ExecutionContext): Promise<void> {
+		// A full sync (re-fetch everything + prune removals) is the heavy,
+		// governance-sensitive op, so only the hourly cron runs it; the frequent
+		// cron runs a cheap incremental (changed items only). If both fire at :00,
+		// they run independently and the full run supersedes.
+		const incremental = event.cron !== FULL_CRON;
 		ctx.waitUntil(
-			runSync(env, false).catch(async (err) => {
+			runSync(env, incremental).catch(async (err) => {
 				await recordFailure(env, err);
 				throw err; // surface in Worker logs / observability
 			}),
