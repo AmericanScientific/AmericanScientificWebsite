@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getTopLevelCategories, getParentCategory } from "@/data/categories";
 import { getProductsByParent, getLeafProductCounts } from "@/data/products";
-import { ProductGrid } from "@/components/ProductGrid";
+import { CategorySubfilter } from "@/components/CategorySubfilter";
 import { CategoryHero } from "@/components/CategoryHero";
 
 /**
@@ -54,25 +53,16 @@ export default async function ParentCategoryPage({
 			<CategoryHero themeSlug={category.slug} title={category.name} count={products.length} />
 
 			<div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-				{/* Subcategories */}
-				{category.children?.length ? (
-					<div className="flex flex-wrap gap-2">
-						{category.children.map((child) => (
-							<Link
-								key={child.slug}
-								href={`/product-category/${category.slug}/${child.slug}`}
-								className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-1.5 text-sm font-medium text-slate-700 shadow-sm transition-all hover:border-slate-300 hover:shadow-md"
-							>
-								{child.name}
-								<span className="rounded-full bg-slate-100 px-1.5 text-xs text-slate-500">
-									{counts[child.slug] ?? 0}
-								</span>
-							</Link>
-						))}
-					</div>
-				) : null}
-
-				<ProductGrid products={products} />
+				{/* Subcategory filter toggles + the (filtered) product grid */}
+				<CategorySubfilter
+					themeSlug={category.slug}
+					subcategories={(category.children ?? []).map((child) => ({
+						slug: child.slug,
+						name: child.name,
+						count: counts[child.slug] ?? 0,
+					}))}
+					products={products}
+				/>
 			</div>
 		</div>
 	);

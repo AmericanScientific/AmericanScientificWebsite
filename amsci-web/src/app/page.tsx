@@ -7,6 +7,8 @@ import { mediaProxyUrl } from "@/lib/media";
 import { ProductCard } from "@/components/ProductCard";
 import { CategoryIcon } from "@/components/CategoryIcon";
 import { HeroCategoryTiles } from "@/components/HeroCategoryTiles";
+import { HeroNetwork } from "@/components/HeroNetwork";
+import { RevealOnScroll } from "@/components/RevealOnScroll";
 import { SecretCircles } from "@/components/SecretCircles";
 import type { BubbleItem } from "@/components/CategoryBubbles";
 
@@ -42,13 +44,33 @@ export default async function Home() {
 
 	return (
 		<>
+			<RevealOnScroll />
+
 			{/* ── Hero ─────────────────────────────────────────────────────────── */}
 			<section className="hero-surface relative overflow-hidden">
+				{/* Ambient: three brand blobs breathing behind the content */}
+				<div className="hero-mesh" aria-hidden="true">
+					<span className="hero-blob hero-blob-red" />
+					<span className="hero-blob hero-blob-blue" />
+					<span className="hero-blob hero-blob-plum" />
+				</div>
 				<div className="grid-overlay absolute inset-0" />
+				{/* Signature graphic as ambient backdrop — glows through the tiles on the
+				    right, fades out before it reaches the headline on the left. */}
+				<div
+					className="pointer-events-none absolute inset-0 z-0 hidden opacity-60 lg:block"
+					style={{
+						maskImage: "linear-gradient(105deg, transparent 32%, black 72%)",
+						WebkitMaskImage: "linear-gradient(105deg, transparent 32%, black 72%)",
+					}}
+					aria-hidden="true"
+				>
+					<HeroNetwork fill showLabel={false} />
+				</div>
 				<div className="relative mx-auto grid max-w-7xl gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:py-28 lg:px-8">
 					<div>
 						<span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium text-slate-200 backdrop-blur">
-							<span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+							<span className="pulse-dot h-1.5 w-1.5 rounded-full bg-emerald-400 text-emerald-400" />
 							B2B wholesale · 1,300+ SKUs synced from NetSuite
 						</span>
 						<h1 className="mt-6 font-display text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
@@ -103,7 +125,7 @@ export default async function Home() {
 
 			{/* ── Shop by category ─────────────────────────────────────────────── */}
 			<section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-				<div className="flex items-end justify-between">
+				<div className="reveal flex items-end justify-between">
 					<div>
 						<h2 className="font-display text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
 							Shop by category
@@ -115,7 +137,7 @@ export default async function Home() {
 					</Link>
 				</div>
 
-				<div className="mt-8 grid auto-rows-fr grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+				<div className="reveal-stagger mt-8 grid auto-rows-fr grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
 					{categories.map((category) => {
 						const theme = categoryTheme(category.slug);
 						const childCount = category.children?.length ?? 0;
@@ -151,7 +173,7 @@ export default async function Home() {
 			{/* ── Featured products ────────────────────────────────────────────── */}
 			<section className="dot-grid border-y border-slate-200/70 bg-white/50">
 				<div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-					<div className="flex items-end justify-between">
+					<div className="reveal flex items-end justify-between">
 						<h2 className="font-display text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
 							Featured products
 						</h2>
@@ -159,7 +181,7 @@ export default async function Home() {
 							View all →
 						</Link>
 					</div>
-					<div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+					<div className="reveal-stagger mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
 						{featured.map((product) => (
 							<ProductCard key={product.internalId} product={product} />
 						))}
@@ -171,7 +193,7 @@ export default async function Home() {
 			<section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
 				<div className="hero-surface relative overflow-hidden rounded-3xl px-8 py-12 text-center sm:px-16 sm:py-16">
 					<div className="grid-overlay absolute inset-0" />
-					<div className="relative mx-auto max-w-2xl">
+					<div className="reveal relative mx-auto max-w-2xl">
 						<h2 className="font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">
 							Ready to order at your account price?
 						</h2>
