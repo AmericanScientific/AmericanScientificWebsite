@@ -50,6 +50,19 @@ export interface Product {
 
 	/** Grade levels this product targets (NetSuite `custitem_grades`). */
 	grades: string[];
+
+	/**
+	 * Variant-page metadata (set only on a collapsed listing card).
+	 *
+	 * When a product is really one member of a multi-variant page (see
+	 * `src/data/variant-groups.ts`), listing accessors collapse its members to a
+	 * single representative card carrying:
+	 *  - `variantCount` — number of members (drives the "N options" badge + "from" price);
+	 *  - `pageSlug` — the group page slug the card links to.
+	 * Both are undefined for singles, so nothing changes for un-grouped products.
+	 */
+	variantCount?: number;
+	pageSlug?: string;
 }
 
 /** URL-safe slug for a product detail route. SKU is stable and unique, so we key on it. */

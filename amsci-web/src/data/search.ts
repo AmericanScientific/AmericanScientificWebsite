@@ -1,5 +1,5 @@
 import type { Product } from "@/types/product";
-import { getAllProducts } from "@/data/products";
+import { getAllProducts, collapseToPages } from "@/data/products";
 import { getCatalog } from "@/data/catalog-source";
 import { cache } from "react";
 import { getCategoryName, getTopLevelSlug } from "@/data/categories";
@@ -138,7 +138,9 @@ export async function searchCatalog(filters: SearchFilters): Promise<SearchOutco
 			scored.sort((a, b) => (terms.length ? b.score - a.score || byName(a.p, b.p) : byName(a.p, b.p)));
 	}
 
-	const results = scored.map((s) => s.p);
+	// Collapse variant members to one group card each (keeps the highest-ranked
+	// member's position), so results show one card per product linking to its page.
+	const results = await collapseToPages(scored.map((s) => s.p));
 	return { results, total: results.length, filters };
 }
 

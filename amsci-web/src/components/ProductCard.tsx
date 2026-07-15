@@ -9,10 +9,13 @@ import { ProductImage } from "@/components/ProductImage";
 /** Catalog card: accent tile, category chip, title, SKU, and base price. */
 export function ProductCard({ product }: { product: Product }) {
 	const theme = categoryTheme(product.category);
+	const isGroup = (product.variantCount ?? 0) > 1;
+	// Prefer the consolidated page slug; fall back to the SKU slug (which redirects).
+	const href = `/product/${product.pageSlug ?? productSlug(product)}`;
 
 	return (
 		<Link
-			href={`/product/${productSlug(product)}`}
+			href={href}
 			className="card-hover group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5"
 		>
 			<div className="relative">
@@ -22,16 +25,22 @@ export function ProductCard({ product }: { product: Product }) {
 				>
 					{getCategoryName(product.category)}
 				</span>
+				{isGroup && (
+					<span className="absolute right-2.5 top-2.5 inline-flex items-center rounded-full bg-slate-900/80 px-2.5 py-1 text-[11px] font-semibold text-white backdrop-blur-sm">
+						{product.variantCount} options
+					</span>
+				)}
 			</div>
 
 			<div className="flex flex-1 flex-col gap-2 p-4">
 				<h3 className="line-clamp-2 text-sm font-semibold leading-snug text-slate-900 transition-colors group-hover:text-brand-blue-deep">
 					{product.title}
 				</h3>
-				<p className="text-xs text-slate-400">SKU {product.sku}</p>
+				{!isGroup && <p className="text-xs text-slate-400">SKU {product.sku}</p>}
 
 				<div className="mt-auto flex items-end justify-between pt-3">
 					<div>
+						{isGroup && <span className="mr-1 text-xs font-medium text-slate-400">from</span>}
 						<span className="text-lg font-bold tracking-tight text-slate-900">
 							{formatPrice(product.price)}
 						</span>

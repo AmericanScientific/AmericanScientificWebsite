@@ -31,11 +31,12 @@ export async function GET(request: Request): Promise<Response> {
 
 	const { results, total } = await searchCatalog(filters);
 	const suggestions = results.slice(0, limit).map((p) => ({
-		slug: productSlug(p),
+		slug: p.pageSlug ?? productSlug(p),
 		title: p.title,
 		sku: p.sku,
 		category: getCategoryName(p.category),
 		price: p.price,
+		variantCount: p.variantCount ?? 0,
 	}));
 
 	return Response.json({ q: filters.q, total, suggestions });

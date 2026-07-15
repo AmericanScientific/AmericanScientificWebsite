@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getTopLevelCategories } from "@/data/categories";
 import { categoryTheme } from "@/lib/categoryTheme";
-import { getAllProducts } from "@/data/products";
+import { getListingProducts } from "@/data/products";
 import { ProductGrid } from "@/components/ProductGrid";
 import { CategoryIcon } from "@/components/CategoryIcon";
 
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export const revalidate = 300;
 
 export default async function ProductsPage() {
-	const products = await getAllProducts();
+	const products = await getListingProducts();
 	const categories = getTopLevelCategories();
 
 	return (
