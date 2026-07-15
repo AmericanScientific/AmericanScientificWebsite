@@ -1,10 +1,10 @@
 {
   "summary": {
     "total_items": 1306,
-    "total_pages": 975,
-    "multi_variant_pages": 143,
-    "single_item_pages": 832,
-    "items_consolidated_into_multi_pages": 474,
+    "total_pages": 973,
+    "multi_variant_pages": 144,
+    "single_item_pages": 829,
+    "items_consolidated_into_multi_pages": 477,
     "pages_flagged_for_review": 7,
     "related_family_clusters": 131
   },
@@ -4591,7 +4591,7 @@
           "item_number": "1345-05",
           "netsuite_internal_id": 765,
           "full_name": "Objective, Microscope, Achromatic, DIN, 4X",
-          "store_name": "Objectives, Achromatic \u201cDIN\u201d 4X",
+          "store_name": "Objectives, Achromatic “DIN” 4X",
           "variant_label": "4X",
           "itemtype": "InvtPart",
           "has_image": true
@@ -4825,7 +4825,7 @@
           "item_number": "3630-02",
           "netsuite_internal_id": 1458,
           "full_name": "Tuning Fork, With Ball, Steel Standard, Plastic Pouch...",
-          "store_name": "Tuning Fork, Steel Standard 261.6 Hz \u201cC\u201d with Ball, Plastic Pouch",
+          "store_name": "Tuning Fork, Steel Standard 261.6 Hz “C” with Ball, Plastic Pouch",
           "variant_label": "Plastic Pouch...",
           "itemtype": "InvtPart",
           "has_image": true
@@ -4834,7 +4834,7 @@
           "item_number": "3630-04",
           "netsuite_internal_id": 1459,
           "full_name": "Tuning Fork, With Ball, Steel Standard, Plastic Pouch...",
-          "store_name": "Tuning Fork, Steel Standard 329.6 Hz \u201cE\u201d with Ball, Plastic Pouch",
+          "store_name": "Tuning Fork, Steel Standard 329.6 Hz “E” with Ball, Plastic Pouch",
           "variant_label": "Plastic Pouch...",
           "itemtype": "InvtPart",
           "has_image": true
@@ -4843,7 +4843,7 @@
           "item_number": "3630-06",
           "netsuite_internal_id": 2496,
           "full_name": "Tuning Fork, With Ball, Steel Standard, Plastic Pouch...",
-          "store_name": "Tuning Fork, Steel Standard 440 Hz \u201cA\u201d with Ball, Plastic Pouch",
+          "store_name": "Tuning Fork, Steel Standard 440 Hz “A” with Ball, Plastic Pouch",
           "variant_label": "Plastic Pouch...",
           "itemtype": "InvtPart",
           "has_image": true
@@ -6292,7 +6292,7 @@
           "item_number": "9222-23-B",
           "netsuite_internal_id": 4558,
           "full_name": "Rattleback, Blue, 10/pk",
-          "store_name": "Rattleback, Plastic, Blue Color, Pk/10 (with Teacher\u2019s Guide)",
+          "store_name": "Rattleback, Plastic, Blue Color, Pk/10 (with Teacher’s Guide)",
           "variant_label": "Blue / 10/pk",
           "itemtype": "InvtPart",
           "has_image": true
@@ -6622,7 +6622,7 @@
           "item_number": "2024-11",
           "netsuite_internal_id": 801,
           "full_name": "Tongs, Beaker, 50 ml to 2000 ml",
-          "store_name": "Beaker Tongs, 50 ml \u2013 2000 ml",
+          "store_name": "Beaker Tongs, 50 ml – 2000 ml",
           "variant_label": "50 ml to 2000 ml",
           "itemtype": "InvtPart",
           "has_image": true
@@ -9835,7 +9835,7 @@
           "item_number": "3167-65",
           "netsuite_internal_id": 4920,
           "full_name": "DC Mini Motor With Two Lead Wires and Alligator Clips...",
-          "store_name": "DC Mini Motor With Two Lead Wires and Alligator Clips, 4.5 \u2013 6 V, each",
+          "store_name": "DC Mini Motor With Two Lead Wires and Alligator Clips, 4.5 – 6 V, each",
           "variant_label": "DC Mini Motor With Two Lead Wires and Alligator Clips...",
           "itemtype": "InvtPart",
           "has_image": true
@@ -9844,7 +9844,7 @@
     },
     {
       "page_id": "G0326",
-      "product_name": "Dc Mini Motor With Two Lead Wires, 1.5 \u2013",
+      "product_name": "Dc Mini Motor With Two Lead Wires, 1.5 –",
       "family": "Dc Mini Motor With Two Lead Wires",
       "page_type": "single",
       "variant_axis": "",
@@ -9855,9 +9855,9 @@
         {
           "item_number": "3167-60",
           "netsuite_internal_id": 2875,
-          "full_name": "DC Mini Motor With Two Lead Wires, 1.5 \u2013 3 V, 10/pk",
-          "store_name": "DC Mini Motor With Two Lead Wires, 1.5 \u2013 3 V, 10/pk",
-          "variant_label": "1.5 \u2013 3 V / 10/pk",
+          "full_name": "DC Mini Motor With Two Lead Wires, 1.5 – 3 V, 10/pk",
+          "store_name": "DC Mini Motor With Two Lead Wires, 1.5 – 3 V, 10/pk",
+          "variant_label": "1.5 – 3 V / 10/pk",
           "itemtype": "InvtPart",
           "has_image": true
         }
@@ -10255,7 +10255,7 @@
           "item_number": "5720-00",
           "netsuite_internal_id": 2436,
           "full_name": "Distillation Adapter, Bent 75 Degrees, Joint 14/20, 50x55 mm",
-          "store_name": "Distillation Bent, 75\u00b0, 14/20 Joints, 55 mm W x 50 mm H",
+          "store_name": "Distillation Bent, 75°, 14/20 Joints, 55 mm W x 50 mm H",
           "variant_label": "Bent 75 Degrees / Joint 14/20 / 50x55 mm",
           "itemtype": "InvtPart",
           "has_image": true
@@ -10276,7 +10276,7 @@
           "item_number": "5720-02",
           "netsuite_internal_id": 2434,
           "full_name": "Distillation Adapter, Bent 105 Degrees, Joint 14/20, 100...",
-          "store_name": "Distillation Bent, 105\u00b0, 14/20 Joints, 100 mm W x 100 mm H",
+          "store_name": "Distillation Bent, 105°, 14/20 Joints, 100 mm W x 100 mm H",
           "variant_label": "Bent 105 Degrees / Joint 14/20 / 100...",
           "itemtype": "InvtPart",
           "has_image": true
@@ -10297,7 +10297,7 @@
           "item_number": "5720-01",
           "netsuite_internal_id": 2437,
           "full_name": "Distillation Adapter, Bent 75 Degrees, Joint 19/22, 50x55 mm",
-          "store_name": "Distillation Bent, 75\u00b0, 19/22 Joints",
+          "store_name": "Distillation Bent, 75°, 19/22 Joints",
           "variant_label": "Bent 75 Degrees / Joint 19/22 / 50x55 mm",
           "itemtype": "InvtPart",
           "has_image": true
@@ -10318,7 +10318,7 @@
           "item_number": "5720-04",
           "netsuite_internal_id": 1744,
           "full_name": "Distillation Adapter, Bent 105 Degrees, Joint 19/22, 104...",
-          "store_name": "Distillation Bent, 105\u00b0, 19/22 Joint, 130 mm W x 100 mm H",
+          "store_name": "Distillation Bent, 105°, 19/22 Joint, 130 mm W x 100 mm H",
           "variant_label": "Bent 105 Degrees / Joint 19/22 / 104...",
           "itemtype": "InvtPart",
           "has_image": true
@@ -10339,7 +10339,7 @@
           "item_number": "5720-03",
           "netsuite_internal_id": 1743,
           "full_name": "Distillation Adapter, Bent 75 Degrees, Joint 24/40...",
-          "store_name": "75\u00b0 Distillation Bent, 24/40 Joints, 140 mm W X 130 mm H",
+          "store_name": "75° Distillation Bent, 24/40 Joints, 140 mm W X 130 mm H",
           "variant_label": "Bent 75 Degrees / Joint 24/40...",
           "itemtype": "InvtPart",
           "has_image": true
@@ -10360,7 +10360,7 @@
           "item_number": "5720-05",
           "netsuite_internal_id": 2438,
           "full_name": "Distillation Adapter, Bent 75 Degrees, Joint 29/42...",
-          "store_name": "Distillation Bent, 75\u00b0, 29/42 Joints, 140 mm W x 130 mm H",
+          "store_name": "Distillation Bent, 75°, 29/42 Joints, 140 mm W x 130 mm H",
           "variant_label": "Bent 75 Degrees / Joint 29/42...",
           "itemtype": "InvtPart",
           "has_image": true
@@ -10969,7 +10969,7 @@
           "item_number": "6580-00-BAG",
           "netsuite_internal_id": 3742,
           "full_name": "Energy Ball, With Ziptop Bag",
-          "store_name": "Energy Ball in Ziptop Bag (with Teacher\u2019s Guide)",
+          "store_name": "Energy Ball in Ziptop Bag (with Teacher’s Guide)",
           "variant_label": null,
           "itemtype": "InvtPart",
           "has_image": true
@@ -12861,27 +12861,6 @@
           "full_name": "Inoculating Needle, Nichrome Wire, 24 Gauge, 3\"",
           "store_name": "3\" Inoculating Needle (Nichrome Wire)",
           "variant_label": "3\"",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0052",
-      "product_name": "Iris Scissors, Dissecting, Stainless Steel, Straight",
-      "family": "Iris Scissors",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1072",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "1072-01",
-          "netsuite_internal_id": 358,
-          "full_name": "Iris Scissors, Dissecting, Stainless Steel, Straight...",
-          "store_name": "Dissecting Straight Scissors Iris 4.5\"",
-          "variant_label": "Straight...",
           "itemtype": "InvtPart",
           "has_image": true
         }
@@ -16324,7 +16303,7 @@
           "item_number": "3168-00",
           "netsuite_internal_id": 1023,
           "full_name": "Oersted's Law Apparatus",
-          "store_name": "Oersted\u2019s Law Apparatus",
+          "store_name": "Oersted’s Law Apparatus",
           "variant_label": null,
           "itemtype": "InvtPart",
           "has_image": true
@@ -20722,12 +20701,12 @@
     },
     {
       "page_id": "G0051",
-      "product_name": "Scissors, Dissecting, Straight",
+      "product_name": "Scissors, Dissecting",
       "family": "Scissors",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1070",
+      "page_type": "multi-variant",
+      "variant_axis": "Type",
+      "item_count": 3,
+      "item_number_prefixes": "1070, 1072",
       "flag": "",
       "members": [
         {
@@ -20735,28 +20714,25 @@
           "netsuite_internal_id": 357,
           "full_name": "Scissors, Dissecting, Straight, 125 mm (5\")",
           "store_name": "Scissors, Dissecting, Straight, 125 mm",
-          "variant_label": "125 mm (5\")",
+          "variant_label": "Straight, 125 mm",
           "itemtype": "InvtPart",
           "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0053",
-      "product_name": "Scissors, Dissecting, Straight, Sharp Sharp",
-      "family": "Scissors",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1072",
-      "flag": "",
-      "members": [
+        },
+        {
+          "item_number": "1072-01",
+          "netsuite_internal_id": 358,
+          "full_name": "Iris Scissors, Dissecting, Stainless Steel, Straight...",
+          "store_name": "Dissecting Straight Scissors Iris 4.5\"",
+          "variant_label": "Iris, 4.5\"",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
         {
           "item_number": "1072-03",
           "netsuite_internal_id": 2549,
           "full_name": "Scissors, Dissecting, Straight, Sharp/Sharp, 115 mm (4.5\")",
           "store_name": "Dissecting Straight Scissors, Sharp/Sharp, 4.5\"",
-          "variant_label": "Sharp/Sharp / 115 mm (4.5\")",
+          "variant_label": "Sharp/Sharp, 4.5\"",
           "itemtype": "InvtPart",
           "has_image": true
         }
@@ -21100,7 +21076,7 @@
     },
     {
       "page_id": "G0317",
-      "product_name": "Socket With Base, White 6\u2019 Cord Light Bulb Upto 150-W",
+      "product_name": "Socket With Base, White 6’ Cord Light Bulb Upto 150-W",
       "family": "Socket With Base",
       "page_type": "single",
       "variant_axis": "",
@@ -21111,9 +21087,9 @@
         {
           "item_number": "3163-06",
           "netsuite_internal_id": 6004,
-          "full_name": "Socket with Base, White 6\u2019 cord light bulb upto 150-w. each",
+          "full_name": "Socket with Base, White 6’ cord light bulb upto 150-w. each",
           "store_name": "White Socket With Base",
-          "variant_label": "White 6\u2019 cord light bulb upto 150-w. each",
+          "variant_label": "White 6’ cord light bulb upto 150-w. each",
           "itemtype": "InvtPart",
           "has_image": true
         }
@@ -21184,7 +21160,7 @@
     },
     {
       "page_id": "G0969",
-      "product_name": "Solar Spectrum Chart, 18\u201d X 28\u201d",
+      "product_name": "Solar Spectrum Chart, 18” X 28”",
       "family": "Solar Spectrum Chart",
       "page_type": "single",
       "variant_axis": "",
@@ -21195,9 +21171,9 @@
         {
           "item_number": "SOL-01",
           "netsuite_internal_id": 6131,
-          "full_name": "Solar Spectrum Chart, 18\u201d x 28\u201d each",
+          "full_name": "Solar Spectrum Chart, 18” x 28” each",
           "store_name": "Solar Spectrum Chart",
-          "variant_label": "18\u201d x 28\u201d each",
+          "variant_label": "18” x 28” each",
           "itemtype": "InvtPart",
           "has_image": true
         }
@@ -22351,7 +22327,7 @@
           "item_number": "3548-12",
           "netsuite_internal_id": 2324,
           "full_name": "Replacement Syringe, For Boyle's Law Apparatus...",
-          "store_name": "Replacement Syringe for Boyle\u2019s Law Apparatus (Elasticity of Gases)",
+          "store_name": "Replacement Syringe for Boyle’s Law Apparatus (Elasticity of Gases)",
           "variant_label": "Replacement Syringe / For Boyle's Law Apparatus...",
           "itemtype": "InvtPart",
           "has_image": true
@@ -22792,7 +22768,7 @@
           "item_number": "1203-19",
           "netsuite_internal_id": 4715,
           "full_name": "Thermometer, Partial Immersion, -10/150C, 12\"",
-          "store_name": "12\" Partial Immersion Thermometer (-10-150\u00b0 C)",
+          "store_name": "12\" Partial Immersion Thermometer (-10-150° C)",
           "variant_label": "-10/150C / 12\"",
           "itemtype": "InvtPart",
           "has_image": true
@@ -22834,7 +22810,7 @@
           "item_number": "1203-15",
           "netsuite_internal_id": 4714,
           "full_name": "Thermometer, Partial Immersion, -20/110C, 12\"",
-          "store_name": "12\" Partial Immersion Thermometer (-20-110\u00b0 C)",
+          "store_name": "12\" Partial Immersion Thermometer (-20-110° C)",
           "variant_label": "-20/110C / 12\"",
           "itemtype": "InvtPart",
           "has_image": true
@@ -22855,7 +22831,7 @@
           "item_number": "1203-17",
           "netsuite_internal_id": 4717,
           "full_name": "Thermometer, Partial Immersion, -20/110C, 0/230F, 12\"",
-          "store_name": "12\" Partial Immersion Thermometer (-20-110\u00b0 C, 0-230\u00b0 F)",
+          "store_name": "12\" Partial Immersion Thermometer (-20-110° C, 0-230° F)",
           "variant_label": "-20/110C / 0/230F / 12\"",
           "itemtype": "InvtPart",
           "has_image": true
@@ -22876,7 +22852,7 @@
           "item_number": "1203-18",
           "netsuite_internal_id": 4718,
           "full_name": "Thermometer, Partial Immersion, -20/150C, 0/300F, 12\"",
-          "store_name": "12\" Partial Immersion Thermometer (-20-150\u00b0 C, 0-300\u00b0 F)",
+          "store_name": "12\" Partial Immersion Thermometer (-20-150° C, 0-300° F)",
           "variant_label": "-20/150C / 0/300F / 12\"",
           "itemtype": "InvtPart",
           "has_image": true
@@ -22918,7 +22894,7 @@
           "item_number": "1203-13",
           "netsuite_internal_id": 4712,
           "full_name": "Thermometer, Total Immersion, -20/110C, 12\"",
-          "store_name": "12\" Total Immersion Thermometer (-20-110\u00b0 C)",
+          "store_name": "12\" Total Immersion Thermometer (-20-110° C)",
           "variant_label": "-20/110C / 12\"",
           "itemtype": "InvtPart",
           "has_image": true
@@ -22939,7 +22915,7 @@
           "item_number": "1203-20",
           "netsuite_internal_id": 4892,
           "full_name": "Thermometer, Total Immersion, -20/110C, 0/230F, 12\"",
-          "store_name": "12\" Total Immersion Thermometer (-20-110\u00b0 C, 0-230\u00b0 F)",
+          "store_name": "12\" Total Immersion Thermometer (-20-110° C, 0-230° F)",
           "variant_label": "-20/110C / 0/230F / 12\"",
           "itemtype": "InvtPart",
           "has_image": true
@@ -22960,7 +22936,7 @@
           "item_number": "1203-14",
           "netsuite_internal_id": 4713,
           "full_name": "Thermometer, Total Immersion, -20/150C, 12\"",
-          "store_name": "12\" Total Immersion Thermometer (-20-150\u00b0 C)",
+          "store_name": "12\" Total Immersion Thermometer (-20-150° C)",
           "variant_label": "-20/150C / 12\"",
           "itemtype": "InvtPart",
           "has_image": true
@@ -22981,7 +22957,7 @@
           "item_number": "1203-16",
           "netsuite_internal_id": 4716,
           "full_name": "Thermometer, Total Immersion, -20/150C, 0/300F, 12\"",
-          "store_name": "12\" Total Immersion Thermometer (-20-150\u00b0 C, 0-300\u00b0 F)",
+          "store_name": "12\" Total Immersion Thermometer (-20-150° C, 0-300° F)",
           "variant_label": "-20/150C / 0/300F / 12\"",
           "itemtype": "InvtPart",
           "has_image": true

@@ -148,3 +148,33 @@ export function splitLabel(member: VariantMember): string[] {
 	if (!member.variant_label) return [];
 	return member.variant_label.split(AXIS_SEP).map((s) => s.trim());
 }
+
+/**
+ * Whether a set of variant labels actually distinguishes the members. The
+ * grouping data sometimes hands us useless labels — all identical (e.g. six
+ * flasks all labelled "Borosilicate…") or truncated with an ellipsis. When this
+ * returns false, derive labels from the catalog titles instead.
+ */
+export function labelsAreUsable(labels: string[]): boolean {
+	if (labels.some((l) => !l || l.endsWith("..."))) return false;
+	return new Set(labels).size === labels.length;
+}
+
+/**
+ * Derive distinguishing option labels from member catalog titles by stripping
+ * the shared leading words (the differing tail — "50 ml", "Polypropylene",
+ * "Iris, 4.5\"" — is the option). Falls back to full titles, then null (caller
+ * uses the SKU) if the titles can't be told apart.
+ */
+export function deriveVariantLabels(titles: string[]): string[] | null {
+	if (titles.length < 2) return null;
+	const words = titles.map((t) => t.trim().split(/\s+/));
+	const minLen = Math.min(...words.map((w) => w.length));
+	let k = 0;
+	while (k < minLen && words.every((w) => w[k] === words[0][k])) k++;
+	const clean = (parts: string[]) => parts.join(" ").replace(/^[\s,;:/-]+/, "").trim();
+	const tail = words.map((w) => clean(w.slice(k)));
+	if (tail.every(Boolean) && new Set(tail).size === tail.length) return tail;
+	if (new Set(titles).size === titles.length) return titles.map((t) => t.trim());
+	return null;
+}
