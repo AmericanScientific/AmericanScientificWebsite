@@ -11,8 +11,11 @@ import {
 	defaultMember,
 	axisParts,
 	splitLabel,
+	labelsAreUsable,
+	deriveVariantLabels,
 	type VariantPage,
 } from "@/data/variant-groups";
+import type { Product } from "@/types/product";
 import { getCategoryName, getParentOfLeaf } from "@/data/categories";
 import { categoryTheme } from "@/lib/categoryTheme";
 import { formatPrice } from "@/lib/format";
@@ -170,20 +173,43 @@ async function MultiVariant({
 	leafName: string;
 	categoryHref: string;
 }) {
-	const axes = axisParts(page);
-	const options = (
+	// Hydrate each member from the catalog cache (title/image/price/etc.).
+	const members = (
 		await Promise.all(
-			page.members.map(async (m): Promise<VariantOption | null> => {
+			page.members.map(async (m) => {
 				const product = await getProductBySku(m.item_number);
-				if (!product) return null;
-				const values = splitLabel(m);
-				const label = m.variant_label || m.store_name || product.title || m.item_number;
-				return { product, label, values: values.length ? values : [label] };
+				return product ? { m, product } : null;
 			}),
 		)
-	).filter((o): o is VariantOption => o !== null);
+	).filter((x): x is { m: (typeof page.members)[number]; product: Product } => x !== null);
 
-	if (options.length === 0) notFound();
+	if (members.length === 0) notFound();
+
+	// Prefer the grouping's own labels, but only when they actually distinguish
+	// the members. Otherwise derive from titles (fixes the "all labelled the
+	// same" / truncated cases) and present as a single selector.
+	const provided = members.map(({ m }) => m.variant_label ?? "");
+	let axes = axisParts(page);
+	let options: VariantOption[];
+
+	if (labelsAreUsable(provided)) {
+		options = members.map(({ m, product }) => {
+			const values = splitLabel(m);
+			const label = m.variant_label ?? product.title;
+			return { product, label, values: values.length ? values : [label] };
+		});
+	} else {
+		const derived =
+			deriveVariantLabels(members.map(({ product }) => product.title)) ??
+			members.map(({ product }) => product.sku);
+		// Single selector under one heading (the whole axis string, or "Option").
+		axes = [page.variant_axis || "Option"];
+		options = members.map(({ product }, i) => ({
+			product,
+			label: derived[i],
+			values: [derived[i]],
+		}));
+	}
 
 	return (
 		<ProductVariantView
