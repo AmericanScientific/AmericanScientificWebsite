@@ -1,8 +1,8 @@
 {
   "summary": {
     "total_items": 1306,
-    "total_pages": 583,
-    "multi_variant_pages": 154,
+    "total_pages": 584,
+    "multi_variant_pages": 155,
     "single_item_pages": 429,
     "items_consolidated_into_multi_pages": 877,
     "pages_flagged_for_review": 7,
@@ -1756,12 +1756,12 @@
     },
     {
       "page_id": "G0432",
-      "product_name": "Spring Scale",
+      "product_name": "Pull & Push-Pull Spring Scale",
       "family": "Spring Scale",
       "page_type": "multi-variant",
       "variant_axis": "Range",
-      "item_count": 19,
-      "item_number_prefixes": "3439, 619",
+      "item_count": 13,
+      "item_number_prefixes": "3439",
       "flag": "",
       "members": [
         {
@@ -1880,13 +1880,25 @@
           "variant_label": "Spring Scales, Pound/Newton .56 Lb X .02 Lb/2.5N X 0.1 N",
           "itemtype": "InvtPart",
           "has_image": true
-        },
+        }
+      ]
+    },
+    {
+      "page_id": "G0664",
+      "product_name": "Spring Scale",
+      "family": "Spring Scale",
+      "page_type": "multi-variant",
+      "variant_axis": "Range",
+      "item_count": 6,
+      "item_number_prefixes": "619",
+      "flag": "",
+      "members": [
         {
           "item_number": "619-01",
           "netsuite_internal_id": 1787,
           "full_name": "Spring Scale, Spring Balance, Color-Coded, 250 g/2.5 N",
           "store_name": "Spring Scale, 250 g, 2.5 N",
-          "variant_label": "Spring Scale, 250 g, 2.5 N",
+          "variant_label": "250 g, 2.5 N",
           "itemtype": "InvtPart",
           "has_image": true
         },
@@ -1895,7 +1907,7 @@
           "netsuite_internal_id": 1788,
           "full_name": "Spring Scale, Spring Balance, Color-Coded, 500 g/5 N",
           "store_name": "Spring Scale, 500 g, 5 N",
-          "variant_label": "Spring Scale, 500 g, 5 N",
+          "variant_label": "500 g, 5 N",
           "itemtype": "InvtPart",
           "has_image": true
         },
@@ -1904,7 +1916,7 @@
           "netsuite_internal_id": 1789,
           "full_name": "Spring Scale, Spring Balance, Color-Coded, 1000 g/10 N",
           "store_name": "Spring Scale, 1000 g, 10 N",
-          "variant_label": "Spring Scale, 1000 g, 10 N",
+          "variant_label": "1000 g, 10 N",
           "itemtype": "InvtPart",
           "has_image": true
         },
@@ -1913,7 +1925,7 @@
           "netsuite_internal_id": 1790,
           "full_name": "Spring Scale, Spring Balance, Color-Coded, 2000 g/20 N",
           "store_name": "Spring Scale, 2000 g, 20 N",
-          "variant_label": "Spring Scale, 2000 g, 20 N",
+          "variant_label": "2000 g, 20 N",
           "itemtype": "InvtPart",
           "has_image": true
         },
@@ -1922,7 +1934,7 @@
           "netsuite_internal_id": 1791,
           "full_name": "Spring Scale, Spring Balance, Color-Coded, 3000 g/30 N",
           "store_name": "Spring Scale, 3000 g, 30 N",
-          "variant_label": "Spring Scale, 3000 g, 30 N",
+          "variant_label": "3000 g, 30 N",
           "itemtype": "InvtPart",
           "has_image": true
         },
@@ -1931,7 +1943,7 @@
           "netsuite_internal_id": 1792,
           "full_name": "Spring Scale, Spring Balance, Color-Coded, 5000 g/50 N",
           "store_name": "Spring Scale, 5000 g, 50 N",
-          "variant_label": "Spring Scale, 5000 g, 50 N",
+          "variant_label": "5000 g, 50 N",
           "itemtype": "InvtPart",
           "has_image": true
         }
