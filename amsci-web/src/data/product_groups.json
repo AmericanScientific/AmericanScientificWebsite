@@ -1,10 +1,10 @@
 {
   "summary": {
     "total_items": 1306,
-    "total_pages": 973,
-    "multi_variant_pages": 144,
-    "single_item_pages": 829,
-    "items_consolidated_into_multi_pages": 477,
+    "total_pages": 892,
+    "multi_variant_pages": 151,
+    "single_item_pages": 741,
+    "items_consolidated_into_multi_pages": 565,
     "pages_flagged_for_review": 7,
     "related_family_clusters": 131
   },
@@ -3682,29 +3682,20 @@
     },
     {
       "page_id": "G0629",
-      "product_name": "Allihn Condenser, Full Length And Joint, 24 40",
+      "product_name": "Allihn Condenser",
       "family": "Allihn Condenser",
       "page_type": "multi-variant",
-      "variant_axis": "Size",
-      "item_count": 3,
-      "item_number_prefixes": "5722,5723",
+      "variant_axis": "Option",
+      "item_count": 5,
+      "item_number_prefixes": "5722, 5723",
       "flag": "",
       "members": [
-        {
-          "item_number": "5723-00",
-          "netsuite_internal_id": 317,
-          "full_name": "Allihn Condenser, Full Length and Joint, 24/40, 235 mm",
-          "store_name": "Allihn Condenser with Outlet Tubes, Jacket Length 325 mm, Joints 24/40",
-          "variant_label": "24/40 / 235 mm",
-          "itemtype": "InvtPart",
-          "has_image": true
-        },
         {
           "item_number": "5722-02",
           "netsuite_internal_id": 1747,
           "full_name": "Allihn Condenser, Full Length and Joint, 24/40, 300 mm",
           "store_name": "Allihn Condenser, Jacket Length 300 mm, Joints 24/40",
-          "variant_label": "24/40 / 300 mm",
+          "variant_label": "Condenser, Jacket Length 300 mm, Joints 24/40",
           "itemtype": "InvtPart",
           "has_image": true
         },
@@ -3713,7 +3704,34 @@
           "netsuite_internal_id": 2427,
           "full_name": "Allihn Condenser, Full Length and Joint, 24/40, 400 mm",
           "store_name": "Allihn Condenser, Jacket Length 400 mm, Joints 24/40",
-          "variant_label": "24/40 / 400 mm",
+          "variant_label": "Condenser, Jacket Length 400 mm, Joints 24/40",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "5723-00",
+          "netsuite_internal_id": 317,
+          "full_name": "Allihn Condenser, Full Length and Joint, 24/40, 235 mm",
+          "store_name": "Allihn Condenser with Outlet Tubes, Jacket Length 325 mm, Joints 24/40",
+          "variant_label": "Condenser with Outlet Tubes, Jacket Length 325 mm, Joints 24/40",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "5723-01",
+          "netsuite_internal_id": 318,
+          "full_name": "Allihn Condenser, Full Length and Joint, 35/45, 190 mm",
+          "store_name": "Allihn Condenser with Outlet Tubes, Jacket Length 190 mm, Joints 34/45",
+          "variant_label": "Condenser with Outlet Tubes, Jacket Length 190 mm, Joints 34/45",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "5723-03",
+          "netsuite_internal_id": 331,
+          "full_name": "Allihn Condenser, Full Length and Joint, 55/50, 300 mm",
+          "store_name": "Allihn Condenser with Outlet Tubes, Jacket Length 300 mm, Joints 55/50",
+          "variant_label": "Condenser with Outlet Tubes, Jacket Length 300 mm, Joints 55/50",
           "itemtype": "InvtPart",
           "has_image": true
         }
@@ -3997,26 +4015,17 @@
       "product_name": "Cork Borer",
       "family": "Cork Borer",
       "page_type": "multi-variant",
-      "variant_axis": "Size",
-      "item_count": 3,
-      "item_number_prefixes": "2092,2093",
-      "flag": "verify-broad-key",
+      "variant_axis": "Type",
+      "item_count": 7,
+      "item_number_prefixes": "2092, 2093, 2095",
+      "flag": "",
       "members": [
         {
           "item_number": "2092-07",
           "netsuite_internal_id": 877,
           "full_name": "Cork Borer, 7 mm",
           "store_name": "Cork Borer, 7 mm",
-          "variant_label": "7 mm",
-          "itemtype": "InvtPart",
-          "has_image": true
-        },
-        {
-          "item_number": "2093-05",
-          "netsuite_internal_id": 880,
-          "full_name": "Cork Borer 3/16\"",
-          "store_name": "Cork Borer 5 mm",
-          "variant_label": "Cork Borer 3/16\"",
+          "variant_label": "Borer, 7 mm",
           "itemtype": "InvtPart",
           "has_image": true
         },
@@ -4025,28 +4034,25 @@
           "netsuite_internal_id": 879,
           "full_name": "Cork Borer 15mm",
           "store_name": "Cork Borer 15 mm",
-          "variant_label": "Cork Borer 15mm",
+          "variant_label": "Borer 15 mm",
           "itemtype": "InvtPart",
           "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0193",
-      "product_name": "Cork Borers",
-      "family": "Cork Borers",
-      "page_type": "multi-variant",
-      "variant_axis": "Pack size",
-      "item_count": 3,
-      "item_number_prefixes": "2093",
-      "flag": "",
-      "members": [
+        },
+        {
+          "item_number": "2093-05",
+          "netsuite_internal_id": 880,
+          "full_name": "Cork Borer 3/16\"",
+          "store_name": "Cork Borer 5 mm",
+          "variant_label": "Borer 5 mm",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
         {
           "item_number": "2093-01",
           "netsuite_internal_id": 3346,
           "full_name": "Cork Borers, Set of 3",
           "store_name": "Cork Borers Set/3",
-          "variant_label": "Set of 3",
+          "variant_label": "Borers Set/3",
           "itemtype": "InvtPart",
           "has_image": true
         },
@@ -4055,7 +4061,7 @@
           "netsuite_internal_id": 3363,
           "full_name": "Cork Borers, Set of 6",
           "store_name": "Cork Borers Set/6",
-          "variant_label": "Set of 6",
+          "variant_label": "Borers Set/6",
           "itemtype": "InvtPart",
           "has_image": true
         },
@@ -4064,7 +4070,16 @@
           "netsuite_internal_id": 3407,
           "full_name": "Cork Borers, Set of 11",
           "store_name": "Cork Borers Set/11",
-          "variant_label": "Set of 11",
+          "variant_label": "Borers Set/11",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "2095-00",
+          "netsuite_internal_id": 882,
+          "full_name": "Cork Borer Sharpener",
+          "store_name": "Cork Borer Sharpener",
+          "variant_label": "Borer Sharpener",
           "itemtype": "InvtPart",
           "has_image": true
         }
@@ -4735,12 +4750,12 @@
     },
     {
       "page_id": "G0141",
-      "product_name": "Support Stand, Rectangular, Cast Iron Bases",
+      "product_name": "Support Stand",
       "family": "Support Stand",
       "page_type": "multi-variant",
-      "variant_axis": "Material / Size",
-      "item_count": 3,
-      "item_number_prefixes": "2050",
+      "variant_axis": "Base",
+      "item_count": 8,
+      "item_number_prefixes": "2050, 2051, 3155",
       "flag": "",
       "members": [
         {
@@ -4748,7 +4763,7 @@
           "netsuite_internal_id": 3526,
           "full_name": "Support Stand, Rectangular, Cast Iron Bases, 150 x 100...",
           "store_name": "Support Stands Rectangular, Cast Iron Bases 150X100mm (6X4in)",
-          "variant_label": "150 x 100...",
+          "variant_label": "Support Stands Rectangular, Cast Iron Bases 150X100mm (6X4in)",
           "itemtype": "InvtPart",
           "has_image": true
         },
@@ -4757,7 +4772,7 @@
           "netsuite_internal_id": 2582,
           "full_name": "Support Stand, Rectangular, Cast Iron Bases 150X100 mm...",
           "store_name": "Support Stands Rectangular, Cast Iron Bases 150X100Mm (6X4In) --No Rod",
-          "variant_label": "Cast Iron Bases 150X100 mm...",
+          "variant_label": "Support Stands Rectangular, Cast Iron Bases 150X100Mm (6X4In) --No Rod",
           "itemtype": "InvtPart",
           "has_image": true
         },
@@ -4766,7 +4781,52 @@
           "netsuite_internal_id": 2583,
           "full_name": "Support Stand, Rectangular, Cast Iron Bases 150X100 mm...",
           "store_name": "Support Stands Rectangular, Cast Iron Bases 150X100Mm (6X4In) --Rod Only",
-          "variant_label": "Cast Iron Bases 150X100 mm...",
+          "variant_label": "Support Stands Rectangular, Cast Iron Bases 150X100Mm (6X4In) --Rod Only",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "2050-02",
+          "netsuite_internal_id": 828,
+          "full_name": "Support Stand, Rectangular, With Rod, Cast Iron, 8\" x...",
+          "store_name": "Cast Iron Support Stand with Rod 8\" x 5\"",
+          "variant_label": "Cast Iron Support Stand with Rod 8\" x 5\"",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "2050-03",
+          "netsuite_internal_id": 829,
+          "full_name": "Support Stand, Rectangular, Base with Rod, Cast Iron...",
+          "store_name": "Support Stand, Rectangular, Cast-Iron Bases, 225 mm x 150 mm",
+          "variant_label": "Support Stand, Rectangular, Cast-Iron Bases, 225 mm x 150 mm",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "2050-04",
+          "netsuite_internal_id": 830,
+          "full_name": "Support Stand, Rectangular, Base with Rod, Cast Iron...",
+          "store_name": "Support Stands Rectangular, Cast Iron Bases 300X150Mm (12X6In)With Rods",
+          "variant_label": "Support Stands Rectangular, Cast Iron Bases 300X150Mm (12X6In)With Rods",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "2051-04",
+          "netsuite_internal_id": 834,
+          "full_name": "Support Stand, Rectangular, Steel Base 300X150 (12X6in)",
+          "store_name": "Support Stands, Rectangular, Steel Bases 300X150 (12X6In)",
+          "variant_label": "Support Stands, Rectangular, Steel Bases 300X150 (12X6In)",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "3155-03",
+          "netsuite_internal_id": 389,
+          "full_name": "Metal Support Stand Only, For The Hoffman Electrolysis",
+          "store_name": "Metal Support Stand Only (for the Hoffman Electrolysis)",
+          "variant_label": "Metal Support Stand Only (for the Hoffman Electrolysis)",
           "itemtype": "InvtPart",
           "has_image": true
         }
@@ -5064,36 +5124,6 @@
           "full_name": "Buzzer, With Lead Wires, 3V-24V",
           "store_name": "Buzzer With Lead Wires, 3v-24v",
           "variant_label": "3V-24V",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0264",
-      "product_name": "Compass, Magnetic",
-      "family": "Compass",
-      "page_type": "multi-variant",
-      "variant_axis": "Pack size / Size",
-      "item_count": 2,
-      "item_number_prefixes": "3121",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "3121-04",
-          "netsuite_internal_id": 3750,
-          "full_name": "Compass, Magnetic, 50mm",
-          "store_name": "Compass, Magnetic  50Mm",
-          "variant_label": "50mm",
-          "itemtype": "InvtPart",
-          "has_image": true
-        },
-        {
-          "item_number": "3121-01",
-          "netsuite_internal_id": 3229,
-          "full_name": "Compass, Magnetic 18mm, 4/pk",
-          "store_name": "Compass, Magnetic 18 mm, Pk/4",
-          "variant_label": "Magnetic 18mm / 4/pk",
           "itemtype": "InvtPart",
           "has_image": true
         }
@@ -6450,66 +6480,6 @@
       ]
     },
     {
-      "page_id": "G0139",
-      "product_name": "Support Rings, Cast Iron",
-      "family": "Support Rings",
-      "page_type": "multi-variant",
-      "variant_axis": "Size",
-      "item_count": 2,
-      "item_number_prefixes": "2038",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "2038-03",
-          "netsuite_internal_id": 818,
-          "full_name": "Support Rings, Cast Iron, 3\"",
-          "store_name": "Cast Iron Support Rings, 3\"",
-          "variant_label": "3\"",
-          "itemtype": "InvtPart",
-          "has_image": true
-        },
-        {
-          "item_number": "2038-04",
-          "netsuite_internal_id": 819,
-          "full_name": "Support Rings, Cast Iron, 4\"",
-          "store_name": "Cast Iron Support Rings, 4\"",
-          "variant_label": "4\"",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0143",
-      "product_name": "Support Stand, Rectangular, Base With Rod, Cast Iron",
-      "family": "Support Stand",
-      "page_type": "multi-variant",
-      "variant_axis": "Option",
-      "item_count": 2,
-      "item_number_prefixes": "2050",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "2050-03",
-          "netsuite_internal_id": 829,
-          "full_name": "Support Stand, Rectangular, Base with Rod, Cast Iron...",
-          "store_name": "Support Stand, Rectangular, Cast-Iron Bases, 225 mm x 150 mm",
-          "variant_label": "Cast Iron...",
-          "itemtype": "InvtPart",
-          "has_image": true
-        },
-        {
-          "item_number": "2050-04",
-          "netsuite_internal_id": 830,
-          "full_name": "Support Stand, Rectangular, Base with Rod, Cast Iron...",
-          "store_name": "Support Stands Rectangular, Cast Iron Bases 300X150Mm (12X6In)With Rods",
-          "variant_label": "Cast Iron...",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
       "page_id": "G0177",
       "product_name": "Test Tube Brushes",
       "family": "Test Tube Brushes",
@@ -6534,36 +6504,6 @@
           "full_name": "Test Tube Brushes, 12\"",
           "store_name": "Test Tube Brushes 12\"",
           "variant_label": "12\"",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0133",
-      "product_name": "Test Tube Rack, 6 Holes 6 Drying Pins",
-      "family": "Test Tube Rack",
-      "page_type": "multi-variant",
-      "variant_axis": "Material",
-      "item_count": 2,
-      "item_number_prefixes": "2035",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "2035-02",
-          "netsuite_internal_id": 2422,
-          "full_name": "Test Tube Rack, 6 Holes / 6 Drying Pins, Polyethylene",
-          "store_name": "Polyethylene Test Tube Rack, 6 holes/6 drying pins",
-          "variant_label": "6 Holes / 6 Drying Pins / Polyethylene",
-          "itemtype": "InvtPart",
-          "has_image": true
-        },
-        {
-          "item_number": "2035-21",
-          "netsuite_internal_id": 812,
-          "full_name": "Test Tube Rack, 6 Holes / 6 Drying Pins, Wood",
-          "store_name": "Wooden Test Tube Rack, 6 holes/6 drying pins",
-          "variant_label": "6 Holes / 6 Drying Pins / Wood",
           "itemtype": "InvtPart",
           "has_image": true
         }
@@ -6600,21 +6540,48 @@
       ]
     },
     {
-      "page_id": "G0127",
-      "product_name": "Tongs, Beaker, To",
+      "page_id": "G0125",
+      "product_name": "Tongs",
       "family": "Tongs",
       "page_type": "multi-variant",
-      "variant_axis": "Size",
-      "item_count": 2,
-      "item_number_prefixes": "2024",
+      "variant_axis": "Type",
+      "item_count": 7,
+      "item_number_prefixes": "2020, 2024, 2120, 6455",
       "flag": "",
       "members": [
+        {
+          "item_number": "2020-01",
+          "netsuite_internal_id": 796,
+          "full_name": "Tongs, Crucible, Steel-Plated, 8\"",
+          "store_name": "Plated Steel Crucible Tongs, 8\"",
+          "variant_label": "Plated Steel Crucible Tongs, 8\"",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "2020-11",
+          "netsuite_internal_id": 799,
+          "full_name": "Tongs, Crucible, Steel-Plated, 6\"",
+          "store_name": "Plated Steel Crucible Tongs, 6\"",
+          "variant_label": "Plated Steel Crucible Tongs, 6\"",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "2020-33",
+          "netsuite_internal_id": 2725,
+          "full_name": "Tongs, Crucible, Stainless Steel, 18\"",
+          "store_name": "Stainless Steel Crucible Tongs, 18\"",
+          "variant_label": "Stainless Steel Crucible Tongs, 18\"",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
         {
           "item_number": "2024-01",
           "netsuite_internal_id": 800,
           "full_name": "Tongs, Beaker, 50 ml to 600 ml",
           "store_name": "Beaker Tongs, 50 ml to 600 ml",
-          "variant_label": "50 ml to 600 ml",
+          "variant_label": "Beaker Tongs, 50 ml to 600 ml",
           "itemtype": "InvtPart",
           "has_image": true
         },
@@ -6623,37 +6590,25 @@
           "netsuite_internal_id": 801,
           "full_name": "Tongs, Beaker, 50 ml to 2000 ml",
           "store_name": "Beaker Tongs, 50 ml – 2000 ml",
-          "variant_label": "50 ml to 2000 ml",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0125",
-      "product_name": "Tongs, Crucible, Steel-Plated",
-      "family": "Tongs",
-      "page_type": "multi-variant",
-      "variant_axis": "Size",
-      "item_count": 2,
-      "item_number_prefixes": "2020",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "2020-11",
-          "netsuite_internal_id": 799,
-          "full_name": "Tongs, Crucible, Steel-Plated, 6\"",
-          "store_name": "Plated Steel Crucible Tongs, 6\"",
-          "variant_label": "6\"",
+          "variant_label": "Beaker Tongs, 50 ml – 2000 ml",
           "itemtype": "InvtPart",
           "has_image": true
         },
         {
-          "item_number": "2020-01",
-          "netsuite_internal_id": 796,
-          "full_name": "Tongs, Crucible, Steel-Plated, 8\"",
-          "store_name": "Plated Steel Crucible Tongs, 8\"",
-          "variant_label": "8\"",
+          "item_number": "2120-10",
+          "netsuite_internal_id": 2719,
+          "full_name": "Electrostatic Discharge Tongs, Adjustable",
+          "store_name": "Electrostatic Discharge Tongs, Adjustable",
+          "variant_label": "Electrostatic Discharge Tongs, Adjustable",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "6455-22",
+          "netsuite_internal_id": 1815,
+          "full_name": "Tongs, Dish, 25 cm",
+          "store_name": "Dish Tongs, Hold 75Mm To 125Mm; Length 25Cm",
+          "variant_label": "Dish Tongs, Hold 75Mm To 125Mm; Length 25Cm",
           "itemtype": "InvtPart",
           "has_image": true
         }
@@ -6661,20 +6616,38 @@
     },
     {
       "page_id": "G0148",
-      "product_name": "Tripod Stand, Single Ring",
+      "product_name": "Tripod Stand",
       "family": "Tripod Stand",
       "page_type": "multi-variant",
-      "variant_axis": "Size",
-      "item_count": 2,
-      "item_number_prefixes": "2056",
+      "variant_axis": "Type",
+      "item_count": 7,
+      "item_number_prefixes": "1010, 2054, 2056, 2057",
       "flag": "",
       "members": [
+        {
+          "item_number": "2054-01",
+          "netsuite_internal_id": 835,
+          "full_name": "Tripod Base With Rod, 100mm (4in)",
+          "store_name": "Tripod Bases With Rods 100Mm (4In)",
+          "variant_label": "Tripod Bases With Rods 100Mm (4In)",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "2054-02",
+          "netsuite_internal_id": 3774,
+          "full_name": "Tripod Base With Rod, Cast Iron, 6\"",
+          "store_name": "Tripod Bases with Rods",
+          "variant_label": "Tripod Bases with Rods",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
         {
           "item_number": "2056-01",
           "netsuite_internal_id": 837,
           "full_name": "Tripod Stand, Single Ring, 6\"",
           "store_name": "Single Ring Tripod Stand 6\"",
-          "variant_label": "6\"",
+          "variant_label": "Single Ring Tripod Stand 6\"",
           "itemtype": "InvtPart",
           "has_image": true
         },
@@ -6683,7 +6656,34 @@
           "netsuite_internal_id": 838,
           "full_name": "Tripod Stand, Single Ring, 9\"",
           "store_name": "Single Ring Tripod Stand 9\"",
-          "variant_label": "9\"",
+          "variant_label": "Single Ring Tripod Stand 9\"",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "2057-01",
+          "netsuite_internal_id": 841,
+          "full_name": "Tripod Stand With Concentric Rings 5\"",
+          "store_name": "Tripod Stand with Concentric Rings 5\"",
+          "variant_label": "Tripod Stand with Concentric Rings 5\"",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "2057-02",
+          "netsuite_internal_id": 2423,
+          "full_name": "Tripod Stand, 3.5\"",
+          "store_name": "Tripod Stand 3.5\"",
+          "variant_label": "Tripod Stand 3.5\"",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "1010-09",
+          "netsuite_internal_id": 680,
+          "full_name": "Magnifier, Tripod",
+          "store_name": "Tripod Magnifier",
+          "variant_label": "Tripod Magnifier",
           "itemtype": "InvtPart",
           "has_image": true
         }
@@ -7050,90 +7050,6 @@
       ]
     },
     {
-      "page_id": "G0169",
-      "product_name": "Alcohol Burner, Angular",
-      "family": "Alcohol Burner",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "2066",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "2066-11",
-          "netsuite_internal_id": 852,
-          "full_name": "Alcohol Burner, Angular, Glass",
-          "store_name": "Angular Alcohol Burner",
-          "variant_label": "Glass",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0577",
-      "product_name": "Alcohol Burner, Wickless, Dual Head, All Metal",
-      "family": "Alcohol Burner",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "5456",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "5456-11",
-          "netsuite_internal_id": 1588,
-          "full_name": "Alcohol Burner, Wickless, Dual Head, All Metal",
-          "store_name": "Alcohol Burner, Wickless, Dual Head, All Metal",
-          "variant_label": null,
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0630",
-      "product_name": "Allihn Condenser, Full Length And Joint, 35 45",
-      "family": "Allihn Condenser",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "5723",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "5723-01",
-          "netsuite_internal_id": 318,
-          "full_name": "Allihn Condenser, Full Length and Joint, 35/45, 190 mm",
-          "store_name": "Allihn Condenser with Outlet Tubes, Jacket Length 190 mm, Joints 34/45",
-          "variant_label": "35/45 / 190 mm",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0631",
-      "product_name": "Allihn Condenser, Full Length And Joint, 55 50",
-      "family": "Allihn Condenser",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "5723",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "5723-03",
-          "netsuite_internal_id": 331,
-          "full_name": "Allihn Condenser, Full Length and Joint, 55/50, 300 mm",
-          "store_name": "Allihn Condenser with Outlet Tubes, Jacket Length 300 mm, Joints 55/50",
-          "variant_label": "55/50 / 300 mm",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
       "page_id": "G0283",
       "product_name": "Aluminum Leaves, For Foil Electroscope",
       "family": "Aluminum Leaves",
@@ -7169,27 +7085,6 @@
           "netsuite_internal_id": 4950,
           "full_name": "AMSCI Lung Volume Bag Set Add TG",
           "store_name": "AMSCI Lung Volume Bag Set",
-          "variant_label": null,
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0524",
-      "product_name": "Amsci No-Touch Ir Thermometer",
-      "family": "Amsci No-Touch Ir Thermometer",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "3641",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "3641-02",
-          "netsuite_internal_id": 5410,
-          "full_name": "AmSci No-Touch IR Thermometer",
-          "store_name": "AmSci No-Touch IR Thermometer",
           "variant_label": null,
           "itemtype": "InvtPart",
           "has_image": true
@@ -9046,12 +8941,12 @@
     },
     {
       "page_id": "G0156",
-      "product_name": "Clamp Extension, Four Prong",
-      "family": "Clamp Extension",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "2062",
+      "product_name": "Stand Clamp",
+      "family": "Clamp",
+      "page_type": "multi-variant",
+      "variant_axis": "Type",
+      "item_count": 9,
+      "item_number_prefixes": "2062, 2063",
       "flag": "",
       "members": [
         {
@@ -9059,49 +8954,79 @@
           "netsuite_internal_id": 844,
           "full_name": "Clamp Extension, Four Prong",
           "store_name": "Clamp Extension, Four Prong",
-          "variant_label": null,
+          "variant_label": "Clamp Extension, Four Prong",
           "itemtype": "InvtPart",
           "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0163",
-      "product_name": "Clamp, Buret, Double",
-      "family": "Clamp",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "2062",
-      "flag": "",
-      "members": [
+        },
         {
-          "item_number": "2062-16",
-          "netsuite_internal_id": 4725,
-          "full_name": "Clamp, Buret, Double",
-          "store_name": "Double Buret Clamp",
-          "variant_label": null,
+          "item_number": "2062-02",
+          "netsuite_internal_id": 845,
+          "full_name": "Extension Clamp, Rubber Covered Jaws",
+          "store_name": "Extension Clamp with Rubber Covered Jaws",
+          "variant_label": "Extension Clamp with Rubber Covered Jaws",
           "itemtype": "InvtPart",
           "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0159",
-      "product_name": "Clamp, Buret, Single",
-      "family": "Clamp",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "2062",
-      "flag": "",
-      "members": [
+        },
+        {
+          "item_number": "2062-03",
+          "netsuite_internal_id": 2566,
+          "full_name": "Flexible Clamp",
+          "store_name": "Flexible Clamp",
+          "variant_label": "Flexible Clamp",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
         {
           "item_number": "2062-04",
           "netsuite_internal_id": 4727,
           "full_name": "Clamp, Buret, Single",
           "store_name": "Single Buret Clamp",
-          "variant_label": null,
+          "variant_label": "Single Buret Clamp",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "2062-06",
+          "netsuite_internal_id": 4695,
+          "full_name": "Utility Clamp",
+          "store_name": "Utility Clamp",
+          "variant_label": "Utility Clamp",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "2062-11",
+          "netsuite_internal_id": 6034,
+          "full_name": "Heavy duty extension clamp, 3prong, dual prong...",
+          "store_name": "Heavy Duty Extension Clamp",
+          "variant_label": "Heavy Duty Extension Clamp",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "2062-15",
+          "netsuite_internal_id": 847,
+          "full_name": "Double Burette Clamp With Rotating Jaws",
+          "store_name": "Double Economy Buret Clamp",
+          "variant_label": "Double Economy Buret Clamp",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "2062-16",
+          "netsuite_internal_id": 4725,
+          "full_name": "Clamp, Buret, Double",
+          "store_name": "Double Buret Clamp",
+          "variant_label": "Double Buret Clamp",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "2063-01",
+          "netsuite_internal_id": 848,
+          "full_name": "Clamp, Right Angle",
+          "store_name": "Right Angle Clamp Holder",
+          "variant_label": "Right Angle Clamp Holder",
           "itemtype": "InvtPart",
           "has_image": true
         }
@@ -9122,27 +9047,6 @@
           "netsuite_internal_id": 2060,
           "full_name": "Clamp, Hoffman, Screw Closed",
           "store_name": "Hoffman Screw Closed Clamp",
-          "variant_label": null,
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0164",
-      "product_name": "Clamp, Right Angle",
-      "family": "Clamp",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "2063",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "2063-01",
-          "netsuite_internal_id": 848,
-          "full_name": "Clamp, Right Angle",
-          "store_name": "Right Angle Clamp Holder",
           "variant_label": null,
           "itemtype": "InvtPart",
           "has_image": true
@@ -9276,76 +9180,13 @@
       ]
     },
     {
-      "page_id": "G0947",
-      "product_name": "Compass",
-      "family": "Compass",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "FRE",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "FRE-11",
-          "netsuite_internal_id": 3231,
-          "full_name": "Compass 5/8\", 4/pk",
-          "store_name": "Compass 0.63\", Pk/4",
-          "variant_label": "Compass 5/8\" / 4/pk",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0094",
-      "product_name": "Compass, Liquid-Filled",
-      "family": "Compass",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1250",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "1250-50",
-          "netsuite_internal_id": 741,
-          "full_name": "Compass, Liquid-Filled, 45mm Dia.",
-          "store_name": "Magnetic Liquid Filled Compass 1.77\"",
-          "variant_label": "45mm Dia.",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0266",
-      "product_name": "Compass, Magnetic, 1",
-      "family": "Compass",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "3121",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "3121-21",
-          "netsuite_internal_id": 949,
-          "full_name": "Compass, Magnetic, 1-1/2\"",
-          "store_name": "Magnetic Compass 1.5\"",
-          "variant_label": "1-1/2\"",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
       "page_id": "G0093",
-      "product_name": "Compass, Magnetic, Clear Back",
+      "product_name": "Magnetic Compass",
       "family": "Compass",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1249",
+      "page_type": "multi-variant",
+      "variant_axis": "Type",
+      "item_count": 9,
+      "item_number_prefixes": "1249, 1250, 3121, FRE",
       "flag": "",
       "members": [
         {
@@ -9353,70 +9194,79 @@
           "netsuite_internal_id": 2918,
           "full_name": "Compass, Magnetic, Clear Back, 18mm, 20/pk",
           "store_name": "Compass, Magnetic, Clear Back, 18 mm, Pk/20",
-          "variant_label": "18mm / 20/pk",
+          "variant_label": "Compass, Magnetic, Clear Back, 18 mm, Pk/20",
           "itemtype": "InvtPart",
           "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0265",
-      "product_name": "Compass, Magnetic, Liquid-Filled, 1",
-      "family": "Compass",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "3121",
-      "flag": "",
-      "members": [
+        },
         {
-          "item_number": "3121-03",
-          "netsuite_internal_id": 2906,
-          "full_name": "Compass, Magnetic, Liquid-Filled, 1-3/8\", 12/pk",
-          "store_name": "Magnetic Liquid Filled Compass 1.38\", Pk/12",
-          "variant_label": "1-3/8\" / 12/pk",
+          "item_number": "1250-50",
+          "netsuite_internal_id": 741,
+          "full_name": "Compass, Liquid-Filled, 45mm Dia.",
+          "store_name": "Magnetic Liquid Filled Compass 1.77\"",
+          "variant_label": "Magnetic Liquid Filled Compass 1.77\"",
           "itemtype": "InvtPart",
           "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0095",
-      "product_name": "Compass, Magnetic, Liquid-Filled, Clear Back, With",
-      "family": "Compass",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1250",
-      "flag": "",
-      "members": [
+        },
         {
           "item_number": "1250-55",
           "netsuite_internal_id": 742,
           "full_name": "Compass, Magnetic, Liquid-Filled, Clear Back, With...",
           "store_name": "Magnetic Liquid Filled Compass With Clear Back and Lanyard, 1-7/8\"",
-          "variant_label": "With...",
+          "variant_label": "Magnetic Liquid Filled Compass With Clear Back and Lanyard, 1-7/8\"",
           "itemtype": "InvtPart",
           "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0267",
-      "product_name": "Compass, Map, Liquid-Filled, Magnetic",
-      "family": "Compass",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "3121",
-      "flag": "",
-      "members": [
+        },
+        {
+          "item_number": "3121-01",
+          "netsuite_internal_id": 3229,
+          "full_name": "Compass, Magnetic 18mm, 4/pk",
+          "store_name": "Compass, Magnetic 18 mm, Pk/4",
+          "variant_label": "Compass, Magnetic 18 mm, Pk/4",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "3121-04",
+          "netsuite_internal_id": 3750,
+          "full_name": "Compass, Magnetic, 50mm",
+          "store_name": "Compass, Magnetic  50Mm",
+          "variant_label": "Compass, Magnetic 50Mm",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "3121-03",
+          "netsuite_internal_id": 2906,
+          "full_name": "Compass, Magnetic, Liquid-Filled, 1-3/8\", 12/pk",
+          "store_name": "Magnetic Liquid Filled Compass 1.38\", Pk/12",
+          "variant_label": "Magnetic Liquid Filled Compass 1.38\", Pk/12",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "3121-21",
+          "netsuite_internal_id": 949,
+          "full_name": "Compass, Magnetic, 1-1/2\"",
+          "store_name": "Magnetic Compass 1.5\"",
+          "variant_label": "Magnetic Compass 1.5\"",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
         {
           "item_number": "3121-31",
           "netsuite_internal_id": 950,
           "full_name": "Compass, Map, Liquid-Filled, Magnetic",
           "store_name": "Magnetic Map Compass",
-          "variant_label": null,
+          "variant_label": "Magnetic Map Compass",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "FRE-11",
+          "netsuite_internal_id": 3231,
+          "full_name": "Compass 5/8\", 4/pk",
+          "store_name": "Compass 0.63\", Pk/4",
+          "variant_label": "Compass 0.63\", Pk/4",
           "itemtype": "InvtPart",
           "has_image": true
         }
@@ -9711,27 +9561,6 @@
           "full_name": "Contact Key (Tapping Key)",
           "store_name": "Contact Key (Tapping Key)",
           "variant_label": "Contact Key (Tapping Key)",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0194",
-      "product_name": "Cork Borer Sharpener",
-      "family": "Cork Borer Sharpener",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "2095",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "2095-00",
-          "netsuite_internal_id": 882,
-          "full_name": "Cork Borer Sharpener",
-          "store_name": "Cork Borer Sharpener",
-          "variant_label": null,
           "itemtype": "InvtPart",
           "has_image": true
         }
@@ -10137,55 +9966,13 @@
       ]
     },
     {
-      "page_id": "G0049",
-      "product_name": "Dissecting Forceps, Economy, Stainless Steel, 4",
-      "family": "Dissecting Forceps",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1060",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "1060-00",
-          "netsuite_internal_id": 2615,
-          "full_name": "Dissecting Forceps, Economy, Stainless Steel, 115 mm (4...",
-          "store_name": "Dissecting Forceps Economy 4.5\"",
-          "variant_label": "115 mm (4...",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0047",
-      "product_name": "Dissection Forceps, Blunt Tip",
-      "family": "Dissection Forceps",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1055",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "1055-55",
-          "netsuite_internal_id": 712,
-          "full_name": "Dissection Forceps, Plastic, Blunt Tip",
-          "store_name": "Plastic Blunt Tip Forceps/Tweezers, 5\", Each",
-          "variant_label": "Plastic",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
       "page_id": "G0045",
-      "product_name": "Dissection Forceps, Fine Tip",
-      "family": "Dissection Forceps",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1055",
+      "product_name": "Forceps",
+      "family": "Forceps",
+      "page_type": "multi-variant",
+      "variant_axis": "Type",
+      "item_count": 6,
+      "item_number_prefixes": "1055, 1059, 1060, 1065",
       "flag": "",
       "members": [
         {
@@ -10193,7 +9980,52 @@
           "netsuite_internal_id": 2892,
           "full_name": "Dissection Forceps, Plastic, Fine Tip, 12/pk",
           "store_name": "Plastic Fine Tip Forceps/Tweezers, 5\", Pk/12",
-          "variant_label": "Plastic / 12/pk",
+          "variant_label": "Plastic Fine Tip Forceps/Tweezers, 5\", Pk/12",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "1055-07",
+          "netsuite_internal_id": 5891,
+          "full_name": "Forceps, Plastic Tweezers, Serrated Tip, Polypropylene...",
+          "store_name": null,
+          "variant_label": "Forceps, Plastic Tweezers, Serrated Tip, Polypropylene...",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "1055-55",
+          "netsuite_internal_id": 712,
+          "full_name": "Dissection Forceps, Plastic, Blunt Tip",
+          "store_name": "Plastic Blunt Tip Forceps/Tweezers, 5\", Each",
+          "variant_label": "Plastic Blunt Tip Forceps/Tweezers, 5\", Each",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "1059-01",
+          "netsuite_internal_id": 353,
+          "full_name": "Forceps, Straight, Fine Tip, Stainless Steel, 115 mm (4...",
+          "store_name": "Straight, Fine Tip Forceps 4.5\"",
+          "variant_label": "Straight, Fine Tip Forceps 4.5\"",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "1060-00",
+          "netsuite_internal_id": 2615,
+          "full_name": "Dissecting Forceps, Economy, Stainless Steel, 115 mm (4...",
+          "store_name": "Dissecting Forceps Economy 4.5\"",
+          "variant_label": "Dissecting Forceps Economy 4.5\"",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "1065-00",
+          "netsuite_internal_id": 715,
+          "full_name": "Forceps, Blunt Tip, Stainless Steel, Large, 250 mm (10\")",
+          "store_name": "Stainless Steel Blunt Tip Forceps Large, 10\"",
+          "variant_label": "Stainless Steel Blunt Tip Forceps Large, 10\"",
           "itemtype": "InvtPart",
           "has_image": true
         }
@@ -10445,27 +10277,6 @@
           "netsuite_internal_id": 3322,
           "full_name": "Doppler Effect Demo Set",
           "store_name": "Doppler Effect Demo Set",
-          "variant_label": null,
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0162",
-      "product_name": "Double Burette Clamp With Rotating Jaws",
-      "family": "Double Burette Clamp With Rotating Jaws",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "2062",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "2062-15",
-          "netsuite_internal_id": 847,
-          "full_name": "Double Burette Clamp With Rotating Jaws",
-          "store_name": "Double Economy Buret Clamp",
           "variant_label": null,
           "itemtype": "InvtPart",
           "has_image": true
@@ -10893,27 +10704,6 @@
       ]
     },
     {
-      "page_id": "G0200",
-      "product_name": "Electrostatic Discharge Tongs, Adjustable",
-      "family": "Electrostatic Discharge Tongs",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "2120",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "2120-10",
-          "netsuite_internal_id": 2719,
-          "full_name": "Electrostatic Discharge Tongs, Adjustable",
-          "store_name": "Electrostatic Discharge Tongs, Adjustable",
-          "variant_label": null,
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
       "page_id": "G0545",
       "product_name": "Elementary Magnetic Set",
       "family": "Elementary Magnetic Set",
@@ -11034,27 +10824,6 @@
           "full_name": "Evaporating Basins Porcelain 3-1/3\"",
           "store_name": "Evaporating Basins Porcelain 3.33\"",
           "variant_label": "Evaporating Basins Porcelain 3-1/3\"",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0157",
-      "product_name": "Extension Clamp, Rubber Covered Jaws",
-      "family": "Extension Clamp",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "2062",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "2062-02",
-          "netsuite_internal_id": 845,
-          "full_name": "Extension Clamp, Rubber Covered Jaws",
-          "store_name": "Extension Clamp with Rubber Covered Jaws",
-          "variant_label": null,
           "itemtype": "InvtPart",
           "has_image": true
         }
@@ -11357,10 +11126,10 @@
     {
       "page_id": "G0186",
       "product_name": "Filter Pump Aspirator",
-      "family": "Filter Pump Aspirator",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
+      "family": "Filter Pump",
+      "page_type": "multi-variant",
+      "variant_axis": "Material",
+      "item_count": 2,
       "item_number_prefixes": "2089",
       "flag": "",
       "members": [
@@ -11372,25 +11141,13 @@
           "variant_label": "Brass",
           "itemtype": "InvtPart",
           "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0187",
-      "product_name": "Filter Pump Aspirator, Stainless Steel",
-      "family": "Filter Pump Aspirator",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "2089",
-      "flag": "",
-      "members": [
+        },
         {
           "item_number": "2089-03",
           "netsuite_internal_id": 876,
           "full_name": "Filter Pump Aspirator, Stainless Steel",
           "store_name": "Filter Pump Aspirator, Stainless Steel",
-          "variant_label": null,
+          "variant_label": "Stainless Steel",
           "itemtype": "InvtPart",
           "has_image": true
         }
@@ -11670,27 +11427,6 @@
       ]
     },
     {
-      "page_id": "G0158",
-      "product_name": "Flexible Clamp",
-      "family": "Flexible Clamp",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "2062",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "2062-03",
-          "netsuite_internal_id": 2566,
-          "full_name": "Flexible Clamp",
-          "store_name": "Flexible Clamp",
-          "variant_label": null,
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
       "page_id": "G0284",
       "product_name": "Foil Electroscope",
       "family": "Foil Electroscope",
@@ -11706,69 +11442,6 @@
           "full_name": "Foil Electroscope",
           "store_name": "Foil Electroscope",
           "variant_label": null,
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0050",
-      "product_name": "Forceps, Blunt Tip, Stainless Steel, Large",
-      "family": "Forceps",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1065",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "1065-00",
-          "netsuite_internal_id": 715,
-          "full_name": "Forceps, Blunt Tip, Stainless Steel, Large, 250 mm (10\")",
-          "store_name": "Stainless Steel Blunt Tip Forceps Large, 10\"",
-          "variant_label": "250 mm (10\")",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0046",
-      "product_name": "Forceps, Plastic Tweezers, Serrated Tip, Polypropylene",
-      "family": "Forceps",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1055",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "1055-07",
-          "netsuite_internal_id": 5891,
-          "full_name": "Forceps, Plastic Tweezers, Serrated Tip, Polypropylene...",
-          "store_name": null,
-          "variant_label": "Polypropylene...",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0048",
-      "product_name": "Forceps, Straight, Fine Tip, Stainless Steel, 4",
-      "family": "Forceps",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1059",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "1059-01",
-          "netsuite_internal_id": 353,
-          "full_name": "Forceps, Straight, Fine Tip, Stainless Steel, 115 mm (4...",
-          "store_name": "Straight, Fine Tip Forceps 4.5\"",
-          "variant_label": "115 mm (4...",
           "itemtype": "InvtPart",
           "has_image": true
         }
@@ -11986,12 +11659,12 @@
     },
     {
       "page_id": "G0077",
-      "product_name": "Galileo Thermometer, Fahrenheit",
-      "family": "Galileo Thermometer",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1167",
+      "product_name": "Thermometer",
+      "family": "Thermometer",
+      "page_type": "multi-variant",
+      "variant_axis": "Type",
+      "item_count": 18,
+      "item_number_prefixes": "1167, 1202, 1203, 1230, 3641, 9101, 9102",
       "flag": "",
       "members": [
         {
@@ -11999,7 +11672,160 @@
           "netsuite_internal_id": 733,
           "full_name": "Galileo Thermometer, Fahrenheit, 13\"",
           "store_name": "Galileo Thermometer 13\" H (F)",
-          "variant_label": "13\"",
+          "variant_label": "Galileo Thermometer 13\" H (F)",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "1202-01",
+          "netsuite_internal_id": 736,
+          "full_name": "Room Thermometer, Flat Metal Back, Celsius/Fahrenheit",
+          "store_name": "Room Thermometer with Flat Metal Back, Celsius/Fahrenheit",
+          "variant_label": "Room Thermometer with Flat Metal Back, Celsius/Fahrenheit",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "1203-11",
+          "netsuite_internal_id": 737,
+          "full_name": "Room Thermometer, V-Shape Metal Back, Celsius/Fahrenheit",
+          "store_name": "Room Thermometer with V Shape Metal Back, Celsius/Fahrenheit",
+          "variant_label": "Room Thermometer with V Shape Metal Back, Celsius/Fahrenheit",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "1203-11-C",
+          "netsuite_internal_id": 4690,
+          "full_name": "Room Thermometer, V-Shape Metal Back, Celsius Only",
+          "store_name": "Room Thermometer with V Shape Metal Back (Celsius)",
+          "variant_label": "Room Thermometer with V Shape Metal Back (Celsius)",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "1203-12",
+          "netsuite_internal_id": 738,
+          "full_name": "Thermometer, Wall, Dual Scale, Economy",
+          "store_name": "Thermometer, Wall, Dual Scale Economy",
+          "variant_label": "Thermometer, Wall, Dual Scale Economy",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "1203-13",
+          "netsuite_internal_id": 4712,
+          "full_name": "Thermometer, Total Immersion, -20/110C, 12\"",
+          "store_name": "12\" Total Immersion Thermometer (-20-110° C)",
+          "variant_label": "12\" Total Immersion Thermometer (-20-110° C)",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "1203-14",
+          "netsuite_internal_id": 4713,
+          "full_name": "Thermometer, Total Immersion, -20/150C, 12\"",
+          "store_name": "12\" Total Immersion Thermometer (-20-150° C)",
+          "variant_label": "12\" Total Immersion Thermometer (-20-150° C)",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "1203-15",
+          "netsuite_internal_id": 4714,
+          "full_name": "Thermometer, Partial Immersion, -20/110C, 12\"",
+          "store_name": "12\" Partial Immersion Thermometer (-20-110° C)",
+          "variant_label": "12\" Partial Immersion Thermometer (-20-110° C)",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "1203-16",
+          "netsuite_internal_id": 4716,
+          "full_name": "Thermometer, Total Immersion, -20/150C, 0/300F, 12\"",
+          "store_name": "12\" Total Immersion Thermometer (-20-150° C, 0-300° F)",
+          "variant_label": "12\" Total Immersion Thermometer (-20-150° C, 0-300° F)",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "1203-17",
+          "netsuite_internal_id": 4717,
+          "full_name": "Thermometer, Partial Immersion, -20/110C, 0/230F, 12\"",
+          "store_name": "12\" Partial Immersion Thermometer (-20-110° C, 0-230° F)",
+          "variant_label": "12\" Partial Immersion Thermometer (-20-110° C, 0-230° F)",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "1203-18",
+          "netsuite_internal_id": 4718,
+          "full_name": "Thermometer, Partial Immersion, -20/150C, 0/300F, 12\"",
+          "store_name": "12\" Partial Immersion Thermometer (-20-150° C, 0-300° F)",
+          "variant_label": "12\" Partial Immersion Thermometer (-20-150° C, 0-300° F)",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "1203-19",
+          "netsuite_internal_id": 4715,
+          "full_name": "Thermometer, Partial Immersion, -10/150C, 12\"",
+          "store_name": "12\" Partial Immersion Thermometer (-10-150° C)",
+          "variant_label": "12\" Partial Immersion Thermometer (-10-150° C)",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "1203-20",
+          "netsuite_internal_id": 4892,
+          "full_name": "Thermometer, Total Immersion, -20/110C, 0/230F, 12\"",
+          "store_name": "12\" Total Immersion Thermometer (-20-110° C, 0-230° F)",
+          "variant_label": "12\" Total Immersion Thermometer (-20-110° C, 0-230° F)",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "1230-00",
+          "netsuite_internal_id": 740,
+          "full_name": "Thermometer, Digital, Instant Read, C/F",
+          "store_name": "Digital Instant Read Thermometer C/F",
+          "variant_label": "Digital Instant Read Thermometer C/F",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "1230-12",
+          "netsuite_internal_id": 2387,
+          "full_name": "Thermometer, Digital, Instant Read, C/F, Long Stem",
+          "store_name": "Digital Instant Read Thermometer, Celsius/Fahrenheit (Long Stem)",
+          "variant_label": "Digital Instant Read Thermometer, Celsius/Fahrenheit (Long Stem)",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "3641-02",
+          "netsuite_internal_id": 5410,
+          "full_name": "AmSci No-Touch IR Thermometer",
+          "store_name": "AmSci No-Touch IR Thermometer",
+          "variant_label": "AmSci No-Touch IR Thermometer",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "9101-00",
+          "netsuite_internal_id": 2044,
+          "full_name": "Thermometer, Partial Immersion, -20/110 C, 0/230 F, 12\"",
+          "store_name": "Thermometer, Partial Immersion,12\", -20 / 110 C, 0 / 230 F",
+          "variant_label": "Thermometer, Partial Immersion,12\", -20 / 110 C, 0 / 230 F",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "9102-00",
+          "netsuite_internal_id": 2623,
+          "full_name": "Thermometer, Total Immersion, -10/110 C, 6\"",
+          "store_name": "Thermometer, Total Immersion, -10-110C, 6\", each",
+          "variant_label": "Thermometer, Total Immersion, -10-110C, 6\", each",
           "itemtype": "InvtPart",
           "has_image": true
         }
@@ -12303,9 +12129,9 @@
       "page_id": "G0123",
       "product_name": "Hand Boiler",
       "family": "Hand Boiler",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
+      "page_type": "multi-variant",
+      "variant_axis": "Type",
+      "item_count": 2,
       "item_number_prefixes": "2010",
       "flag": "",
       "members": [
@@ -12314,28 +12140,16 @@
           "netsuite_internal_id": 793,
           "full_name": "Hand Boiler",
           "store_name": "Hand Boiler",
-          "variant_label": null,
+          "variant_label": "Hand Boiler",
           "itemtype": "InvtPart",
           "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0124",
-      "product_name": "Hand Boiler, Horizontal",
-      "family": "Hand Boiler",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "2010",
-      "flag": "",
-      "members": [
+        },
         {
           "item_number": "2010-20",
           "netsuite_internal_id": 794,
           "full_name": "Hand Boiler, Horizontal",
           "store_name": "Horizontal Hand Boiler",
-          "variant_label": null,
+          "variant_label": "Horizontal Hand Boiler",
           "itemtype": "InvtPart",
           "has_image": true
         }
@@ -12525,27 +12339,6 @@
           "full_name": "Heat Mantle",
           "store_name": "Heat Mantle",
           "variant_label": null,
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0161",
-      "product_name": "Heavy Duty Extension Clamp, 3Prong, Dual Prong",
-      "family": "Heavy Duty Extension Clamp",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "2062",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "2062-11",
-          "netsuite_internal_id": 6034,
-          "full_name": "Heavy duty extension clamp, 3prong, dual prong...",
-          "store_name": "Heavy Duty Extension Clamp",
-          "variant_label": "dual prong...",
           "itemtype": "InvtPart",
           "has_image": true
         }
@@ -13288,11 +13081,11 @@
     },
     {
       "page_id": "G0178",
-      "product_name": "Laboratory Scoop Scoopula",
-      "family": "Laboratory Scoop Scoopula",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
+      "product_name": "Spatula / Scoopula",
+      "family": "Spatula",
+      "page_type": "multi-variant",
+      "variant_axis": "Type",
+      "item_count": 5,
       "item_number_prefixes": "2084",
       "flag": "",
       "members": [
@@ -13301,7 +13094,43 @@
           "netsuite_internal_id": 867,
           "full_name": "Laboratory Scoop / Scoopula",
           "store_name": "Laboratory Scoop/Scoopula",
-          "variant_label": "Laboratory Scoop / Scoopula",
+          "variant_label": "Laboratory Scoop/Scoopula",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "2084-04",
+          "netsuite_internal_id": 869,
+          "full_name": "Spatula, Nuffield",
+          "store_name": "Nuffield Spatula",
+          "variant_label": "Nuffield Spatula",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "2084-09",
+          "netsuite_internal_id": 870,
+          "full_name": "Spatulas, Spoon/Spatula Double Ended 205mm",
+          "store_name": "Spatula , Spoon/Spatula, Double-Ended, 205 mm",
+          "variant_label": "Spatula , Spoon/Spatula, Double-Ended, 205 mm",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "2084-14",
+          "netsuite_internal_id": 872,
+          "full_name": "Micro Spatula",
+          "store_name": "Micro Spatula",
+          "variant_label": "Micro Spatula",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "2084-99",
+          "netsuite_internal_id": 873,
+          "full_name": "Spatula, Plastic, 8 in",
+          "store_name": "Spatula, Plastic (8In)",
+          "variant_label": "Spatula, Plastic (8In)",
           "itemtype": "InvtPart",
           "has_image": true
         }
@@ -13330,12 +13159,12 @@
     },
     {
       "page_id": "G0166",
-      "product_name": "Lamp, Alcohol Burner",
-      "family": "Lamp",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "2066",
+      "product_name": "Alcohol Burner",
+      "family": "Alcohol Burner",
+      "page_type": "multi-variant",
+      "variant_axis": "Type",
+      "item_count": 5,
+      "item_number_prefixes": "2066, 5456",
       "flag": "",
       "members": [
         {
@@ -13343,7 +13172,43 @@
           "netsuite_internal_id": 849,
           "full_name": "Lamp, Alcohol Burner, Glass",
           "store_name": "Glass Alcohol Burner Lamp",
-          "variant_label": "Glass",
+          "variant_label": "Glass Alcohol Burner Lamp",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "2066-11",
+          "netsuite_internal_id": 852,
+          "full_name": "Alcohol Burner, Angular, Glass",
+          "store_name": "Angular Alcohol Burner",
+          "variant_label": "Angular Alcohol Burner",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "2066-13",
+          "netsuite_internal_id": 853,
+          "full_name": "Metal Cap For Alcohol Burner",
+          "store_name": "Metal Cap for Alcohol Burner",
+          "variant_label": "Metal Cap for Alcohol Burner",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "2066-16",
+          "netsuite_internal_id": 854,
+          "full_name": "Spare Wick and Holder For Angular Alcohol Burner",
+          "store_name": "Spare Wick And Holder For Alcohol Burner Angular",
+          "variant_label": "Spare Wick And Holder For Alcohol Burner Angular",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "5456-11",
+          "netsuite_internal_id": 1588,
+          "full_name": "Alcohol Burner, Wickless, Dual Head, All Metal",
+          "store_name": "Alcohol Burner, Wickless, Dual Head, All Metal",
+          "variant_label": "Alcohol Burner, Wickless, Dual Head, All Metal",
           "itemtype": "InvtPart",
           "has_image": true
         }
@@ -14653,12 +14518,12 @@
     },
     {
       "page_id": "G0024",
-      "product_name": "Magnifier, Double Lens, Folding, Pocket-Size",
-      "family": "Magnifier",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1017",
+      "product_name": "Folding Magnifier",
+      "family": "Folding Magnifier",
+      "page_type": "multi-variant",
+      "variant_axis": "Type",
+      "item_count": 3,
+      "item_number_prefixes": "1017, 1019",
       "flag": "",
       "members": [
         {
@@ -14666,7 +14531,25 @@
           "netsuite_internal_id": 686,
           "full_name": "Magnifier, Double Lens, Folding, Pocket-size",
           "store_name": "Double Lens Folding Pocket Magnifier",
-          "variant_label": null,
+          "variant_label": "Double Lens Folding Pocket Magnifier",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "1017-02",
+          "netsuite_internal_id": 687,
+          "full_name": "Magnifier, Triple Lens, Folding, Pocket-size",
+          "store_name": "Triple Lens Folding Pocket Magnifier",
+          "variant_label": "Triple Lens Folding Pocket Magnifier",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "1019-02",
+          "netsuite_internal_id": 2347,
+          "full_name": "Magnifier, Mounted in Folding Stand, Acrylic, 110mm Dia.",
+          "store_name": "Glass Folding Magnifier Stand 4.33\"",
+          "variant_label": "Glass Folding Magnifier Stand 4.33\"",
           "itemtype": "InvtPart",
           "has_image": true
         }
@@ -14694,27 +14577,6 @@
       ]
     },
     {
-      "page_id": "G0026",
-      "product_name": "Magnifier, Mounted In Folding Stand",
-      "family": "Magnifier",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1019",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "1019-02",
-          "netsuite_internal_id": 2347,
-          "full_name": "Magnifier, Mounted in Folding Stand, Acrylic, 110mm Dia.",
-          "store_name": "Glass Folding Magnifier Stand 4.33\"",
-          "variant_label": "Acrylic / 110mm Dia.",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
       "page_id": "G0681",
       "product_name": "Magnifier, Triple Lens, Clear Plastic",
       "family": "Magnifier",
@@ -14730,48 +14592,6 @@
           "full_name": "Magnifier, Triple Lens 2X, 6X, 8X, Clear Plastic",
           "store_name": "Magnifier, Triple Lens 2X, 6X, 8X, Clear Plastic",
           "variant_label": "Triple Lens 2X / 6X / 8X",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0025",
-      "product_name": "Magnifier, Triple Lens, Folding, Pocket-Size",
-      "family": "Magnifier",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1017",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "1017-02",
-          "netsuite_internal_id": 687,
-          "full_name": "Magnifier, Triple Lens, Folding, Pocket-size",
-          "store_name": "Triple Lens Folding Pocket Magnifier",
-          "variant_label": null,
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0021",
-      "product_name": "Magnifier, Tripod",
-      "family": "Magnifier",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1010",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "1010-09",
-          "netsuite_internal_id": 680,
-          "full_name": "Magnifier, Tripod",
-          "store_name": "Tripod Magnifier",
-          "variant_label": null,
           "itemtype": "InvtPart",
           "has_image": true
         }
@@ -15072,27 +14892,6 @@
       ]
     },
     {
-      "page_id": "G0171",
-      "product_name": "Metal Cap For Alcohol Burner",
-      "family": "Metal Cap For Alcohol Burner",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "2066",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "2066-13",
-          "netsuite_internal_id": 853,
-          "full_name": "Metal Cap For Alcohol Burner",
-          "store_name": "Metal Cap for Alcohol Burner",
-          "variant_label": null,
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
       "page_id": "G0954",
       "product_name": "Metal Disc Set, Blank",
       "family": "Metal Disc Set",
@@ -15171,27 +14970,6 @@
           "full_name": "Metal Spring, 2-1/3\"X3\"",
           "store_name": "Metal Spring 3\" x 2.33\"",
           "variant_label": "2-1/3\"X3\"",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0306",
-      "product_name": "Metal Support Stand Only, For The Hoffman Electrolysis",
-      "family": "Metal Support Stand Only",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "3155",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "3155-03",
-          "netsuite_internal_id": 389,
-          "full_name": "Metal Support Stand Only, For The Hoffman Electrolysis",
-          "store_name": "Metal Support Stand Only (for the Hoffman Electrolysis)",
-          "variant_label": null,
           "itemtype": "InvtPart",
           "has_image": true
         }
@@ -15282,27 +15060,6 @@
       ]
     },
     {
-      "page_id": "G0182",
-      "product_name": "Micro Spatula",
-      "family": "Micro Spatula",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "2084",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "2084-14",
-          "netsuite_internal_id": 872,
-          "full_name": "Micro Spatula",
-          "store_name": "Micro Spatula",
-          "variant_label": null,
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
       "page_id": "G0850",
       "product_name": "Micro:Bot",
       "family": "Micro:Bot",
@@ -15345,97 +15102,13 @@
       ]
     },
     {
-      "page_id": "G0041",
-      "product_name": "Microscope Slide Box, 100",
-      "family": "Microscope Slide Box",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1032",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "1032-03",
-          "netsuite_internal_id": 704,
-          "full_name": "Microscope Slide Box, Plastic, 100",
-          "store_name": "Microscope Slide Box, Plastic, Capacity: 100 Slides",
-          "variant_label": "Plastic",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0037",
-      "product_name": "Microscope Slide Box, 25",
-      "family": "Microscope Slide Box",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1032",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "1032-01",
-          "netsuite_internal_id": 702,
-          "full_name": "Microscope Slide Box, Plastic, 25",
-          "store_name": "Microscope Slide Box, Plastic, Capacity: 25 Slides",
-          "variant_label": "Plastic",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0039",
-      "product_name": "Microscope Slide Box, 50",
-      "family": "Microscope Slide Box",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1032",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "1032-02",
-          "netsuite_internal_id": 703,
-          "full_name": "Microscope Slide Box, Plastic, 50",
-          "store_name": "Microscope Slide Box, Plastic, Capacity: 50 Slides",
-          "variant_label": "Plastic",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0032",
-      "product_name": "Microscope Slide Box, Hinged, 100",
-      "family": "Microscope Slide Box",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1031",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "1031-03",
-          "netsuite_internal_id": 701,
-          "full_name": "Microscope Slide Box, Wooden, Hinged, 100",
-          "store_name": "Microscope Slide Box, Wooden, Hinged, 100",
-          "variant_label": "Wooden",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
       "page_id": "G0030",
-      "product_name": "Microscope Slide Box, Hinged, 25",
-      "family": "Microscope Slide Box",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1031",
+      "product_name": "Microscope Slide Box",
+      "family": "Slide Box",
+      "page_type": "multi-variant",
+      "variant_axis": "Type",
+      "item_count": 9,
+      "item_number_prefixes": "1031, 1032",
       "flag": "",
       "members": [
         {
@@ -15443,28 +15116,79 @@
           "netsuite_internal_id": 699,
           "full_name": "Microscope Slide Box, Wooden, Hinged, 25",
           "store_name": "Microscope Slide Box, Wooden, Hinged, 25",
-          "variant_label": "Wooden",
+          "variant_label": "Microscope Slide Box, Wooden, Hinged, 25",
           "itemtype": "InvtPart",
           "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0031",
-      "product_name": "Microscope Slide Box, Hinged, 50",
-      "family": "Microscope Slide Box",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1031",
-      "flag": "",
-      "members": [
+        },
         {
           "item_number": "1031-02",
           "netsuite_internal_id": 700,
           "full_name": "Microscope Slide Box, Wooden, Hinged, 50",
           "store_name": "Microscope Slide Box, Wooden, Hinged, 50",
-          "variant_label": "Wooden",
+          "variant_label": "Microscope Slide Box, Wooden, Hinged, 50",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "1031-03",
+          "netsuite_internal_id": 701,
+          "full_name": "Microscope Slide Box, Wooden, Hinged, 100",
+          "store_name": "Microscope Slide Box, Wooden, Hinged, 100",
+          "variant_label": "Microscope Slide Box, Wooden, Hinged, 100",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "1032-01",
+          "netsuite_internal_id": 702,
+          "full_name": "Microscope Slide Box, Plastic, 25",
+          "store_name": "Microscope Slide Box, Plastic, Capacity: 25 Slides",
+          "variant_label": "Microscope Slide Box, Plastic, Capacity: 25 Slides",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "1032-01-12",
+          "netsuite_internal_id": 5839,
+          "full_name": "Slide Box, polystyrene, Capacity 25 Slides, pk/12",
+          "store_name": null,
+          "variant_label": "Slide Box, polystyrene, Capacity 25 Slides, pk/12",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "1032-02",
+          "netsuite_internal_id": 703,
+          "full_name": "Microscope Slide Box, Plastic, 50",
+          "store_name": "Microscope Slide Box, Plastic, Capacity: 50 Slides",
+          "variant_label": "Microscope Slide Box, Plastic, Capacity: 50 Slides",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "1032-02-12",
+          "netsuite_internal_id": 5840,
+          "full_name": "Slide Box, Polystyrene, Capacity 50 Slides,pk/12",
+          "store_name": null,
+          "variant_label": "Slide Box, Polystyrene, Capacity 50 Slides,pk/12",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "1032-03",
+          "netsuite_internal_id": 704,
+          "full_name": "Microscope Slide Box, Plastic, 100",
+          "store_name": "Microscope Slide Box, Plastic, Capacity: 100 Slides",
+          "variant_label": "Microscope Slide Box, Plastic, Capacity: 100 Slides",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "1032-03-06",
+          "netsuite_internal_id": 5986,
+          "full_name": "Slide Box, Polystyrene, Capacity 100 Slides,pk/6",
+          "store_name": null,
+          "variant_label": "Slide Box, Polystyrene, Capacity 100 Slides,pk/6",
           "itemtype": "InvtPart",
           "has_image": true
         }
@@ -20385,69 +20109,6 @@
       ]
     },
     {
-      "page_id": "G0078",
-      "product_name": "Room Thermometer, Flat Metal Back, Celsius Fahrenheit",
-      "family": "Room Thermometer",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1202",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "1202-01",
-          "netsuite_internal_id": 736,
-          "full_name": "Room Thermometer, Flat Metal Back, Celsius/Fahrenheit",
-          "store_name": "Room Thermometer with Flat Metal Back, Celsius/Fahrenheit",
-          "variant_label": "Celsius/Fahrenheit",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0079",
-      "product_name": "Room Thermometer, V-Shape Metal Back, Celsius Fahrenheit",
-      "family": "Room Thermometer",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1203",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "1203-11",
-          "netsuite_internal_id": 737,
-          "full_name": "Room Thermometer, V-Shape Metal Back, Celsius/Fahrenheit",
-          "store_name": "Room Thermometer with V Shape Metal Back, Celsius/Fahrenheit",
-          "variant_label": "Celsius/Fahrenheit",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0080",
-      "product_name": "Room Thermometer, V-Shape Metal Back, Celsius Only",
-      "family": "Room Thermometer",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1203",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "1203-11-C",
-          "netsuite_internal_id": 4690,
-          "full_name": "Room Thermometer, V-Shape Metal Back, Celsius Only",
-          "store_name": "Room Thermometer with V Shape Metal Back (Celsius)",
-          "variant_label": null,
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
       "page_id": "G0227",
       "product_name": "Rubber Grip, For Hot Beakers, Silicone",
       "family": "Rubber Grip",
@@ -20865,69 +20526,6 @@
       ]
     },
     {
-      "page_id": "G0042",
-      "product_name": "Slide Box, Capacity 100 Slides",
-      "family": "Slide Box",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1032",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "1032-03-06",
-          "netsuite_internal_id": 5986,
-          "full_name": "Slide Box, Polystyrene, Capacity 100 Slides,pk/6",
-          "store_name": null,
-          "variant_label": "Polystyrene / pk/6",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0038",
-      "product_name": "Slide Box, Capacity 25 Slides",
-      "family": "Slide Box",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1032",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "1032-01-12",
-          "netsuite_internal_id": 5839,
-          "full_name": "Slide Box, polystyrene, Capacity 25 Slides, pk/12",
-          "store_name": null,
-          "variant_label": "polystyrene / pk/12",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0040",
-      "product_name": "Slide Box, Capacity 50 Slides",
-      "family": "Slide Box",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1032",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "1032-02-12",
-          "netsuite_internal_id": 5840,
-          "full_name": "Slide Box, Polystyrene, Capacity 50 Slides,pk/12",
-          "store_name": null,
-          "variant_label": "Polystyrene / pk/12",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
       "page_id": "G0033",
       "product_name": "Slide Mailers, 1 Slide",
       "family": "Slide Mailers",
@@ -21216,69 +20814,6 @@
           "full_name": "Solenoid, Helix, Air Core, Rohs Certified, 23 AWG",
           "store_name": "Air Core Solenoid, 23AWG",
           "variant_label": null,
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0183",
-      "product_name": "Spatula",
-      "family": "Spatula",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "2084",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "2084-99",
-          "netsuite_internal_id": 873,
-          "full_name": "Spatula, Plastic, 8 in",
-          "store_name": "Spatula, Plastic (8In)",
-          "variant_label": "Plastic / 8 in",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0180",
-      "product_name": "Spatula, Nuffield",
-      "family": "Spatula",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "2084",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "2084-04",
-          "netsuite_internal_id": 869,
-          "full_name": "Spatula, Nuffield",
-          "store_name": "Nuffield Spatula",
-          "variant_label": null,
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0181",
-      "product_name": "Spatulas, Spoon Spatula Double Ended",
-      "family": "Spatulas",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "2084",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "2084-09",
-          "netsuite_internal_id": 870,
-          "full_name": "Spatulas, Spoon/Spatula Double Ended 205mm",
-          "store_name": "Spatula , Spoon/Spatula, Double-Ended, 205 mm",
-          "variant_label": "Spoon/Spatula Double Ended 205mm",
           "itemtype": "InvtPart",
           "has_image": true
         }
@@ -22252,11 +21787,11 @@
     },
     {
       "page_id": "G0138",
-      "product_name": "Support Rings, Cast Iron, 2",
-      "family": "Support Rings",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
+      "product_name": "Cast Iron Support Ring",
+      "family": "Support Ring",
+      "page_type": "multi-variant",
+      "variant_axis": "Size",
+      "item_count": 3,
       "item_number_prefixes": "2038",
       "flag": "",
       "members": [
@@ -22265,49 +21800,25 @@
           "netsuite_internal_id": 817,
           "full_name": "Support Rings, Cast Iron, 2-1/2\"",
           "store_name": "Cast Iron Support Ring, 2.5\"",
-          "variant_label": "2-1/2\"",
+          "variant_label": "Ring, 2.5\"",
           "itemtype": "InvtPart",
           "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0144",
-      "product_name": "Support Stand, Rectangular, Steel Base",
-      "family": "Support Stand",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "2051",
-      "flag": "",
-      "members": [
+        },
         {
-          "item_number": "2051-04",
-          "netsuite_internal_id": 834,
-          "full_name": "Support Stand, Rectangular, Steel Base 300X150 (12X6in)",
-          "store_name": "Support Stands, Rectangular, Steel Bases 300X150 (12X6In)",
-          "variant_label": "Steel Base 300X150 (12X6in)",
+          "item_number": "2038-03",
+          "netsuite_internal_id": 818,
+          "full_name": "Support Rings, Cast Iron, 3\"",
+          "store_name": "Cast Iron Support Rings, 3\"",
+          "variant_label": "Rings, 3\"",
           "itemtype": "InvtPart",
           "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0142",
-      "product_name": "Support Stand, Rectangular, With Rod, Cast Iron",
-      "family": "Support Stand",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "2050",
-      "flag": "",
-      "members": [
+        },
         {
-          "item_number": "2050-02",
-          "netsuite_internal_id": 828,
-          "full_name": "Support Stand, Rectangular, With Rod, Cast Iron, 8\" x...",
-          "store_name": "Cast Iron Support Stand with Rod 8\" x 5\"",
-          "variant_label": "8\" x...",
+          "item_number": "2038-04",
+          "netsuite_internal_id": 819,
+          "full_name": "Support Rings, Cast Iron, 4\"",
+          "store_name": "Cast Iron Support Rings, 4\"",
+          "variant_label": "Rings, 4\"",
           "itemtype": "InvtPart",
           "has_image": true
         }
@@ -22461,55 +21972,13 @@
       ]
     },
     {
-      "page_id": "G0130",
-      "product_name": "Test Tube Clamp",
-      "family": "Test Tube Clamp",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "2031",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "2031-01",
-          "netsuite_internal_id": 805,
-          "full_name": "Test Tube Clamp, Wooden, 7\"",
-          "store_name": "Wooden Test Tube Clamp",
-          "variant_label": "Wooden / 7\"",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0129",
-      "product_name": "Test Tube Clamp, Stoddard Without Finger Grips",
-      "family": "Test Tube Clamp",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "2030",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "2030-02",
-          "netsuite_internal_id": 804,
-          "full_name": "Test Tube Clamp, Stoddard Without Finger Grips, 7\"",
-          "store_name": "Test Tube Clamp Stoddard's Without Finger Grips, 7\"",
-          "variant_label": "7\"",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
       "page_id": "G0128",
-      "product_name": "Test Tube Clamp, Stoddard, With Finger Grips",
-      "family": "Test Tube Clamp",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "2030",
+      "product_name": "Test Tube Clamp",
+      "family": "Clamp",
+      "page_type": "multi-variant",
+      "variant_axis": "Type",
+      "item_count": 3,
+      "item_number_prefixes": "2030, 2031",
       "flag": "",
       "members": [
         {
@@ -22517,7 +21986,25 @@
           "netsuite_internal_id": 803,
           "full_name": "Test Tube Clamp, Stoddard, With Finger Grips, 6\"",
           "store_name": "Test Tube Clamp Stoddard's With Finger Grips, 6\"",
-          "variant_label": "6\"",
+          "variant_label": "Test Tube Clamp Stoddard's With Finger Grips, 6\"",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "2030-02",
+          "netsuite_internal_id": 804,
+          "full_name": "Test Tube Clamp, Stoddard Without Finger Grips, 7\"",
+          "store_name": "Test Tube Clamp Stoddard's Without Finger Grips, 7\"",
+          "variant_label": "Test Tube Clamp Stoddard's Without Finger Grips, 7\"",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "2031-01",
+          "netsuite_internal_id": 805,
+          "full_name": "Test Tube Clamp, Wooden, 7\"",
+          "store_name": "Wooden Test Tube Clamp",
+          "variant_label": "Wooden Test Tube Clamp",
           "itemtype": "InvtPart",
           "has_image": true
         }
@@ -22566,75 +22053,12 @@
       ]
     },
     {
-      "page_id": "G0134",
-      "product_name": "Test Tube Rack, 20 Holes, 3 Tiers, Abs Polymer",
-      "family": "Test Tube Rack",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "2035",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "2035-12",
-          "netsuite_internal_id": 809,
-          "full_name": "Test Tube Rack, 20 Holes, 3 Tiers, ABS Polymer",
-          "store_name": "ABS Polymer Test Tube Rack, 20 holes, 3 tiers",
-          "variant_label": null,
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0135",
-      "product_name": "Test Tube Rack, 31 Tubes",
-      "family": "Test Tube Rack",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "2035",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "2035-13",
-          "netsuite_internal_id": 810,
-          "full_name": "Test Tube Rack, 31 Tubes, Polypropylene",
-          "store_name": "Test Tube Rack, Polypropylene, 31 Tubes Rack",
-          "variant_label": "Polypropylene",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0137",
-      "product_name": "Test Tube Rack, 5 Large Holes",
-      "family": "Test Tube Rack",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "2035",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "2035-30",
-          "netsuite_internal_id": 814,
-          "full_name": "Test Tube Rack, 5 Large Holes, Plastic",
-          "store_name": "Plastic Demountable Test Tube Rack, 5 Large Holes",
-          "variant_label": "Plastic",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
       "page_id": "G0132",
-      "product_name": "Test Tube Rack, 6 Holes 6 Drying Pins, Abs Polimer",
+      "product_name": "Test Tube Rack",
       "family": "Test Tube Rack",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
+      "page_type": "multi-variant",
+      "variant_axis": "Type",
+      "item_count": 6,
       "item_number_prefixes": "2035",
       "flag": "",
       "members": [
@@ -22643,7 +22067,52 @@
           "netsuite_internal_id": 807,
           "full_name": "Test Tube Rack, 6 Holes / 6 Drying Pins, ABS Polimer",
           "store_name": "ABS Polymer Test Tube Rack, 6 holes/6 drying pins",
-          "variant_label": "6 Holes / 6 Drying Pins",
+          "variant_label": "ABS Polymer Test Tube Rack, 6 holes/6 drying pins",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "2035-21",
+          "netsuite_internal_id": 812,
+          "full_name": "Test Tube Rack, 6 Holes / 6 Drying Pins, Wood",
+          "store_name": "Wooden Test Tube Rack, 6 holes/6 drying pins",
+          "variant_label": "Wooden Test Tube Rack, 6 holes/6 drying pins",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "2035-02",
+          "netsuite_internal_id": 2422,
+          "full_name": "Test Tube Rack, 6 Holes / 6 Drying Pins, Polyethylene",
+          "store_name": "Polyethylene Test Tube Rack, 6 holes/6 drying pins",
+          "variant_label": "Polyethylene Test Tube Rack, 6 holes/6 drying pins",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "2035-12",
+          "netsuite_internal_id": 809,
+          "full_name": "Test Tube Rack, 20 Holes, 3 Tiers, ABS Polymer",
+          "store_name": "ABS Polymer Test Tube Rack, 20 holes, 3 tiers",
+          "variant_label": "ABS Polymer Test Tube Rack, 20 holes, 3 tiers",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "2035-13",
+          "netsuite_internal_id": 810,
+          "full_name": "Test Tube Rack, 31 Tubes, Polypropylene",
+          "store_name": "Test Tube Rack, Polypropylene, 31 Tubes Rack",
+          "variant_label": "Test Tube Rack, Polypropylene, 31 Tubes Rack",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "2035-30",
+          "netsuite_internal_id": 814,
+          "full_name": "Test Tube Rack, 5 Large Holes, Plastic",
+          "store_name": "Plastic Demountable Test Tube Rack, 5 Large Holes",
+          "variant_label": "Plastic Demountable Test Tube Rack, 5 Large Holes",
           "itemtype": "InvtPart",
           "has_image": true
         }
@@ -22706,279 +22175,6 @@
           "netsuite_internal_id": 2420,
           "full_name": "Thermoelectric Generator Demonstrator",
           "store_name": "Thermoelectric Generator Demonstrator",
-          "variant_label": null,
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0090",
-      "product_name": "Thermometer, Digital, Instant Read, C F",
-      "family": "Thermometer",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1230",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "1230-00",
-          "netsuite_internal_id": 740,
-          "full_name": "Thermometer, Digital, Instant Read, C/F",
-          "store_name": "Digital Instant Read Thermometer C/F",
-          "variant_label": "C/F",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0091",
-      "product_name": "Thermometer, Digital, Instant Read, C F, Long Stem",
-      "family": "Thermometer",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1230",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "1230-12",
-          "netsuite_internal_id": 2387,
-          "full_name": "Thermometer, Digital, Instant Read, C/F, Long Stem",
-          "store_name": "Digital Instant Read Thermometer, Celsius/Fahrenheit (Long Stem)",
-          "variant_label": "C/F",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0088",
-      "product_name": "Thermometer, Partial Immersion, 10 150C",
-      "family": "Thermometer",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1203",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "1203-19",
-          "netsuite_internal_id": 4715,
-          "full_name": "Thermometer, Partial Immersion, -10/150C, 12\"",
-          "store_name": "12\" Partial Immersion Thermometer (-10-150° C)",
-          "variant_label": "-10/150C / 12\"",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0879",
-      "product_name": "Thermometer, Partial Immersion, 20 110 C, 0 230 F",
-      "family": "Thermometer",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "9101",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "9101-00",
-          "netsuite_internal_id": 2044,
-          "full_name": "Thermometer, Partial Immersion, -20/110 C, 0/230 F, 12\"",
-          "store_name": "Thermometer, Partial Immersion,12\", -20 / 110 C, 0 / 230 F",
-          "variant_label": "-20/110 C / 0/230 F / 12\"",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0084",
-      "product_name": "Thermometer, Partial Immersion, 20 110C",
-      "family": "Thermometer",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1203",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "1203-15",
-          "netsuite_internal_id": 4714,
-          "full_name": "Thermometer, Partial Immersion, -20/110C, 12\"",
-          "store_name": "12\" Partial Immersion Thermometer (-20-110° C)",
-          "variant_label": "-20/110C / 12\"",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0086",
-      "product_name": "Thermometer, Partial Immersion, 20 110C, 0 230F",
-      "family": "Thermometer",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1203",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "1203-17",
-          "netsuite_internal_id": 4717,
-          "full_name": "Thermometer, Partial Immersion, -20/110C, 0/230F, 12\"",
-          "store_name": "12\" Partial Immersion Thermometer (-20-110° C, 0-230° F)",
-          "variant_label": "-20/110C / 0/230F / 12\"",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0087",
-      "product_name": "Thermometer, Partial Immersion, 20 150C, 0 300F",
-      "family": "Thermometer",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1203",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "1203-18",
-          "netsuite_internal_id": 4718,
-          "full_name": "Thermometer, Partial Immersion, -20/150C, 0/300F, 12\"",
-          "store_name": "12\" Partial Immersion Thermometer (-20-150° C, 0-300° F)",
-          "variant_label": "-20/150C / 0/300F / 12\"",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0880",
-      "product_name": "Thermometer, Total Immersion, 10 110 C",
-      "family": "Thermometer",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "9102",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "9102-00",
-          "netsuite_internal_id": 2623,
-          "full_name": "Thermometer, Total Immersion, -10/110 C, 6\"",
-          "store_name": "Thermometer, Total Immersion, -10-110C, 6\", each",
-          "variant_label": "-10/110 C / 6\"",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0082",
-      "product_name": "Thermometer, Total Immersion, 20 110C",
-      "family": "Thermometer",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1203",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "1203-13",
-          "netsuite_internal_id": 4712,
-          "full_name": "Thermometer, Total Immersion, -20/110C, 12\"",
-          "store_name": "12\" Total Immersion Thermometer (-20-110° C)",
-          "variant_label": "-20/110C / 12\"",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0089",
-      "product_name": "Thermometer, Total Immersion, 20 110C, 0 230F",
-      "family": "Thermometer",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1203",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "1203-20",
-          "netsuite_internal_id": 4892,
-          "full_name": "Thermometer, Total Immersion, -20/110C, 0/230F, 12\"",
-          "store_name": "12\" Total Immersion Thermometer (-20-110° C, 0-230° F)",
-          "variant_label": "-20/110C / 0/230F / 12\"",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0083",
-      "product_name": "Thermometer, Total Immersion, 20 150C",
-      "family": "Thermometer",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1203",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "1203-14",
-          "netsuite_internal_id": 4713,
-          "full_name": "Thermometer, Total Immersion, -20/150C, 12\"",
-          "store_name": "12\" Total Immersion Thermometer (-20-150° C)",
-          "variant_label": "-20/150C / 12\"",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0085",
-      "product_name": "Thermometer, Total Immersion, 20 150C, 0 300F",
-      "family": "Thermometer",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1203",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "1203-16",
-          "netsuite_internal_id": 4716,
-          "full_name": "Thermometer, Total Immersion, -20/150C, 0/300F, 12\"",
-          "store_name": "12\" Total Immersion Thermometer (-20-150° C, 0-300° F)",
-          "variant_label": "-20/150C / 0/300F / 12\"",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0081",
-      "product_name": "Thermometer, Wall, Dual Scale, Economy",
-      "family": "Thermometer",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1203",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "1203-12",
-          "netsuite_internal_id": 738,
-          "full_name": "Thermometer, Wall, Dual Scale, Economy",
-          "store_name": "Thermometer, Wall, Dual Scale Economy",
           "variant_label": null,
           "itemtype": "InvtPart",
           "has_image": true
@@ -23049,48 +22245,6 @@
       ]
     },
     {
-      "page_id": "G0126",
-      "product_name": "Tongs, Crucible, Stainless Steel",
-      "family": "Tongs",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "2020",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "2020-33",
-          "netsuite_internal_id": 2725,
-          "full_name": "Tongs, Crucible, Stainless Steel, 18\"",
-          "store_name": "Stainless Steel Crucible Tongs, 18\"",
-          "variant_label": "18\"",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0677",
-      "product_name": "Tongs, Dish",
-      "family": "Tongs",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "6455",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "6455-22",
-          "netsuite_internal_id": 1815,
-          "full_name": "Tongs, Dish, 25 cm",
-          "store_name": "Dish Tongs, Hold 75Mm To 125Mm; Length 25Cm",
-          "variant_label": "25 cm",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
       "page_id": "G0907",
       "product_name": "Touch Board Starter Kit",
       "family": "Touch Board Starter Kit",
@@ -23106,90 +22260,6 @@
           "full_name": "Touch Board Starter Kit",
           "store_name": "Touch Board Starter Kit",
           "variant_label": null,
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0146",
-      "product_name": "Tripod Base With Rod",
-      "family": "Tripod Base With Rod",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "2054",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "2054-01",
-          "netsuite_internal_id": 835,
-          "full_name": "Tripod Base With Rod, 100mm (4in)",
-          "store_name": "Tripod Bases With Rods 100Mm (4In)",
-          "variant_label": "100mm (4in)",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0147",
-      "product_name": "Tripod Base With Rod, Cast Iron",
-      "family": "Tripod Base With Rod",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "2054",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "2054-02",
-          "netsuite_internal_id": 3774,
-          "full_name": "Tripod Base With Rod, Cast Iron, 6\"",
-          "store_name": "Tripod Bases with Rods",
-          "variant_label": "6\"",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0150",
-      "product_name": "Tripod Stand",
-      "family": "Tripod Stand",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "2057",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "2057-02",
-          "netsuite_internal_id": 2423,
-          "full_name": "Tripod Stand, 3.5\"",
-          "store_name": "Tripod Stand 3.5\"",
-          "variant_label": "3.5\"",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0149",
-      "product_name": "Tripod Stand With Concentric Rings",
-      "family": "Tripod Stand With Concentric Rings",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "2057",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "2057-01",
-          "netsuite_internal_id": 841,
-          "full_name": "Tripod Stand With Concentric Rings 5\"",
-          "store_name": "Tripod Stand with Concentric Rings 5\"",
-          "variant_label": "Tripod Stand With Concentric Rings 5\"",
           "itemtype": "InvtPart",
           "has_image": true
         }
@@ -23651,27 +22721,6 @@
           "netsuite_internal_id": 2497,
           "full_name": "Universal Adapter",
           "store_name": "Universal Adapter",
-          "variant_label": null,
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0160",
-      "product_name": "Utility Clamp",
-      "family": "Utility Clamp",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "2062",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "2062-06",
-          "netsuite_internal_id": 4695,
-          "full_name": "Utility Clamp",
-          "store_name": "Utility Clamp",
           "variant_label": null,
           "itemtype": "InvtPart",
           "has_image": true
@@ -24156,27 +23205,6 @@
           "full_name": "Replacement Wick, pk/12",
           "store_name": "Replacement Wick, Pk/12",
           "variant_label": "Replacement Wick / pk/12",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0172",
-      "product_name": "Wick And Holder For Angular Alcohol Burner",
-      "family": "Wick And Holder For Angular Alcohol Burner",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "2066",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "2066-16",
-          "netsuite_internal_id": 854,
-          "full_name": "Spare Wick and Holder For Angular Alcohol Burner",
-          "store_name": "Spare Wick And Holder For Alcohol Burner Angular",
-          "variant_label": "Spare Wick and Holder For Angular Alcohol Burner",
           "itemtype": "InvtPart",
           "has_image": true
         }
