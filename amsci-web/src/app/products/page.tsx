@@ -20,14 +20,6 @@ export default async function ProductsPage() {
 
 	return (
 		<div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-			<nav className="mb-4 text-sm text-slate-400" aria-label="Breadcrumb">
-				<Link href="/" className="hover:text-slate-700">
-					Home
-				</Link>
-				<span className="mx-2">/</span>
-				<span className="text-slate-600">Catalog</span>
-			</nav>
-
 			<h1 className="font-display text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
 				All Products
 			</h1>

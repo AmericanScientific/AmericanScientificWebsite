@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getTopLevelCategories, getChildCategory } from "@/data/categories";
-import { getProductsByLeaf } from "@/data/products";
-import { ProductGrid } from "@/components/ProductGrid";
+import { getProductsByParent, getProductsByLeaf, getLeafProductCounts } from "@/data/products";
+import { CategorySubfilter } from "@/components/CategorySubfilter";
 import { CategoryHero } from "@/components/CategoryHero";
 
 /**
@@ -45,19 +45,32 @@ export default async function LeafCategoryPage({
 	const category = getChildCategory(parent, child);
 	if (!parentCategory || !category) notFound();
 
-	const products = await getProductsByLeaf(child);
+	// The hero count reflects this leaf; the grid below shows every product under
+	// the parent so the pills can filter across siblings, with this leaf pre-lit.
+	const leafProducts = await getProductsByLeaf(child);
+	const parentProducts = await getProductsByParent(parent);
+	const counts = await getLeafProductCounts();
 
 	return (
 		<div>
 			<CategoryHero
 				themeSlug={parentCategory.slug}
 				title={category.name}
-				count={products.length}
+				count={leafProducts.length}
 				eyebrow={parentCategory.name}
 			/>
 
 			<div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-				<ProductGrid products={products} />
+				<CategorySubfilter
+					themeSlug={parentCategory.slug}
+					subcategories={(parentCategory.children ?? []).map((c) => ({
+						slug: c.slug,
+						name: c.name,
+						count: counts[c.slug] ?? 0,
+					}))}
+					products={parentProducts}
+					initialSelected={[child]}
+				/>
 			</div>
 		</div>
 	);
