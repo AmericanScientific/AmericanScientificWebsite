@@ -6,10 +6,13 @@
 	"compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
 	"observability": { "enabled": true },
 
-	// Cron: full catalog sync from NetSuite → D1. Every 30 minutes.
-	// Adjust cadence here; go more frequent only if NetSuite governance allows.
+	// Cron: NetSuite → D1 catalog sync, two cadences (see index.ts scheduled()):
+	//   */10  → cheap INCREMENTAL (items changed since last run) — freshness ~10m.
+	//   0 * * → hourly FULL sync + prune (catches removals; incremental can't).
+	// Full syncs are the heavy, governance-sensitive op, so only run them hourly;
+	// tighten the incremental cron (e.g. */5) freely — it's near-zero cost.
 	"triggers": {
-		"crons": ["*/30 * * * *"]
+		"crons": ["*/10 * * * *", "0 * * * *"]
 	},
 
 	// Same D1 database the storefront reads (create once: `wrangler d1 create amsci-catalog`,
