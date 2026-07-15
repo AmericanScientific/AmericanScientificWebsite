@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getTopLevelCategories } from "@/data/categories";
 import { categoryTheme } from "@/lib/categoryTheme";
-import { getAllProducts, getLeafProductCounts, getProductsByParent } from "@/data/products";
+import { getListingProducts, getLeafProductCounts, getProductsByParent } from "@/data/products";
 import { productSlug } from "@/types/product";
 import { mediaProxyUrl } from "@/lib/media";
 import { ProductCard } from "@/components/ProductCard";
@@ -36,8 +36,7 @@ async function buildBubbleData(): Promise<Record<string, BubbleItem[]>> {
 export const revalidate = 300;
 
 export default async function Home() {
-	const products = await getAllProducts();
-	const featured = products.slice(0, 4);
+	const featured = (await getListingProducts()).slice(0, 4);
 	const categories = getTopLevelCategories();
 	const counts = await getLeafProductCounts();
 	const bubblesByCategory = await buildBubbleData();
