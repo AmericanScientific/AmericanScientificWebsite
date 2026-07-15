@@ -217,46 +217,24 @@ function VariantAxis({
 	selected: string;
 	onSelect: (value: string) => void;
 }) {
-	const asButtons = values.length <= 6 || name.toLowerCase() === "color";
-
 	return (
 		<div>
 			<div className="mb-2 flex items-baseline gap-2">
 				<span className="text-xs font-semibold uppercase tracking-wider text-slate-500">{name}</span>
 				<span className="text-xs text-slate-400">{selected}</span>
 			</div>
-			{asButtons ? (
-				<div className="flex flex-wrap gap-2">
-					{values.map((v) => (
-						<button
-							key={v}
-							type="button"
-							onClick={() => onSelect(v)}
-							aria-pressed={v === selected}
-							className={`rounded-full border px-3.5 py-1.5 text-sm font-medium transition-colors ${
-								v === selected
-									? "border-brand-blue bg-brand-blue text-white shadow-sm"
-									: "border-slate-300 bg-white text-slate-700 hover:border-slate-400 hover:bg-slate-50"
-							}`}
-						>
-							{v}
-						</button>
-					))}
-				</div>
-			) : (
-				<select
-					value={selected}
-					onChange={(e) => onSelect(e.target.value)}
-					aria-label={name}
-					className="w-full max-w-xs rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm font-medium text-slate-800 shadow-sm focus:border-brand-blue focus:outline-none focus:ring-2 focus:ring-brand-blue/20"
-				>
-					{values.map((v) => (
-						<option key={v} value={v}>
-							{v}
-						</option>
-					))}
-				</select>
-			)}
+			<select
+				value={selected}
+				onChange={(e) => onSelect(e.target.value)}
+				aria-label={name}
+				className="w-full max-w-xs rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm font-medium text-slate-800 shadow-sm focus:border-brand-blue focus:outline-none focus:ring-2 focus:ring-brand-blue/20"
+			>
+				{values.map((v) => (
+					<option key={v} value={v}>
+						{v}
+					</option>
+				))}
+			</select>
 		</div>
 	);
 }

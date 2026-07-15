@@ -2,9 +2,9 @@
   "summary": {
     "total_items": 1306,
     "total_pages": 583,
-    "multi_variant_pages": 154,
-    "single_item_pages": 429,
-    "items_consolidated_into_multi_pages": 877,
+    "multi_variant_pages": 156,
+    "single_item_pages": 427,
+    "items_consolidated_into_multi_pages": 879,
     "pages_flagged_for_review": 7,
     "related_family_clusters": 131
   },
@@ -1756,12 +1756,12 @@
     },
     {
       "page_id": "G0432",
-      "product_name": "Spring Scale",
+      "product_name": "Pull & Push-Pull Spring Scale",
       "family": "Spring Scale",
       "page_type": "multi-variant",
       "variant_axis": "Range",
-      "item_count": 19,
-      "item_number_prefixes": "3439, 619",
+      "item_count": 13,
+      "item_number_prefixes": "3439",
       "flag": "",
       "members": [
         {
@@ -1880,13 +1880,25 @@
           "variant_label": "Spring Scales, Pound/Newton .56 Lb X .02 Lb/2.5N X 0.1 N",
           "itemtype": "InvtPart",
           "has_image": true
-        },
+        }
+      ]
+    },
+    {
+      "page_id": "G0664",
+      "product_name": "Spring Scale",
+      "family": "Spring Scale",
+      "page_type": "multi-variant",
+      "variant_axis": "Range",
+      "item_count": 6,
+      "item_number_prefixes": "619",
+      "flag": "",
+      "members": [
         {
           "item_number": "619-01",
           "netsuite_internal_id": 1787,
           "full_name": "Spring Scale, Spring Balance, Color-Coded, 250 g/2.5 N",
           "store_name": "Spring Scale, 250 g, 2.5 N",
-          "variant_label": "Spring Scale, 250 g, 2.5 N",
+          "variant_label": "250 g, 2.5 N",
           "itemtype": "InvtPart",
           "has_image": true
         },
@@ -1895,7 +1907,7 @@
           "netsuite_internal_id": 1788,
           "full_name": "Spring Scale, Spring Balance, Color-Coded, 500 g/5 N",
           "store_name": "Spring Scale, 500 g, 5 N",
-          "variant_label": "Spring Scale, 500 g, 5 N",
+          "variant_label": "500 g, 5 N",
           "itemtype": "InvtPart",
           "has_image": true
         },
@@ -1904,7 +1916,7 @@
           "netsuite_internal_id": 1789,
           "full_name": "Spring Scale, Spring Balance, Color-Coded, 1000 g/10 N",
           "store_name": "Spring Scale, 1000 g, 10 N",
-          "variant_label": "Spring Scale, 1000 g, 10 N",
+          "variant_label": "1000 g, 10 N",
           "itemtype": "InvtPart",
           "has_image": true
         },
@@ -1913,7 +1925,7 @@
           "netsuite_internal_id": 1790,
           "full_name": "Spring Scale, Spring Balance, Color-Coded, 2000 g/20 N",
           "store_name": "Spring Scale, 2000 g, 20 N",
-          "variant_label": "Spring Scale, 2000 g, 20 N",
+          "variant_label": "2000 g, 20 N",
           "itemtype": "InvtPart",
           "has_image": true
         },
@@ -1922,7 +1934,7 @@
           "netsuite_internal_id": 1791,
           "full_name": "Spring Scale, Spring Balance, Color-Coded, 3000 g/30 N",
           "store_name": "Spring Scale, 3000 g, 30 N",
-          "variant_label": "Spring Scale, 3000 g, 30 N",
+          "variant_label": "3000 g, 30 N",
           "itemtype": "InvtPart",
           "has_image": true
         },
@@ -1931,7 +1943,7 @@
           "netsuite_internal_id": 1792,
           "full_name": "Spring Scale, Spring Balance, Color-Coded, 5000 g/50 N",
           "store_name": "Spring Scale, 5000 g, 50 N",
-          "variant_label": "Spring Scale, 5000 g, 50 N",
+          "variant_label": "5000 g, 50 N",
           "itemtype": "InvtPart",
           "has_image": true
         }
@@ -2827,38 +2839,20 @@
     },
     {
       "page_id": "G0354",
-      "product_name": "Unmounted Spherical Lens",
+      "product_name": "Bi-Convex Spherical Lens",
       "family": "Lens",
       "page_type": "multi-variant",
       "variant_axis": "Size",
-      "item_count": 20,
-      "item_number_prefixes": "3305, 3309",
+      "item_count": 8,
+      "item_number_prefixes": "3305",
       "flag": "",
       "members": [
-        {
-          "item_number": "3305-02",
-          "netsuite_internal_id": 1059,
-          "full_name": "Lens, Unmounted Spherical Bi-Convex, Glass, 1-1/2\" Dia...",
-          "store_name": "Lens, Spherical, Unmounted, Bi-Concave, 38 mm x 100 mm",
-          "variant_label": "3305-02",
-          "itemtype": "InvtPart",
-          "has_image": true
-        },
-        {
-          "item_number": "3305-04",
-          "netsuite_internal_id": 1060,
-          "full_name": "Lens, Unmounted Spherical Bi-Convex, Glass, 1-1/2\" Dia...",
-          "store_name": "Lens, Spherical, Unmounted, Bi-Concave, 38 mm x 150 mm",
-          "variant_label": "3305-04",
-          "itemtype": "InvtPart",
-          "has_image": true
-        },
         {
           "item_number": "3305-07",
           "netsuite_internal_id": 1063,
           "full_name": "Lens, Unmounted Spherical Bi-Convex, Glass, 1-1/2\" Dia...",
           "store_name": "Unmounted Spherical Bi-Convex Glass Lenses 1-1/2\" dia x 12\" fl",
-          "variant_label": "3305-07",
+          "variant_label": "1.5\" dia × 12\" FL",
           "itemtype": "InvtPart",
           "has_image": true
         },
@@ -2867,7 +2861,7 @@
           "netsuite_internal_id": 1064,
           "full_name": "Lens, Unmounted Spherical Bi-Convex, Glass, 1-1/2\" Dia...",
           "store_name": "Unmounted Spherical Bi-Convex Glass Lenses 1.5\" Dia. x 20\" fl",
-          "variant_label": "3305-08",
+          "variant_label": "1.5\" dia × 20\" FL",
           "itemtype": "InvtPart",
           "has_image": true
         },
@@ -2876,7 +2870,7 @@
           "netsuite_internal_id": 1066,
           "full_name": "Lens, Spherical, Unmounted Plano-Convex, 50 mm Dia., 50...",
           "store_name": "Lenses Spherical, Unmounted Bi-Convex Lens Diameter 50Mm Focal Length 50Mm",
-          "variant_label": "3305-21",
+          "variant_label": "50 mm dia × 50 mm FL",
           "itemtype": "InvtPart",
           "has_image": true
         },
@@ -2885,16 +2879,7 @@
           "netsuite_internal_id": 1067,
           "full_name": "Lens, Unmounted Spherical Bi-Convex, Glass, 2\" Dia X 4\" FL",
           "store_name": "Unmounted Spherical Bi-Convex Glass Lenses 2\" dia x 4\" fl",
-          "variant_label": "3305-22",
-          "itemtype": "InvtPart",
-          "has_image": true
-        },
-        {
-          "item_number": "3305-24",
-          "netsuite_internal_id": 1068,
-          "full_name": "Lens, Unmounted Spherical Bi-Convex, Glass, 2\" Dia X 6\" FL",
-          "store_name": "Lens, Spherical, Unmounted, Bi-Concave, 50 mm x 150 mm",
-          "variant_label": "3305-24",
+          "variant_label": "2\" dia × 4\" FL",
           "itemtype": "InvtPart",
           "has_image": true
         },
@@ -2903,25 +2888,7 @@
           "netsuite_internal_id": 1069,
           "full_name": "Lens, Unmounted Spherical Bi-Convex, Glass, 2\" Dia X 8\" FL",
           "store_name": "Unmounted Spherical Bi-Convex Glass Lenses 2\" dia x 8\" fl",
-          "variant_label": "3305-25",
-          "itemtype": "InvtPart",
-          "has_image": true
-        },
-        {
-          "item_number": "3305-26",
-          "netsuite_internal_id": 333,
-          "full_name": "Lens, Unmounted Spherical Bi-Convex, Glass, 2\" Dia X 10\" FL",
-          "store_name": "Lenses Spherical, Bi-Cpnvex, Unmounted Lens Diameter 50mm Focal Length 250mm",
-          "variant_label": "3305-26",
-          "itemtype": "InvtPart",
-          "has_image": true
-        },
-        {
-          "item_number": "3305-28",
-          "netsuite_internal_id": 1071,
-          "full_name": "Lens, Unmounted Spherical Bi-Convex, Glass, 2\" Dia X 20\" FL",
-          "store_name": "Lens, Spherical, Unmounted, Bi-Concave, 50 mm x 500 mm",
-          "variant_label": "3305-28",
+          "variant_label": "2\" dia × 8\" FL",
           "itemtype": "InvtPart",
           "has_image": true
         },
@@ -2930,7 +2897,7 @@
           "netsuite_internal_id": 1073,
           "full_name": "Lens, Unmounted Spherical Bi-Convex, Glass, 3\" Dia X 6\" FL",
           "store_name": "Unmounted Spherical Bi-Convex Glass Lenses 3\" dia x 6\" fl",
-          "variant_label": "3305-41",
+          "variant_label": "3\" dia × 6\" FL",
           "itemtype": "InvtPart",
           "has_image": true
         },
@@ -2939,7 +2906,64 @@
           "netsuite_internal_id": 1074,
           "full_name": "Lens, Unmounted Spherical Bi-Convex, Glass, 3\" Dia X 8\" FL",
           "store_name": "Unmounted Spherical Bi-Convex Glass Lenses 3\" dia x 8\" fl",
-          "variant_label": "3305-45",
+          "variant_label": "3\" dia × 8\" FL",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "3305-26",
+          "netsuite_internal_id": 333,
+          "full_name": "Lens, Unmounted Spherical Bi-Convex, Glass, 2\" Dia X 10\" FL",
+          "store_name": "Lenses Spherical, Bi-Cpnvex, Unmounted Lens Diameter 50mm Focal Length 250mm",
+          "variant_label": "50 mm dia × 250 mm FL",
+          "itemtype": "InvtPart",
+          "has_image": true
+        }
+      ]
+    },
+    {
+      "page_id": "G0355",
+      "product_name": "Bi-Concave Spherical Lens",
+      "family": "Lens",
+      "page_type": "multi-variant",
+      "variant_axis": "Size",
+      "item_count": 12,
+      "item_number_prefixes": "3305, 3309",
+      "flag": "",
+      "members": [
+        {
+          "item_number": "3305-02",
+          "netsuite_internal_id": 1059,
+          "full_name": "Lens, Unmounted Spherical Bi-Convex, Glass, 1-1/2\" Dia...",
+          "store_name": "Lens, Spherical, Unmounted, Bi-Concave, 38 mm x 100 mm",
+          "variant_label": "38 mm dia × 100 mm FL",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "3305-04",
+          "netsuite_internal_id": 1060,
+          "full_name": "Lens, Unmounted Spherical Bi-Convex, Glass, 1-1/2\" Dia...",
+          "store_name": "Lens, Spherical, Unmounted, Bi-Concave, 38 mm x 150 mm",
+          "variant_label": "38 mm dia × 150 mm FL",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "3305-24",
+          "netsuite_internal_id": 1068,
+          "full_name": "Lens, Unmounted Spherical Bi-Convex, Glass, 2\" Dia X 6\" FL",
+          "store_name": "Lens, Spherical, Unmounted, Bi-Concave, 50 mm x 150 mm",
+          "variant_label": "50 mm dia × 150 mm FL",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "3305-28",
+          "netsuite_internal_id": 1071,
+          "full_name": "Lens, Unmounted Spherical Bi-Convex, Glass, 2\" Dia X 20\" FL",
+          "store_name": "Lens, Spherical, Unmounted, Bi-Concave, 50 mm x 500 mm",
+          "variant_label": "50 mm dia × 500 mm FL",
           "itemtype": "InvtPart",
           "has_image": true
         },
@@ -2948,7 +2972,7 @@
           "netsuite_internal_id": 1076,
           "full_name": "Lens, Unmounted Spherical Bi-Concave, Glass, 1-1/2\" Dia...",
           "store_name": "Unmounted Spherical Bi-Concave Glass Lenses 1.5\" Dia. x 4\" fl",
-          "variant_label": "3309-02",
+          "variant_label": "1.5\" dia × 4\" FL",
           "itemtype": "InvtPart",
           "has_image": true
         },
@@ -2957,7 +2981,7 @@
           "netsuite_internal_id": 1077,
           "full_name": "Lens, Unmounted Spherical Bi-Concave, Glass, 1-1/2\" Dia...",
           "store_name": "Lenses Spherical, Unmounted Bi-Concave Lens Diameter 38Mm Focal Length 150Mm",
-          "variant_label": "3309-04",
+          "variant_label": "38 mm dia × 150 mm FL",
           "itemtype": "InvtPart",
           "has_image": true
         },
@@ -2966,7 +2990,7 @@
           "netsuite_internal_id": 1080,
           "full_name": "Lens, Unmounted Spherical Bi-Concave, Glass, 1-1/2\" Dia...",
           "store_name": "Lenses Spherical, Unmounted Bi-Concave Lens Diameter 38Mm Focal Length 300Mm",
-          "variant_label": "3309-07",
+          "variant_label": "38 mm dia × 300 mm FL",
           "itemtype": "InvtPart",
           "has_image": true
         },
@@ -2975,7 +2999,7 @@
           "netsuite_internal_id": 1081,
           "full_name": "Lens, Unmounted Spherical Bi-Concave, Glass, 1-1/2\" Dia...",
           "store_name": "Lens, Spherical, Unmounted, Bi-Concave, 38 mm x 500 mm",
-          "variant_label": "3309-08",
+          "variant_label": "38 mm dia × 500 mm FL",
           "itemtype": "InvtPart",
           "has_image": true
         },
@@ -2984,7 +3008,7 @@
           "netsuite_internal_id": 1084,
           "full_name": "Lens, Unmounted Spherical Bi-Concave, Glass, 2\" Dia X 4\" FL",
           "store_name": "Lenses Spherical, Unmounted Bi-Concave Lens Diameter 50Mm Focal Length 100Mm",
-          "variant_label": "3309-22",
+          "variant_label": "50 mm dia × 100 mm FL",
           "itemtype": "InvtPart",
           "has_image": true
         },
@@ -2993,7 +3017,7 @@
           "netsuite_internal_id": 1085,
           "full_name": "Lens, Unmounted Spherical Bi-Concave, Glass, 2\" Dia X 6\" FL",
           "store_name": "Lenses Spherical, Unmounted Bi-Concave Lens Diameter 50Mm Focal Length 150Mm",
-          "variant_label": "3309-24",
+          "variant_label": "50 mm dia × 150 mm FL",
           "itemtype": "InvtPart",
           "has_image": true
         },
@@ -3002,7 +3026,7 @@
           "netsuite_internal_id": 1086,
           "full_name": "Lens, Unmounted Spherical Bi-Concave, Glass, 2\" Dia X 8\" FL",
           "store_name": "Lens, Spherical, Unmounted, Bi-Concave, 50 mm x 200 mm",
-          "variant_label": "3309-25",
+          "variant_label": "50 mm dia × 200 mm FL",
           "itemtype": "InvtPart",
           "has_image": true
         },
@@ -3011,7 +3035,7 @@
           "netsuite_internal_id": 1088,
           "full_name": "Lens, Unmounted Spherical Bi-Concave, Glass, 2\" Dia X 20\" FL",
           "store_name": "Lens, Spherical, Unmounted, Bi-Concave, 50 mm x 500 mm",
-          "variant_label": "3309-28",
+          "variant_label": "50 mm dia × 500 mm FL",
           "itemtype": "InvtPart",
           "has_image": true
         }
@@ -4819,29 +4843,47 @@
     },
     {
       "page_id": "G0311",
-      "product_name": "Battery Holder, D Cell",
+      "product_name": "Battery Holder",
       "family": "Battery Holder",
       "page_type": "multi-variant",
-      "variant_axis": "Material / Pack size",
-      "item_count": 2,
-      "item_number_prefixes": "3160",
+      "variant_axis": "Type",
+      "item_count": 4,
+      "item_number_prefixes": "1125, 3160",
       "flag": "",
       "members": [
-        {
-          "item_number": "3160-01",
-          "netsuite_internal_id": 1016,
-          "full_name": "Battery Holder, D Cell, Aluminum",
-          "store_name": "Aluminum D Cell Battery Holder",
-          "variant_label": "Aluminum",
-          "itemtype": "InvtPart",
-          "has_image": true
-        },
         {
           "item_number": "3160-00",
           "netsuite_internal_id": 3230,
           "full_name": "Battery Holder, D Cell, Plastic, 4/pk",
           "store_name": "Plastic D Cell Battery Holder, Pk/4",
-          "variant_label": "Plastic / 4/pk",
+          "variant_label": "Plastic D Cell Battery Holder, Pk/4",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "3160-01",
+          "netsuite_internal_id": 1016,
+          "full_name": "Battery Holder, D Cell, Aluminum",
+          "store_name": "Aluminum D Cell Battery Holder",
+          "variant_label": "Aluminum D Cell Battery Holder",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "1125-00",
+          "netsuite_internal_id": 219,
+          "full_name": "Battery Holder, D Cell, Plastic With Fahnstock Clips",
+          "store_name": "Battery Holder,  D Cell, Plastic With Fahnstock Clips",
+          "variant_label": "Battery Holder, D Cell, Plastic With Fahnstock Clips",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "3160-02",
+          "netsuite_internal_id": 3235,
+          "full_name": "Battery Holder, AA, 4/pk",
+          "store_name": "Plastic AA Battery Holder, Pk/4",
+          "variant_label": "Plastic AA Battery Holder, Pk/4",
           "itemtype": "InvtPart",
           "has_image": true
         }
@@ -7362,48 +7404,6 @@
           "full_name": "Replacement Base, Rod, 2 Clamps Only, For New Hoffman...",
           "store_name": "NEW Hoffman Electrolysis Apparatus, Base, Rod, 2 Clamps Only",
           "variant_label": "Replacement Base / For New Hoffman...",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0312",
-      "product_name": "Battery Holder, Aa",
-      "family": "Battery Holder",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "3160",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "3160-02",
-          "netsuite_internal_id": 3235,
-          "full_name": "Battery Holder, AA, 4/pk",
-          "store_name": "Plastic AA Battery Holder, Pk/4",
-          "variant_label": "4/pk",
-          "itemtype": "InvtPart",
-          "has_image": true
-        }
-      ]
-    },
-    {
-      "page_id": "G0072",
-      "product_name": "Battery Holder, D Cell, Plastic With Fahnstock Clips",
-      "family": "Battery Holder",
-      "page_type": "single",
-      "variant_axis": "",
-      "item_count": 1,
-      "item_number_prefixes": "1125",
-      "flag": "",
-      "members": [
-        {
-          "item_number": "1125-00",
-          "netsuite_internal_id": 219,
-          "full_name": "Battery Holder, D Cell, Plastic With Fahnstock Clips",
-          "store_name": "Battery Holder,  D Cell, Plastic With Fahnstock Clips",
-          "variant_label": null,
           "itemtype": "InvtPart",
           "has_image": true
         }
