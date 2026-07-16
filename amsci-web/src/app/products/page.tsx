@@ -4,6 +4,8 @@ import { getTopLevelCategories } from "@/data/categories";
 import { categoryTheme } from "@/lib/categoryTheme";
 import { getListingProducts } from "@/data/products";
 import { ProductGrid } from "@/components/ProductGrid";
+import { Pagination } from "@/components/Pagination";
+import { paginate } from "@/lib/pagination";
 import { CategoryIcon } from "@/components/CategoryIcon";
 
 export const metadata: Metadata = {
@@ -14,8 +16,9 @@ export const metadata: Metadata = {
 /** Re-read the cron-synced catalog from D1 at most this often (seconds). */
 export const revalidate = 300;
 
-export default async function ProductsPage() {
-	const products = await getListingProducts();
+export default async function ProductsPage({ searchParams }: { searchParams: Promise<{ page?: string }> }) {
+	const allProducts = await getListingProducts();
+	const { items: products, page, totalPages, total } = paginate(allProducts, (await searchParams).page);
 	const categories = getTopLevelCategories();
 
 	return (
@@ -24,7 +27,7 @@ export default async function ProductsPage() {
 				All Products
 			</h1>
 			<p className="mt-2 text-slate-500">
-				<span className="font-semibold text-slate-700">{products.length}</span> products · Sign in
+				<span className="font-semibold text-slate-700">{total}</span> products · Sign in
 				for your account pricing and quantity breaks.
 			</p>
 
@@ -48,6 +51,7 @@ export default async function ProductsPage() {
 			</div>
 
 			<ProductGrid products={products} />
+			<Pagination page={page} totalPages={totalPages} baseHref="/products" />
 		</div>
 	);
 }
