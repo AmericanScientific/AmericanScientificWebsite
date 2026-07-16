@@ -43,6 +43,18 @@
 			"database_id": "53ff7b8e-d672-43d4-aa39-9682003a07e2"
 		}
 	],
+	// Transactional email (password setup/reset links) via Resend — see
+	// src/lib/auth/email.ts. Setup: verify the sender domain (am-sci.com) in
+	// Resend, add its DNS records, then `wrangler secret put RESEND_API_KEY`.
+	// Until RESEND_API_KEY is set, sends are skipped and the link is logged.
+	// EMAIL_FROM must be an address on the Resend-verified domain. Set SITE_URL to
+	// the deployed origin so links in emails are absolute (falls back to the
+	// request origin if unset). RESEND_API_KEY is a SECRET, not a var.
+	"vars": {
+		"EMAIL_FROM": "hello@am-sci.com",
+		"EMAIL_FROM_NAME": "American Scientific"
+		// "SITE_URL": "https://<your-deployed-origin>"
+	},
 	"observability": {
 		"enabled": true
 	},

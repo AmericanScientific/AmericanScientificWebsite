@@ -1,15 +1,14 @@
-import { getDb, getUserByEmail, toSessionUser, upgradePasswordHash } from "@/lib/auth/db";
-import { hashPassword, isModernHash, verifyPassword } from "@/lib/auth/password";
-import { verifyWordPressPassword } from "@/lib/auth/wp-hash";
+import { getDb, getUserByEmail, toSessionUser } from "@/lib/auth/db";
+import { isModernHash, verifyPassword } from "@/lib/auth/password";
 import { startSession } from "@/lib/auth/session";
 
 /**
  * POST /api/auth/login  { email, password }
  *
- * Verifies against the modern hash if present, else the migrated WordPress hash
- * ($P$ phpass / $wp$ bcrypt) — and on a successful legacy verify, lazily
- * re-hashes to our modern scheme. Login is blocked for non-approved accounts
- * (the new-user-approve gate carried over from WordPress).
+ * Only the modern password (set via the email setup/reset flow) is accepted —
+ * migrated WordPress passwords are NOT honored. A migrated account (or any
+ * account flagged must_change_password) is told to set a password first
+ * (`mustSetup: true`), so the client can send them to the email setup flow.
  */
 export const dynamic = "force-dynamic";
 
@@ -35,21 +34,7 @@ export async function POST(request: Request): Promise<Response> {
 		return Response.json({ error: INVALID }, { status: 401 });
 	}
 
-	// Verify: prefer the modern hash; fall back to the migrated WordPress hash.
-	let ok = false;
-	let needsUpgrade = false;
-	if (isModernHash(user.password_hash)) {
-		ok = await verifyPassword(password, user.password_hash as string);
-	} else if (user.wp_password_hash) {
-		ok = await verifyWordPressPassword(password, user.wp_password_hash);
-		needsUpgrade = ok;
-	}
-
-	if (!ok) {
-		return Response.json({ error: INVALID }, { status: 401 });
-	}
-
-	// Moderation gate: only approved (or legacy null-status) accounts may log in.
+	// Moderation gate (carried over from WordPress new-user-approve).
 	if (user.status === "pending") {
 		return Response.json(
 			{ error: "Your account is awaiting approval. We'll email you once it's active." },
@@ -60,13 +45,20 @@ export async function POST(request: Request): Promise<Response> {
 		return Response.json({ error: "This account is not permitted to sign in." }, { status: 403 });
 	}
 
-	// Lazy upgrade off the legacy WordPress hash (best-effort; never blocks login).
-	if (needsUpgrade) {
-		try {
-			await upgradePasswordHash(db, user.id, await hashPassword(password), new Date().toISOString());
-		} catch {
-			/* non-fatal */
-		}
+	// Migrated / must-reset accounts have no usable password yet → route to setup.
+	if (user.must_change_password === 1 || !isModernHash(user.password_hash)) {
+		return Response.json(
+			{
+				mustSetup: true,
+				error: "Please set a new password for the new site. Check your email for a setup link, or request one.",
+			},
+			{ status: 409 },
+		);
+	}
+
+	const ok = await verifyPassword(password, user.password_hash as string);
+	if (!ok) {
+		return Response.json({ error: INVALID }, { status: 401 });
 	}
 
 	await startSession(user.id, request.headers.get("user-agent"));
