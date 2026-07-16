@@ -1,5 +1,5 @@
 import { getCurrentUser } from "@/lib/auth/session";
-import { getProductBySku } from "@/data/products";
+import { resolvePrices } from "@/lib/pricing";
 
 /**
  * POST /api/pricing/bulk  { skus: string[] }  →  { prices: { [sku]: number|null } }
@@ -32,14 +32,9 @@ export async function POST(request: Request): Promise<Response> {
 		? body.skus.filter((s): s is string => typeof s === "string").slice(0, MAX_SKUS)
 		: [];
 
-	const prices: Record<string, number | null> = {};
-	await Promise.all(
-		skus.map(async (sku) => {
-			// TODO(tiers): resolvePrice(sku, user.priceLevel, qty) — live NetSuite.
-			const product = await getProductBySku(sku);
-			prices[sku] = product?.price ?? null;
-		}),
-	);
+	// One indexed D1 query for all requested SKUs (not a full-catalog scan).
+	// TODO(tiers): fold in user.priceLevel/qty → live NetSuite resolvePrice.
+	const prices = await resolvePrices(skus);
 
 	return Response.json({ authenticated: true, prices }, { headers: { "Cache-Control": "private, no-store" } });
 }

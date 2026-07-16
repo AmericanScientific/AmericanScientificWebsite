@@ -1,5 +1,5 @@
 import { getCurrentUser } from "@/lib/auth/session";
-import { getProductBySku } from "@/data/products";
+import { resolvePrices } from "@/lib/pricing";
 
 /**
  * GET /api/pricing?sku=SKU — the price a logged-in customer should see.
@@ -26,17 +26,15 @@ export async function GET(request: Request): Promise<Response> {
 		return Response.json({ error: "sku is required" }, { status: 400 });
 	}
 
-	const product = await getProductBySku(sku);
-	if (!product) {
-		return Response.json({ error: "Unknown SKU" }, { status: 404 });
-	}
-
-	// TODO(tiers): replace with resolvePrice(sku, user.priceLevel, qty) — live NetSuite.
+	// One indexed D1 lookup (not a full-catalog scan), and it resolves ANY SKU —
+	// including variant members that fall out of the collapsed product map.
+	// TODO(tiers): fold in user.priceLevel/qty → live NetSuite resolvePrice.
+	const prices = await resolvePrices([sku]);
 	return Response.json(
 		{
 			authenticated: true,
 			sku,
-			price: product.price ?? null,
+			price: prices[sku] ?? null,
 			priceLevel: user.priceLevel,
 		},
 		{ headers: { "Cache-Control": "private, no-store" } },
