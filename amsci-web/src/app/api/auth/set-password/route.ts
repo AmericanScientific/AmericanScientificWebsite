@@ -34,30 +34,40 @@ export async function POST(request: Request): Promise<Response> {
 	}
 
 	const db = getDb();
-	const consumed = await consumePasswordToken(db, token);
-	if (!consumed.ok) {
-		const msg =
-			consumed.reason === "used"
-				? "This link has already been used. Please request a new one."
-				: consumed.reason === "expired"
-					? "This link has expired. Please request a new one."
-					: "This link is invalid. Please request a new one.";
-		console.log(`[auth/set-password] token rejected: ${consumed.reason} (len=${token.length})`);
-		return Response.json({ error: msg, reason: consumed.reason }, { status: 400 });
+	try {
+		const consumed = await consumePasswordToken(db, token);
+		if (!consumed.ok) {
+			const msg =
+				consumed.reason === "used"
+					? "This link has already been used. Please request a new one."
+					: consumed.reason === "expired"
+						? "This link has expired. Please request a new one."
+						: "This link is invalid. Please request a new one.";
+			console.log(`[auth/set-password] token rejected: ${consumed.reason} (len=${token.length})`);
+			return Response.json({ error: msg, reason: consumed.reason }, { status: 400 });
+		}
+		console.log(`[auth/set-password] token ok, user=${consumed.userId}`);
+
+		const user = await getUserById(db, consumed.userId);
+		if (!user) {
+			console.error(`[auth/set-password] getUserById returned null for id=${consumed.userId}`);
+			return Response.json({ error: "Account not found." }, { status: 400 });
+		}
+
+		await setUserPassword(db, user.id, await hashPassword(password), new Date().toISOString());
+		console.log(`[auth/set-password] password set for user=${user.id}, status=${user.status}`);
+
+		// Denied/pending accounts get a password but no session (still gated).
+		if (user.status === "pending" || user.status === "denied") {
+			return Response.json({ ok: true, loggedIn: false, status: user.status });
+		}
+
+		await startSession(user.id, request.headers.get("user-agent"));
+		return Response.json({ ok: true, loggedIn: true, user: toSessionUser({ ...user, must_change_password: 0 }) });
+	} catch (err) {
+		// A crash here after consuming the token would strand the user (token used,
+		// password unset) — exactly the reported symptom. Log the real error.
+		console.error(`[auth/set-password] unhandled error:`, err instanceof Error ? err.stack || err.message : err);
+		return Response.json({ error: "Something went wrong setting your password. Please request a new link." }, { status: 500 });
 	}
-
-	const user = await getUserById(db, consumed.userId);
-	if (!user) {
-		return Response.json({ error: "Account not found." }, { status: 400 });
-	}
-
-	await setUserPassword(db, user.id, await hashPassword(password), new Date().toISOString());
-
-	// Denied/pending accounts get a password but no session (still gated).
-	if (user.status === "pending" || user.status === "denied") {
-		return Response.json({ ok: true, loggedIn: false, status: user.status });
-	}
-
-	await startSession(user.id, request.headers.get("user-agent"));
-	return Response.json({ ok: true, loggedIn: true, user: toSessionUser({ ...user, must_change_password: 0 }) });
 }
