@@ -3,10 +3,10 @@ import type { Product } from "@/types/product";
 import { productSlug } from "@/types/product";
 import { getCategoryName } from "@/data/categories";
 import { categoryTheme } from "@/lib/categoryTheme";
-import { formatPrice } from "@/lib/format";
 import { ProductImage } from "@/components/ProductImage";
+import { CardPrice } from "@/components/CardPrice";
 
-/** Catalog card: accent tile, category chip, title, SKU, and base price. */
+/** Catalog card: accent tile, category chip, title, SKU, and login-gated price. */
 export function ProductCard({ product }: { product: Product }) {
 	const theme = categoryTheme(product.category);
 	const isGroup = (product.variantCount ?? 0) > 1;
@@ -40,11 +40,7 @@ export function ProductCard({ product }: { product: Product }) {
 
 				<div className="mt-auto flex items-end justify-between pt-3">
 					<div>
-						{isGroup && <span className="mr-1 text-xs font-medium text-slate-400">from</span>}
-						<span className="text-lg font-bold tracking-tight text-slate-900">
-							{formatPrice(product.price)}
-						</span>
-						<span className="ml-1 text-xs font-medium text-slate-400">base</span>
+						<CardPrice sku={product.sku} isGroup={isGroup} />
 					</div>
 					<span className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 text-slate-500 transition-all group-hover:bg-brand-blue group-hover:text-white">
 						<svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">

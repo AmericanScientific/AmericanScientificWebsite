@@ -308,6 +308,62 @@ should use incremental (already supported) rather than more frequent full syncs.
 rendered on the product page, proving D1 reads over the JSON fallback). `next dev` has no D1 binding →
 always uses the JSON fallback.
 
+### 5.2 IMPLEMENTED (2026-07-16): customer auth + WordPress account migration
+
+Layer for customer identity (§5 "Auth / identity") is **built and verified end-to-end on the Workers
+runtime** (local D1). Guests are price-gated; migrated WordPress customers log in with their existing
+passwords. Order write-back and live tiered pricing remain TODO.
+
+**Decisions taken (by the human):** migrate **all 2,014** WP accounts (status preserved, so the 1,563
+`pending` stay login-blocked); **port password hashes** and verify on Workers (no mass reset); **everyone
+base (price_level 1)** for now — real NetSuite tier resolution deferred. (The old WP role-tiers
+`tier_1/2/3` had **zero** users — dead; NetSuite is the real tier source.)
+
+**D1 (added to `db/schema.sql`, same `amsci-catalog` DB; the sync Worker never touches these):**
+- `users` — `email` (unique, lowercased), `wp_user_id`, `display_name`, `password_hash` (modern PBKDF2;
+  NULL until upgraded), `wp_password_hash` (legacy `$P$`/`$wp$`; cleared on upgrade), `status`
+  (`approved`/`pending`/`denied`; NULL legacy → treated approved), `role`, `is_admin`, `price_level`
+  (default 1), `netsuite_customer_id` (NULL until linked), timestamps.
+- `sessions` — `id` = **SHA-256 of the opaque cookie token** (raw token never stored), `user_id`,
+  `expires_at` (30-day TTL).
+
+**Code (`src/lib/auth/`):** `md5.ts` (vendored, for phpass) · `wp-hash.ts` (`verifyWordPressPassword`:
+`$P$` phpass 8192×MD5 + `$wp$` = `bcrypt(base64(HMAC-SHA384(trim(pw),'wp-sha384')))`, bcryptjs) ·
+`password.ts` (PBKDF2-SHA-256, 210k iters, WebCrypto) · `db.ts` (user/session queries, `getDb()`) ·
+`session.ts` (`startSession`/`endSession`/`getCurrentUser` — `getCurrentUser` is `cache()`d).
+Verified correct against reference hashes WordPress itself produced (both formats + wrong-pw).
+
+**Routes:** `POST /api/auth/login` (verify modern→legacy, **lazy-rehash to PBKDF2 on legacy success**,
+status-gated), `/logout`, `GET /api/auth/me`, `GET /api/pricing?sku=` (**401 for guests — price is never
+in public HTML**; the single seam where `resolvePrice(sku, priceLevel, qty)` plugs in later). `middleware.ts`
+guards `/account`,`/checkout` on cookie presence (authoritative check is in-page). `/login`, `/account` pages.
+
+**Gating pattern (keeps ISR/SEO intact):** product pages stay static/ISR; per-user state is fetched
+client-side after mount — no cookies read in the layout, so pages never go dynamic. Price is NEVER
+rendered into public HTML. Gated surfaces: `ProductPrice.tsx` (detail page, via `/api/pricing`),
+`CardPrice.tsx` (every listing/related/home card — all instances on a page share ONE batched
+`POST /api/pricing/bulk` call), `AccountNav.tsx` (header). `/api/search` returns NO price field, and
+`SearchBar` shows none. Verified: a guest fetch of product/listing/home HTML + the search API contains
+**zero** price strings; the bulk endpoint 401s for guests. ⚠️ `/item-preview` (dev scaffold, item 2420)
+still renders a price — delete or gate it before launch (same bucket as the TEMP `netsuite-check`/
+`netsuite-fingerprint` diagnostic routes).
+
+**Migration flow:** export via a token-gated read-only PHP script over HTTP (Flywheel = SFTP only) →
+`private/wp-users-export.json` (**PII, gitignored**) → `node scripts/wp-users-to-sql.mjs > private/users-seed.sql`
+(idempotent `INSERT OR IGNORE`; skips empty-email accounts; preserves status). Applied + verified on **local**
+D1; **remote apply + deploy still pending human go-ahead.**
+
+**Remote apply runbook (when approved):**
+1. `wrangler d1 execute amsci-catalog --remote --file=db/schema.sql` (adds users/sessions tables)
+2. `wrangler d1 execute amsci-catalog --remote --file=private/users-seed.sql` (loads the ~2,013 accounts)
+3. `npm run deploy` (storefront Worker)
+Then smoke-test `/api/auth/login` with a known account. The `private/_testusers.sql` fixtures are **local-only**
+and are NOT in the seed.
+
+**Still TODO:** self-service signup + spam protection (the 1,563 pending backlog shows why — add Turnstile),
+NetSuite customer link by email + real `price_level`, live tiered/qty `resolvePrice`, "Add To Order" → NetSuite
+Sales Order, password reset flow, admin approval UI.
+
 ---
 
 ## 6. Working conventions & how to operate

@@ -18,11 +18,10 @@ import {
 import type { Product } from "@/types/product";
 import { getCategoryName, getParentOfLeaf } from "@/data/categories";
 import { categoryTheme } from "@/lib/categoryTheme";
-import { formatPrice } from "@/lib/format";
 import { ProductImage } from "@/components/ProductImage";
 import { ProductCard } from "@/components/ProductCard";
 import { ProductVariantView, type VariantOption } from "@/components/ProductVariantView";
-import { AddToOrderButton } from "@/components/AddToOrderButton";
+import { ProductPrice } from "@/components/ProductPrice";
 import { CategoryIcon } from "@/components/CategoryIcon";
 
 /** Re-read the cron-synced catalog from D1 at most this often (seconds). */
@@ -260,25 +259,7 @@ function SingleProduct({
 				</h1>
 				<p className="mt-2 text-sm text-slate-400">SKU {product.sku}</p>
 
-				<div className="mt-6 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-					<div className="flex items-baseline gap-2">
-						<span className="font-display text-4xl font-bold tracking-tight text-slate-900">
-							{formatPrice(product.price)}
-						</span>
-						<span className="text-sm font-medium text-slate-400">base price</span>
-					</div>
-					<p className="mt-2 flex items-center gap-1.5 text-xs text-slate-500">
-						<svg viewBox="0 0 24 24" className="h-4 w-4 text-brand-blue" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
-							<rect x="3" y="11" width="18" height="10" rx="2" />
-							<path d="M7 11V7a5 5 0 0 1 10 0v4" />
-						</svg>
-						Wholesale pricing is account-specific with quantity breaks. Sign in to see your
-						negotiated tier.
-					</p>
-					<div className="mt-5">
-						<AddToOrderButton sku={product.sku} />
-					</div>
-				</div>
+				<ProductPrice sku={product.sku} />
 
 				{product.description && (
 					<p className="mt-6 text-sm leading-relaxed text-slate-600">{product.description}</p>
