@@ -2,14 +2,12 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { formatPrice } from "@/lib/format";
 
 interface Suggestion {
 	slug: string;
 	title: string;
 	sku: string;
 	category: string;
-	price: number;
 }
 
 /**
@@ -167,9 +165,6 @@ export function SearchBar({ className = "" }: { className?: string }) {
 											<span className="block truncate text-xs text-slate-400">
 												{s.category} · SKU {s.sku}
 											</span>
-										</span>
-										<span className="flex-none text-sm font-semibold text-slate-700 [font-variant-numeric:tabular-nums]">
-											{formatPrice(s.price)}
 										</span>
 									</button>
 								</li>

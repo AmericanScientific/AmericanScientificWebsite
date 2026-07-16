@@ -4,10 +4,9 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import type { Product } from "@/types/product";
 import { ProductImage } from "@/components/ProductImage";
-import { AddToOrderButton } from "@/components/AddToOrderButton";
+import { ProductPrice } from "@/components/ProductPrice";
 import { CategoryIcon } from "@/components/CategoryIcon";
 import { categoryTheme } from "@/lib/categoryTheme";
-import { formatPrice } from "@/lib/format";
 
 /** One selectable variant: its cached render data + option values per axis. */
 export interface VariantOption {
@@ -157,27 +156,8 @@ export function ProductVariantView({
 						)}
 				</div>
 
-				{/* Price card */}
-				<div className="mt-6 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-					<div className="flex items-baseline gap-2">
-						<span className="font-display text-4xl font-bold tracking-tight text-slate-900">
-							{formatPrice(product.price)}
-						</span>
-						<span className="text-sm font-medium text-slate-400">base price</span>
-					</div>
-					<p className="mt-2 flex items-center gap-1.5 text-xs text-slate-500">
-						<svg viewBox="0 0 24 24" className="h-4 w-4 text-brand-blue" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
-							<rect x="3" y="11" width="18" height="10" rx="2" />
-							<path d="M7 11V7a5 5 0 0 1 10 0v4" />
-						</svg>
-						Wholesale pricing is account-specific with quantity breaks. Sign in to see your
-						negotiated tier.
-					</p>
-					<div className="mt-5">
-						{/* key on SKU so the button's transient state resets per variant */}
-						<AddToOrderButton key={product.sku} sku={product.sku} />
-					</div>
-				</div>
+				{/* Price card — login-gated; key on SKU so it re-fetches per variant */}
+				<ProductPrice key={product.sku} sku={product.sku} />
 
 				{product.description && (
 					<p className="mt-6 text-sm leading-relaxed text-slate-600">{product.description}</p>

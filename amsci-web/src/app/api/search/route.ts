@@ -30,12 +30,13 @@ export async function GET(request: Request): Promise<Response> {
 	const limit = Number.isFinite(limitRaw) && limitRaw > 0 ? Math.min(limitRaw, 25) : 7;
 
 	const { results, total } = await searchCatalog(filters);
+	// No price in the typeahead payload — prices are login-gated and must not be
+	// exposed on a public, unauthenticated endpoint.
 	const suggestions = results.slice(0, limit).map((p) => ({
 		slug: p.pageSlug ?? productSlug(p),
 		title: p.title,
 		sku: p.sku,
 		category: getCategoryName(p.category),
-		price: p.price,
 		variantCount: p.variantCount ?? 0,
 	}));
 

@@ -5,6 +5,7 @@ import { CategoryIcon } from "@/components/CategoryIcon";
 import { NavCategoryLink } from "@/components/NavCategoryLink";
 import { FlipLogo } from "@/components/FlipLogo";
 import { SearchBar } from "@/components/SearchBar";
+import { AccountNav } from "@/components/AccountNav";
 
 /**
  * Sticky, glassmorphic site header.
@@ -36,18 +37,7 @@ export function SiteHeader() {
 
 						<div className="flex items-center gap-2 sm:gap-3">
 							<SearchBar className="hidden w-52 sm:block lg:w-72" />
-							<button
-								type="button"
-								className="hidden rounded-full px-4 py-2 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-100 sm:inline-flex"
-							>
-								Sign In
-							</button>
-							<button
-								type="button"
-								className="brand-gradient rounded-full px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all hover:shadow-md hover:brightness-105"
-							>
-								Request Account
-							</button>
+							<AccountNav />
 						</div>
 					</div>
 

@@ -36,3 +36,45 @@ CREATE TABLE IF NOT EXISTS sync_meta (
   message     TEXT,     -- error detail or summary
   duration_ms INTEGER
 );
+
+-- ---------------------------------------------------------------------------
+-- Auth / identity (NOT part of the catalog cache; the sync Worker never
+-- touches these tables). Customer logins migrated from the old WordPress site;
+-- NetSuite remains the system of record for the customer's real price level.
+-- ---------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS users (
+  id                   INTEGER PRIMARY KEY AUTOINCREMENT,
+  email                TEXT NOT NULL,                 -- login identity (lowercased)
+  wp_user_id           INTEGER,                       -- source WordPress ID (migration provenance)
+  display_name         TEXT NOT NULL DEFAULT '',
+  -- Modern hash (PBKDF2 via WebCrypto). NULL until the user logs in once and we
+  -- lazily upgrade them off the legacy WordPress hash.
+  password_hash        TEXT,
+  -- Original WordPress hash ($P$ phpass or $wp$ bcrypt). Cleared once upgraded.
+  wp_password_hash     TEXT,
+  -- 'approved' can log in; 'pending'/'denied' are blocked (new-user-approve gate).
+  -- NULL = legacy account with no status meta → treated as approved.
+  status               TEXT,
+  role                 TEXT NOT NULL DEFAULT 'customer', -- WP role (customer/administrator/...)
+  is_admin             INTEGER NOT NULL DEFAULT 0,
+  -- Price level resolved from NetSuite by email (deferred; everyone base=1 for now).
+  price_level          INTEGER NOT NULL DEFAULT 1,
+  netsuite_customer_id TEXT,                          -- set when linked to a NetSuite customer
+  created_at           TEXT NOT NULL,
+  updated_at           TEXT NOT NULL
+);
+
+-- Case-insensitive unique email (all emails stored pre-lowercased).
+CREATE UNIQUE INDEX IF NOT EXISTS idx_users_email ON users (email);
+
+CREATE TABLE IF NOT EXISTS sessions (
+  id          TEXT PRIMARY KEY,      -- SHA-256 of the opaque cookie token (never store the raw token)
+  user_id     INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  created_at  TEXT NOT NULL,
+  expires_at  TEXT NOT NULL,         -- ISO timestamp
+  user_agent  TEXT
+);
+
+CREATE INDEX IF NOT EXISTS idx_sessions_user ON sessions (user_id);
+CREATE INDEX IF NOT EXISTS idx_sessions_expires ON sessions (expires_at);
