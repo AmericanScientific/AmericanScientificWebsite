@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 type Me = { id: number; email: string; displayName: string } | null;
 type State = { kind: "loading" } | { kind: "guest" } | { kind: "authed"; user: NonNullable<Me> };
@@ -15,7 +14,6 @@ type State = { kind: "loading" } | { kind: "guest" } | { kind: "authed"; user: N
  */
 export function AccountNav() {
 	const [state, setState] = useState<State>({ kind: "loading" });
-	const router = useRouter();
 
 	useEffect(() => {
 		let alive = true;
@@ -33,8 +31,9 @@ export function AccountNav() {
 
 	async function signOut() {
 		await fetch("/api/auth/logout", { method: "POST", credentials: "same-origin" });
-		setState({ kind: "guest" });
-		router.refresh();
+		// Full reload so every auth-dependent client component (header + price
+		// blocks, which cache their own state) re-reads a clean guest session.
+		window.location.assign("/");
 	}
 
 	if (state.kind === "loading") {

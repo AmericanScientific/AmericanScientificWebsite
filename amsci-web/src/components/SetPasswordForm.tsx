@@ -2,12 +2,11 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 const MIN_LEN = 10;
 
 export function SetPasswordForm() {
-	const router = useRouter();
 	const params = useSearchParams();
 	const token = params.get("token") ?? "";
 	const [password, setPassword] = useState("");
@@ -65,10 +64,8 @@ export function SetPasswordForm() {
 			}
 			if (data.loggedIn) {
 				setDone("loggedIn");
-				setTimeout(() => {
-					router.push("/account");
-					router.refresh();
-				}, 900);
+				// Full navigation so the header + price components pick up the new session.
+				setTimeout(() => window.location.assign("/account"), 900);
 			} else {
 				setDone("pending");
 			}

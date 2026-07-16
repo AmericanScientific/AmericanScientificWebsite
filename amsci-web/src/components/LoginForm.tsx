@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 /** Local-path-only redirect target (prevents open-redirect via ?next=). */
 function safeNext(next: string | null): string {
@@ -12,7 +12,6 @@ function safeNext(next: string | null): string {
 type Mode = "signin" | "request";
 
 export function LoginForm() {
-	const router = useRouter();
 	const params = useSearchParams();
 	const [mode, setMode] = useState<Mode>("signin");
 	const [email, setEmail] = useState("");
@@ -36,8 +35,8 @@ export function LoginForm() {
 			});
 			const data = (await res.json().catch(() => ({}))) as { error?: string; mustSetup?: boolean };
 			if (res.ok) {
-				router.push(safeNext(params.get("next")));
-				router.refresh();
+				// Full navigation so the header + price components re-read the new session.
+				window.location.assign(safeNext(params.get("next")));
 				return;
 			}
 			if (data.mustSetup) {
