@@ -35,11 +35,15 @@ export async function POST(request: Request): Promise<Response> {
 
 	const db = getDb();
 	const consumed = await consumePasswordToken(db, token);
-	if (!consumed) {
-		return Response.json(
-			{ error: "This link is invalid or has expired. Please request a new one." },
-			{ status: 400 },
-		);
+	if (!consumed.ok) {
+		const msg =
+			consumed.reason === "used"
+				? "This link has already been used. Please request a new one."
+				: consumed.reason === "expired"
+					? "This link has expired. Please request a new one."
+					: "This link is invalid. Please request a new one.";
+		console.log(`[auth/set-password] token rejected: ${consumed.reason} (len=${token.length})`);
+		return Response.json({ error: msg, reason: consumed.reason }, { status: 400 });
 	}
 
 	const user = await getUserById(db, consumed.userId);
