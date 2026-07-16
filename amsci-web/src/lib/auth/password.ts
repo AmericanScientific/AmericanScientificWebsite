@@ -6,7 +6,10 @@
  * Stored format:  pbkdf2$<iterations>$<saltB64>$<hashB64>
  */
 const enc = new TextEncoder();
-const ITERATIONS = 210_000;
+// Cloudflare Workers' WebCrypto rejects PBKDF2 iteration counts above 100,000
+// (NotSupportedError). 100k is the max the runtime allows; going higher throws
+// at runtime (but not in local miniflare, which is why this slipped through).
+const ITERATIONS = 100_000;
 const KEY_LEN = 32; // bytes
 const SALT_LEN = 16;
 
