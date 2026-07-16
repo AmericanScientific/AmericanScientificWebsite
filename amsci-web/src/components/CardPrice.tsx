@@ -24,11 +24,9 @@ function notify(sku: string) {
 	waiters.get(sku)?.forEach((cb) => cb());
 }
 
-async function flush() {
-	timer = null;
-	const skus = [...queue];
-	queue.clear();
-	if (skus.length === 0) return;
+const CHUNK = 120;
+
+async function fetchChunk(skus: string[]) {
 	try {
 		const res = await fetch("/api/pricing/bulk", {
 			method: "POST",
@@ -38,22 +36,30 @@ async function flush() {
 		});
 		if (res.status === 401) {
 			isGuest = true;
-			// wake everyone waiting so they can render the guest state
-			waiters.forEach((_set, sku) => notify(sku));
 			return;
 		}
 		isGuest = false;
 		const data = (await res.json()) as { prices: Record<string, Price> };
-		for (const sku of skus) {
-			cache.set(sku, data.prices?.[sku] ?? null);
-			notify(sku);
-		}
+		for (const sku of skus) cache.set(sku, data.prices?.[sku] ?? null);
 	} catch {
-		for (const sku of skus) {
-			cache.set(sku, null);
-			notify(sku);
-		}
+		for (const sku of skus) cache.set(sku, null);
 	}
+}
+
+async function flush() {
+	timer = null;
+	const skus = [...queue];
+	queue.clear();
+	if (skus.length === 0) return;
+	// Chunk into parallel requests so a big grid (e.g. all-products, ~975 cards)
+	// isn't one huge slow request that also hits the server cap.
+	const chunks: string[][] = [];
+	for (let i = 0; i < skus.length; i += CHUNK) chunks.push(skus.slice(i, i + CHUNK));
+	await Promise.all(chunks.map(fetchChunk));
+	// Wake every waiter: those whose sku resolved read the cache; if we learned the
+	// viewer is a guest, the rest render the guest state.
+	for (const sku of skus) notify(sku);
+	if (isGuest === true) waiters.forEach((_set, sku) => notify(sku));
 }
 
 function request(sku: string) {
