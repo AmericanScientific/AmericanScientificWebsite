@@ -59,6 +59,29 @@ export async function readCatalogFromD1(db: D1Database): Promise<CatalogRecord[]
 	return (results ?? []).map(rowToRecord);
 }
 
+/**
+ * Resolve base prices for a set of SKUs with a single indexed query, instead of
+ * loading the whole catalog. Used by the per-request pricing endpoints so a price
+ * lookup touches only the rows it needs (idx_products_sku). Keys are the SKUs as
+ * stored; unknown SKUs are simply absent from the result.
+ */
+export async function getPricesBySku(db: D1Database, skus: string[]): Promise<Record<string, number | null>> {
+	const out: Record<string, number | null> = {};
+	if (skus.length === 0) return out;
+	const placeholders = skus.map((_, i) => `?${i + 1}`).join(",");
+	// Case-insensitive match (SKUs are compared lowercased elsewhere too), so a
+	// row is found regardless of stored casing.
+	const { results } = await db
+		.prepare(`SELECT sku, price FROM products WHERE sku COLLATE NOCASE IN (${placeholders})`)
+		.bind(...skus)
+		.all<{ sku: string; price: number | null }>();
+	const byLower = new Map<string, number | null>();
+	for (const r of results ?? []) byLower.set((r.sku ?? "").toLowerCase(), r.price ?? null);
+	// Key the result by the REQUESTED sku so callers can look up what they asked for.
+	for (const sku of skus) out[sku] = byLower.get(sku.toLowerCase()) ?? null;
+	return out;
+}
+
 const UPSERT_SQL =
 	"INSERT INTO products " +
 	"(internal_id, sku, title, description, price, image, gallery, grades, category_name, item_type, size, search_keywords, last_modified, synced_at) " +
