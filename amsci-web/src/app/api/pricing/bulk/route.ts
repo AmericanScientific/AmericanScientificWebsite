@@ -10,7 +10,9 @@ import { resolvePrices } from "@/lib/pricing";
  */
 export const dynamic = "force-dynamic";
 
-const MAX_SKUS = 200;
+// Sanity ceiling only (abuse guard). getPricesBySku chunks the D1 query, so this
+// no longer silently drops a normal full-catalog grid. The client also chunks.
+const MAX_SKUS = 2000;
 
 export async function POST(request: Request): Promise<Response> {
 	const user = await getCurrentUser();

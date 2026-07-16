@@ -68,17 +68,22 @@ export async function readCatalogFromD1(db: D1Database): Promise<CatalogRecord[]
 export async function getPricesBySku(db: D1Database, skus: string[]): Promise<Record<string, number | null>> {
 	const out: Record<string, number | null> = {};
 	if (skus.length === 0) return out;
-	const placeholders = skus.map((_, i) => `?${i + 1}`).join(",");
-	// Case-insensitive match (SKUs are compared lowercased elsewhere too), so a
-	// row is found regardless of stored casing.
-	const { results } = await db
-		.prepare(`SELECT sku, price FROM products WHERE sku COLLATE NOCASE IN (${placeholders})`)
-		.bind(...skus)
-		.all<{ sku: string; price: number | null }>();
-	const byLower = new Map<string, number | null>();
-	for (const r of results ?? []) byLower.set((r.sku ?? "").toLowerCase(), r.price ?? null);
-	// Key the result by the REQUESTED sku so callers can look up what they asked for.
-	for (const sku of skus) out[sku] = byLower.get(sku.toLowerCase()) ?? null;
+	// Chunk so a large grid (e.g. the all-products page) never exceeds D1's bound-
+	// parameter limit and nothing is silently dropped.
+	const CHUNK = 100;
+	for (let i = 0; i < skus.length; i += CHUNK) {
+		const batch = skus.slice(i, i + CHUNK);
+		const placeholders = batch.map((_, j) => `?${j + 1}`).join(",");
+		// Case-insensitive match (SKUs are compared lowercased elsewhere too).
+		const { results } = await db
+			.prepare(`SELECT sku, price FROM products WHERE sku COLLATE NOCASE IN (${placeholders})`)
+			.bind(...batch)
+			.all<{ sku: string; price: number | null }>();
+		const byLower = new Map<string, number | null>();
+		for (const r of results ?? []) byLower.set((r.sku ?? "").toLowerCase(), r.price ?? null);
+		// Key by the REQUESTED sku so callers can look up what they asked for.
+		for (const sku of batch) out[sku] = byLower.get(sku.toLowerCase()) ?? null;
+	}
 	return out;
 }
 
