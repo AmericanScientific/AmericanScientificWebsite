@@ -19,3 +19,12 @@ NS_CONSUMER_KEY=your-consumer-key
 NS_CONSUMER_SECRET=your-consumer-secret
 NS_TOKEN=your-token-id
 NS_TOKEN_SECRET=your-token-secret
+
+# --- Auth / transactional email (Resend) ---
+# RESEND_API_KEY: deployed → `wrangler secret put RESEND_API_KEY`. Leave unset
+#   locally: the password-setup flow logs the link instead of sending.
+# RESEND_API_KEY=re_...
+#
+# AUTH_DEV_LINKS=1 surfaces the setup/reset link in the API response for local
+# testing WITHOUT sending email. NEVER set this in production.
+AUTH_DEV_LINKS=1

@@ -61,6 +61,10 @@ CREATE TABLE IF NOT EXISTS users (
   -- Price level resolved from NetSuite by email (deferred; everyone base=1 for now).
   price_level          INTEGER NOT NULL DEFAULT 1,
   netsuite_customer_id TEXT,                          -- set when linked to a NetSuite customer
+  -- 1 = user must set a new password before they can log in (all MIGRATED accounts
+  -- start at 1: old WordPress passwords are NOT honored on the new site). Flips to 0
+  -- permanently the first time they set a password. New signups start at 0.
+  must_change_password INTEGER NOT NULL DEFAULT 0,
   created_at           TEXT NOT NULL,
   updated_at           TEXT NOT NULL
 );
@@ -78,3 +82,16 @@ CREATE TABLE IF NOT EXISTS sessions (
 
 CREATE INDEX IF NOT EXISTS idx_sessions_user ON sessions (user_id);
 CREATE INDEX IF NOT EXISTS idx_sessions_expires ON sessions (expires_at);
+
+-- One-time tokens for password setup (migrated first-login) and password reset.
+-- id = SHA-256 of the raw token in the emailed link (raw token never stored).
+CREATE TABLE IF NOT EXISTS password_tokens (
+  id          TEXT PRIMARY KEY,
+  user_id     INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  purpose     TEXT NOT NULL,          -- 'setup' | 'reset'
+  created_at  TEXT NOT NULL,
+  expires_at  TEXT NOT NULL,
+  used_at     TEXT                     -- non-null once redeemed (single-use)
+);
+
+CREATE INDEX IF NOT EXISTS idx_password_tokens_user ON password_tokens (user_id);

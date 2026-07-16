@@ -311,32 +311,41 @@ always uses the JSON fallback.
 ### 5.2 IMPLEMENTED (2026-07-16): customer auth + WordPress account migration
 
 Layer for customer identity (§5 "Auth / identity") is **built and verified end-to-end on the Workers
-runtime** (local D1). Guests are price-gated; migrated WordPress customers log in with their existing
-passwords. Order write-back and live tiered pricing remain TODO.
+runtime** (local D1). Guests are price-gated; migrated customers set a NEW password on first login via
+an emailed link. Order write-back and live tiered pricing remain TODO.
 
 **Decisions taken (by the human):** migrate **all 2,014** WP accounts (status preserved, so the 1,563
-`pending` stay login-blocked); **port password hashes** and verify on Workers (no mass reset); **everyone
-base (price_level 1)** for now — real NetSuite tier resolution deferred. (The old WP role-tiers
-`tier_1/2/3` had **zero** users — dead; NetSuite is the real tier source.)
+`pending` stay login-blocked); **do NOT honor old WordPress passwords** — every migrated account is
+flagged `must_change_password=1` and must set a new password via an emailed one-time link on first
+login (email set-password flow, no old-password entry); **everyone base (price_level 1)** for now — real
+NetSuite tier resolution deferred. (The old WP role-tiers `tier_1/2/3` had **zero** users — dead.)
+NOTE: this superseded an earlier hash-porting approach; `md5.ts` + `wp-hash.ts` + the `bcryptjs` dep are
+now **UNUSED** dead code (kept in case the decision is revisited — safe to delete).
 
-**D1 (added to `db/schema.sql`, same `amsci-catalog` DB; the sync Worker never touches these):**
+**D1 (`db/schema.sql`, same `amsci-catalog` DB; the sync Worker never touches these):**
 - `users` — `email` (unique, lowercased), `wp_user_id`, `display_name`, `password_hash` (modern PBKDF2;
-  NULL until upgraded), `wp_password_hash` (legacy `$P$`/`$wp$`; cleared on upgrade), `status`
+  NULL until the user completes email setup), `wp_password_hash` (nulled by migration — unused), `status`
   (`approved`/`pending`/`denied`; NULL legacy → treated approved), `role`, `is_admin`, `price_level`
-  (default 1), `netsuite_customer_id` (NULL until linked), timestamps.
-- `sessions` — `id` = **SHA-256 of the opaque cookie token** (raw token never stored), `user_id`,
-  `expires_at` (30-day TTL).
+  (default 1), `netsuite_customer_id`, **`must_change_password`** (1 for all migrated accounts → 0 once a
+  password is set), timestamps.
+- `sessions` — `id` = **SHA-256 of the opaque cookie token** (raw never stored), 30-day TTL.
+- `password_tokens` — one-time setup/reset tokens; `id` = SHA-256 of the raw token in the emailed link;
+  single-use (`used_at`), expiring (setup 72h / reset 1h).
 
-**Code (`src/lib/auth/`):** `md5.ts` (vendored, for phpass) · `wp-hash.ts` (`verifyWordPressPassword`:
-`$P$` phpass 8192×MD5 + `$wp$` = `bcrypt(base64(HMAC-SHA384(trim(pw),'wp-sha384')))`, bcryptjs) ·
-`password.ts` (PBKDF2-SHA-256, 210k iters, WebCrypto) · `db.ts` (user/session queries, `getDb()`) ·
-`session.ts` (`startSession`/`endSession`/`getCurrentUser` — `getCurrentUser` is `cache()`d).
-Verified correct against reference hashes WordPress itself produced (both formats + wrong-pw).
+**Code (`src/lib/auth/`):** `password.ts` (PBKDF2-SHA-256, 210k iters, WebCrypto) · `tokens.ts`
+(`createPasswordToken`/`consumePasswordToken`) · `email.ts` (`sendPasswordEmail` via the Cloudflare
+`send_email` binding `env.EMAIL`; logs the link + returns `devFallback` when no binding; `devLinksEnabled()`
+gates surfacing links, keyed on `AUTH_DEV_LINKS=1` — set only in `.dev.vars`, never prod) · `db.ts`
+(`setUserPassword` clears the hash+flag) · `session.ts` (`getCurrentUser` is `cache()`d).
 
-**Routes:** `POST /api/auth/login` (verify modern→legacy, **lazy-rehash to PBKDF2 on legacy success**,
-status-gated), `/logout`, `GET /api/auth/me`, `GET /api/pricing?sku=` (**401 for guests — price is never
-in public HTML**; the single seam where `resolvePrice(sku, priceLevel, qty)` plugs in later). `middleware.ts`
-guards `/account`,`/checkout` on cookie presence (authoritative check is in-page). `/login`, `/account` pages.
+**Routes:** `POST /api/auth/login` (modern-hash only; migrated/`must_change_password` accounts get
+`409 {mustSetup:true}`; status-gated), `/logout`, `/me`, `POST /api/auth/request-setup` (emails a
+setup/reset link; generic response to prevent enumeration; `devLink` only when `AUTH_DEV_LINKS=1`),
+`POST /api/auth/set-password` (redeem token → set PBKDF2 hash, clear flag, log in unless pending/denied),
+`GET /api/pricing?sku=` + `POST /api/pricing/bulk` (**401 for guests**; seam for `resolvePrice`).
+`middleware.ts` guards `/account`,`/checkout`. Pages: `/login` (sign-in + "email me a link" mode),
+`/set-password?token=`, `/account`. Verified E2E: old pw→409, request→link, set→login+cookie, token
+single-use, pending stays 403 after setup.
 
 **Gating pattern (keeps ISR/SEO intact):** product pages stay static/ISR; per-user state is fetched
 client-side after mount — no cookies read in the layout, so pages never go dynamic. Price is NEVER
@@ -350,19 +359,24 @@ still renders a price — delete or gate it before launch (same bucket as the TE
 
 **Migration flow:** export via a token-gated read-only PHP script over HTTP (Flywheel = SFTP only) →
 `private/wp-users-export.json` (**PII, gitignored**) → `node scripts/wp-users-to-sql.mjs > private/users-seed.sql`
-(idempotent `INSERT OR IGNORE`; skips empty-email accounts; preserves status). Applied + verified on **local**
-D1; **remote apply + deploy still pending human go-ahead.**
+(idempotent `INSERT OR IGNORE`; skips empty-email; sets `must_change_password=1`, no password hash).
 
-**Remote apply runbook (when approved):**
-1. `wrangler d1 execute amsci-catalog --remote --file=db/schema.sql` (adds users/sessions tables)
-2. `wrangler d1 execute amsci-catalog --remote --file=private/users-seed.sql` (loads the ~2,013 accounts)
-3. `npm run deploy` (storefront Worker)
-Then smoke-test `/api/auth/login` with a known account. The `private/_testusers.sql` fixtures are **local-only**
-and are NOT in the seed.
+**Remote state (2026-07-16):** schema + 2,013 accounts **already loaded** to remote D1 (under the earlier
+hash-porting approach). Remaining to finish the pivot on remote:
+1. `wrangler d1 execute amsci-catalog --remote --file=db/migrations/0001_password_setup.sql`
+   (adds `must_change_password`, sets it to 1 for all, nulls the password hashes, creates `password_tokens`).
+2. Email: `wrangler email sending enable <sender-domain>` (+ SPF/DKIM/DMARC DNS; auto if the domain is a CF
+   zone), then **uncomment the `send_email` binding** in `wrangler.jsonc` and set `SITE_URL` var to the
+   deployed origin. Until then setup requests succeed but no mail is delivered.
+3. `npm run deploy`. (`private/_testusers.sql` fixtures are **local-only**, not in the seed.)
+Note: remote D1 rejects raw `BEGIN/COMMIT` in `--file` SQL — seeds/migrations must omit transaction statements.
+Note: a direct `--remote` SELECT over the users table is blocked by the auto-mode PII guard; run such reads
+via `!` in the user's session (or have the human run them).
 
-**Still TODO:** self-service signup + spam protection (the 1,563 pending backlog shows why — add Turnstile),
-NetSuite customer link by email + real `price_level`, live tiered/qty `resolvePrice`, "Add To Order" → NetSuite
-Sales Order, password reset flow, admin approval UI.
+**Still TODO:** wire the Cloudflare Email Service sender domain (blocks real email delivery); self-service
+signup + Turnstile (the 1,563 pending backlog shows why); NetSuite customer link by email + real
+`price_level`; live tiered/qty `resolvePrice`; "Add To Order" → NetSuite Sales Order; change-password (while
+logged in) + admin approval UI; delete/gate the `/item-preview` scaffold + TEMP diagnostic routes.
 
 ---
 

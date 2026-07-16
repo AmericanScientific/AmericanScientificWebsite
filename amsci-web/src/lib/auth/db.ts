@@ -14,6 +14,7 @@ export interface UserRow {
 	is_admin: number;
 	price_level: number;
 	netsuite_customer_id: string | null;
+	must_change_password: number;
 	created_at: string;
 	updated_at: string;
 }
@@ -57,10 +58,15 @@ export async function getUserById(db: D1Database, id: number): Promise<UserRow |
 	return db.prepare("SELECT * FROM users WHERE id = ?1").bind(id).first<UserRow>();
 }
 
-/** Replace a user's legacy WP hash with our modern hash (lazy upgrade on login). */
-export async function upgradePasswordHash(db: D1Database, id: number, modernHash: string, now: string): Promise<void> {
+/**
+ * Set a user's password (from the email setup/reset flow): stores the modern
+ * hash, clears any legacy WP hash, and permanently clears must_change_password.
+ */
+export async function setUserPassword(db: D1Database, id: number, modernHash: string, now: string): Promise<void> {
 	await db
-		.prepare("UPDATE users SET password_hash = ?2, wp_password_hash = NULL, updated_at = ?3 WHERE id = ?1")
+		.prepare(
+			"UPDATE users SET password_hash = ?2, wp_password_hash = NULL, must_change_password = 0, updated_at = ?3 WHERE id = ?1",
+		)
 		.bind(id, modernHash, now)
 		.run();
 }
