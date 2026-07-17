@@ -19,36 +19,120 @@ interface CartAction {
 const GREETING =
 	"Hi! I'm the American Scientific assistant. Ask me to find products, compare options, or add items to your order.";
 
-/** Render assistant text with minimal markdown: [label](url) links + line breaks. */
-function renderText(text: string): React.ReactNode {
+/**
+ * Render inline markdown within a line: **bold**, *italic* / _italic_, `code`,
+ * and [label](url) links. Dependency-free and safe (builds React nodes from
+ * parsed tokens — no raw HTML). Bold is matched before italic so `**x**` wins.
+ */
+function renderInline(text: string, base: string): React.ReactNode[] {
 	const nodes: React.ReactNode[] = [];
-	const re = /\[([^\]]+)\]\((\/[^\s)]+|https?:\/\/[^\s)]+)\)/g;
-	let key = 0;
-	const pushText = (s: string) => {
-		const lines = s.split("\n");
-		lines.forEach((line, idx) => {
-			if (line) nodes.push(<span key={`t${key++}`}>{line}</span>);
-			if (idx < lines.length - 1) nodes.push(<br key={`b${key++}`} />);
-		});
-	};
+	const re =
+		/\*\*([^*]+)\*\*|`([^`]+)`|\[([^\]]+)\]\((\/[^\s)]+|https?:\/\/[^\s)]+)\)|\*([^*\n]+)\*|_([^_\n]+)_/g;
 	let last = 0;
+	let k = 0;
 	let m: RegExpExecArray | null;
 	while ((m = re.exec(text)) !== null) {
-		if (m.index > last) pushText(text.slice(last, m.index));
-		const [, label, href] = m;
-		nodes.push(
-			<a
-				key={`l${key++}`}
-				href={href}
-				className="font-semibold text-brand-blue underline underline-offset-2 hover:opacity-80"
-			>
-				{label}
-			</a>,
-		);
+		if (m.index > last) nodes.push(text.slice(last, m.index));
+		if (m[1] !== undefined) {
+			nodes.push(<strong key={`${base}s${k++}`}>{m[1]}</strong>);
+		} else if (m[2] !== undefined) {
+			nodes.push(
+				<code key={`${base}c${k++}`} className="rounded bg-slate-100 px-1 py-0.5 text-[0.85em]">
+					{m[2]}
+				</code>,
+			);
+		} else if (m[3] !== undefined) {
+			nodes.push(
+				<a
+					key={`${base}l${k++}`}
+					href={m[4]}
+					className="font-semibold text-brand-blue underline underline-offset-2 hover:opacity-80"
+				>
+					{m[3]}
+				</a>,
+			);
+		} else {
+			nodes.push(<em key={`${base}i${k++}`}>{m[5] ?? m[6]}</em>);
+		}
 		last = re.lastIndex;
 	}
-	if (last < text.length) pushText(text.slice(last));
+	if (last < text.length) nodes.push(text.slice(last));
 	return nodes;
+}
+
+/**
+ * Render a markdown message: paragraphs, bullet/numbered lists, headings, and
+ * inline formatting. Minimal on purpose (chat answers are short) and safe.
+ */
+function renderMarkdown(text: string): React.ReactNode {
+	const lines = text.replace(/\r\n/g, "\n").split("\n");
+	const blocks: React.ReactNode[] = [];
+	let i = 0;
+	let key = 0;
+	const bullet = /^\s*[-*]\s+/;
+	const numbered = /^\s*\d+\.\s+/;
+	const heading = /^\s*#{1,6}\s+/;
+
+	while (i < lines.length) {
+		if (/^\s*$/.test(lines[i])) {
+			i++;
+			continue;
+		}
+		if (heading.test(lines[i])) {
+			const k = key++;
+			blocks.push(
+				<p key={k} className="font-semibold [&:not(:first-child)]:mt-2">
+					{renderInline(lines[i].replace(heading, ""), `h${k}-`)}
+				</p>,
+			);
+			i++;
+			continue;
+		}
+		if (bullet.test(lines[i]) || numbered.test(lines[i])) {
+			const ordered = numbered.test(lines[i]);
+			const marker = ordered ? numbered : bullet;
+			const items: string[] = [];
+			while (i < lines.length && marker.test(lines[i])) {
+				items.push(lines[i].replace(marker, ""));
+				i++;
+			}
+			const k = key++;
+			const cls = `my-1 space-y-0.5 pl-5 ${ordered ? "list-decimal" : "list-disc"}`;
+			const children = items.map((it, j) => <li key={j}>{renderInline(it, `${k}-${j}-`)}</li>);
+			blocks.push(
+				ordered ? (
+					<ol key={k} className={cls}>{children}</ol>
+				) : (
+					<ul key={k} className={cls}>{children}</ul>
+				),
+			);
+			continue;
+		}
+		// Paragraph: consecutive plain lines, joined with <br/>.
+		const para: string[] = [];
+		while (
+			i < lines.length &&
+			!/^\s*$/.test(lines[i]) &&
+			!bullet.test(lines[i]) &&
+			!numbered.test(lines[i]) &&
+			!heading.test(lines[i])
+		) {
+			para.push(lines[i]);
+			i++;
+		}
+		const k = key++;
+		const inline: React.ReactNode[] = [];
+		para.forEach((ln, j) => {
+			inline.push(...renderInline(ln, `${k}-${j}-`));
+			if (j < para.length - 1) inline.push(<br key={`br${k}-${j}`} />);
+		});
+		blocks.push(
+			<p key={k} className="[&:not(:first-child)]:mt-2">
+				{inline}
+			</p>,
+		);
+	}
+	return blocks;
 }
 
 /**
@@ -145,7 +229,7 @@ export function ChatWidget() {
 											: "max-w-[85%] rounded-2xl rounded-bl-sm border border-slate-200 bg-white px-3.5 py-2 text-sm leading-relaxed text-slate-700"
 									}
 								>
-									{m.role === "assistant" ? renderText(m.content) : m.content}
+									{m.role === "assistant" ? renderMarkdown(m.content) : m.content}
 								</div>
 							</div>
 						))}
