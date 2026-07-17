@@ -271,6 +271,8 @@ export interface OrderEmailData {
 	subtotal: number;
 	total: number;
 	hasUnpriced: boolean;
+	/** Optional customer-entered PO number ("" when not provided). */
+	poNumber: string;
 }
 
 const money = (n: number | null) => (n != null ? formatPrice(n) : "Call for pricing");
@@ -286,18 +288,23 @@ function orderTableHtml(d: OrderEmailData): string {
 		)
 		.join("");
 	const summary = `<td style="${td}"></td>`;
+	const poRow = d.poNumber
+		? `<tr><td style="${td}"><strong>PO number:</strong></td>${summary}<td style="${td}">${esc(d.poNumber)}</td></tr>`
+		: "";
 	return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;margin:8px 0 20px;">
     <tr><th style="${th}">Product</th><th style="${th}">Quantity</th><th style="${th}">Price</th></tr>
     ${rows}
     <tr><td style="${td}"><strong>Subtotal:</strong></td>${summary}<td style="${td}">${esc(money(d.subtotal))}${d.hasUnpriced ? " +" : ""}</td></tr>
     <tr><td style="${td}"><strong>Payment method:</strong></td>${summary}<td style="${td}">Submit Purchase Order</td></tr>
+    ${poRow}
     <tr><td style="${td}"><strong>Total:</strong></td>${summary}<td style="${td}">${esc(money(d.total))}${d.hasUnpriced ? " +" : ""}</td></tr>
   </table>`;
 }
 
 function orderTableText(d: OrderEmailData): string {
 	const lines = d.lines.map((l) => `  - ${l.title} (#${l.sku}) x${l.qty} — ${money(l.lineTotal)}`).join("\n");
-	return `${lines}\n\nSubtotal: ${money(d.subtotal)}${d.hasUnpriced ? " (+ items priced on request)" : ""}\nPayment method: Submit Purchase Order\nTotal: ${money(d.total)}`;
+	const poLine = d.poNumber ? `\nPO number: ${d.poNumber}` : "";
+	return `${lines}\n\nSubtotal: ${money(d.subtotal)}${d.hasUnpriced ? " (+ items priced on request)" : ""}\nPayment method: Submit Purchase Order${poLine}\nTotal: ${money(d.total)}`;
 }
 
 function customerBlockHtml(c: OrderEmailData["customer"]): string {

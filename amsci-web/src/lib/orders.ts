@@ -70,6 +70,8 @@ export interface CreateOrderInput {
 	customer: { name: string; email: string; company: string | null; phone: string | null; address: string | null };
 	priceLevel: number;
 	totals: OrderTotals;
+	/** Optional customer-entered PO number. */
+	poNumber: string | null;
 }
 
 /** Persist an order and return its generated order number (autoincrement id). */
@@ -79,8 +81,8 @@ export async function createOrder(db: D1Database, input: CreateOrderInput, now: 
 		.prepare(
 			"INSERT INTO orders " +
 				"(user_id, customer_name, customer_email, customer_company, customer_phone, customer_address, " +
-				"price_level, items, subtotal, total, has_unpriced, status, created_at) " +
-				"VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11,'requested',?12)",
+				"price_level, items, subtotal, total, has_unpriced, po_number, status, created_at) " +
+				"VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11,?12,'requested',?13)",
 		)
 		.bind(
 			input.userId,
@@ -94,6 +96,7 @@ export async function createOrder(db: D1Database, input: CreateOrderInput, now: 
 			totals.subtotal,
 			totals.total,
 			totals.hasUnpriced ? 1 : 0,
+			input.poNumber,
 			now,
 		)
 		.run();

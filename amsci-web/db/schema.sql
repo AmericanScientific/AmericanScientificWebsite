@@ -42,6 +42,7 @@ CREATE TABLE IF NOT EXISTS orders (
   subtotal         REAL NOT NULL DEFAULT 0,
   total            REAL NOT NULL DEFAULT 0,
   has_unpriced     INTEGER NOT NULL DEFAULT 0,
+  po_number        TEXT,                               -- optional customer-entered PO number
   status           TEXT NOT NULL DEFAULT 'requested',
   created_at       TEXT NOT NULL
 );
