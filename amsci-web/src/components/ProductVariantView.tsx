@@ -156,12 +156,18 @@ export function ProductVariantView({
 						)}
 				</div>
 
-				{/* Price card — login-gated; key on SKU so it re-fetches per variant */}
-				<ProductPrice key={product.sku} sku={product.sku} />
-
+				{/* Description sits above the price card, below the variant selectors. */}
 				{product.description && (
 					<p className="mt-6 text-sm leading-relaxed text-slate-600">{product.description}</p>
 				)}
+
+				{/* Price card — login-gated; key on SKU so it re-fetches per variant */}
+				<ProductPrice
+					key={product.sku}
+					sku={product.sku}
+					title={product.title}
+					imageUrl={product.imageUrl}
+				/>
 
 				{product.grades.length > 0 && (
 					<div className="mt-6">

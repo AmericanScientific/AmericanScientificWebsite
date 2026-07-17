@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { formatPrice } from "@/lib/format";
-import { AddToOrderButton } from "@/components/AddToOrderButton";
+import { OrderControls } from "@/components/OrderControls";
 
 type State =
 	| { kind: "loading" }
@@ -16,7 +16,15 @@ type State =
  * authenticated /api/pricing endpoint after mount. Guests see a sign-in prompt
  * and no price; logged-in customers see their price + "Add To Order".
  */
-export function ProductPrice({ sku }: { sku: string }) {
+export function ProductPrice({
+	sku,
+	title,
+	imageUrl,
+}: {
+	sku: string;
+	title?: string;
+	imageUrl?: string;
+}) {
 	const [state, setState] = useState<State>({ kind: "loading" });
 
 	useEffect(() => {
@@ -85,11 +93,11 @@ export function ProductPrice({ sku }: { sku: string }) {
 					</div>
 					<p className="mt-2 flex items-center gap-1.5 text-xs text-slate-500">
 						{LockIcon}
-						Account pricing{state.priceLevel > 1 ? ` (tier ${state.priceLevel})` : ""}. Quantity breaks
-						applied at order review.
+						Your price{state.priceLevel > 1 ? ` (tier ${state.priceLevel})` : ""}. Volume pricing
+						confirmed at order review.
 					</p>
 					<div className="mt-5">
-						<AddToOrderButton sku={sku} />
+						<OrderControls sku={sku} unitPrice={state.price} title={title} imageUrl={imageUrl} />
 					</div>
 				</div>
 			)}

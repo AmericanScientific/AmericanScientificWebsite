@@ -3,6 +3,7 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { CartProvider } from "@/lib/cart/cart-context";
 
 const inter = Inter({
 	subsets: ["latin"],
@@ -37,9 +38,11 @@ export default function RootLayout({
 				<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 			</head>
 			<body className="min-h-screen bg-[#f6f7fb] font-sans text-slate-900 antialiased">
-				<SiteHeader />
-				<main>{children}</main>
-				<SiteFooter />
+				<CartProvider>
+					<SiteHeader />
+					<main>{children}</main>
+					<SiteFooter />
+				</CartProvider>
 			</body>
 		</html>
 	);

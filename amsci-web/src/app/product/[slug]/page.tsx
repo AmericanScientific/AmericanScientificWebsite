@@ -259,11 +259,11 @@ function SingleProduct({
 				</h1>
 				<p className="mt-2 text-sm text-slate-400">SKU {product.sku}</p>
 
-				<ProductPrice sku={product.sku} />
-
 				{product.description && (
 					<p className="mt-6 text-sm leading-relaxed text-slate-600">{product.description}</p>
 				)}
+
+				<ProductPrice sku={product.sku} title={product.title} imageUrl={product.imageUrl} />
 
 				{product.grades.length > 0 && (
 					<div className="mt-6">

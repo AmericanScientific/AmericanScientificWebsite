@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { getCurrentUser } from "@/lib/auth/session";
+import { SignOutButton } from "@/components/SignOutButton";
 
 export const metadata: Metadata = {
 	title: "My Account · American Scientific",
@@ -34,6 +35,11 @@ export default async function AccountPage() {
 					<dd className="text-sm font-medium text-slate-900">{tierLabel}</dd>
 				</div>
 			</dl>
+
+			<div className="mt-8 flex items-center justify-between gap-4">
+				<p className="text-sm text-slate-500">Signed in as {user.email}</p>
+				<SignOutButton />
+			</div>
 		</main>
 	);
 }

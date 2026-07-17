@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useCart } from "@/lib/cart/cart-context";
 
 type Me = { id: number; email: string; displayName: string } | null;
 type State = { kind: "loading" } | { kind: "guest" } | { kind: "authed"; user: NonNullable<Me> };
@@ -9,11 +10,12 @@ type State = { kind: "loading" } | { kind: "guest" } | { kind: "authed"; user: N
 /**
  * Header account control. Resolved client-side (via /api/auth/me) so the header
  * — and therefore every page it appears on — stays statically renderable / ISR
- * cacheable. Guests see Sign In + Request Account; members see their name + Sign
- * Out.
+ * cacheable. Guests see Sign In + Request Account; members see their name + a
+ * Cart entry point (Sign Out now lives on the My Account page).
  */
 export function AccountNav() {
 	const [state, setState] = useState<State>({ kind: "loading" });
+	const { count, hydrated } = useCart();
 
 	useEffect(() => {
 		let alive = true;
@@ -28,13 +30,6 @@ export function AccountNav() {
 			alive = false;
 		};
 	}, []);
-
-	async function signOut() {
-		await fetch("/api/auth/logout", { method: "POST", credentials: "same-origin" });
-		// Full reload so every auth-dependent client component (header + price
-		// blocks, which cache their own state) re-reads a clean guest session.
-		window.location.assign("/");
-	}
 
 	if (state.kind === "loading") {
 		return <div className="h-9 w-24 animate-pulse rounded-full bg-slate-100" aria-hidden />;
@@ -51,13 +46,26 @@ export function AccountNav() {
 				>
 					{name}
 				</Link>
-				<button
-					type="button"
-					onClick={signOut}
-					className="rounded-full px-4 py-2 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-100"
+				<Link
+					href="/cart"
+					aria-label={`Order${hydrated && count > 0 ? ` (${count} item${count === 1 ? "" : "s"})` : ""}`}
+					className="relative inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-100"
 				>
-					Sign Out
-				</button>
+					<svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+						<circle cx="9" cy="20" r="1" />
+						<circle cx="18" cy="20" r="1" />
+						<path d="M2 3h2.2l1.9 12.1a1 1 0 0 0 1 .9h9.4a1 1 0 0 0 1-.8L20 7H6" />
+					</svg>
+					<span className="hidden sm:inline">Order</span>
+					{hydrated && count > 0 && (
+						<span
+							className="brand-gradient absolute -right-1 -top-1 inline-flex min-w-5 items-center justify-center rounded-full px-1.5 text-[11px] font-bold leading-5 text-white shadow-sm"
+							aria-hidden
+						>
+							{count > 99 ? "99+" : count}
+						</span>
+					)}
+				</Link>
 			</div>
 		);
 	}
