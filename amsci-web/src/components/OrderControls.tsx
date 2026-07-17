@@ -30,7 +30,7 @@ export function OrderControls({
 	title?: string;
 	imageUrl?: string;
 }) {
-	const { addItem } = useCart();
+	const { addItem, flyToCart } = useCart();
 	const [qty, setQty] = useState(1);
 	const [added, setAdded] = useState(false);
 
@@ -38,6 +38,11 @@ export function OrderControls({
 	const lineTotal = hasPrice ? (unitPrice as number) * qty : null;
 
 	function handleAdd() {
+		// Cosmetic: fly the currently-shown product photo into the cart icon.
+		const media = document.querySelector("[data-hero-media] img") as HTMLImageElement | null;
+		if (media) {
+			flyToCart({ imgSrc: media.currentSrc || media.src, from: media.getBoundingClientRect() });
+		}
 		addItem({ sku, title: title ?? sku, imageUrl: imageUrl ?? "" }, qty);
 		setAdded(true);
 	}

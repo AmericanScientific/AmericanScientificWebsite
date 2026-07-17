@@ -237,7 +237,7 @@ function SingleProduct({
 }) {
 	return (
 		<div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
-			<div>
+			<div data-hero-media>
 				<ProductImage
 					product={product}
 					className="aspect-square w-full rounded-3xl shadow-lg shadow-slate-900/5"
