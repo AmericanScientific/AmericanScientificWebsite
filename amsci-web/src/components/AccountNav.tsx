@@ -48,6 +48,7 @@ export function AccountNav() {
 				</Link>
 				<Link
 					href="/cart"
+					data-cart-target
 					aria-label={`Order${hydrated && count > 0 ? ` (${count} item${count === 1 ? "" : "s"})` : ""}`}
 					className="relative inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-100"
 				>
