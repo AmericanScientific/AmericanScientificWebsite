@@ -43,6 +43,14 @@
 			"database_id": "53ff7b8e-d672-43d4-aa39-9682003a07e2"
 		}
 	],
+	// Per-IP rate limiters for the AI assistant (/api/chat). Native Cloudflare
+	// rate limiting — in-memory at the edge, no storage cost, per-colo. BURST
+	// blocks rapid-fire abuse; SUSTAINED bounds per-minute volume. See
+	// src/lib/chat/guard.ts. namespace_id is an arbitrary unique number per limiter.
+	"ratelimits": [
+		{ "name": "CHAT_RL_BURST", "namespace_id": "2001", "simple": { "limit": 6, "period": 10 } },
+		{ "name": "CHAT_RL_SUSTAINED", "namespace_id": "2002", "simple": { "limit": 30, "period": 60 } }
+	],
 	// Transactional email (password setup/reset links) via Resend — see
 	// src/lib/auth/email.ts. Setup: verify the sender domain (am-sci.com) in
 	// Resend, add its DNS records, then `wrangler secret put RESEND_API_KEY`.

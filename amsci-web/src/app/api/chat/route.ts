@@ -1,5 +1,6 @@
 import { getCurrentUser } from "@/lib/auth/session";
 import { runChat, type ChatTurn } from "@/lib/chat/agent";
+import { checkAndBumpDailyCap, checkRateLimit } from "@/lib/chat/guard";
 
 /**
  * POST /api/chat  { messages: [{ role, content }] }
@@ -12,9 +13,18 @@ import { runChat, type ChatTurn } from "@/lib/chat/agent";
 export const dynamic = "force-dynamic";
 
 const MAX_TURNS = 20;
-const MAX_CHARS = 4000;
+const MAX_CHARS = 2000; // per message — bounds token spend from oversized inputs
 
 export async function POST(request: Request): Promise<Response> {
+	// Guardrail 1: per-IP rate limit (burst + sustained).
+	const ip = request.headers.get("cf-connecting-ip") ?? "";
+	if (!(await checkRateLimit(ip))) {
+		return Response.json(
+			{ message: "You're sending messages too quickly — give it a few seconds and try again.", actions: [] },
+			{ status: 429, headers: { "Cache-Control": "private, no-store" } },
+		);
+	}
+
 	let body: { messages?: unknown };
 	try {
 		body = await request.json();
@@ -35,6 +45,14 @@ export async function POST(request: Request): Promise<Response> {
 	}
 	if (history.length === 0 || history[history.length - 1].role !== "user") {
 		return Response.json({ error: "Expected a trailing user message." }, { status: 400 });
+	}
+
+	// Guardrail 2: daily global cost circuit-breaker.
+	if (!(await checkAndBumpDailyCap())) {
+		return Response.json(
+			{ message: "The assistant is unusually busy right now. Please try again later, or reach us at office@american-scientific.com.", actions: [] },
+			{ status: 503, headers: { "Cache-Control": "private, no-store" } },
+		);
 	}
 
 	const user = await getCurrentUser();
