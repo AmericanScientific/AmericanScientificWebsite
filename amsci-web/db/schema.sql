@@ -50,6 +50,13 @@ CREATE TABLE IF NOT EXISTS orders (
 CREATE INDEX IF NOT EXISTS idx_orders_user ON orders (user_id);
 CREATE INDEX IF NOT EXISTS idx_orders_created ON orders (created_at);
 
+-- Daily usage counter for the AI assistant (/api/chat) — a cost circuit-breaker
+-- bounding worst-case Anthropic spend. One row per UTC day. See src/lib/chat/guard.ts.
+CREATE TABLE IF NOT EXISTS chat_usage (
+  day    TEXT PRIMARY KEY,   -- UTC date, YYYY-MM-DD
+  count  INTEGER NOT NULL DEFAULT 0
+);
+
 -- Single-row table tracking the last sync run (observability + incremental cursor).
 CREATE TABLE IF NOT EXISTS sync_meta (
   id          INTEGER PRIMARY KEY CHECK (id = 1),

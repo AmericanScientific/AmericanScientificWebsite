@@ -4,6 +4,7 @@ import "./globals.css";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { CartProvider } from "@/lib/cart/cart-context";
+import { ChatWidget } from "@/components/ChatWidget";
 
 const inter = Inter({
 	subsets: ["latin"],
@@ -42,6 +43,7 @@ export default function RootLayout({
 					<SiteHeader />
 					<main>{children}</main>
 					<SiteFooter />
+					<ChatWidget />
 				</CartProvider>
 			</body>
 		</html>
