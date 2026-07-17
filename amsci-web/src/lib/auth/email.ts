@@ -15,6 +15,8 @@ interface MailEnv {
 	EMAIL_FROM_NAME?: string;
 	SITE_URL?: string;
 	AUTH_DEV_LINKS?: string;
+	/** Where new-account requests are emailed (defaults to sales@american-scientific.com). */
+	SALES_NOTIFY_EMAIL?: string;
 }
 
 function mailEnv(): MailEnv {
@@ -171,4 +173,108 @@ export async function sendPasswordEmail(
 		console.error(`[auth/email] send failed for ${to}:`, err);
 		return { delivered: false, devFallback: false, link };
 	}
+}
+
+const font = "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif";
+
+/** Low-level Resend send used by the account-lifecycle emails below. Never throws. */
+async function sendMail(to: string, subject: string, html: string, text: string): Promise<boolean> {
+	const env = mailEnv();
+	if (!env.RESEND_API_KEY) {
+		console.log(`[auth/email] no RESEND_API_KEY: would send "${subject}" to ${to}`);
+		return false;
+	}
+	const fromAddr = env.EMAIL_FROM || "hello@am-sci.com";
+	const fromName = env.EMAIL_FROM_NAME || "American Scientific";
+	try {
+		const res = await fetch("https://api.resend.com/emails", {
+			method: "POST",
+			headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, "Content-Type": "application/json" },
+			body: JSON.stringify({ from: `${fromName} <${fromAddr}>`, to: [to], subject, html, text }),
+		});
+		if (!res.ok) {
+			console.error(`[auth/email] Resend ${res.status} for ${to}: ${await res.text().catch(() => "")}`);
+			return false;
+		}
+		return true;
+	} catch (err) {
+		console.error(`[auth/email] send failed for ${to}:`, err);
+		return false;
+	}
+}
+
+const esc = (s: string) =>
+	s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+
+/** Details captured by the /register form, for the Sales notification. */
+export interface AccountRequestDetails {
+	name: string;
+	email: string;
+	company: string;
+	phone: string;
+	address: string;
+	accountType: string;
+}
+
+/**
+ * Notify the team of a new account request (replaces the old Gravity Forms
+ * "New user registration" email). Recipient = SALES_NOTIFY_EMAIL, default
+ * sales@american-scientific.com. Returns whether it was delivered.
+ */
+export async function sendNewAccountEmail(d: AccountRequestDetails): Promise<boolean> {
+	const to = mailEnv().SALES_NOTIFY_EMAIL || "sales@american-scientific.com";
+	const rows: [string, string][] = [
+		["Name", d.name],
+		["Email", d.email],
+		["Company", d.company],
+		["Phone", d.phone],
+		["Address", d.address],
+		["Account type", d.accountType],
+	];
+	const htmlRows = rows
+		.map(
+			([k, v]) =>
+				`<tr><td style="padding:6px 12px;background:#f1f5f9;font-weight:600;font-size:13px;color:#334155;white-space:nowrap;vertical-align:top;">${esc(k)}</td>` +
+				`<td style="padding:6px 12px;font-size:14px;color:#0b1220;white-space:pre-line;">${esc(v || "—")}</td></tr>`,
+		)
+		.join("");
+	const html = `<!doctype html><html><body style="margin:0;background:#f6f7fb;font-family:${font};">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:24px 16px;">
+    <table role="presentation" width="560" cellpadding="0" cellspacing="0" style="width:560px;max-width:100%;background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;">
+      <tr><td style="padding:20px 24px;border-bottom:1px solid #eef2f7;font-size:16px;font-weight:700;color:#0a0f1c;">New account request</td></tr>
+      <tr><td style="padding:16px 12px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">${htmlRows}</table></td></tr>
+      <tr><td style="padding:14px 24px;background:#f8fafc;border-top:1px solid #eef2f7;font-size:12px;color:#64748b;">Review and approve in the admin queue, then set the customer's price tier.</td></tr>
+    </table>
+  </td></tr></table></body></html>`;
+	const text =
+		`New account request\n\n` +
+		rows.map(([k, v]) => `${k}: ${v || "—"}`).join("\n") +
+		`\n\nReview and approve in the admin queue, then set the customer's price tier.`;
+	return sendMail(to, "American Scientific - New account request", html, text);
+}
+
+/** Tell an approved applicant they can now sign in. Returns whether it was delivered. */
+export async function sendAccountApprovedEmail(to: string, name: string, siteUrl: string): Promise<boolean> {
+	const loginUrl = `${siteUrl.replace(/\/$/, "")}/login`;
+	const greeting = name ? `Hi ${esc(name)},` : "Hello,";
+	const html = `<!doctype html><html><body style="margin:0;background:#f6f7fb;font-family:${font};">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:32px 16px;">
+    <table role="presentation" width="560" cellpadding="0" cellspacing="0" style="width:560px;max-width:100%;background:#fff;border:1px solid #e2e8f0;border-radius:16px;overflow:hidden;">
+      <tr><td style="height:6px;background:${BRAND_BLUE_DEEP};background-image:${BRAND_GRADIENT};font-size:0;line-height:0;">&nbsp;</td></tr>
+      <tr><td style="padding:32px 40px;color:#0b1220;">
+        <h1 style="margin:0 0 16px;font-size:22px;color:#0a0f1c;">Your account is approved</h1>
+        <p style="margin:0 0 14px;font-size:15px;line-height:1.6;">${greeting}</p>
+        <p style="margin:0 0 28px;font-size:15px;line-height:1.6;color:#334155;">Your American Scientific account has been approved. You can now sign in with the password you chose to see your account pricing and place orders.</p>
+        <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 28px;"><tr>
+          <td align="center" bgcolor="${BRAND_BLUE_DEEP}" style="border-radius:9999px;background-image:${BRAND_GRADIENT};">
+            <a href="${loginUrl}" style="display:inline-block;padding:14px 32px;font-size:15px;font-weight:700;color:#fff;text-decoration:none;border-radius:9999px;">Sign in</a>
+          </td>
+        </tr></table>
+        <p style="margin:0;font-size:12px;color:#94a3b8;">If the button doesn't work, go to ${loginUrl}</p>
+      </td></tr>
+      <tr><td style="padding:20px 40px;background:#f8fafc;border-top:1px solid #eef2f7;font-size:12px;color:#94a3b8;line-height:1.7;">American Scientific, LLC<br>888-490-9002 &middot; office@american-scientific.com &middot; Columbus, OH</td></tr>
+    </table>
+  </td></tr></table></body></html>`;
+	const text = `${name ? `Hi ${name},` : "Hello,"}\n\nYour American Scientific account has been approved. Sign in with the password you chose: ${loginUrl}\n\nAmerican Scientific, LLC\n888-490-9002 | office@american-scientific.com`;
+	return sendMail(to, "Your American Scientific account is approved", html, text);
 }

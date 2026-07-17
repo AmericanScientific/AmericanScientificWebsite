@@ -15,6 +15,10 @@ export interface UserRow {
 	price_level: number;
 	netsuite_customer_id: string | null;
 	must_change_password: number;
+	company: string | null;
+	phone: string | null;
+	address: string | null;
+	account_type: string | null;
 	created_at: string;
 	updated_at: string;
 }
@@ -56,6 +60,68 @@ export async function getUserByEmail(db: D1Database, email: string): Promise<Use
 
 export async function getUserById(db: D1Database, id: number): Promise<UserRow | null> {
 	return db.prepare("SELECT * FROM users WHERE id = ?1").bind(id).first<UserRow>();
+}
+
+/** Details captured by the public /register form. */
+export interface NewUserInput {
+	email: string;
+	displayName: string;
+	passwordHash: string;
+	company: string | null;
+	phone: string | null;
+	address: string | null;
+	accountType: string | null;
+}
+
+/**
+ * Create a self-service signup: status='pending' (blocked from login until an
+ * admin approves), base price level, own password set. Returns the new row id.
+ */
+export async function createPendingUser(db: D1Database, input: NewUserInput, now: string): Promise<number> {
+	const res = await db
+		.prepare(
+			"INSERT INTO users " +
+				"(email, display_name, password_hash, status, role, is_admin, price_level, must_change_password, " +
+				"company, phone, address, account_type, created_at, updated_at) " +
+				"VALUES (?1,?2,?3,'pending','customer',0,1,0,?4,?5,?6,?7,?8,?8)",
+		)
+		.bind(
+			input.email.trim().toLowerCase(),
+			input.displayName,
+			input.passwordHash,
+			input.company,
+			input.phone,
+			input.address,
+			input.accountType,
+			now,
+		)
+		.run();
+	return Number(res.meta?.last_row_id ?? 0);
+}
+
+/** List accounts in a given moderation status, newest first (admin queue). */
+export async function listUsersByStatus(db: D1Database, status: string): Promise<UserRow[]> {
+	const { results } = await db
+		.prepare("SELECT * FROM users WHERE status = ?1 ORDER BY created_at DESC")
+		.bind(status)
+		.all<UserRow>();
+	return results ?? [];
+}
+
+/** Approve a pending account and set its NetSuite-derived price level. */
+export async function approveUser(db: D1Database, id: number, priceLevel: number, now: string): Promise<void> {
+	await db
+		.prepare("UPDATE users SET status = 'approved', price_level = ?2, updated_at = ?3 WHERE id = ?1")
+		.bind(id, priceLevel, now)
+		.run();
+}
+
+/** Deny a pending account (stays login-blocked). */
+export async function denyUser(db: D1Database, id: number, now: string): Promise<void> {
+	await db
+		.prepare("UPDATE users SET status = 'denied', updated_at = ?2 WHERE id = ?1")
+		.bind(id, now)
+		.run();
 }
 
 /**

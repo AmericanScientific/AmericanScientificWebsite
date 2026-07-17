@@ -79,7 +79,7 @@ export function AccountNav() {
 				Sign In
 			</Link>
 			<Link
-				href="/login"
+				href="/register"
 				className="brand-gradient rounded-full px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all hover:shadow-md hover:brightness-105"
 			>
 				Request Account
