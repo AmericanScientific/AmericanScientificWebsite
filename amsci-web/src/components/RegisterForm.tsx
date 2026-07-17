@@ -47,9 +47,16 @@ export function RegisterForm({ siteKey }: { siteKey: string | null }) {
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({ ...data, turnstileToken: token }),
 			});
-			const json = (await res.json()) as { ok?: boolean; message?: string; error?: string };
+			// The response may not be JSON (e.g. an HTML 500) — parse defensively so a
+			// server error doesn't get reported as a "network error".
+			let json: { ok?: boolean; message?: string; error?: string } = {};
+			try {
+				json = await res.json();
+			} catch {
+				/* non-JSON body */
+			}
 			if (!res.ok) {
-				setError(json.error ?? "Something went wrong. Please try again.");
+				setError(json.error ?? `Something went wrong (error ${res.status}). Please try again.`);
 				return;
 			}
 			setDone(json.message ?? "Your request has been received.");

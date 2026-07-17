@@ -57,36 +57,47 @@ export async function POST(request: Request): Promise<Response> {
 		return Response.json({ error: "Verification failed. Please try the challenge again." }, { status: 400 });
 	}
 
-	const db = getDb();
+	try {
+		const db = getDb();
 
-	// Don't create duplicates. Reveal "already exists" only for active accounts;
-	// otherwise return a generic success so we don't leak who's pending/denied.
-	const existing = await getUserByEmail(db, email);
-	if (existing) {
-		if (existing.status === "approved" || existing.status === null) {
-			return Response.json(
-				{ error: "An account with this email already exists. Try signing in or resetting your password." },
-				{ status: 409 },
-			);
+		// Don't create duplicates. Reveal "already exists" only for active accounts;
+		// otherwise return a generic success so we don't leak who's pending/denied.
+		const existing = await getUserByEmail(db, email);
+		if (existing) {
+			if (existing.status === "approved" || existing.status === null) {
+				return Response.json(
+					{ error: "An account with this email already exists. Try signing in or resetting your password." },
+					{ status: 409 },
+				);
+			}
+			return Response.json({ ok: true, message: "Thanks — your request is on file and under review." });
 		}
-		return Response.json({ ok: true, message: "Thanks — your request is on file and under review." });
+
+		const address = `${line1}\n${city}, ${region} ${zip}\n${country}`;
+		const now = new Date().toISOString();
+		const passwordHash = await hashPassword(password);
+
+		await createPendingUser(
+			db,
+			{ email, displayName: name, passwordHash, company, phone, address, accountType },
+			now,
+		);
+
+		// Best-effort notification — never fail the signup if mail is down.
+		await sendNewAccountEmail({ name, email, company, phone, address, accountType }).catch(() => false);
+
+		return Response.json({
+			ok: true,
+			message: "Thanks! Your account request has been received. We'll review it and email you once it's approved.",
+		});
+	} catch (err) {
+		// Surface a JSON error (not an HTML 500) so the client shows a real message.
+		// The most common cause here is the 0002 migration not being applied to the
+		// live D1 (the users table is missing company/phone/address/account_type).
+		console.error("[auth/register] failed:", err);
+		return Response.json(
+			{ error: "We couldn't create your account right now. Please try again shortly." },
+			{ status: 500 },
+		);
 	}
-
-	const address = `${line1}\n${city}, ${region} ${zip}\n${country}`;
-	const now = new Date().toISOString();
-	const passwordHash = await hashPassword(password);
-
-	await createPendingUser(
-		db,
-		{ email, displayName: name, passwordHash, company, phone, address, accountType },
-		now,
-	);
-
-	// Best-effort notification — never fail the signup if mail is down.
-	await sendNewAccountEmail({ name, email, company, phone, address, accountType }).catch(() => false);
-
-	return Response.json({
-		ok: true,
-		message: "Thanks! Your account request has been received. We'll review it and email you once it's approved.",
-	});
 }

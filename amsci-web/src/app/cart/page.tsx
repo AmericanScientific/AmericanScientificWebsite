@@ -13,8 +13,9 @@ type PriceState =
 
 /**
  * The order (cart) page. Lists everything added via "Add To Order", with live
- * quantity editing and per-account prices resolved on load (never stored). The
- * submit step is a placeholder until NetSuite Sales Order write-back is wired.
+ * quantity editing and per-account prices resolved on load (never stored).
+ * Submitting POSTs to /api/orders, which re-prices server-side, stores the order,
+ * and emails Sales + the customer (quote-style; no payment / no NetSuite write-back).
  *
  * Guests are redirected to /login by middleware; the guest branch here is only a
  * defensive fallback (e.g. session expired mid-visit).
@@ -22,7 +23,38 @@ type PriceState =
 export default function CartPage() {
 	const { items, setQty, removeItem, clear, hydrated, count } = useCart();
 	const [priceState, setPriceState] = useState<PriceState>({ kind: "loading" });
-	const [submitted, setSubmitted] = useState(false);
+	const [submitting, setSubmitting] = useState(false);
+	const [orderId, setOrderId] = useState<number | null>(null);
+	const [submitError, setSubmitError] = useState<string | null>(null);
+
+	async function submitOrder() {
+		setSubmitting(true);
+		setSubmitError(null);
+		try {
+			const res = await fetch("/api/orders", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				credentials: "same-origin",
+				body: JSON.stringify({ items: items.map((i) => ({ sku: i.sku, qty: i.qty })) }),
+			});
+			let json: { ok?: boolean; orderId?: number; error?: string } = {};
+			try {
+				json = await res.json();
+			} catch {
+				/* non-JSON body */
+			}
+			if (!res.ok || !json.ok) {
+				setSubmitError(json.error ?? `Something went wrong (error ${res.status}). Please try again.`);
+				return;
+			}
+			setOrderId(json.orderId ?? 0);
+			clear();
+		} catch {
+			setSubmitError("Network error. Please try again.");
+		} finally {
+			setSubmitting(false);
+		}
+	}
 
 	// Stable key for the set of SKUs in the cart — refetch prices when it changes.
 	const skuKey = useMemo(
@@ -79,6 +111,35 @@ export default function CartPage() {
 			<main className="mx-auto max-w-4xl px-4 py-16 sm:px-6">
 				<div className="h-8 w-48 animate-pulse rounded bg-slate-200" />
 				<div className="mt-8 h-40 w-full animate-pulse rounded-2xl bg-slate-100" />
+			</main>
+		);
+	}
+
+	// Order submitted — show confirmation (the cart has been cleared).
+	if (orderId != null) {
+		return (
+			<main className="mx-auto max-w-2xl px-4 py-20 sm:px-6">
+				<div className="rounded-3xl border border-slate-200 bg-white p-10 text-center shadow-sm">
+					<div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-brand-blue/10 text-brand-blue">
+						<svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+							<path d="M20 6 9 17l-5-5" />
+						</svg>
+					</div>
+					<h1 className="mt-5 font-display text-2xl font-bold tracking-tight text-slate-900">
+						Order request received
+					</h1>
+					<p className="mx-auto mt-2 max-w-md text-sm text-slate-600">
+						Your order request <span className="font-semibold text-slate-900">#{orderId}</span> has been
+						submitted. Our team will review it and follow up to confirm pricing, availability, and your
+						purchase order. A copy is on its way to your email.
+					</p>
+					<Link
+						href="/products"
+						className="brand-gradient mt-6 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-blue/20 transition-all hover:shadow-xl hover:brightness-105"
+					>
+						Continue shopping
+					</Link>
+				</div>
 			</main>
 		);
 	}
@@ -277,24 +338,18 @@ export default function CartPage() {
 							>
 								Sign in to see pricing
 							</Link>
-						) : submitted ? (
-							<div className="mt-5 rounded-xl border border-brand-blue/20 bg-brand-blue/5 p-4 text-sm text-slate-700">
-								<p className="font-semibold text-slate-900">Order request noted</p>
-								<p className="mt-1 text-xs text-slate-500">
-									Online order submission isn’t live yet — this is a preview. To place this order
-									today, contact your account rep at office@american-scientific.com or
-									888-490-9002. NetSuite order submission is coming soon.
-								</p>
-							</div>
 						) : (
 							<button
 								type="button"
-								onClick={() => setSubmitted(true)}
-								className="brand-gradient mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-blue/20 transition-all hover:shadow-xl hover:brightness-105 active:scale-[0.99]"
+								onClick={submitOrder}
+								disabled={submitting}
+								className="brand-gradient mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-blue/20 transition-all hover:shadow-xl hover:brightness-105 active:scale-[0.99] disabled:opacity-60"
 							>
-								Submit order request
+								{submitting ? "Submitting…" : "Submit order request"}
 							</button>
 						)}
+
+						{submitError && <p className="mt-3 text-sm text-red-600">{submitError}</p>}
 
 						<p className="mt-4 text-center text-xs text-slate-400">
 							Orders are reviewed by an account rep. Volume pricing confirmed at review.
