@@ -1,7 +1,7 @@
 import "server-only";
 import { parseSearchFilters, searchCatalog } from "@/data/search";
 import { getProductBySku } from "@/data/products";
-import { getCategoryName } from "@/data/categories";
+import { getAllLeafCategories, getCategoryName, getTopLevelCategories } from "@/data/categories";
 import { pageForSku, slugForPage } from "@/data/variant-groups";
 import { formatPrice } from "@/lib/format";
 
@@ -66,6 +66,20 @@ export const CHAT_TOOLS = [
 			required: ["sku"],
 		},
 	},
+	{
+		name: "browse_products",
+		description:
+			"Count and list products with pagination. Use this for 'how many X do you offer' or 'list all your Y' questions — it returns the EXACT total (distinct products; a variant group counts once) plus a page of results. Filter by a `query` keyword and/or a `category` name. Page through everything with `offset` until offset+count reaches total. Prefer this over search_products when the customer wants a count or a complete list.",
+		input_schema: {
+			type: "object",
+			properties: {
+				query: { type: "string", description: "Keyword to filter by, e.g. 'bulb' (optional)." },
+				category: { type: "string", description: "Category name to filter by, e.g. 'Chemistry' (optional)." },
+				offset: { type: "integer", description: "Start index for pagination (default 0)." },
+				limit: { type: "integer", description: "Page size (default 25, max 50)." },
+			},
+		},
+	},
 ] as const;
 
 const productUrl = (sku: string, pageSlug?: string) => `/product/${pageSlug ?? sku.toLowerCase()}`;
@@ -85,6 +99,20 @@ function variantsForSku(sku: string): { sku: string; label: string; url: string 
 		label: m.variant_label || m.item_number,
 		url: `/product/${slug}?sku=${encodeURIComponent(m.item_number)}`,
 	}));
+}
+
+/** Resolve a free-text category (name or slug) to a taxonomy slug, or null. */
+function resolveCategory(input: string): string | null {
+	const q = input.trim().toLowerCase();
+	if (!q) return null;
+	const nodes = [...getTopLevelCategories(), ...getAllLeafCategories()];
+	for (const n of nodes) {
+		if (n.slug.toLowerCase() === q || n.name.toLowerCase() === q) return n.slug;
+	}
+	for (const n of nodes) {
+		if (n.name.toLowerCase().includes(q)) return n.slug; // loose fallback
+	}
+	return null;
 }
 
 /**
@@ -153,6 +181,36 @@ export async function runTool(
 		const qty = Math.max(1, Math.floor(Number(input.qty) || 1));
 		actions.push({ type: "add_to_order", sku: p.sku, qty, title: p.title, imageUrl: p.imageUrl });
 		return JSON.stringify({ ok: true, message: `Added ${qty} × ${p.title} (${p.sku}) to the order.` });
+	}
+
+	if (name === "browse_products") {
+		const query = typeof input.query === "string" ? input.query : "";
+		const categoryInput = typeof input.category === "string" ? input.category : "";
+		const category = categoryInput ? resolveCategory(categoryInput) : null;
+		if (categoryInput && !category) {
+			return JSON.stringify({
+				error: `Unknown category "${categoryInput}". Use a keyword instead, or a top-level category like Chemistry, Physics, Biology, or Earth Science.`,
+			});
+		}
+		const offset = Math.max(0, Math.floor(Number(input.offset) || 0));
+		const limit = Math.min(Math.max(1, Number(input.limit) || 25), 50);
+		const filters = parseSearchFilters({ q: query, category: category ?? undefined, sort: "name" });
+		const { results, total } = await searchCatalog(filters);
+		const page = results.slice(offset, offset + limit);
+		const items = page.map((p) => ({
+			sku: p.sku,
+			title: p.title,
+			url: productUrl(p.sku, p.pageSlug),
+			...(typeof p.variantCount === "number" && p.variantCount > 1 ? { variantCount: p.variantCount } : {}),
+			...(ctx.authed && typeof p.price === "number" ? { price: formatPrice(p.price) } : {}),
+		}));
+		return JSON.stringify({
+			total,
+			offset,
+			count: items.length,
+			hasMore: offset + items.length < total,
+			items,
+		});
 	}
 
 	return JSON.stringify({ error: `Unknown tool: ${name}` });
