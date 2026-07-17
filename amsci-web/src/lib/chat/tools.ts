@@ -90,11 +90,11 @@ const productUrl = (sku: string, pageSlug?: string) => `/product/${pageSlug ?? s
  * SKUs hidden behind a variant dropdown (e.g. SH-2 consolidated onto the SH-1
  * page) — the collapsed search listing only shows the representative member.
  */
-function variantsForSku(sku: string): { sku: string; label: string; url: string }[] {
+function variantsForSku(sku: string, cap = 24): { sku: string; label: string; url: string }[] {
 	const page = pageForSku(sku);
 	if (!page || page.members.length <= 1) return [];
 	const slug = slugForPage(page);
-	return page.members.slice(0, 24).map((m) => ({
+	return page.members.slice(0, cap).map((m) => ({
 		sku: m.item_number,
 		label: m.variant_label || m.item_number,
 		url: `/product/${slug}?sku=${encodeURIComponent(m.item_number)}`,
@@ -130,7 +130,7 @@ export async function runTool(
 		if (!query.trim()) return JSON.stringify({ error: "Empty query." });
 		const filters = parseSearchFilters({ q: query });
 		const { results, total } = await searchCatalog(filters);
-		const limit = Math.min(Math.max(1, Number(input.limit) || 6), 12);
+		const limit = Math.min(Math.max(1, Number(input.limit) || 5), 8);
 		const items = results.slice(0, limit).map((p) => {
 			const item: Record<string, unknown> = {
 				sku: p.sku,
@@ -140,7 +140,7 @@ export async function runTool(
 				url: productUrl(p.sku, p.pageSlug),
 			};
 			if (ctx.authed && typeof p.price === "number") item.price = formatPrice(p.price);
-			const variants = variantsForSku(p.sku);
+			const variants = variantsForSku(p.sku, 8);
 			if (variants.length) {
 				item.note = "Multiple variants — each is separately orderable via its own SKU in `variants`.";
 				item.variants = variants;

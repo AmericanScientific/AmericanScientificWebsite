@@ -57,6 +57,14 @@ CREATE TABLE IF NOT EXISTS chat_usage (
   count  INTEGER NOT NULL DEFAULT 0
 );
 
+-- Per-user daily cap (assistant is signed-in-only). See src/lib/chat/guard.ts.
+CREATE TABLE IF NOT EXISTS chat_usage_user (
+  day     TEXT NOT NULL,      -- UTC date, YYYY-MM-DD
+  user_id INTEGER NOT NULL,
+  count   INTEGER NOT NULL DEFAULT 0,
+  PRIMARY KEY (day, user_id)
+);
+
 -- Single-row table tracking the last sync run (observability + incremental cursor).
 CREATE TABLE IF NOT EXISTS sync_meta (
   id          INTEGER PRIMARY KEY CHECK (id = 1),

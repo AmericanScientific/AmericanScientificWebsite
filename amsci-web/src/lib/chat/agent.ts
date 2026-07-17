@@ -10,7 +10,7 @@ import { CHAT_TOOLS, runTool, type CartAction, type ToolContext } from "./tools"
  */
 const MODEL = "claude-haiku-4-5";
 const API_URL = "https://api.anthropic.com/v1/messages";
-const MAX_TOOL_LOOPS = 6;
+const MAX_TOOL_LOOPS = 4;
 
 function apiKey(): string | null {
 	try {
@@ -85,7 +85,7 @@ export async function runChat(history: ChatTurn[], ctx: ToolContext): Promise<Ch
 				},
 				body: JSON.stringify({
 					model: MODEL,
-					max_tokens: 1024,
+					max_tokens: 768,
 					system: SYSTEM_PROMPT,
 					tools: CHAT_TOOLS,
 					messages,

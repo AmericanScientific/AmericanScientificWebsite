@@ -1,14 +1,15 @@
 import { getCurrentUser } from "@/lib/auth/session";
 import { runChat, type ChatTurn } from "@/lib/chat/agent";
-import { checkAndBumpDailyCap, checkRateLimit } from "@/lib/chat/guard";
+import { checkAndBumpDailyCap, checkAndBumpUserCap, checkRateLimit } from "@/lib/chat/guard";
 
 /**
  * POST /api/chat  { messages: [{ role, content }] }
  *
- * Runs the AI assistant server-side (the ANTHROPIC_API_KEY never leaves the
- * Worker). Prices in tool results are gated on the signed-in user, and
- * add_to_order only works when authed. Returns the assistant's reply plus any
- * cart actions for the client widget to apply.
+ * Signed-in-only AI assistant (American Scientific is wholesale/B2B). Guests are
+ * rejected with 401 BEFORE any Claude call, so anonymous traffic and bots cost
+ * nothing. Guardrails, in order: auth → per-user rate limit → per-user daily cap
+ * → global daily circuit-breaker. The LLM + tools run server-side; the API key
+ * never reaches the browser.
  */
 export const dynamic = "force-dynamic";
 
@@ -16,9 +17,22 @@ const MAX_TURNS = 20;
 const MAX_CHARS = 2000; // per message — bounds token spend from oversized inputs
 
 export async function POST(request: Request): Promise<Response> {
-	// Guardrail 1: per-IP rate limit (burst + sustained).
-	const ip = request.headers.get("cf-connecting-ip") ?? "";
-	if (!(await checkRateLimit(ip))) {
+	// Guardrail 1: signed-in only. Reject guests before spending anything.
+	const user = await getCurrentUser();
+	if (!user) {
+		return Response.json(
+			{
+				message:
+					"Please sign in to use the assistant. American Scientific is a wholesale/B2B distributor, so the assistant is available to signed-in accounts. Sign in, or request an account for your organization, to chat.",
+				actions: [],
+			},
+			{ status: 401, headers: { "Cache-Control": "private, no-store" } },
+		);
+	}
+
+	// Guardrail 2: per-user rate limit (burst + sustained), keyed on the user.
+	const key = `u:${user.id}`;
+	if (!(await checkRateLimit(key))) {
 		return Response.json(
 			{ message: "You're sending messages too quickly — give it a few seconds and try again.", actions: [] },
 			{ status: 429, headers: { "Cache-Control": "private, no-store" } },
@@ -47,7 +61,15 @@ export async function POST(request: Request): Promise<Response> {
 		return Response.json({ error: "Expected a trailing user message." }, { status: 400 });
 	}
 
-	// Guardrail 2: daily global cost circuit-breaker.
+	// Guardrail 3: per-user daily cap.
+	if (!(await checkAndBumpUserCap(user.id))) {
+		return Response.json(
+			{ message: "You've reached today's assistant message limit. It resets tomorrow — or reach our team at office@american-scientific.com / 888-490-9002.", actions: [] },
+			{ status: 429, headers: { "Cache-Control": "private, no-store" } },
+		);
+	}
+
+	// Guardrail 4: global daily cost circuit-breaker.
 	if (!(await checkAndBumpDailyCap())) {
 		return Response.json(
 			{ message: "The assistant is unusually busy right now. Please try again later, or reach us at office@american-scientific.com.", actions: [] },
@@ -55,10 +77,8 @@ export async function POST(request: Request): Promise<Response> {
 		);
 	}
 
-	const user = await getCurrentUser();
-
 	try {
-		const { text, actions, offline } = await runChat(history, { authed: !!user });
+		const { text, actions, offline } = await runChat(history, { authed: true });
 		return Response.json(
 			{ message: text, actions, offline: !!offline },
 			{ headers: { "Cache-Control": "private, no-store" } },
