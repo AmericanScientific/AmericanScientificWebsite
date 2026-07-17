@@ -70,7 +70,7 @@ export default async function Home() {
 					<div>
 						<span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium text-slate-200 backdrop-blur">
 							<span className="pulse-dot h-1.5 w-1.5 rounded-full bg-emerald-400 text-emerald-400" />
-							B2B wholesale · 1,300+ SKUs synced from NetSuite
+							Wholesale direct · Distributor &amp; manufacturer
 						</span>
 						<h1 className="mt-6 font-display text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
 							Scientific supply,
@@ -108,7 +108,7 @@ export default async function Home() {
 				<div className="relative border-t border-white/10">
 					<div className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-white/10 px-4 sm:grid-cols-4 sm:px-6 lg:px-8">
 						{[
-							{ n: "1,300+", l: "Web SKUs" },
+							{ n: "Wholesale", l: "Buy direct" },
 							{ n: "4", l: "Core disciplines" },
 							{ n: "K–College", l: "Grade coverage" },
 							{ n: "Tiered", l: "Account pricing" },
