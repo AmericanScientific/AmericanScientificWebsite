@@ -2,6 +2,7 @@ import "server-only";
 import { parseSearchFilters, searchCatalog } from "@/data/search";
 import { getProductBySku } from "@/data/products";
 import { getCategoryName } from "@/data/categories";
+import { pageForSku, slugForPage } from "@/data/variant-groups";
 import { formatPrice } from "@/lib/format";
 
 /**
@@ -30,7 +31,7 @@ export const CHAT_TOOLS = [
 	{
 		name: "search_products",
 		description:
-			"Search the American Scientific catalog for products by keyword (e.g. 'buchner funnel', 'magnets', 'microscope slides'). Use this whenever the customer asks about products, needs a recommendation, or you need a SKU. Returns matching products with their SKU, title, category, grade levels, and page URL.",
+			"Search the American Scientific catalog for products by keyword (e.g. 'buchner funnel', 'magnets', 'microscope slides'). Use this whenever the customer asks about products, needs a recommendation, or you need a SKU. Returns matching products with their SKU, title, category, grade levels, and page URL. A product with size/option variants includes a `variants` array — each variant is a separate, orderable SKU (e.g. SH-1, SH-2). When the customer names a specific variant, use that exact variant SKU from the list.",
 		input_schema: {
 			type: "object",
 			properties: {
@@ -55,7 +56,7 @@ export const CHAT_TOOLS = [
 	{
 		name: "add_to_order",
 		description:
-			"Add a product to the customer's order (their cart) by SKU and quantity. Only works when the customer is signed in. Confirm the exact product with search_products or get_product first so you use a real SKU.",
+			"Add a product to the customer's order (their cart) by SKU and quantity. Only works when the customer is signed in. Confirm the exact product with search_products or get_product first so you use a real SKU. For products with variants, use the specific variant's SKU (from the `variants` list), never the group's representative SKU.",
 		input_schema: {
 			type: "object",
 			properties: {
@@ -68,6 +69,23 @@ export const CHAT_TOOLS = [
 ] as const;
 
 const productUrl = (sku: string, pageSlug?: string) => `/product/${pageSlug ?? sku.toLowerCase()}`;
+
+/**
+ * Variant members of the page a SKU belongs to, each with its own deep-link URL.
+ * Empty for single (non-variant) products. This is how the assistant discovers
+ * SKUs hidden behind a variant dropdown (e.g. SH-2 consolidated onto the SH-1
+ * page) — the collapsed search listing only shows the representative member.
+ */
+function variantsForSku(sku: string): { sku: string; label: string; url: string }[] {
+	const page = pageForSku(sku);
+	if (!page || page.members.length <= 1) return [];
+	const slug = slugForPage(page);
+	return page.members.slice(0, 24).map((m) => ({
+		sku: m.item_number,
+		label: m.variant_label || m.item_number,
+		url: `/product/${slug}?sku=${encodeURIComponent(m.item_number)}`,
+	}));
+}
 
 /**
  * Execute a tool call. Returns a JSON string for the model's tool_result, and
@@ -85,14 +103,22 @@ export async function runTool(
 		const filters = parseSearchFilters({ q: query });
 		const { results, total } = await searchCatalog(filters);
 		const limit = Math.min(Math.max(1, Number(input.limit) || 6), 12);
-		const items = results.slice(0, limit).map((p) => ({
-			sku: p.sku,
-			title: p.title,
-			category: getCategoryName(p.category),
-			grades: p.grades,
-			url: productUrl(p.sku, p.pageSlug),
-			...(ctx.authed && typeof p.price === "number" ? { price: formatPrice(p.price) } : {}),
-		}));
+		const items = results.slice(0, limit).map((p) => {
+			const item: Record<string, unknown> = {
+				sku: p.sku,
+				title: p.title,
+				category: getCategoryName(p.category),
+				grades: p.grades,
+				url: productUrl(p.sku, p.pageSlug),
+			};
+			if (ctx.authed && typeof p.price === "number") item.price = formatPrice(p.price);
+			const variants = variantsForSku(p.sku);
+			if (variants.length) {
+				item.note = "Multiple variants — each is separately orderable via its own SKU in `variants`.";
+				item.variants = variants;
+			}
+			return item;
+		});
 		return JSON.stringify({ total, showing: items.length, items });
 	}
 
@@ -100,15 +126,18 @@ export async function runTool(
 		const sku = typeof input.sku === "string" ? input.sku : "";
 		const p = await getProductBySku(sku);
 		if (!p) return JSON.stringify({ error: `No product found with SKU "${sku}".` });
-		return JSON.stringify({
+		const out: Record<string, unknown> = {
 			sku: p.sku,
 			title: p.title,
 			description: p.description || undefined,
 			category: getCategoryName(p.category),
 			grades: p.grades,
 			url: productUrl(p.sku, p.pageSlug),
-			...(ctx.authed && typeof p.price === "number" ? { price: formatPrice(p.price) } : {}),
-		});
+		};
+		if (ctx.authed && typeof p.price === "number") out.price = formatPrice(p.price);
+		const variants = variantsForSku(p.sku);
+		if (variants.length) out.variants = variants;
+		return JSON.stringify(out);
 	}
 
 	if (name === "add_to_order") {
