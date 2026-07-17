@@ -20,12 +20,15 @@ export async function POST(request: Request): Promise<Response> {
 	const sessionUser = await getCurrentUser();
 	if (!sessionUser) return Response.json({ error: "Please sign in to place an order." }, { status: 401 });
 
-	let body: { items?: unknown };
+	let body: { items?: unknown; poNumber?: unknown };
 	try {
 		body = await request.json();
 	} catch {
 		return Response.json({ error: "Malformed request." }, { status: 400 });
 	}
+
+	// Optional customer-entered PO number (trimmed, length-capped).
+	const poNumber = typeof body.poNumber === "string" ? body.poNumber.trim().slice(0, 100) : "";
 
 	// Normalize + validate line items.
 	const raw = Array.isArray(body.items) ? body.items : [];
@@ -66,6 +69,7 @@ export async function POST(request: Request): Promise<Response> {
 				},
 				priceLevel: user.price_level,
 				totals,
+				poNumber: poNumber || null,
 			},
 			now.toISOString(),
 		);
@@ -84,6 +88,7 @@ export async function POST(request: Request): Promise<Response> {
 			subtotal: totals.subtotal,
 			total: totals.total,
 			hasUnpriced: totals.hasUnpriced,
+			poNumber,
 		};
 
 		// Best-effort — the stored order is the source of truth if mail fails.

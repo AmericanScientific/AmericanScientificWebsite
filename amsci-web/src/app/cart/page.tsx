@@ -26,6 +26,7 @@ export default function CartPage() {
 	const [submitting, setSubmitting] = useState(false);
 	const [orderId, setOrderId] = useState<number | null>(null);
 	const [submitError, setSubmitError] = useState<string | null>(null);
+	const [poNumber, setPoNumber] = useState("");
 
 	async function submitOrder() {
 		setSubmitting(true);
@@ -35,7 +36,7 @@ export default function CartPage() {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				credentials: "same-origin",
-				body: JSON.stringify({ items: items.map((i) => ({ sku: i.sku, qty: i.qty })) }),
+				body: JSON.stringify({ items: items.map((i) => ({ sku: i.sku, qty: i.qty })), poNumber }),
 			});
 			let json: { ok?: boolean; orderId?: number; error?: string } = {};
 			try {
@@ -329,6 +330,23 @@ export default function CartPage() {
 							<p className="mt-2 text-xs text-slate-400">
 								Some lines are priced on request; your rep will confirm those.
 							</p>
+						)}
+
+						{priceState.kind !== "guest" && (
+							<div className="mt-5">
+								<label htmlFor="po-number" className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-500">
+									PO number <span className="font-normal normal-case text-slate-400">(optional)</span>
+								</label>
+								<input
+									id="po-number"
+									type="text"
+									value={poNumber}
+									onChange={(e) => setPoNumber(e.target.value)}
+									maxLength={100}
+									placeholder="e.g. PO-10432"
+									className="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 shadow-sm placeholder:text-slate-400 focus:border-brand-blue focus:outline-none focus:ring-2 focus:ring-brand-blue/20"
+								/>
+							</div>
 						)}
 
 						{priceState.kind === "guest" ? (
