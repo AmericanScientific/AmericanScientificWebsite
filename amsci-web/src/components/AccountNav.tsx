@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useCart } from "@/lib/cart/cart-context";
 
-type Me = { id: number; email: string; displayName: string } | null;
+type Me = { id: number; email: string; displayName: string; isAdmin?: boolean } | null;
 type State = { kind: "loading" } | { kind: "guest" } | { kind: "authed"; user: NonNullable<Me> };
 
 /**
@@ -39,6 +39,18 @@ export function AccountNav() {
 		const name = state.user.displayName || state.user.email;
 		return (
 			<div className="flex items-center gap-2 sm:gap-3">
+				{state.user.isAdmin && (
+					<Link
+						href="/admin"
+						className="inline-flex items-center gap-1.5 rounded-full border border-brand-blue/30 bg-brand-blue/5 px-3 py-2 text-sm font-semibold text-brand-blue transition-colors hover:bg-brand-blue/10"
+						title="Account requests (admin)"
+					>
+						<svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+							<path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" />
+						</svg>
+						<span className="hidden sm:inline">Admin</span>
+					</Link>
+				)}
 				<Link
 					href="/account"
 					className="hidden max-w-[10rem] truncate rounded-full px-4 py-2 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-100 sm:inline-flex"
@@ -80,7 +92,7 @@ export function AccountNav() {
 				Sign In
 			</Link>
 			<Link
-				href="/login"
+				href="/register"
 				className="brand-gradient rounded-full px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all hover:shadow-md hover:brightness-105"
 			>
 				Request Account

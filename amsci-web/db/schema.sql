@@ -65,6 +65,12 @@ CREATE TABLE IF NOT EXISTS users (
   -- start at 1: old WordPress passwords are NOT honored on the new site). Flips to 0
   -- permanently the first time they set a password. New signups start at 0.
   must_change_password INTEGER NOT NULL DEFAULT 0,
+  -- Self-service signup lead details (from the public /register form). Informational
+  -- for the admin who approves the account; account_type = 'Educator' | 'Distributor'.
+  company              TEXT,
+  phone                TEXT,
+  address              TEXT,
+  account_type         TEXT,
   created_at           TEXT NOT NULL,
   updated_at           TEXT NOT NULL
 );

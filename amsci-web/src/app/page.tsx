@@ -89,12 +89,12 @@ export default async function Home() {
 							>
 								Browse Catalog
 							</Link>
-							<button
-								type="button"
+							<Link
+								href="/register"
 								className="rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition-colors hover:bg-white/10"
 							>
 								Request an Account
-							</button>
+							</Link>
 						</div>
 					</div>
 
