@@ -1,5 +1,6 @@
 import "server-only";
 import { getCloudflareContext } from "@opennextjs/cloudflare";
+import { formatPrice } from "@/lib/format";
 import type { TokenPurpose } from "./tokens";
 
 /**
@@ -251,6 +252,106 @@ export async function sendNewAccountEmail(d: AccountRequestDetails): Promise<boo
 		rows.map(([k, v]) => `${k}: ${v || "—"}`).join("\n") +
 		`\n\nReview and approve in the admin queue, then set the customer's price tier.`;
 	return sendMail(to, "American Scientific - New account request", html, text);
+}
+
+/** One priced line in an order email. */
+export interface OrderEmailLine {
+	sku: string;
+	title: string;
+	qty: number;
+	unitPrice: number | null;
+	lineTotal: number | null;
+}
+
+export interface OrderEmailData {
+	orderId: number;
+	dateLabel: string;
+	customer: { name: string; email: string; company: string; phone: string; address: string };
+	lines: OrderEmailLine[];
+	subtotal: number;
+	total: number;
+	hasUnpriced: boolean;
+}
+
+const money = (n: number | null) => (n != null ? formatPrice(n) : "Call for pricing");
+
+function orderTableHtml(d: OrderEmailData): string {
+	const th = "padding:8px 12px;text-align:left;font-size:12px;font-weight:700;color:#334155;background:#f1f5f9;border:1px solid #e2e8f0;";
+	const td = "padding:8px 12px;font-size:14px;color:#0b1220;border:1px solid #e2e8f0;vertical-align:top;";
+	const rows = d.lines
+		.map(
+			(l) =>
+				`<tr><td style="${td}">${esc(l.title)}<br><span style="color:#64748b;font-size:12px;">(#${esc(l.sku)})</span></td>` +
+				`<td style="${td}">${l.qty}</td><td style="${td}">${esc(money(l.lineTotal))}</td></tr>`,
+		)
+		.join("");
+	const summary = `<td style="${td}"></td>`;
+	return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;margin:8px 0 20px;">
+    <tr><th style="${th}">Product</th><th style="${th}">Quantity</th><th style="${th}">Price</th></tr>
+    ${rows}
+    <tr><td style="${td}"><strong>Subtotal:</strong></td>${summary}<td style="${td}">${esc(money(d.subtotal))}${d.hasUnpriced ? " +" : ""}</td></tr>
+    <tr><td style="${td}"><strong>Payment method:</strong></td>${summary}<td style="${td}">Submit Purchase Order</td></tr>
+    <tr><td style="${td}"><strong>Total:</strong></td>${summary}<td style="${td}">${esc(money(d.total))}${d.hasUnpriced ? " +" : ""}</td></tr>
+  </table>`;
+}
+
+function orderTableText(d: OrderEmailData): string {
+	const lines = d.lines.map((l) => `  - ${l.title} (#${l.sku}) x${l.qty} — ${money(l.lineTotal)}`).join("\n");
+	return `${lines}\n\nSubtotal: ${money(d.subtotal)}${d.hasUnpriced ? " (+ items priced on request)" : ""}\nPayment method: Submit Purchase Order\nTotal: ${money(d.total)}`;
+}
+
+function customerBlockHtml(c: OrderEmailData["customer"]): string {
+	const parts = [c.name, c.company, c.address, c.phone, c.email].filter(Boolean).map(esc);
+	return `<div style="border:1px solid #e2e8f0;border-radius:8px;padding:12px 16px;font-size:14px;color:#334155;white-space:pre-line;">${parts.join("\n")}</div>`;
+}
+
+/**
+ * Email the team a new order request (mirrors the old WooCommerce "New Order"
+ * email). Recipient = SALES_NOTIFY_EMAIL (default sales@american-scientific.com).
+ */
+export async function sendOrderRequestEmail(d: OrderEmailData): Promise<boolean> {
+	const to = mailEnv().SALES_NOTIFY_EMAIL || "sales@american-scientific.com";
+	const html = `<!doctype html><html><body style="margin:0;background:#f6f7fb;font-family:${font};">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:24px 16px;">
+    <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:100%;background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;">
+      <tr><td style="padding:20px 24px;background:${BRAND_BLUE_DEEP};background-image:${BRAND_GRADIENT};color:#fff;font-size:18px;font-weight:700;">New order request #${d.orderId}</td></tr>
+      <tr><td style="padding:20px 24px;color:#0b1220;">
+        <p style="margin:0 0 4px;font-size:15px;">You've received the following order from <strong>${esc(d.customer.name || d.customer.email)}</strong>:</p>
+        <p style="margin:0 0 12px;font-size:13px;color:#64748b;">Order #${d.orderId} · ${esc(d.dateLabel)}</p>
+        ${orderTableHtml(d)}
+        <h2 style="margin:8px 0 8px;font-size:15px;color:#0a0f1c;">Account details</h2>
+        ${customerBlockHtml(d.customer)}
+        <p style="margin:16px 0 0;font-size:12px;color:#94a3b8;">Quote-style request — no payment taken. Write the PO from this email.${d.hasUnpriced ? " Some lines are priced on request (+)." : ""}</p>
+      </td></tr>
+    </table>
+  </td></tr></table></body></html>`;
+	const text =
+		`New order request #${d.orderId}\n\nFrom: ${d.customer.name || d.customer.email} · ${d.dateLabel}\n\n` +
+		orderTableText(d) +
+		`\n\nAccount details:\n${[d.customer.name, d.customer.company, d.customer.address, d.customer.phone, d.customer.email].filter(Boolean).join("\n")}\n\nQuote-style request — write the PO from this email.`;
+	return sendMail(to, `New order request #${d.orderId} from ${d.customer.name || d.customer.email}`, html, text);
+}
+
+/** Confirm to the customer that their order request was received. */
+export async function sendOrderConfirmationEmail(d: OrderEmailData): Promise<boolean> {
+	const html = `<!doctype html><html><body style="margin:0;background:#f6f7fb;font-family:${font};">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:24px 16px;">
+    <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:100%;background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;">
+      <tr><td style="height:6px;background:${BRAND_BLUE_DEEP};background-image:${BRAND_GRADIENT};font-size:0;line-height:0;">&nbsp;</td></tr>
+      <tr><td style="padding:24px 24px 0;color:#0b1220;">
+        <h1 style="margin:0 0 8px;font-size:20px;color:#0a0f1c;">Order request received</h1>
+        <p style="margin:0 0 4px;font-size:15px;">${d.customer.name ? `Hi ${esc(d.customer.name)},` : "Hello,"}</p>
+        <p style="margin:0 0 12px;font-size:15px;color:#334155;">Thanks for your order request <strong>#${d.orderId}</strong> (${esc(d.dateLabel)}). Our team will review it and follow up to confirm pricing, availability, and your purchase order.</p>
+        ${orderTableHtml(d)}
+      </td></tr>
+      <tr><td style="padding:12px 24px 24px;background:#f8fafc;border-top:1px solid #eef2f7;font-size:12px;color:#94a3b8;line-height:1.7;">American Scientific, LLC<br>888-490-9002 &middot; office@american-scientific.com &middot; Columbus, OH</td></tr>
+    </table>
+  </td></tr></table></body></html>`;
+	const text =
+		`Order request received — #${d.orderId} (${d.dateLabel})\n\n${d.customer.name ? `Hi ${d.customer.name},` : "Hello,"}\n\nThanks for your order request. Our team will review it and follow up.\n\n` +
+		orderTableText(d) +
+		`\n\nAmerican Scientific, LLC\n888-490-9002 | office@american-scientific.com`;
+	return sendMail(d.customer.email, `Your American Scientific order request #${d.orderId}`, html, text);
 }
 
 /** Tell an approved applicant they can now sign in. Returns whether it was delivered. */

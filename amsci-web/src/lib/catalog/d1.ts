@@ -87,6 +87,38 @@ export async function getPricesBySku(db: D1Database, skus: string[]): Promise<Re
 	return out;
 }
 
+/**
+ * Resolve title + base price for a set of SKUs with a single indexed query.
+ * Used when building an order so the line items are authoritative (server-side),
+ * never trusting client-supplied titles/prices. Keys are the requested SKUs;
+ * unknown SKUs are absent from the result.
+ */
+export async function getCatalogLinesBySku(
+	db: D1Database,
+	skus: string[],
+): Promise<Record<string, { title: string; price: number | null }>> {
+	const out: Record<string, { title: string; price: number | null }> = {};
+	if (skus.length === 0) return out;
+	const CHUNK = 100;
+	for (let i = 0; i < skus.length; i += CHUNK) {
+		const batch = skus.slice(i, i + CHUNK);
+		const placeholders = batch.map((_, j) => `?${j + 1}`).join(",");
+		const { results } = await db
+			.prepare(`SELECT sku, title, price FROM products WHERE sku COLLATE NOCASE IN (${placeholders})`)
+			.bind(...batch)
+			.all<{ sku: string; title: string; price: number | null }>();
+		const byLower = new Map<string, { title: string; price: number | null }>();
+		for (const r of results ?? []) {
+			byLower.set((r.sku ?? "").toLowerCase(), { title: r.title ?? "", price: r.price ?? null });
+		}
+		for (const sku of batch) {
+			const hit = byLower.get(sku.toLowerCase());
+			if (hit) out[sku] = hit;
+		}
+	}
+	return out;
+}
+
 const UPSERT_SQL =
 	"INSERT INTO products " +
 	"(internal_id, sku, title, description, price, image, gallery, grades, category_name, item_type, size, search_keywords, last_modified, synced_at) " +

@@ -27,6 +27,28 @@ CREATE TABLE IF NOT EXISTS products (
 CREATE INDEX IF NOT EXISTS idx_products_category ON products (category_name);
 CREATE INDEX IF NOT EXISTS idx_products_sku ON products (sku);
 
+-- Order requests submitted from the cart (quote-style; no payment / no NetSuite
+-- write-back yet). Self-contained snapshot so the record stands alone.
+CREATE TABLE IF NOT EXISTS orders (
+  id               INTEGER PRIMARY KEY AUTOINCREMENT,  -- the order number
+  user_id          INTEGER NOT NULL,
+  customer_name    TEXT NOT NULL DEFAULT '',
+  customer_email   TEXT NOT NULL DEFAULT '',
+  customer_company TEXT,
+  customer_phone   TEXT,
+  customer_address TEXT,
+  price_level      INTEGER,
+  items            TEXT NOT NULL,                      -- JSON: [{sku,title,qty,unitPrice,lineTotal}]
+  subtotal         REAL NOT NULL DEFAULT 0,
+  total            REAL NOT NULL DEFAULT 0,
+  has_unpriced     INTEGER NOT NULL DEFAULT 0,
+  status           TEXT NOT NULL DEFAULT 'requested',
+  created_at       TEXT NOT NULL
+);
+
+CREATE INDEX IF NOT EXISTS idx_orders_user ON orders (user_id);
+CREATE INDEX IF NOT EXISTS idx_orders_created ON orders (created_at);
+
 -- Single-row table tracking the last sync run (observability + incremental cursor).
 CREATE TABLE IF NOT EXISTS sync_meta (
   id          INTEGER PRIMARY KEY CHECK (id = 1),
