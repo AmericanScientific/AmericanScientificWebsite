@@ -22,11 +22,14 @@ interface GuardEnv {
 	CHAT_RL_BURST?: RateLimiter;
 	CHAT_RL_SUSTAINED?: RateLimiter;
 	DB?: D1Database;
-	/** Optional override of the daily message cap (var). */
+	/** Optional override of the global daily message cap (var). */
 	CHAT_DAILY_CAP?: string;
+	/** Optional override of the per-user daily message cap (var). */
+	CHAT_USER_DAILY_CAP?: string;
 }
 
 const DEFAULT_DAILY_CAP = 3000;
+const DEFAULT_USER_DAILY_CAP = 60;
 
 function guardEnv(): GuardEnv {
 	try {
@@ -72,6 +75,29 @@ export async function checkAndBumpDailyCap(): Promise<boolean> {
 		return (row?.count ?? 0) <= cap;
 	} catch (err) {
 		console.error("[chat/guard] daily cap error (failing open):", err);
+		return true;
+	}
+}
+
+/**
+ * Increment a signed-in user's daily counter and return true if still under the
+ * per-user cap. Fails open if D1 is unavailable.
+ */
+export async function checkAndBumpUserCap(userId: number): Promise<boolean> {
+	const env = guardEnv();
+	if (!env.DB) return true;
+	const cap = Number(env.CHAT_USER_DAILY_CAP) > 0 ? Number(env.CHAT_USER_DAILY_CAP) : DEFAULT_USER_DAILY_CAP;
+	const day = new Date().toISOString().slice(0, 10);
+	try {
+		const row = await env.DB.prepare(
+			"INSERT INTO chat_usage_user (day, user_id, count) VALUES (?1, ?2, 1) " +
+				"ON CONFLICT(day, user_id) DO UPDATE SET count = count + 1 RETURNING count",
+		)
+			.bind(day, userId)
+			.first<{ count: number }>();
+		return (row?.count ?? 0) <= cap;
+	} catch (err) {
+		console.error("[chat/guard] per-user cap error (failing open):", err);
 		return true;
 	}
 }
