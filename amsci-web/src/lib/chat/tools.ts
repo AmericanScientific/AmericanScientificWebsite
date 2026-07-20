@@ -197,13 +197,22 @@ export async function runTool(
 		const filters = parseSearchFilters({ q: query, category: category ?? undefined, sort: "name" });
 		const { results, total } = await searchCatalog(filters);
 		const page = results.slice(offset, offset + limit);
-		const items = page.map((p) => ({
-			sku: p.sku,
-			title: p.title,
-			url: productUrl(p.sku, p.pageSlug),
-			...(typeof p.variantCount === "number" && p.variantCount > 1 ? { variantCount: p.variantCount } : {}),
-			...(ctx.authed && typeof p.price === "number" ? { price: formatPrice(p.price) } : {}),
-		}));
+		const items = page.map((p) => {
+			const item: Record<string, unknown> = {
+				sku: p.sku,
+				title: p.title,
+				url: productUrl(p.sku, p.pageSlug),
+			};
+			if (ctx.authed && typeof p.price === "number") item.price = formatPrice(p.price);
+			// Include the variant members (sku + label) so the model can list actual
+			// options — not just "N variants". Compact (no per-variant URL) to bound tokens.
+			const variants = variantsForSku(p.sku, 12);
+			if (variants.length) {
+				item.variantCount = variants.length;
+				item.variants = variants.map((v) => ({ sku: v.sku, label: v.label }));
+			}
+			return item;
+		});
 		return JSON.stringify({
 			total,
 			offset,
