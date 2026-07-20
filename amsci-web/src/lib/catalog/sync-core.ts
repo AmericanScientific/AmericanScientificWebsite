@@ -29,16 +29,28 @@ const PAGE = 1000;
 export interface FetchCatalogOptions {
 	/** Cap the number of items (sampling). Omit for the full catalog. */
 	limit?: number;
-	/** Incremental: only items modified strictly after this NetSuite datetime. */
-	modifiedAfter?: string;
+	/**
+	 * Incremental: only items modified within the last N minutes. Compared against
+	 * NetSuite's own SYSDATE (account-local clock), so there's no timezone mismatch
+	 * with a client-supplied UTC cursor and no fragile date-string parsing. A
+	 * generous window (e.g. 90) is cheap and tolerates missed cron ticks. Omit for
+	 * a full sync.
+	 */
+	sinceMinutes?: number;
 	/** Optional progress callback (items fetched so far, total). */
 	onProgress?: (fetched: number, total: number) => void;
 }
 
-function buildSelect(modifiedAfter?: string): string {
+function buildSelect(sinceMinutes?: number): string {
+	// sinceMinutes is an internal numeric constant (never user input); floor + guard
+	// so it interpolates as a bare number. SYSDATE - (N/1440) = N minutes ago.
+	const since =
+		typeof sinceMinutes === "number" && Number.isFinite(sinceMinutes) && sinceMinutes > 0
+			? Math.floor(sinceMinutes)
+			: null;
 	const where =
 		"WHERE i.isonline = 'T' AND i.isinactive = 'F'" +
-		(modifiedAfter ? ` AND i.lastmodifieddate > TO_DATE('${modifiedAfter}', 'YYYY-MM-DD HH24:MI:SS')` : "");
+		(since != null ? ` AND i.lastmodifieddate >= (SYSDATE - (${since} / 1440.0))` : "");
 	return (
 		"SELECT i.id AS id, i.itemid AS itemid, i.storedisplayname AS storedisplayname, " +
 		"i.displayname AS displayname, " +
@@ -52,7 +64,7 @@ function buildSelect(modifiedAfter?: string): string {
 }
 
 async function fetchCatalogRows(client: NetSuiteClient, opts: FetchCatalogOptions): Promise<Row[]> {
-	const select = buildSelect(opts.modifiedAfter);
+	const select = buildSelect(opts.sinceMinutes);
 	if (opts.limit) {
 		const page = await client.suiteql<Row>(select, { limit: opts.limit, offset: 0 });
 		return page.items;
