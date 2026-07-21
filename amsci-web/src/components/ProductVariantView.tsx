@@ -6,6 +6,7 @@ import type { Product } from "@/types/product";
 import { ProductImage } from "@/components/ProductImage";
 import { ProductPrice } from "@/components/ProductPrice";
 import { CategoryIcon } from "@/components/CategoryIcon";
+import { TeacherGuideButtons } from "@/components/TeacherGuideButtons";
 import { categoryTheme } from "@/lib/categoryTheme";
 
 /** One selectable variant: its cached render data + option values per axis. */
@@ -114,6 +115,7 @@ export function ProductVariantView({
 					className="aspect-square w-full rounded-3xl shadow-lg shadow-slate-900/5"
 					iconClassName="h-28 w-28"
 				/>
+				<TeacherGuideButtons sku={product.sku} available={product.teacherGuideAvailable} />
 			</div>
 
 			{/* Details */}

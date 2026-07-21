@@ -9,6 +9,7 @@ import {
 } from "@/data/categories";
 import { getCatalog } from "@/data/catalog-source";
 import type { CatalogRecord } from "@/lib/catalog/types";
+import { hasTeacherGuide } from "@/lib/teacher-guides";
 import {
 	pageForSku,
 	isMultiVariant,
@@ -57,6 +58,7 @@ function toProduct(c: CatalogRecord): Product {
 		imageUrl: c.image ?? "",
 		category: slugForClass(c.categoryName),
 		grades: c.grades ?? [],
+		teacherGuideAvailable: hasTeacherGuide(c.sku),
 	};
 }
 
