@@ -34,7 +34,8 @@ function renderInline(text: string, base: string): React.ReactNode[] {
 	while ((m = re.exec(text)) !== null) {
 		if (m.index > last) nodes.push(text.slice(last, m.index));
 		if (m[1] !== undefined) {
-			nodes.push(<strong key={`${base}s${k++}`}>{m[1]}</strong>);
+			// Recurse so nested markdown (e.g. a link inside **bold**) renders.
+			nodes.push(<strong key={`${base}s${k}`}>{renderInline(m[1], `${base}s${k++}`)}</strong>);
 		} else if (m[2] !== undefined) {
 			nodes.push(
 				<code key={`${base}c${k++}`} className="rounded bg-slate-100 px-1 py-0.5 text-[0.85em]">
@@ -44,15 +45,16 @@ function renderInline(text: string, base: string): React.ReactNode[] {
 		} else if (m[3] !== undefined) {
 			nodes.push(
 				<a
-					key={`${base}l${k++}`}
+					key={`${base}l${k}`}
 					href={m[4]}
 					className="font-semibold text-brand-blue underline underline-offset-2 hover:opacity-80"
 				>
-					{m[3]}
+					{renderInline(m[3], `${base}l${k++}`)}
 				</a>,
 			);
 		} else {
-			nodes.push(<em key={`${base}i${k++}`}>{m[5] ?? m[6]}</em>);
+			const it = m[5] ?? m[6] ?? "";
+			nodes.push(<em key={`${base}i${k}`}>{renderInline(it, `${base}i${k++}`)}</em>);
 		}
 		last = re.lastIndex;
 	}
