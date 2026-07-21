@@ -1,0 +1,4743 @@
+{
+	"note": "Old WooCommerce /product/{slug} URLs that changed on the rebuild (mostly variant consolidation). Generated from product_groups.json store_name + the old sitemap. Sources are guaranteed not to collide with a live page slug.",
+	"products": [
+		{
+			"from": "/product/1-5-gallon-flex-tank-lid-only",
+			"to": "/product/flex-tank-lid-only"
+		},
+		{
+			"from": "/product/1-5-gallon-flex-tank-tank-only",
+			"to": "/product/flex-tank-tank-only"
+		},
+		{
+			"from": "/product/1-gallon-flex-tank-lid-only-2",
+			"to": "/product/flex-tank-lid-only-with-vent"
+		},
+		{
+			"from": "/product/1-gallon-flex-tank-tank-only-2",
+			"to": "/product/flex-tank-tank-only"
+		},
+		{
+			"from": "/product/110v-220v-sine-wave-generator",
+			"to": "/product/sine-wave-generator"
+		},
+		{
+			"from": "/product/11cm-quantitative-filter-paper-pk-100",
+			"to": "/product/filter-paper-quantitative"
+		},
+		{
+			"from": "/product/12-5cm-quantitative-filter-paper-pk-100",
+			"to": "/product/filter-paper-quantitative"
+		},
+		{
+			"from": "/product/12-partial-immersion-thermometer-10-150-c",
+			"to": "/product/thermometer"
+		},
+		{
+			"from": "/product/12-partial-immersion-thermometer-20-110-c",
+			"to": "/product/thermometer"
+		},
+		{
+			"from": "/product/12-partial-immersion-thermometer-20-110-c-0-230-f",
+			"to": "/product/thermometer"
+		},
+		{
+			"from": "/product/12-partial-immersion-thermometer-20-150-c-0-300-f",
+			"to": "/product/thermometer"
+		},
+		{
+			"from": "/product/12-total-immersion-thermometer-20-110-c",
+			"to": "/product/thermometer"
+		},
+		{
+			"from": "/product/12-total-immersion-thermometer-20-110-c-0-230-f",
+			"to": "/product/thermometer"
+		},
+		{
+			"from": "/product/12-total-immersion-thermometer-20-150-c",
+			"to": "/product/thermometer"
+		},
+		{
+			"from": "/product/12-total-immersion-thermometer-20-150-c-0-300-f",
+			"to": "/product/thermometer"
+		},
+		{
+			"from": "/product/15cm-qualitative-filter-paper-pk-100",
+			"to": "/product/filter-paper-qualitative"
+		},
+		{
+			"from": "/product/15cm-quantitative-filter-paper-pk-100",
+			"to": "/product/filter-paper-quantitative"
+		},
+		{
+			"from": "/product/18cm-quantitative-filter-paper-pk-100",
+			"to": "/product/filter-paper-quantitative"
+		},
+		{
+			"from": "/product/24cm-qualitative-filter-paper-pk-100",
+			"to": "/product/filter-paper-qualitative"
+		},
+		{
+			"from": "/product/3-inoculating-loop-nichrome-wire",
+			"to": "/product/inoculating-loop-nichrome-wire-dia-loop"
+		},
+		{
+			"from": "/product/3-inoculating-loop-nichrome-wire-2",
+			"to": "/product/inoculating-loop-nichrome-wire-dia-loop"
+		},
+		{
+			"from": "/product/3-inoculating-needle-nichrome-wire",
+			"to": "/product/inoculating-needle-nichrome-wire-24-gauge"
+		},
+		{
+			"from": "/product/7-filter-paper-pk-100",
+			"to": "/product/filter-paper-qualitative"
+		},
+		{
+			"from": "/product/75-distillation-bent-24-40-joints-140-mm-w-x-130-mm-h",
+			"to": "/product/distillation-adapter-bent-joint-24-40"
+		},
+		{
+			"from": "/product/7cm-qualitative-filter-paper-pk-100",
+			"to": "/product/filter-paper-qualitative"
+		},
+		{
+			"from": "/product/7cm-quantitative-filter-paper-pk-100",
+			"to": "/product/filter-paper-quantitative"
+		},
+		{
+			"from": "/product/9cm-quantitative-filter-paper-pk-100",
+			"to": "/product/filter-paper-quantitative"
+		},
+		{
+			"from": "/product/9v-lead-w-alligator-clips-12",
+			"to": "/product/connection-wire"
+		},
+		{
+			"from": "/product/abs-polymer-test-tube-rack-20-holes-3-tiers-2",
+			"to": "/product/test-tube-rack"
+		},
+		{
+			"from": "/product/abs-polymer-test-tube-rack-6-holes-6-drying-pins-2",
+			"to": "/product/test-tube-rack"
+		},
+		{
+			"from": "/product/accessories-for-optical-disk-hartl-set-7-wooden-box-2",
+			"to": "/product/optical-disk-hartl-accessory-set-with-wooden-storage"
+		},
+		{
+			"from": "/product/achromatic-din-microscope-objectives-10x-2",
+			"to": "/product/microscope-objective"
+		},
+		{
+			"from": "/product/achromatic-din-microscope-objectives-40x-2",
+			"to": "/product/microscope-objective"
+		},
+		{
+			"from": "/product/acrylic-cube-1",
+			"to": "/product/acrylic-cube"
+		},
+		{
+			"from": "/product/acrylic-cube-with-magnet-and-iron-filings-in-center-2",
+			"to": "/product/magnetic-field-cube-clear-acrylic"
+		},
+		{
+			"from": "/product/acrylic-equilateral-prisms-3-x-1",
+			"to": "/product/acrylic-equilateral-prism"
+		},
+		{
+			"from": "/product/acrylic-equilateral-prisms-4-x-1",
+			"to": "/product/acrylic-equilateral-prism"
+		},
+		{
+			"from": "/product/acrylic-equilateral-prisms-6-x-1",
+			"to": "/product/acrylic-equilateral-prism"
+		},
+		{
+			"from": "/product/acrylic-lens-and-prism-set-7-2",
+			"to": "/product/lenses-and-prisms"
+		},
+		{
+			"from": "/product/acrylic-prism-trapezoidal-2",
+			"to": "/product/prism-trapezoidal"
+		},
+		{
+			"from": "/product/acylic-ball-1-2",
+			"to": "/product/acylic-ball"
+		},
+		{
+			"from": "/product/adjustable-beaker-stand-for-micro-burner-2",
+			"to": "/product/beaker-stand-adjustable-for-micro-burner"
+		},
+		{
+			"from": "/product/advanced-gas-laws-demo-with-temperature-2",
+			"to": "/product/advanced-gas-laws-demo-with-temperature"
+		},
+		{
+			"from": "/product/advanced-spectrometer-2",
+			"to": "/product/spectrometer-advanced"
+		},
+		{
+			"from": "/product/advanced-student-microscope-2",
+			"to": "/product/advanced-student-microscope"
+		},
+		{
+			"from": "/product/air-blower-2",
+			"to": "/product/air-track-apparatus-air-blower-only"
+		},
+		{
+			"from": "/product/air-core-solenoid",
+			"to": "/product/solenoid-helix-air-core-rohs-certified-16-awg"
+		},
+		{
+			"from": "/product/air-core-solenoid-23awg",
+			"to": "/product/solenoid-helix-air-core-rohs-certified-23-awg"
+		},
+		{
+			"from": "/product/air-puck-2",
+			"to": "/product/air-puck"
+		},
+		{
+			"from": "/product/air-track",
+			"to": "/product/air-track-apparatus-air-track-only"
+		},
+		{
+			"from": "/product/alcohol-burner-wickless-dual-head-all-metal-2",
+			"to": "/product/alcohol-burner"
+		},
+		{
+			"from": "/product/allihn-condenser-jacket-length-300-mm-joints-24-40",
+			"to": "/product/allihn-condenser"
+		},
+		{
+			"from": "/product/allihn-condenser-jacket-length-400-mm-joints-24-40",
+			"to": "/product/allihn-condenser"
+		},
+		{
+			"from": "/product/allihn-condenser-with-outlet-tubes-jacket-length-190-mm-joints-34-45",
+			"to": "/product/allihn-condenser"
+		},
+		{
+			"from": "/product/allihn-condenser-with-outlet-tubes-jacket-length-300-mm-joints-55-50",
+			"to": "/product/allihn-condenser"
+		},
+		{
+			"from": "/product/allihn-condenser-with-outlet-tubes-jacket-length-325-mm-joints-24-40",
+			"to": "/product/allihn-condenser"
+		},
+		{
+			"from": "/product/alnico-bar-magnet-1-5-pair",
+			"to": "/product/bar-magnet"
+		},
+		{
+			"from": "/product/alnico-bar-magnet-6-x-0-5-x-0-25-pair",
+			"to": "/product/bar-magnet"
+		},
+		{
+			"from": "/product/alnico-bar-set-2-3-x-0-63-x-0-38",
+			"to": "/product/bar-magnet"
+		},
+		{
+			"from": "/product/aluminum-d-cell-battery-holder-2",
+			"to": "/product/battery-holder"
+		},
+		{
+			"from": "/product/aluminum-leaves-for-electroscope-pair-2",
+			"to": "/product/aluminum-leaves-for-foil-electroscope"
+		},
+		{
+			"from": "/product/aluminum-tuning-fork-256-hz",
+			"to": "/product/tuning-fork"
+		},
+		{
+			"from": "/product/aluminum-tuning-fork-320-hz",
+			"to": "/product/tuning-fork"
+		},
+		{
+			"from": "/product/aluminum-tuning-fork-341-3-hz",
+			"to": "/product/tuning-fork"
+		},
+		{
+			"from": "/product/aluminum-tuning-fork-480-hz",
+			"to": "/product/tuning-fork"
+		},
+		{
+			"from": "/product/aluminum-tuning-fork-512-hz",
+			"to": "/product/tuning-fork"
+		},
+		{
+			"from": "/product/aluminum-tuning-fork-set-8-with-mallet-wooden-box-2",
+			"to": "/product/tuning-fork"
+		},
+		{
+			"from": "/product/amsci-brass-weight-set-of-10-total-weight-106g",
+			"to": "/product/weight-set-ball-top-total-weight"
+		},
+		{
+			"from": "/product/amsci-lung-volume-bag-set",
+			"to": "/product/amsci-lung-volume-bag-set-add-tg"
+		},
+		{
+			"from": "/product/amsci-understanding-coronavirus-kit-2",
+			"to": "/product/amsci-understanding-coronavirus-kit"
+		},
+		{
+			"from": "/product/angular-alcohol-burner-2",
+			"to": "/product/alcohol-burner"
+		},
+		{
+			"from": "/product/ant-habitat-replacement-gel",
+			"to": "/product/ant-habitat-gel"
+		},
+		{
+			"from": "/product/arch-roman-bridge-2",
+			"to": "/product/arch-roman-bridge"
+		},
+		{
+			"from": "/product/aspirator-bottle-1-2-gallon",
+			"to": "/product/aspirator-bottle"
+		},
+		{
+			"from": "/product/aspirator-bottle-5-gallon",
+			"to": "/product/aspirator-bottle"
+		},
+		{
+			"from": "/product/aspriator-bottle-1-gallon",
+			"to": "/product/aspirator-bottle-1-3-gallons-5-liters"
+		},
+		{
+			"from": "/product/assembled-mini-motor",
+			"to": "/product/assembled-mini-motor-coil-wire-magnets"
+		},
+		{
+			"from": "/product/assembled-mini-motor-2",
+			"to": "/product/assembled-mini-motor-coil-wire-magnets"
+		},
+		{
+			"from": "/product/balance-311-grams-quadruple-beam-balance-2",
+			"to": "/product/balance-quadruple-beam"
+		},
+		{
+			"from": "/product/balance-blue-plastic-arm",
+			"to": "/product/balance-arm-only"
+		},
+		{
+			"from": "/product/balance-blue-plastic-pivot",
+			"to": "/product/balance-pivot-only"
+		},
+		{
+			"from": "/product/ball-pressure-gauge-2",
+			"to": "/product/ball-pressure-gauge"
+		},
+		{
+			"from": "/product/balloon-hand-air-pump-2",
+			"to": "/product/balloon-hand-air-pump"
+		},
+		{
+			"from": "/product/balloon-helicopter-kit-pk-12-classroom-pack",
+			"to": "/product/balloon-helicopter-kit-pack"
+		},
+		{
+			"from": "/product/balls-drilled-spare-19-mm-aluminum",
+			"to": "/product/ball-drilled"
+		},
+		{
+			"from": "/product/balls-drilled-spare-19-mm-brass",
+			"to": "/product/ball-drilled"
+		},
+		{
+			"from": "/product/balls-drilled-spare-19-mm-copper",
+			"to": "/product/ball-solid-hooked"
+		},
+		{
+			"from": "/product/balls-drilled-spare-25-mm-aluminum",
+			"to": "/product/ball-solid-hooked"
+		},
+		{
+			"from": "/product/balls-drilled-spare-25-mm-brass",
+			"to": "/product/ball-solid-hooked"
+		},
+		{
+			"from": "/product/balls-drilled-spare-25-mm-iron",
+			"to": "/product/ball-solid-hooked"
+		},
+		{
+			"from": "/product/balls-drilled-spare-25-mm-zinc",
+			"to": "/product/ball-solid-hooked"
+		},
+		{
+			"from": "/product/balls-solid-0-38-steel",
+			"to": "/product/ball-solid"
+		},
+		{
+			"from": "/product/balls-solid-19mm-set-14-2",
+			"to": "/product/ball-set-solid"
+		},
+		{
+			"from": "/product/balls-solid-25mm-set-14-2",
+			"to": "/product/ball-set-solid"
+		},
+		{
+			"from": "/product/balls-solid-hooked-25-mm-iron-steel",
+			"to": "/product/ball-solid-hooked"
+		},
+		{
+			"from": "/product/balls-solid-hooked-25mm-copper-2",
+			"to": "/product/ball-solid-hooked"
+		},
+		{
+			"from": "/product/basic-meter-2",
+			"to": "/product/voltmeter"
+		},
+		{
+			"from": "/product/battery-holder-d-cell-plastic-with-fahnstock-clips",
+			"to": "/product/battery-holder"
+		},
+		{
+			"from": "/product/battery-tester",
+			"to": "/product/battery-tester-button-cell-batteries-universal-battery"
+		},
+		{
+			"from": "/product/battery-tester-2",
+			"to": "/product/battery-tester-button-cell-batteries-universal-battery"
+		},
+		{
+			"from": "/product/beaker-bomex-glass-5000-ml",
+			"to": "/product/beakers-bomex-borosilicate-glass"
+		},
+		{
+			"from": "/product/beaker-mug-with-handle-400-ml",
+			"to": "/product/mug-beaker-with-handle"
+		},
+		{
+			"from": "/product/beaker-mug-with-handle-500-ml",
+			"to": "/product/mug-beaker-with-handle"
+		},
+		{
+			"from": "/product/beaker-mug-with-handle-600-ml",
+			"to": "/product/mug-beaker-with-handle"
+		},
+		{
+			"from": "/product/beaker-tongs-50-ml-2000-ml",
+			"to": "/product/tongs"
+		},
+		{
+			"from": "/product/beaker-tongs-50-ml-to-600-ml",
+			"to": "/product/tongs"
+		},
+		{
+			"from": "/product/bent-teasing-needles-with-plastic-handle-pk-12-2",
+			"to": "/product/teasing-needles-bent-plastic-handle"
+		},
+		{
+			"from": "/product/bernoulli-bag-green-pk-4",
+			"to": "/product/bernoulli-bag-with-teacher-s-guide"
+		},
+		{
+			"from": "/product/bernoulli-bag-green-pk-4-no-teacher-guide-2",
+			"to": "/product/bernoulli-bag"
+		},
+		{
+			"from": "/product/bias-circuit-board",
+			"to": "/product/bias-circuit-board-without-battery"
+		},
+		{
+			"from": "/product/bicycle-wheel-2",
+			"to": "/product/bicycle-wheel-gyroscope"
+		},
+		{
+			"from": "/product/bioplast-biological-symmetry-2",
+			"to": "/product/bioplast-mount"
+		},
+		{
+			"from": "/product/bioplast-cabbage-butterfly-life-history-bioplast-mounts",
+			"to": "/product/bioplast-mount"
+		},
+		{
+			"from": "/product/bioplast-honey-bee-life-history",
+			"to": "/product/bioplast-mount"
+		},
+		{
+			"from": "/product/bioplast-housefly-life-history",
+			"to": "/product/bioplast-mount"
+		},
+		{
+			"from": "/product/bioplast-plant-specimen-set-4-2",
+			"to": "/product/bioplast-mount"
+		},
+		{
+			"from": "/product/bioplast-sea-life-specimen-set-4",
+			"to": "/product/bioplast-mount"
+		},
+		{
+			"from": "/product/blood-typing-tray-2",
+			"to": "/product/blood-typing-tray"
+		},
+		{
+			"from": "/product/blue-litmus-paper-pk-100-2",
+			"to": "/product/litmus-paper"
+		},
+		{
+			"from": "/product/bottle-connector-2",
+			"to": "/product/bottle-connector"
+		},
+		{
+			"from": "/product/bottle-dropping-flint-glass-15ml-12-pk",
+			"to": "/product/bottle-dropping-flint-glass"
+		},
+		{
+			"from": "/product/bowles-stethoscope-diaphragm-type-2",
+			"to": "/product/stethoscope-bowles-type"
+		},
+		{
+			"from": "/product/brass-hooked-weight-20-g-set-of-10",
+			"to": "/product/hooked-weight"
+		},
+		{
+			"from": "/product/brass-hooked-weight-200-g",
+			"to": "/product/hooked-weight"
+		},
+		{
+			"from": "/product/brass-hooked-weight-50-g",
+			"to": "/product/hooked-weight"
+		},
+		{
+			"from": "/product/bucket-and-cylinder-2",
+			"to": "/product/bucket-and-cylinder"
+		},
+		{
+			"from": "/product/bug-viewer-extra-large-2-5x-2",
+			"to": "/product/bug-viewer-extra-large"
+		},
+		{
+			"from": "/product/bulb-holder-with-fahnestock-clips-pk-10-2",
+			"to": "/product/miniature-lamp-holder"
+		},
+		{
+			"from": "/product/bumper-cars-pair-2",
+			"to": "/product/bumper-cars"
+		},
+		{
+			"from": "/product/buret-mohr-borosilicate-glass-50-ml",
+			"to": "/product/buret"
+		},
+		{
+			"from": "/product/buret-straight-glass-stopcock-geissler-type-100-ml",
+			"to": "/product/buret"
+		},
+		{
+			"from": "/product/buret-with-screw-type-ptfe-stopcock-50-ml",
+			"to": "/product/buret"
+		},
+		{
+			"from": "/product/burets-mohr-borosilicate-glass-100-ml",
+			"to": "/product/buret"
+		},
+		{
+			"from": "/product/burets-mohr-borosilicate-glass-25-ml",
+			"to": "/product/buret"
+		},
+		{
+			"from": "/product/burets-plastic-100-ml",
+			"to": "/product/buret"
+		},
+		{
+			"from": "/product/burets-plastic-25-ml",
+			"to": "/product/buret"
+		},
+		{
+			"from": "/product/burets-plastic-50-ml",
+			"to": "/product/buret"
+		},
+		{
+			"from": "/product/burets-straight-glass-stopcock-geissler-type-25-ml",
+			"to": "/product/buret"
+		},
+		{
+			"from": "/product/burets-straight-glass-stopcock-geissler-type-50-ml",
+			"to": "/product/buret"
+		},
+		{
+			"from": "/product/burets-straight-ptfe-stopcock-geissler-type-100-ml",
+			"to": "/product/buret"
+		},
+		{
+			"from": "/product/burets-straight-ptfe-stopcock-geissler-type-25-ml",
+			"to": "/product/buret"
+		},
+		{
+			"from": "/product/burets-straight-ptfe-stopcock-geissler-type-50-ml",
+			"to": "/product/buret"
+		},
+		{
+			"from": "/product/burets-with-screw-type-ptfe-stopcock-100-ml",
+			"to": "/product/buret"
+		},
+		{
+			"from": "/product/burner-only-for-stirling-generator",
+			"to": "/product/stirling-generator-burner-only"
+		},
+		{
+			"from": "/product/burner-wing-tops-18mm-11-16-2",
+			"to": "/product/burner-wing-tops"
+		},
+		{
+			"from": "/product/burner-wing-tops-7-16-2",
+			"to": "/product/burner-wing-tops"
+		},
+		{
+			"from": "/product/butterfly-cage-pavilion",
+			"to": "/product/butterfly-pavilion-hanging-butterfly-cage"
+		},
+		{
+			"from": "/product/buzzer-with-lead-wires-1-5v-2",
+			"to": "/product/buzzer-with-lead-wires"
+		},
+		{
+			"from": "/product/buzzer-with-lead-wires-3v-24v",
+			"to": "/product/buzzer-with-lead-wires"
+		},
+		{
+			"from": "/product/c-clamps-4-2",
+			"to": "/product/c-clamp"
+		},
+		{
+			"from": "/product/caffeine-mug-with-handle-400-ml",
+			"to": "/product/mug-caffeine-molecular-structure"
+		},
+		{
+			"from": "/product/calorimeter-set-2-2",
+			"to": "/product/calorimeter"
+		},
+		{
+			"from": "/product/candle-holder-for-optical-bench-2",
+			"to": "/product/candle-holder-for-optical-bench"
+		},
+		{
+			"from": "/product/capillary-tube-set-communicating-capillaries-2",
+			"to": "/product/capillary-tube-set-communicating-capillaries"
+		},
+		{
+			"from": "/product/carbon-electrode-rod-9-2",
+			"to": "/product/electrode"
+		},
+		{
+			"from": "/product/carbon-rod-4-pk-10-2",
+			"to": "/product/carbon-rod"
+		},
+		{
+			"from": "/product/carboy-2-64-gal",
+			"to": "/product/carboy"
+		},
+		{
+			"from": "/product/carboy-5-28-gal",
+			"to": "/product/carboy"
+		},
+		{
+			"from": "/product/carboy-with-stop-2-5-gallons",
+			"to": "/product/carboy"
+		},
+		{
+			"from": "/product/carboy-with-stop-5-gallons",
+			"to": "/product/carboy"
+		},
+		{
+			"from": "/product/case-only-for-geometric-optics-demo-set",
+			"to": "/product/geometric-optics-demo-case-only"
+		},
+		{
+			"from": "/product/cast-iron-support-ring-2-5",
+			"to": "/product/cast-iron-support-ring"
+		},
+		{
+			"from": "/product/cast-iron-support-rings-3-2",
+			"to": "/product/cast-iron-support-ring"
+		},
+		{
+			"from": "/product/cast-iron-support-rings-4-2",
+			"to": "/product/cast-iron-support-ring"
+		},
+		{
+			"from": "/product/cast-iron-support-stand-with-rod-8-x-5",
+			"to": "/product/support-stand"
+		},
+		{
+			"from": "/product/centrifuge-tubes-conical-bottom-graduated-15ml-2",
+			"to": "/product/centrifuge-tubes-conical-bottom-graduated"
+		},
+		{
+			"from": "/product/ceramic-bar-magnet-1-5-x-1-x-0-39",
+			"to": "/product/bar-magnet"
+		},
+		{
+			"from": "/product/chladni-plates-round-and-square-2",
+			"to": "/product/chladni-plates-round-and-square"
+		},
+		{
+			"from": "/product/chladni-plates-round-and-square-with-allen-key-and-holder",
+			"to": "/product/chladni-plates-round-and-square-with-allen-key-and"
+		},
+		{
+			"from": "/product/chrome-plated-steel-cylindrical-mass-with-hook-and-eyelet-500g-2",
+			"to": "/product/mass-cylindrical-with-hook-and-eyelet-chrome-plated"
+		},
+		{
+			"from": "/product/clamp-extension-four-prong-2",
+			"to": "/product/stand-clamp"
+		},
+		{
+			"from": "/product/classic-drinking-bird",
+			"to": "/product/drinking-bird-classic"
+		},
+		{
+			"from": "/product/coin-and-feather-demo-2",
+			"to": "/product/coin-and-feather-demo"
+		},
+		{
+			"from": "/product/color-mixing-demo-2",
+			"to": "/product/color-mixing-demo"
+		},
+		{
+			"from": "/product/color-mixing-projector-2",
+			"to": "/product/color-mixing-projector"
+		},
+		{
+			"from": "/product/color-paddles-set-18",
+			"to": "/product/color-paddles-6-colors"
+		},
+		{
+			"from": "/product/compass-0-63-pk-4",
+			"to": "/product/magnetic-compass"
+		},
+		{
+			"from": "/product/compass-magnetic-18-mm-pk-4",
+			"to": "/product/magnetic-compass"
+		},
+		{
+			"from": "/product/compass-magnetic-50mm-2",
+			"to": "/product/magnetic-compass"
+		},
+		{
+			"from": "/product/compass-magnetic-clear-back-18-mm-pk-20",
+			"to": "/product/magnetic-compass"
+		},
+		{
+			"from": "/product/complete-distillation-apparatus-set-1500-ml",
+			"to": "/product/distillation-apparatus-complete-set-borosilicate"
+		},
+		{
+			"from": "/product/complete-distillation-apparatus-set-500-ml",
+			"to": "/product/distillation-apparatus-complete-set-borosilicate"
+		},
+		{
+			"from": "/product/compound-bar-strip-2",
+			"to": "/product/compound-bar-strip"
+		},
+		{
+			"from": "/product/concave-convex-mirror-set-6-50-mm",
+			"to": "/product/mirrors-concave-convex"
+		},
+		{
+			"from": "/product/concert-pitch-aluminum-tuning-fork-set-8-with-mallet-wooden-box-2",
+			"to": "/product/tuning-fork"
+		},
+		{
+			"from": "/product/condenser-adapter-150-mm-body-inner-dia-18-mm",
+			"to": "/product/condenser-adapter"
+		},
+		{
+			"from": "/product/condenser-adapter-180-mm-24-40-joint",
+			"to": "/product/condenser-adapter"
+		},
+		{
+			"from": "/product/condenser-adapter-180-mm-body-inner-dia-25-mm",
+			"to": "/product/condenser-adapter"
+		},
+		{
+			"from": "/product/condenser-adapter-200-mm-body-inner-dia-30-mm",
+			"to": "/product/condenser-adapter"
+		},
+		{
+			"from": "/product/condenser-graham-coil-type-300-mm",
+			"to": "/product/graham-coil-condenser"
+		},
+		{
+			"from": "/product/condenser-graham-coil-type-400-mm-24-40",
+			"to": "/product/graham-coil-condenser"
+		},
+		{
+			"from": "/product/condenser-liebig-type-200-mm",
+			"to": "/product/liebig-condenser"
+		},
+		{
+			"from": "/product/condenser-liebig-type-300-mm",
+			"to": "/product/liebig-condenser"
+		},
+		{
+			"from": "/product/condenser-liebig-type-300-mm-full-length-24-40-joints",
+			"to": "/product/liebig-condenser"
+		},
+		{
+			"from": "/product/condenser-liebig-type-400-mm",
+			"to": "/product/liebig-condenser"
+		},
+		{
+			"from": "/product/condenser-liebig-type-500-mm",
+			"to": "/product/liebig-condenser"
+		},
+		{
+			"from": "/product/condenser-liebig-type-600-mm",
+			"to": "/product/liebig-condenser"
+		},
+		{
+			"from": "/product/condensers-graham-coil-type-600-mm-24-40",
+			"to": "/product/graham-coil-condenser"
+		},
+		{
+			"from": "/product/conductivity-meter-tester-10-levels",
+			"to": "/product/meter-conductivity-tester-10-levels"
+		},
+		{
+			"from": "/product/connecting-tubes-claisen-type-19-22-2",
+			"to": "/product/connecting-tube-claisen-type-borosilicate-glass-19-22"
+		},
+		{
+			"from": "/product/connecting-tubes-sidearm-type-recovery-head-2",
+			"to": "/product/connecting-tube-sidearm-type-recovery-head"
+		},
+		{
+			"from": "/product/connection-wire-with-alligator-clips-1-red-1-black-12",
+			"to": "/product/connection-wire"
+		},
+		{
+			"from": "/product/connection-wire-with-alligator-clips-1-red-1-black-24-2",
+			"to": "/product/connection-wire"
+		},
+		{
+			"from": "/product/connection-wire-with-alligator-clips-black-12",
+			"to": "/product/connection-wire"
+		},
+		{
+			"from": "/product/connection-wire-with-alligator-clips-black-24",
+			"to": "/product/connection-wire"
+		},
+		{
+			"from": "/product/connection-wire-with-alligator-clips-red-12",
+			"to": "/product/connection-wire"
+		},
+		{
+			"from": "/product/connection-wire-with-alligator-clips-red-24",
+			"to": "/product/connection-wire"
+		},
+		{
+			"from": "/product/connection-wire-with-alligator-clips-red-24-without-insulation-cover-pk-7-2",
+			"to": "/product/connection-wire"
+		},
+		{
+			"from": "/product/connection-wire-with-alligator-clips-red-36",
+			"to": "/product/connection-wire"
+		},
+		{
+			"from": "/product/connection-wire-with-alligator-clips-red-black-24-pk-6-2",
+			"to": "/product/connection-wire"
+		},
+		{
+			"from": "/product/connection-wire-with-alligator-clips-red-black-yellow-16-pk-6-2",
+			"to": "/product/connection-wire"
+		},
+		{
+			"from": "/product/connection-wire-with-alligator-clips-red-black-yellow-18-pk-6-2",
+			"to": "/product/connection-wire"
+		},
+		{
+			"from": "/product/connection-wire-with-alligator-clips-red-black-yellow-24-pk-6-2",
+			"to": "/product/connection-wire"
+		},
+		{
+			"from": "/product/connection-wire-with-alligator-clips-red-black-yellow-white-green-14-pk-10",
+			"to": "/product/connection-wire"
+		},
+		{
+			"from": "/product/connection-wire-with-alligator-clips-red-black-yellow-white-green-24-pk-5-2",
+			"to": "/product/connection-wire"
+		},
+		{
+			"from": "/product/connection-wire-with-alligator-clips-yellow-18-ea",
+			"to": "/product/connection-wire"
+		},
+		{
+			"from": "/product/cork-borer-15-mm",
+			"to": "/product/cork-borer"
+		},
+		{
+			"from": "/product/cork-borer-5-mm",
+			"to": "/product/cork-borer"
+		},
+		{
+			"from": "/product/cork-borer-7-mm",
+			"to": "/product/cork-borer"
+		},
+		{
+			"from": "/product/cork-borer-sharpener-2",
+			"to": "/product/cork-borer"
+		},
+		{
+			"from": "/product/cork-borers-set-11-2",
+			"to": "/product/cork-borer"
+		},
+		{
+			"from": "/product/cork-borers-set-3-2",
+			"to": "/product/cork-borer"
+		},
+		{
+			"from": "/product/cork-borers-set-6-2",
+			"to": "/product/cork-borer"
+		},
+		{
+			"from": "/product/counter-timer-2",
+			"to": "/product/timer-digital"
+		},
+		{
+			"from": "/product/crocodile-clips-37-mm-l-pk-10",
+			"to": "/product/crocodile-clips"
+		},
+		{
+			"from": "/product/crookes-radiometer",
+			"to": "/product/radiometer-light-mill"
+		},
+		{
+			"from": "/product/crucible-triangle-porcelain-50-mm",
+			"to": "/product/crucible-triangle"
+		},
+		{
+			"from": "/product/crucible-triangles-porcelain-60mm-2",
+			"to": "/product/crucible-triangle"
+		},
+		{
+			"from": "/product/crucibles-tall-form-porcelain-100ml-2",
+			"to": "/product/crucible"
+		},
+		{
+			"from": "/product/crucibles-tall-form-porcelain-10ml-2",
+			"to": "/product/crucible"
+		},
+		{
+			"from": "/product/crucibles-tall-form-porcelain-15ml-2",
+			"to": "/product/crucible"
+		},
+		{
+			"from": "/product/crucibles-tall-form-porcelain-18-ml",
+			"to": "/product/crucible"
+		},
+		{
+			"from": "/product/crucibles-tall-form-porcelain-30ml-2",
+			"to": "/product/crucible"
+		},
+		{
+			"from": "/product/crucibles-tall-form-porcelain-50-ml",
+			"to": "/product/crucible"
+		},
+		{
+			"from": "/product/crucibles-wide-form-porcelain-10ml-with-lid-2",
+			"to": "/product/crucible"
+		},
+		{
+			"from": "/product/crucibles-wide-form-porcelain-15ml-2",
+			"to": "/product/crucible"
+		},
+		{
+			"from": "/product/crucibles-wide-form-porcelain-30ml-2",
+			"to": "/product/crucible"
+		},
+		{
+			"from": "/product/crucibles-wide-form-porcelain-50ml-2",
+			"to": "/product/crucible"
+		},
+		{
+			"from": "/product/cubes-of-six-metals-0-75-set-6",
+			"to": "/product/cube-set-metals"
+		},
+		{
+			"from": "/product/cubes-of-six-metals-1-set-6-2",
+			"to": "/product/cube-set-metals"
+		},
+		{
+			"from": "/product/cubes-of-six-metals-3-8-9-53-mm-set-6",
+			"to": "/product/cubes-of-six-metals"
+		},
+		{
+			"from": "/product/cylinder-for-density-determination-aluminum-2",
+			"to": "/product/cylinder-for-density-determination"
+		},
+		{
+			"from": "/product/cylindrical-mass-with-hook-1000-g",
+			"to": "/product/mass-cylindrical-with-hook-cast-iron"
+		},
+		{
+			"from": "/product/cylindrical-mass-with-hook-50-g",
+			"to": "/product/mass-cylindrical-with-hook-cast-iron"
+		},
+		{
+			"from": "/product/cylindrical-mass-with-hook-500-g",
+			"to": "/product/mass-cylindrical-with-hook-cast-iron"
+		},
+		{
+			"from": "/product/dc-mini-motor-with-two-lead-wires-and-alligator-clips-4-5-6-v-each",
+			"to": "/product/dc-mini-motor-with-two-lead-wires-and-alligator-clips"
+		},
+		{
+			"from": "/product/dc-motor-kit",
+			"to": "/product/dc-motor-kit-with-battery-holder"
+		},
+		{
+			"from": "/product/dc-power-supply-2",
+			"to": "/product/dc-power-supply"
+		},
+		{
+			"from": "/product/deluxe-brass-slotted-weight-set-8-with-hanger-2",
+			"to": "/product/slotted-weight"
+		},
+		{
+			"from": "/product/deluxe-trundle-wheel-2",
+			"to": "/product/trundle-wheel-deluxe"
+		},
+		{
+			"from": "/product/demonstrator-of-combination-of-3-basic-colors-2",
+			"to": "/product/demonstrator-of-combination-of-3-basic-colors"
+		},
+		{
+			"from": "/product/density-ball-2",
+			"to": "/product/density-ball"
+		},
+		{
+			"from": "/product/density-cylinder-set-6-cardboard-box-2",
+			"to": "/product/density-cylinders"
+		},
+		{
+			"from": "/product/density-kit-2",
+			"to": "/product/density-kit"
+		},
+		{
+			"from": "/product/diagnostic-aluminum-tuning-fork-set-8-vertical-wooden-box-2",
+			"to": "/product/tuning-fork"
+		},
+		{
+			"from": "/product/diamagnetic-levitation-graphite-plate-with-neodynium-magnets",
+			"to": "/product/diamagnetic-levitation-kit-graphite-plate-with"
+		},
+		{
+			"from": "/product/diffraction-gratings-100-2400-2",
+			"to": "/product/diffraction-grating"
+		},
+		{
+			"from": "/product/diffraction-gratings-300-7500-2",
+			"to": "/product/diffraction-grating"
+		},
+		{
+			"from": "/product/digital-anemometer",
+			"to": "/product/anemometer-gm816"
+		},
+		{
+			"from": "/product/digital-anemometer-2",
+			"to": "/product/anemometer-gm816"
+		},
+		{
+			"from": "/product/digital-hot-plate-2",
+			"to": "/product/hot-plate-digital"
+		},
+		{
+			"from": "/product/digital-instant-read-thermometer-c-f-2",
+			"to": "/product/thermometer"
+		},
+		{
+			"from": "/product/digital-instant-read-thermometer-celsius-fahrenheit-long-stem-2",
+			"to": "/product/thermometer"
+		},
+		{
+			"from": "/product/digital-lux-meter-2",
+			"to": "/product/lux-meter-digital"
+		},
+		{
+			"from": "/product/digital-multimeter",
+			"to": "/product/multimeter-dc-digital-economy"
+		},
+		{
+			"from": "/product/digital-stopwatch-with-lanyard-silver-black",
+			"to": "/product/stopwatch-digital-with-lanyard"
+		},
+		{
+			"from": "/product/digital-timer-with-2-photogates-2",
+			"to": "/product/photogates-with-digital-timer"
+		},
+		{
+			"from": "/product/digital-timer-with-photogates-2",
+			"to": "/product/air-track-apparatus-photogates-with-digital-timer"
+		},
+		{
+			"from": "/product/digital-vernier-caliper",
+			"to": "/product/caliper"
+		},
+		{
+			"from": "/product/discharge-electrode-2",
+			"to": "/product/discharge-electrode"
+		},
+		{
+			"from": "/product/dish-tongs-hold-75mm-to-125mm-length-25cm-2",
+			"to": "/product/tongs"
+		},
+		{
+			"from": "/product/disposable-graduated-pipette-1-ml-pk-500",
+			"to": "/product/disposable-graduated-pipette"
+		},
+		{
+			"from": "/product/disposable-graduated-pipette-3-ml-pk-500",
+			"to": "/product/disposable-graduated-pipette"
+		},
+		{
+			"from": "/product/disposable-graduated-pipette-3ml-pk-100",
+			"to": "/product/disposable-graduated-pipette"
+		},
+		{
+			"from": "/product/disposable-graduated-pipette-5-ml-pk-500",
+			"to": "/product/disposable-graduated-pipette"
+		},
+		{
+			"from": "/product/disposable-graduated-pipette-5ml-pk-100",
+			"to": "/product/disposable-graduated-pipette"
+		},
+		{
+			"from": "/product/disposable-spot-plate-pk-15",
+			"to": "/product/spot-plate-disposable-12-depressions"
+		},
+		{
+			"from": "/product/dissecting-forceps-economy-4-5",
+			"to": "/product/forceps"
+		},
+		{
+			"from": "/product/dissecting-straight-scissors-iris-4-5",
+			"to": "/product/scissors-dissecting"
+		},
+		{
+			"from": "/product/dissecting-straight-scissors-sharp-sharp-4-5",
+			"to": "/product/scissors-dissecting"
+		},
+		{
+			"from": "/product/dissection-pan-with-wax-11-25-x-7-5-x-1-5-28-58-x-19-05-x-3-81cm",
+			"to": "/product/dissection-pan-with-wax-stainless-steel"
+		},
+		{
+			"from": "/product/dissection-pan-without-wax-11-25-x-7-5-x-1-5-28-58-x-19-05-x-3-81-cm",
+			"to": "/product/dissection-pan-without-wax-stainless-steel"
+		},
+		{
+			"from": "/product/distillation-apparatus-1500-ml",
+			"to": "/product/distillation-apparatus-borosilicate-glass"
+		},
+		{
+			"from": "/product/distillation-apparatus-500-ml",
+			"to": "/product/distillation-apparatus-borosilicate-glass"
+		},
+		{
+			"from": "/product/distillation-bent-105-14-20-joints-100-mm-w-x-100-mm-h",
+			"to": "/product/distillation-adapter-bent-joint-14-20-100"
+		},
+		{
+			"from": "/product/distillation-bent-105-19-22-joint-130-mm-w-x-100-mm-h",
+			"to": "/product/distillation-adapter-bent-joint-19-22-104"
+		},
+		{
+			"from": "/product/distillation-bent-75-14-20-joints-55-mm-w-x-50-mm-h",
+			"to": "/product/distillation-adapter-bent-joint-14-20"
+		},
+		{
+			"from": "/product/distillation-bent-75-19-22-joints",
+			"to": "/product/distillation-adapter-bent-joint-19-22"
+		},
+		{
+			"from": "/product/distillation-bent-75-29-42-joints-140-mm-w-x-130-mm-h",
+			"to": "/product/distillation-adapter-bent-joint-29-42"
+		},
+		{
+			"from": "/product/distillation-connecting-tube-bent-2",
+			"to": "/product/connecting-tube-distillation-bent"
+		},
+		{
+			"from": "/product/distillation-connecting-tube-straight-2",
+			"to": "/product/connecting-tube-distillation-straight"
+		},
+		{
+			"from": "/product/distilling-flask-with-side-arm-125-ml",
+			"to": "/product/distilling-flask-with-side-arm"
+		},
+		{
+			"from": "/product/distilling-flask-with-side-arm-250-ml",
+			"to": "/product/distilling-flask-with-side-arm"
+		},
+		{
+			"from": "/product/distilling-flask-with-side-arm-50-ml",
+			"to": "/product/distilling-flask-with-side-arm"
+		},
+		{
+			"from": "/product/distilling-flask-with-side-arm-500-ml",
+			"to": "/product/distilling-flask-with-side-arm"
+		},
+		{
+			"from": "/product/doppler-effect-demo-set-2",
+			"to": "/product/doppler-effect-demo-set"
+		},
+		{
+			"from": "/product/double-buret-clamp",
+			"to": "/product/stand-clamp"
+		},
+		{
+			"from": "/product/double-economy-buret-clamp",
+			"to": "/product/stand-clamp"
+		},
+		{
+			"from": "/product/double-lens-folding-pocket-magnifier-2",
+			"to": "/product/folding-magnifier"
+		},
+		{
+			"from": "/product/double-plastic-pulley-2",
+			"to": "/product/pulley"
+		},
+		{
+			"from": "/product/dropping-bottles-125ml-12-pk",
+			"to": "/product/dropping-bottles-with-screw-cap-and-lid"
+		},
+		{
+			"from": "/product/dropping-bottles-250ml-12-pk",
+			"to": "/product/dropping-bottles-with-screw-cap-and-lid"
+		},
+		{
+			"from": "/product/dropping-bottles-30ml-12-pk",
+			"to": "/product/dropping-bottles-with-screw-cap-and-lid"
+		},
+		{
+			"from": "/product/drying-tubes-150-mm-x-20-mm",
+			"to": "/product/drying-tubes-borosilicate-glass"
+		},
+		{
+			"from": "/product/dual-lever-balance-2",
+			"to": "/product/balance-lever-dual-range"
+		},
+		{
+			"from": "/product/dynamic-trolley-2",
+			"to": "/product/dynamic-trolley"
+		},
+		{
+			"from": "/product/economy-drying-rack",
+			"to": "/product/drying-rack-economy"
+		},
+		{
+			"from": "/product/economy-electrophoresis-tank",
+			"to": "/product/electrophoresis-tank-economy"
+		},
+		{
+			"from": "/product/edu-drum-2",
+			"to": "/product/edu-drum"
+		},
+		{
+			"from": "/product/electric-bell-2",
+			"to": "/product/electric-bell"
+		},
+		{
+			"from": "/product/electric-bell-with-copper-cylinder",
+			"to": "/product/bell-with-copper-cylinder"
+		},
+		{
+			"from": "/product/electric-calorimeter-2",
+			"to": "/product/calorimeter-electric"
+		},
+		{
+			"from": "/product/electric-energy-set-2",
+			"to": "/product/electric-energy-kit"
+		},
+		{
+			"from": "/product/electric-paint-pen",
+			"to": "/product/electric-paint-sachet"
+		},
+		{
+			"from": "/product/electrode-carbon-pair",
+			"to": "/product/electrode"
+		},
+		{
+			"from": "/product/electrodes-flat-with-binding-posts-carbon-2",
+			"to": "/product/electrode"
+		},
+		{
+			"from": "/product/electrodes-flat-without-binding-posts-copper-0-75-x-5-25-x-0-05-pk-16",
+			"to": "/product/electrode"
+		},
+		{
+			"from": "/product/electrodes-flat-without-binding-posts-zinc-0-75-x-5-25-x-0-05-pk-16",
+			"to": "/product/electrode"
+		},
+		{
+			"from": "/product/electromagnet-2",
+			"to": "/product/electromagnet"
+		},
+		{
+			"from": "/product/electrophoresis-economy-tank-9v",
+			"to": "/product/electrophoresis-tank-economy"
+		},
+		{
+			"from": "/product/electrophoresis-power-source-2",
+			"to": "/product/electrophoresis-power-source"
+		},
+		{
+			"from": "/product/electrophoresis-tank-2",
+			"to": "/product/electrophoresis-tank"
+		},
+		{
+			"from": "/product/electroscope-flask-2",
+			"to": "/product/electroscope-flask-type"
+		},
+		{
+			"from": "/product/electroscope-pith-ball-2",
+			"to": "/product/electroscope-pith-ball-type"
+		},
+		{
+			"from": "/product/electrostatic-discharge-tongs-adjustable-2",
+			"to": "/product/tongs"
+		},
+		{
+			"from": "/product/erlenmeyer-flask-with-handle-250-ml",
+			"to": "/product/flask-erlenmeyer-wide-neck-graduated-with-handle"
+		},
+		{
+			"from": "/product/erlenmeyer-flask-with-handle-500-ml",
+			"to": "/product/erlenmeyer-flask-wide-neck-with-handle"
+		},
+		{
+			"from": "/product/evaporating-basins-porcelain-3-2",
+			"to": "/product/evaporating-basins-porcelain-3"
+		},
+		{
+			"from": "/product/evaporating-basins-porcelain-3-33",
+			"to": "/product/evaporating-basins-porcelain-3"
+		},
+		{
+			"from": "/product/extension-clamp-with-rubber-covered-jaws-2",
+			"to": "/product/stand-clamp"
+		},
+		{
+			"from": "/product/extractor-of-soxhlet-apparatus-top-joint-103-60",
+			"to": "/product/extractor-of-soxhlet-apparatus-103-60-top-joint-29-42"
+		},
+		{
+			"from": "/product/extractor-of-soxhlet-apparatus-top-joint-34-45",
+			"to": "/product/extractor-of-soxlet-apparatus-34-35-top-joint-24-40"
+		},
+		{
+			"from": "/product/extractor-of-soxhlet-apparatus-top-joint-45-50",
+			"to": "/product/extractor-of-soxhlet-apparatus-45-50-top-joint-24-40"
+		},
+		{
+			"from": "/product/extractor-of-soxhlet-apparatus-top-joint-55-50",
+			"to": "/product/extractor-of-soxhlet-apparatus-55-50-top-joint-24-40"
+		},
+		{
+			"from": "/product/extractor-of-soxhlet-apparatus-top-joint-71-60",
+			"to": "/product/extractor-of-soxhlet-apparatus-71-60-top-joint-29-42"
+		},
+		{
+			"from": "/product/eyepiece-huygenian-10x-2",
+			"to": "/product/microscope-eyepiece"
+		},
+		{
+			"from": "/product/eyepiece-microscope-widefield-10x",
+			"to": "/product/microscope-eyepiece"
+		},
+		{
+			"from": "/product/eyepiece-widefield-10x-2",
+			"to": "/product/microscope-eyepiece"
+		},
+		{
+			"from": "/product/fabric-100-dark-wool-6x6-pk-8",
+			"to": "/product/fabric-100-dark-wool"
+		},
+		{
+			"from": "/product/fahnestock-clip-2",
+			"to": "/product/fahnestock-clip"
+		},
+		{
+			"from": "/product/fan-cart-2",
+			"to": "/product/fan-cart"
+		},
+		{
+			"from": "/product/ferrofluid-magnetic-display-2",
+			"to": "/product/ferrofluid-magnetic-display"
+		},
+		{
+			"from": "/product/filter-paper-3-5-dia-box-100",
+			"to": "/product/filter-paper-qualitative"
+		},
+		{
+			"from": "/product/filter-paper-5-dia-box-100",
+			"to": "/product/filter-paper-qualitative"
+		},
+		{
+			"from": "/product/filter-paper-qualitative-11cm-pk-100",
+			"to": "/product/filter-paper-qualitative"
+		},
+		{
+			"from": "/product/filter-pump-aspirator-brass-2",
+			"to": "/product/filter-pump-aspirator"
+		},
+		{
+			"from": "/product/filter-pump-aspirator-stainless-steel-2",
+			"to": "/product/filter-pump-aspirator"
+		},
+		{
+			"from": "/product/filtering-flask-with-side-arm-250-ml",
+			"to": "/product/filtering-flask-w-side-arm-borosilicate-glass"
+		},
+		{
+			"from": "/product/filtering-flask-with-side-arm-500-ml",
+			"to": "/product/filtering-flask-w-side-arm-borosilicate-glass"
+		},
+		{
+			"from": "/product/filtering-set",
+			"to": "/product/filtering-kit"
+		},
+		{
+			"from": "/product/fire-syringe-2",
+			"to": "/product/fire-syringe"
+		},
+		{
+			"from": "/product/flask-erlenmeyer-narrow-neck-25ml",
+			"to": "/product/flask-erlenmeyer-narrow-neck"
+		},
+		{
+			"from": "/product/flask-erlenmeyer-narrow-neck-50ml-2",
+			"to": "/product/flask-erlenmeyer-narrow-neck"
+		},
+		{
+			"from": "/product/flask-erlenmeyer-narrow-neck-conical-graduated-1000ml-2",
+			"to": "/product/flask-erlenmeyer-narrow-neck-conical-graduated"
+		},
+		{
+			"from": "/product/flask-erlenmeyer-narrow-neck-conical-graduated-125-ml",
+			"to": "/product/flask-erlenmeyer-narrow-neck-conical-graduated"
+		},
+		{
+			"from": "/product/flask-erlenmeyer-narrow-neck-conical-graduated-250-ml",
+			"to": "/product/flask-erlenmeyer-narrow-neck-conical-graduated"
+		},
+		{
+			"from": "/product/flask-erlenmeyer-narrow-neck-conical-graduated-500ml-2",
+			"to": "/product/flask-erlenmeyer-narrow-neck-conical-graduated"
+		},
+		{
+			"from": "/product/flask-erlenmeyer-wide-neck-conical-graduated-1000ml-2",
+			"to": "/product/flask-erlenmeyer-wide-neck-conical-graduated"
+		},
+		{
+			"from": "/product/flask-erlenmeyer-wide-neck-conical-graduated-25-ml-2",
+			"to": "/product/flask-erlenmeyer-wide-neck-conical-graduated"
+		},
+		{
+			"from": "/product/flask-erlenmeyer-wide-neck-conical-graduated-50-ml-2",
+			"to": "/product/flask-erlenmeyer-wide-neck-conical-graduated"
+		},
+		{
+			"from": "/product/flask-erlenmeyer-wide-neck-conical-graduated-500ml-2",
+			"to": "/product/flask-erlenmeyer-wide-neck-conical-graduated"
+		},
+		{
+			"from": "/product/flat-electrode-brass",
+			"to": "/product/electrode"
+		},
+		{
+			"from": "/product/flat-electrodes-aluminum",
+			"to": "/product/electrode"
+		},
+		{
+			"from": "/product/flat-electrodes-copper",
+			"to": "/product/electrode"
+		},
+		{
+			"from": "/product/flat-electrodes-iron",
+			"to": "/product/electrode"
+		},
+		{
+			"from": "/product/flat-electrodes-zinc",
+			"to": "/product/electrode"
+		},
+		{
+			"from": "/product/flexible-clamp-2",
+			"to": "/product/stand-clamp"
+		},
+		{
+			"from": "/product/foil-electroscope-2",
+			"to": "/product/foil-electroscope"
+		},
+		{
+			"from": "/product/foldable-meter-stick",
+			"to": "/product/meter-stick-folding"
+		},
+		{
+			"from": "/product/foldable-meter-stick-2",
+			"to": "/product/meter-stick-folding"
+		},
+		{
+			"from": "/product/friction-block-four-sided-2",
+			"to": "/product/friction-block-four-sided"
+		},
+		{
+			"from": "/product/friction-pad-exciting-pad-silk-flannel-2",
+			"to": "/product/friction-pad"
+		},
+		{
+			"from": "/product/friction-pad-exciting-pad-wool-flannel-2",
+			"to": "/product/friction-pad"
+		},
+		{
+			"from": "/product/friction-rod-ebonite-hard-rubber-2",
+			"to": "/product/friction-rod"
+		},
+		{
+			"from": "/product/friction-rod-set-2",
+			"to": "/product/friction-rod"
+		},
+		{
+			"from": "/product/friction-rod-solid-soda-glass-2",
+			"to": "/product/friction-rod"
+		},
+		{
+			"from": "/product/frog-dissection-model-2",
+			"to": "/product/model"
+		},
+		{
+			"from": "/product/funnel-buchner-porcelain-150-mm-id",
+			"to": "/product/funnel-buchner"
+		},
+		{
+			"from": "/product/funnel-buchner-porcelain-250-mm",
+			"to": "/product/funnel-buchner"
+		},
+		{
+			"from": "/product/funnel-buchner-porcelain-90-mm",
+			"to": "/product/funnel-buchner"
+		},
+		{
+			"from": "/product/funnel-short-stem-45mm-2",
+			"to": "/product/funnel-short-stem"
+		},
+		{
+			"from": "/product/funnels-hirsch-porcelain-100mm-2",
+			"to": "/product/funnel-hirsch"
+		},
+		{
+			"from": "/product/funnels-hirsch-porcelain-75mm-2",
+			"to": "/product/funnel-hirsch"
+		},
+		{
+			"from": "/product/galileo-thermometer-13-h-f",
+			"to": "/product/thermometer"
+		},
+		{
+			"from": "/product/gas-convection-apparatus-2",
+			"to": "/product/gas-convection-apparatus"
+		},
+		{
+			"from": "/product/general-purpose-weight-set-8-in-wooden-box-1-50-g",
+			"to": "/product/weight-set-in-wooden-box"
+		},
+		{
+			"from": "/product/geometric-optics-demo",
+			"to": "/product/laser-optical-disc-set"
+		},
+		{
+			"from": "/product/geometric-solid-hardwood-set-6-2",
+			"to": "/product/geometric-solid-set"
+		},
+		{
+			"from": "/product/giant-floating-ring-set-2",
+			"to": "/product/giant-floating-ring-set"
+		},
+		{
+			"from": "/product/giant-plastic-horseshoe-magnet-210mm-2",
+			"to": "/product/horseshoe-magnet"
+		},
+		{
+			"from": "/product/giant-prism-2",
+			"to": "/product/prism-giant"
+		},
+		{
+			"from": "/product/glass-alcohol-burner-lamp-2",
+			"to": "/product/alcohol-burner"
+		},
+		{
+			"from": "/product/glass-bell-jar-only-replacement-part",
+			"to": "/product/vacuum-bell-jar-demo-bell-jar-only"
+		},
+		{
+			"from": "/product/glass-coverslips-0-88-x-0-88-pk-100",
+			"to": "/product/coverslips"
+		},
+		{
+			"from": "/product/glass-folding-magnifier-stand-4-33",
+			"to": "/product/folding-magnifier"
+		},
+		{
+			"from": "/product/glass-lens-demonstration-1-5-dia-set-6-in-wooden-box",
+			"to": "/product/lens-demonstration-set"
+		},
+		{
+			"from": "/product/glass-lens-demonstration-2-dia-set-6-in-plastic-box-2",
+			"to": "/product/lens-demonstration-set"
+		},
+		{
+			"from": "/product/glass-lens-demonstration-2-dia-set-6-in-wooden-box-2",
+			"to": "/product/lens-demonstration-set"
+		},
+		{
+			"from": "/product/glass-spherical-convex-concave-mirrors-3-dia-x-8-fl-2",
+			"to": "/product/mirrors-spherical-convex-concave-dia-x-fl"
+		},
+		{
+			"from": "/product/glassine-weighing-paper-6-x-6-pk-500",
+			"to": "/product/weighing-paper-glassine"
+		},
+		{
+			"from": "/product/graduated-borosilicate-glass-beaker-100-ml",
+			"to": "/product/beaker-graduated-borosilicate-glass"
+		},
+		{
+			"from": "/product/graduated-borosilicate-glass-beaker-100-ml-pk-12",
+			"to": "/product/beaker-graduated-borosilicate-glass"
+		},
+		{
+			"from": "/product/graduated-borosilicate-glass-beaker-1000-ml",
+			"to": "/product/beaker-graduated-borosilicate-glass"
+		},
+		{
+			"from": "/product/graduated-borosilicate-glass-beaker-2000-ml",
+			"to": "/product/beaker-graduated-borosilicate-glass"
+		},
+		{
+			"from": "/product/graduated-borosilicate-glass-beaker-250-ml-pk-12",
+			"to": "/product/beaker-graduated-borosilicate-glass"
+		},
+		{
+			"from": "/product/graduated-borosilicate-glass-beaker-400-ml-pk-8",
+			"to": "/product/beaker-graduated-borosilicate-glass"
+		},
+		{
+			"from": "/product/graduated-borosilicate-glass-beaker-50-ml",
+			"to": "/product/beaker-graduated-borosilicate-glass"
+		},
+		{
+			"from": "/product/graduated-borosilicate-glass-beaker-500-ml-pk-8",
+			"to": "/product/beaker-graduated-borosilicate-glass"
+		},
+		{
+			"from": "/product/grain-of-wheat-bulb-pk-100-2",
+			"to": "/product/led-bulbs-grain-of-wheat-type"
+		},
+		{
+			"from": "/product/green-cotton-pulley-thread-2",
+			"to": "/product/pulley-thread-cotton"
+		},
+		{
+			"from": "/product/hand-boiler-2",
+			"to": "/product/hand-boiler"
+		},
+		{
+			"from": "/product/hand-generator-2",
+			"to": "/product/hand-generator-crank-generator"
+		},
+		{
+			"from": "/product/hand-held-round-magnifier-reading-glass-3-2",
+			"to": "/product/magnifier-reading-glass-hand-held"
+		},
+		{
+			"from": "/product/hand-microtome-2",
+			"to": "/product/hand-microtome"
+		},
+		{
+			"from": "/product/hand-pump-2",
+			"to": "/product/hand-pump"
+		},
+		{
+			"from": "/product/handle-only-for-laboratory-scoop-2",
+			"to": "/product/handle-only-for-laboratory-scoop"
+		},
+		{
+			"from": "/product/hanger-for-slotted-weights-50-g",
+			"to": "/product/slotted-weight"
+		},
+		{
+			"from": "/product/hanger-for-slotted-weights-50g-3",
+			"to": "/product/slotted-weight"
+		},
+		{
+			"from": "/product/harbottle-2",
+			"to": "/product/harbottle-air-pressure-demonstration"
+		},
+		{
+			"from": "/product/heat-conductometer-2",
+			"to": "/product/heat-conductometer"
+		},
+		{
+			"from": "/product/heat-pack-4-x-4",
+			"to": "/product/heat-pack"
+		},
+		{
+			"from": "/product/heat-pack-8-x-8",
+			"to": "/product/heat-pack"
+		},
+		{
+			"from": "/product/heavy-duty-extension-clamp-2",
+			"to": "/product/stand-clamp"
+		},
+		{
+			"from": "/product/heavy-duty-vacuum-bottle",
+			"to": "/product/heavy-duty-vacuum-bottle-autoclavable-polypropylene"
+		},
+		{
+			"from": "/product/hoffman-electrolysis-apparatus-complete",
+			"to": "/product/hoffman-electrolysis-apparatus"
+		},
+		{
+			"from": "/product/hoffman-screw-closed-clamp-2",
+			"to": "/product/clamp-hoffman-screw-closed"
+		},
+		{
+			"from": "/product/holders-and-allen-key-2",
+			"to": "/product/holders-and-allen-key"
+		},
+		{
+			"from": "/product/hook-collars-0-5",
+			"to": "/product/hook-collars"
+		},
+		{
+			"from": "/product/horizontal-hand-boiler-2",
+			"to": "/product/hand-boiler"
+		},
+		{
+			"from": "/product/ice-melting-block",
+			"to": "/product/ice-melting-block-with-rings"
+		},
+		{
+			"from": "/product/inclined-plane-2",
+			"to": "/product/inclined-plane"
+		},
+		{
+			"from": "/product/induction-coil-25mm-2",
+			"to": "/product/induction-coil"
+		},
+		{
+			"from": "/product/induction-coil-50mm-2",
+			"to": "/product/induction-coil"
+		},
+		{
+			"from": "/product/iron-filings-chips-50-g-plastic-vial",
+			"to": "/product/iron-filings"
+		},
+		{
+			"from": "/product/iron-filings-coarse-500-g-plastic-bottle",
+			"to": "/product/iron-filings"
+		},
+		{
+			"from": "/product/iron-filings-fine-500-g-plastic-bottle",
+			"to": "/product/iron-filings"
+		},
+		{
+			"from": "/product/iron-filings-saver",
+			"to": "/product/iron-filings"
+		},
+		{
+			"from": "/product/junior-safety-goggles",
+			"to": "/product/safety-goggles"
+		},
+		{
+			"from": "/product/knife-edge-lever-clamp-2",
+			"to": "/product/lever-clamp-knife-edge"
+		},
+		{
+			"from": "/product/knife-switch-double-pole-double-throw-dpdt-with-binding-posts",
+			"to": "/product/knife-switch-double-pole-double-throw-dpdt-with"
+		},
+		{
+			"from": "/product/knife-switch-double-pole-single-throw-dpst-with-binding-posts",
+			"to": "/product/knife-switch-double-pole-single-throw-dpst-with"
+		},
+		{
+			"from": "/product/knife-switch-single-pole-double-throw-spdt-with-binding-posts",
+			"to": "/product/knife-switch-single-pole-double-throw-spdt-with"
+		},
+		{
+			"from": "/product/knife-switch-single-pole-single-throw-spst-with-binding-posts",
+			"to": "/product/knife-switch-single-pole-single-throw-spst-with"
+		},
+		{
+			"from": "/product/laboratory-scoop-scoopula-2",
+			"to": "/product/spatula-scoopula"
+		},
+		{
+			"from": "/product/large-acrylic-pendulum-wave-demo",
+			"to": "/product/pendulum-wave-demo-large-clear-acrylic"
+		},
+		{
+			"from": "/product/large-fast-release-filler",
+			"to": "/product/pipette-pump-filler"
+		},
+		{
+			"from": "/product/large-inclined-plane-2",
+			"to": "/product/inclined-plane-large-pulley-included"
+		},
+		{
+			"from": "/product/large-plastic-container-2",
+			"to": "/product/sand-container-for-chladni-plates-kit-large"
+		},
+		{
+			"from": "/product/laser-only-for-geometric-optics-demo",
+			"to": "/product/laser-only-for-geometric-optics-demo-5133-00"
+		},
+		{
+			"from": "/product/laser-pointer-green",
+			"to": "/product/laser-pointer"
+		},
+		{
+			"from": "/product/laser-pointer-red",
+			"to": "/product/laser-pointer"
+		},
+		{
+			"from": "/product/laser-refraction-tank",
+			"to": "/product/laser-refraction-tank-kit-with-laser-and-batteries"
+		},
+		{
+			"from": "/product/led-ant-habitat",
+			"to": "/product/ant-habitat-led-gel"
+		},
+		{
+			"from": "/product/led-array-2",
+			"to": "/product/led-array"
+		},
+		{
+			"from": "/product/led-grain-of-wheat-bulb-pk-100",
+			"to": "/product/led-bulbs-grain-of-wheat-type"
+		},
+		{
+			"from": "/product/lens-and-mirror-support-for-optical-bench-2",
+			"to": "/product/lens-and-mirror-support-for-optical-bench"
+		},
+		{
+			"from": "/product/lens-spherical-unmounted-bi-concave-38-mm-x-100-mm",
+			"to": "/product/bi-concave-spherical-lens"
+		},
+		{
+			"from": "/product/lens-spherical-unmounted-bi-concave-38-mm-x-150-mm",
+			"to": "/product/bi-concave-spherical-lens"
+		},
+		{
+			"from": "/product/lens-spherical-unmounted-bi-concave-38-mm-x-500-mm",
+			"to": "/product/bi-concave-spherical-lens"
+		},
+		{
+			"from": "/product/lens-spherical-unmounted-bi-concave-50-mm-x-150-mm",
+			"to": "/product/bi-concave-spherical-lens"
+		},
+		{
+			"from": "/product/lens-spherical-unmounted-bi-concave-50-mm-x-200-mm",
+			"to": "/product/bi-concave-spherical-lens"
+		},
+		{
+			"from": "/product/lens-spherical-unmounted-bi-concave-50-mm-x-500-mm",
+			"to": "/product/bi-concave-spherical-lens"
+		},
+		{
+			"from": "/product/lens-spherical-unmounted-bi-concave-50-mm-x-500-mm-2",
+			"to": "/product/bi-concave-spherical-lens"
+		},
+		{
+			"from": "/product/lenses-acrylic-bi-concave-2",
+			"to": "/product/acrylic-lens"
+		},
+		{
+			"from": "/product/lenses-acrylic-bi-convex-90x15mm-2",
+			"to": "/product/acrylic-lens"
+		},
+		{
+			"from": "/product/lenses-cylindrical-glass-bi-concave-2",
+			"to": "/product/cylindrical-lens"
+		},
+		{
+			"from": "/product/lenses-cylindrical-glass-bi-convex-2",
+			"to": "/product/cylindrical-lens"
+		},
+		{
+			"from": "/product/lenses-cylindrical-glass-power-14d-bi-concave-2",
+			"to": "/product/cylindrical-lens"
+		},
+		{
+			"from": "/product/lenses-cylindrical-glass-power-14d-plano-concave-2",
+			"to": "/product/cylindrical-lens"
+		},
+		{
+			"from": "/product/lenses-cylindrical-glass-power-14d-plano-convex-2",
+			"to": "/product/cylindrical-lens"
+		},
+		{
+			"from": "/product/lenses-spherical-unmounted-bi-concave-lens-diameter-38mm-focal-length-150mm-2",
+			"to": "/product/bi-concave-spherical-lens"
+		},
+		{
+			"from": "/product/lenses-spherical-unmounted-bi-concave-lens-diameter-38mm-focal-length-300mm-2",
+			"to": "/product/bi-concave-spherical-lens"
+		},
+		{
+			"from": "/product/lenses-spherical-unmounted-bi-concave-lens-diameter-50mm-focal-length-100mm-2",
+			"to": "/product/bi-concave-spherical-lens"
+		},
+		{
+			"from": "/product/lenses-spherical-unmounted-bi-concave-lens-diameter-50mm-focal-length-150mm-2",
+			"to": "/product/bi-concave-spherical-lens"
+		},
+		{
+			"from": "/product/lenses-spherical-unmounted-bi-convex-lens-diameter-50mm-focal-length-50mm-2",
+			"to": "/product/bi-convex-spherical-lens"
+		},
+		{
+			"from": "/product/lightning-ball-8-220v",
+			"to": "/product/lightning-ball"
+		},
+		{
+			"from": "/product/lightning-ball-8-discontinued-style-2",
+			"to": "/product/lightning-ball-discontinued"
+		},
+		{
+			"from": "/product/linear-expansion-apparatus-economy-2",
+			"to": "/product/linear-expansion-apparatus-economy"
+		},
+		{
+			"from": "/product/liquid-convection-apparatus-2",
+			"to": "/product/liquid-convection-apparatus"
+		},
+		{
+			"from": "/product/liquid-expansion-bulb-2",
+			"to": "/product/liquid-expansion-bulb"
+		},
+		{
+			"from": "/product/long-metal-spring-3-x-6",
+			"to": "/product/spring"
+		},
+		{
+			"from": "/product/longitudinal-wave-cord-kit-2",
+			"to": "/product/longitudinal-wave-cord-kit"
+		},
+		{
+			"from": "/product/longitudinal-wave-spring-kit-2",
+			"to": "/product/longitudinal-wave-spring-kit"
+		},
+		{
+			"from": "/product/loop-the-loop-2",
+			"to": "/product/loop-the-loop-demo"
+		},
+		{
+			"from": "/product/loop-the-loop-triple-2",
+			"to": "/product/loop-the-loop-triple"
+		},
+		{
+			"from": "/product/lorentz-force-demo-2",
+			"to": "/product/lorentz-force-demo"
+		},
+		{
+			"from": "/product/lung-breathing-model-2",
+			"to": "/product/model"
+		},
+		{
+			"from": "/product/magdeburg-hemisphere",
+			"to": "/product/magdeburg-hemispheres"
+		},
+		{
+			"from": "/product/magic-wire-illusion-2",
+			"to": "/product/magic-wire-illusion"
+		},
+		{
+			"from": "/product/magleads-12-black-pk-10-2",
+			"to": "/product/magleads"
+		},
+		{
+			"from": "/product/magleads-12-clear-pk-10-2",
+			"to": "/product/magleads"
+		},
+		{
+			"from": "/product/magleads-12-red-pk-10-2",
+			"to": "/product/magleads"
+		},
+		{
+			"from": "/product/magnesium-ribbon-2",
+			"to": "/product/magnesium-ribbon"
+		},
+		{
+			"from": "/product/magnet-alnico-disk-42mm-dia-x-7mm-thick-pair-2",
+			"to": "/product/disc-cylinder-magnet"
+		},
+		{
+			"from": "/product/magnet-bar-ceramic-50-mm-x-12-mm-x-7-5-mm-single",
+			"to": "/product/bar-magnet"
+		},
+		{
+			"from": "/product/magnet-bar-ceramic-74-mm-x-14-mm-x-9-mm-single",
+			"to": "/product/bar-magnet"
+		},
+		{
+			"from": "/product/magnet-circular-disc-ceramic-18x4-single-2",
+			"to": "/product/disc-cylinder-magnet"
+		},
+		{
+			"from": "/product/magnet-cylindrical-alnico-50-x10-pair-2",
+			"to": "/product/disc-cylinder-magnet"
+		},
+		{
+			"from": "/product/magnet-horseshoe-alnico-35-mm-l-x-34-mm-w-x-16-mm-thick-red-pair",
+			"to": "/product/horseshoe-magnet"
+		},
+		{
+			"from": "/product/magnet-horseshoe-steel-75-mm-single-painted-red",
+			"to": "/product/horseshoe-magnet"
+		},
+		{
+			"from": "/product/magnet-neodymium-12mm-x-4-8mm-pair",
+			"to": "/product/neodymium-magnet"
+		},
+		{
+			"from": "/product/magnet-neodymium-14mm-x-6mm-pair",
+			"to": "/product/neodymium-magnet"
+		},
+		{
+			"from": "/product/magnet-ring-ceramic-32x18x6-single-green-2",
+			"to": "/product/ring-magnet"
+		},
+		{
+			"from": "/product/magnet-ring-ceramic-32x18x6-single-red-2",
+			"to": "/product/ring-magnet"
+		},
+		{
+			"from": "/product/magnet-terminal-switch-pair-2",
+			"to": "/product/terminal-switch-magnetic"
+		},
+		{
+			"from": "/product/magnetic-compass-1-5",
+			"to": "/product/magnetic-compass"
+		},
+		{
+			"from": "/product/magnetic-field-pattern-kit-transparent-2",
+			"to": "/product/magnetic-field-pattern-viewer"
+		},
+		{
+			"from": "/product/magnetic-floating-ring-set-2",
+			"to": "/product/magnetic-floating-ring-set"
+		},
+		{
+			"from": "/product/magnetic-liquid-filled-compass-1-38-pk-12",
+			"to": "/product/magnetic-compass"
+		},
+		{
+			"from": "/product/magnetic-liquid-filled-compass-1-77",
+			"to": "/product/magnetic-compass"
+		},
+		{
+			"from": "/product/magnetic-map-compass",
+			"to": "/product/magnetic-compass"
+		},
+		{
+			"from": "/product/magnetic-model-field-2",
+			"to": "/product/magnetic-field-model"
+		},
+		{
+			"from": "/product/magnetic-pole-finder-2",
+			"to": "/product/magnetic-pole-finder"
+		},
+		{
+			"from": "/product/magnetic-stirrer-2",
+			"to": "/product/magnetic-stirrer"
+		},
+		{
+			"from": "/product/magnetic-stirrer-with-heater-5-x-5-w-uk-adapter",
+			"to": "/product/magnetic-stirrer"
+		},
+		{
+			"from": "/product/magnetic-stirrer-with-heater-7-x-7-w-uk-adapter",
+			"to": "/product/magnetic-stirrer"
+		},
+		{
+			"from": "/product/magnetic-stirrer-with-hot-plate-5-x-5",
+			"to": "/product/magnetic-stirrer"
+		},
+		{
+			"from": "/product/magnetic-stirrer-with-hot-plate-7-x-7",
+			"to": "/product/magnetic-stirrer"
+		},
+		{
+			"from": "/product/magnetic-thinking-putty",
+			"to": "/product/magnetic-putty"
+		},
+		{
+			"from": "/product/magnetic-wands-2",
+			"to": "/product/magnetic-wands"
+		},
+		{
+			"from": "/product/magnetic-wands-pk-12",
+			"to": "/product/magnetic-wands"
+		},
+		{
+			"from": "/product/magnifier-triple-lens-2x-6x-8x-clear-plastic-2",
+			"to": "/product/magnifier-triple-lens-clear-plastic"
+		},
+		{
+			"from": "/product/making-dew-kit-classroom-pack",
+			"to": "/product/making-dew-kit-pack"
+		},
+		{
+			"from": "/product/masses-set-cylindrical-with-hook-set-9",
+			"to": "/product/masses-cylindrical-with-hook"
+		},
+		{
+			"from": "/product/masses-with-hooks-on-both-sides-100g-2",
+			"to": "/product/mass-with-hook-and-eyelet"
+		},
+		{
+			"from": "/product/masses-with-hooks-on-both-sides-5g-2",
+			"to": "/product/masses-with-hook-and-eyelet"
+		},
+		{
+			"from": "/product/mat-for-the-resonance-bowl-2",
+			"to": "/product/resonance-bowl-mat"
+		},
+		{
+			"from": "/product/maxwell-wheel-2",
+			"to": "/product/maxwell-wheel"
+		},
+		{
+			"from": "/product/measuring-cylinders-metric-scale-capacity-10ml-2",
+			"to": "/product/measuring-cylinders-metric-scale"
+		},
+		{
+			"from": "/product/measuring-cylinders-metric-scale-capacity-25-2",
+			"to": "/product/measuring-cylinders-metric-scale"
+		},
+		{
+			"from": "/product/measuring-cylinders-metric-scale-capacity-50ml-2",
+			"to": "/product/measuring-cylinders-metric-scale"
+		},
+		{
+			"from": "/product/measuring-jug-short-form-1000ml",
+			"to": "/product/measuring-jug-short-form-autoclavable"
+		},
+		{
+			"from": "/product/measuring-jug-short-form-2000ml",
+			"to": "/product/measuring-jug-short-form-autoclavable"
+		},
+		{
+			"from": "/product/measuring-jug-short-form-3000ml",
+			"to": "/product/measuring-jug-short-form-autoclavable"
+		},
+		{
+			"from": "/product/measuring-jug-short-form-5000ml",
+			"to": "/product/measuring-jug-short-form-autoclavable"
+		},
+		{
+			"from": "/product/measuring-jug-short-form-500ml",
+			"to": "/product/measuring-jug-short-form-autoclavable"
+		},
+		{
+			"from": "/product/measuring-tape-metric-english-60-150-cm-pk-10",
+			"to": "/product/measuring-tape"
+		},
+		{
+			"from": "/product/medium-fast-release-filler",
+			"to": "/product/pipette-pump-filler"
+		},
+		{
+			"from": "/product/melting-point-apparatus-thermometer-kit",
+			"to": "/product/melting-point-apparatus-and-thermometer-set"
+		},
+		{
+			"from": "/product/metal-can-set-of-15-making-dew-kit-2",
+			"to": "/product/making-dew-kit-metal-cans-only"
+		},
+		{
+			"from": "/product/metal-cap-for-alcohol-burner-2",
+			"to": "/product/alcohol-burner"
+		},
+		{
+			"from": "/product/metal-cylinder-0-38-x-1-19-set-6",
+			"to": "/product/metal-cylinder-set"
+		},
+		{
+			"from": "/product/metal-cylinder-0-38-x-1-5-set-6",
+			"to": "/product/metal-cylinder-set"
+		},
+		{
+			"from": "/product/metal-disc-set-blank-25mm-pack-of-8-2",
+			"to": "/product/metal-disc-set"
+		},
+		{
+			"from": "/product/metal-disc-set-stamped-1-pk-8",
+			"to": "/product/metal-disc-set"
+		},
+		{
+			"from": "/product/metal-resonance-strips-2",
+			"to": "/product/resonance-strips-metal"
+		},
+		{
+			"from": "/product/metal-spring-3-x-2-33",
+			"to": "/product/spring"
+		},
+		{
+			"from": "/product/metal-support-stand-only-for-the-hoffman-electrolysis-2",
+			"to": "/product/support-stand"
+		},
+		{
+			"from": "/product/meter-stick-dual-scale-metal-ends-2",
+			"to": "/product/meter-stick-dual-scale-metal-ends"
+		},
+		{
+			"from": "/product/meter-stick-dual-scale-varnished-2",
+			"to": "/product/meter-stick-dual-scale-varnished"
+		},
+		{
+			"from": "/product/micro-spatula-2",
+			"to": "/product/spatula-scoopula"
+		},
+		{
+			"from": "/product/micrometer-calipers-metric-and-english-0-25-mm-plastic-case",
+			"to": "/product/caliper"
+		},
+		{
+			"from": "/product/micrometer-calipers-metric-and-english-0-25-mm-wooden-box",
+			"to": "/product/caliper"
+		},
+		{
+			"from": "/product/micrometer-calipers-micrometer-screw-gauges-metric-and-english-0-1-inch-plastic-case-2",
+			"to": "/product/caliper"
+		},
+		{
+			"from": "/product/micrometer-calipers-micrometer-screw-gauges-metric-and-english-0-1-inch-wooden-box-2",
+			"to": "/product/caliper"
+		},
+		{
+			"from": "/product/microscope-glass-slides-1-x-3-pk-72",
+			"to": "/product/microscope-slides"
+		},
+		{
+			"from": "/product/microscope-hand-held-illuminated-60-100x",
+			"to": "/product/microscope-hand-held-illuminated"
+		},
+		{
+			"from": "/product/microscope-plastic-slides-1-x-3-pk-100",
+			"to": "/product/microscope-slides"
+		},
+		{
+			"from": "/product/microscope-prism-10x-40x",
+			"to": "/product/microscope-prism"
+		},
+		{
+			"from": "/product/microscope-shinco-scope-with-set-of-slides-2",
+			"to": "/product/microscope-shinco-scope-with-set-of-slides"
+		},
+		{
+			"from": "/product/microscope-slide-box-plastic-capacity-100-slides-2",
+			"to": "/product/microscope-slide-box"
+		},
+		{
+			"from": "/product/microscope-slide-box-plastic-capacity-25-slides-2",
+			"to": "/product/microscope-slide-box"
+		},
+		{
+			"from": "/product/microscope-slide-box-plastic-capacity-50-slides-2",
+			"to": "/product/microscope-slide-box"
+		},
+		{
+			"from": "/product/microscope-slide-box-wooden-hinged-100-2",
+			"to": "/product/microscope-slide-box"
+		},
+		{
+			"from": "/product/microscope-slide-box-wooden-hinged-25-2",
+			"to": "/product/microscope-slide-box"
+		},
+		{
+			"from": "/product/microscope-slide-box-wooden-hinged-50-2",
+			"to": "/product/microscope-slide-box"
+		},
+		{
+			"from": "/product/microscope-slide-carrier-for-2-slides-2",
+			"to": "/product/microscope-slide-carrier-for-2-slides"
+		},
+		{
+			"from": "/product/microscope-slide-carrier-mailer-for-1",
+			"to": "/product/slide-mailer"
+		},
+		{
+			"from": "/product/microscope-slides-with-1-depression-pk-12",
+			"to": "/product/microscope-slide"
+		},
+		{
+			"from": "/product/microscope-slides-with-2-depressions-pk-12-2",
+			"to": "/product/microscope-slide"
+		},
+		{
+			"from": "/product/microscope-slides-with-one-side-frosted-1-x-3-pk-72",
+			"to": "/product/microscope-slide"
+		},
+		{
+			"from": "/product/microscope-slides-with-one-side-frosted-75mm-x-25mm-pk-50-2",
+			"to": "/product/microscope-slide"
+		},
+		{
+			"from": "/product/mini-fan-and-fan-holder-2",
+			"to": "/product/mini-fan-and-fan-holder"
+		},
+		{
+			"from": "/product/mini-ripple-tank",
+			"to": "/product/ripple-tank-mini"
+		},
+		{
+			"from": "/product/miniature-lamp-for-hand-held-microscope-3v-pk-10-2",
+			"to": "/product/miniature-lamp"
+		},
+		{
+			"from": "/product/miniature-lamps-1-5-v-0-3-a-pk-10",
+			"to": "/product/miniature-lamp"
+		},
+		{
+			"from": "/product/miniature-lamps-2-2-v-0-25-a-pk-10",
+			"to": "/product/miniature-lamp"
+		},
+		{
+			"from": "/product/miniature-lamps-2-5-v-0-3-a-pk-10",
+			"to": "/product/miniature-lamp"
+		},
+		{
+			"from": "/product/miniature-lamps-2-5-v-0-3-a-pk-10-2",
+			"to": "/product/miniature-lamp"
+		},
+		{
+			"from": "/product/miniature-lamps-6-3-v-0-50-a-pk-10",
+			"to": "/product/miniature-lamp"
+		},
+		{
+			"from": "/product/miniature-lamps-mini-light-bulbs-3-2v-0-35a-round-10-pk-type-a",
+			"to": "/product/miniature-lamp"
+		},
+		{
+			"from": "/product/miniature-led-lights-pk-10",
+			"to": "/product/miniature-led-lights"
+		},
+		{
+			"from": "/product/mirror-acrylic-3-5-x-2-5-pk-8-2",
+			"to": "/product/mirror"
+		},
+		{
+			"from": "/product/mirror-flat-strips-silvered-glass-unmounted-75-mm-x-75-mm",
+			"to": "/product/mirror-flat-strips-unmounted-silvered-glass"
+		},
+		{
+			"from": "/product/mirrors-spherical-concave-50x15-2",
+			"to": "/product/mirrors-spherical-concave-optical-glass"
+		},
+		{
+			"from": "/product/model-of-animal-cell-2",
+			"to": "/product/model"
+		},
+		{
+			"from": "/product/model-of-human-eye-2",
+			"to": "/product/model"
+		},
+		{
+			"from": "/product/model-of-human-lung-2",
+			"to": "/product/model"
+		},
+		{
+			"from": "/product/model-of-leaf-structure-2",
+			"to": "/product/model"
+		},
+		{
+			"from": "/product/model-of-plant-cell-2",
+			"to": "/product/model"
+		},
+		{
+			"from": "/product/model-of-plant-mitosis-2",
+			"to": "/product/model"
+		},
+		{
+			"from": "/product/model-of-the-human-brain-2",
+			"to": "/product/model"
+		},
+		{
+			"from": "/product/multi-purpose-test-support-2",
+			"to": "/product/multi-purpose-test-support"
+		},
+		{
+			"from": "/product/nesting-beakers-polypropylene",
+			"to": "/product/griffin-beaker-set-graduated"
+		},
+		{
+			"from": "/product/neutralising-lens-set-glass-2",
+			"to": "/product/lens-demonstration-set"
+		},
+		{
+			"from": "/product/new-hoffman-electrolysis-apparatus-base-rod-2-clamps-only-2",
+			"to": "/product/base-rod-2-clamps-only-for-new-hoffman"
+		},
+		{
+			"from": "/product/nitinol-memory-wire-1-ft-pk-30",
+			"to": "/product/nitinol-memory-wire"
+		},
+		{
+			"from": "/product/nitinol-memory-wire-10-ft",
+			"to": "/product/nitinol-memory-wire"
+		},
+		{
+			"from": "/product/nitinol-memory-wire-5-ft",
+			"to": "/product/nitinol-memory-wire"
+		},
+		{
+			"from": "/product/nitinol-memory-wire-50-ft",
+			"to": "/product/nitinol-memory-wire"
+		},
+		{
+			"from": "/product/non-led-ant-habitat",
+			"to": "/product/ant-habitat-non-led-gel"
+		},
+		{
+			"from": "/product/nuffield-spatula-2",
+			"to": "/product/spatula-scoopula"
+		},
+		{
+			"from": "/product/object-and-marker-for-optical-bench-2",
+			"to": "/product/object-and-marker-for-optical-bench"
+		},
+		{
+			"from": "/product/objectives-achromatic-100x-2",
+			"to": "/product/microscope-objective"
+		},
+		{
+			"from": "/product/objectives-achromatic-40xr-2",
+			"to": "/product/microscope-objective"
+		},
+		{
+			"from": "/product/objectives-achromatic-din-45x-din-r-2",
+			"to": "/product/microscope-objective"
+		},
+		{
+			"from": "/product/objectives-achromatic-din-4x-2",
+			"to": "/product/microscope-objective"
+		},
+		{
+			"from": "/product/open-manometer-2",
+			"to": "/product/manometer"
+		},
+		{
+			"from": "/product/open-manometer-replacement-manometer-and-pinchcock",
+			"to": "/product/manometer"
+		},
+		{
+			"from": "/product/optical-block-set-acrylic-2",
+			"to": "/product/optical-block-set"
+		},
+		{
+			"from": "/product/optical-glass-equilateral-prisms-2-x-1",
+			"to": "/product/glass-equilateral-prism"
+		},
+		{
+			"from": "/product/optical-glass-equilateral-prisms-3-x-1",
+			"to": "/product/glass-equilateral-prism"
+		},
+		{
+			"from": "/product/optical-glass-equilateral-prisms-4-x-1",
+			"to": "/product/glass-equilateral-prism"
+		},
+		{
+			"from": "/product/optical-glass-right-angle-prisms-1-38-x-1",
+			"to": "/product/right-angle-prism"
+		},
+		{
+			"from": "/product/optical-glass-right-angle-prisms-1-38-x-2",
+			"to": "/product/right-angle-prism"
+		},
+		{
+			"from": "/product/optical-glass-spherical-concave-mirrors-50mm-dia-x-10cm-fl",
+			"to": "/product/mirrors-spherical-concave-optical-glass"
+		},
+		{
+			"from": "/product/optical-glass-spherical-concave-mirrors-50mm-dia-x-20cm-fl",
+			"to": "/product/mirrors-spherical-concave-optical-glass"
+		},
+		{
+			"from": "/product/optical-glass-spherical-concave-mirrors-50mm-dia-x-25cm-fl",
+			"to": "/product/mirrors-spherical-concave-optical-glass"
+		},
+		{
+			"from": "/product/optical-glass-spherical-convex-mirrors-50mm-dia-x-100cm-fl",
+			"to": "/product/mirrors-spherical-convex-optical-glass"
+		},
+		{
+			"from": "/product/optical-glass-spherical-convex-mirrors-50mm-dia-x-10cm-fl",
+			"to": "/product/mirrors-spherical-convex-optical-glass"
+		},
+		{
+			"from": "/product/optical-glass-spherical-convex-mirrors-50mm-dia-x-15cm-fl",
+			"to": "/product/mirrors-spherical-convex-optical-glass"
+		},
+		{
+			"from": "/product/optical-glass-spherical-convex-mirrors-50mm-dia-x-20cm-fl",
+			"to": "/product/mirrors-spherical-convex-optical-glass"
+		},
+		{
+			"from": "/product/optical-glass-spherical-convex-mirrors-50mm-dia-x-25cm-fl",
+			"to": "/product/mirrors-spherical-convex-optical-glass"
+		},
+		{
+			"from": "/product/optical-glass-spherical-convex-mirrors-75mm-dia-x-250cm-fl",
+			"to": "/product/mirrors-spherical-convex-optical-glass"
+		},
+		{
+			"from": "/product/optical-glass-spherical-convex-mirrors-75mm-dia-x-25cm-fl",
+			"to": "/product/mirrors-spherical-convex-optical-glass"
+		},
+		{
+			"from": "/product/part-fan-only",
+			"to": "/product/part-fan-only-for-3568-00-fan-cart"
+		},
+		{
+			"from": "/product/patch-cord-alligator-clip-12-pk-6-3-red-3-black",
+			"to": "/product/connection-wire"
+		},
+		{
+			"from": "/product/pear-shaped-flask-single-neck",
+			"to": "/product/flask-pear-shape-single-neck-14-20-socket"
+		},
+		{
+			"from": "/product/pear-shaped-flask-single-neck-50-ml",
+			"to": "/product/flask-pear-shape-single-neck-19-22-socket"
+		},
+		{
+			"from": "/product/periscope-2",
+			"to": "/product/periscope"
+		},
+		{
+			"from": "/product/pestle-and-mortar-set-porcelain-100-mm",
+			"to": "/product/mortar-and-pestle-set"
+		},
+		{
+			"from": "/product/pestle-and-mortar-set-porcelain-150-mm",
+			"to": "/product/mortar-and-pestle-set"
+		},
+		{
+			"from": "/product/pestle-and-mortar-set-porcelain-200-mm",
+			"to": "/product/mortar-and-pestle-set"
+		},
+		{
+			"from": "/product/pestle-and-mortar-set-porcelain-60-mm",
+			"to": "/product/mortar-and-pestle-set"
+		},
+		{
+			"from": "/product/pestle-and-mortar-set-porcelain-75-mm",
+			"to": "/product/mortar-and-pestle-set"
+		},
+		{
+			"from": "/product/pestle-and-mortar-sets-porcelain-175mm-2",
+			"to": "/product/mortar-and-pestle-set"
+		},
+		{
+			"from": "/product/ph-paper-test-strips-1-14-pk-100-book-2",
+			"to": "/product/ph-paper-test-strips-1-14-book"
+		},
+		{
+			"from": "/product/ph-paper-test-strips-1-14-pk-100-vial-in-blister-pack-2",
+			"to": "/product/ph-paper-test-strips-1-14-vial-in-blister-pack"
+		},
+		{
+			"from": "/product/ph-test-paper-cobalt-chloride-80-pk",
+			"to": "/product/ph-test-paper-cobalt-chloride"
+		},
+		{
+			"from": "/product/pinchcock-attachment",
+			"to": "/product/pinch-cock-attachment"
+		},
+		{
+			"from": "/product/pith-ball-pk-10-2",
+			"to": "/product/pith-ball-for-electroscope"
+		},
+		{
+			"from": "/product/plastic-aa-battery-holder-pk-4",
+			"to": "/product/battery-holder"
+		},
+		{
+			"from": "/product/plastic-bioplast-mount-5-stages-frog-life-history-2",
+			"to": "/product/bioplast-mount"
+		},
+		{
+			"from": "/product/plastic-bioplast-mount-beetle-2",
+			"to": "/product/bioplast-mount"
+		},
+		{
+			"from": "/product/plastic-bioplast-mount-crab-2",
+			"to": "/product/bioplast-mount"
+		},
+		{
+			"from": "/product/plastic-bioplast-mount-wasp-2",
+			"to": "/product/bioplast-mount"
+		},
+		{
+			"from": "/product/plastic-blunt-tip-forceps-tweezers-5-each",
+			"to": "/product/forceps"
+		},
+		{
+			"from": "/product/plastic-cover-slips-0-88-x-0-88-pk-100",
+			"to": "/product/cover-slips"
+		},
+		{
+			"from": "/product/plastic-d-cell-battery-holder-pk-4-2",
+			"to": "/product/battery-holder"
+		},
+		{
+			"from": "/product/plastic-demountable-test-tube-rack-5-large-holes-2",
+			"to": "/product/test-tube-rack"
+		},
+		{
+			"from": "/product/plastic-fine-tip-forceps-tweezers-5-pk-12",
+			"to": "/product/forceps"
+		},
+		{
+			"from": "/product/plastic-funnel-2-2",
+			"to": "/product/funnel"
+		},
+		{
+			"from": "/product/plastic-funnel-2-33",
+			"to": "/product/funnel-2"
+		},
+		{
+			"from": "/product/plastic-funnel-3-2",
+			"to": "/product/funnel"
+		},
+		{
+			"from": "/product/plastic-funnel-4-2",
+			"to": "/product/funnel"
+		},
+		{
+			"from": "/product/plastic-griffin-beaker-100-ml-pk-12",
+			"to": "/product/plastic-beaker-euro-design-pp"
+		},
+		{
+			"from": "/product/plastic-griffin-beaker-1000-ml-pk-3",
+			"to": "/product/plastic-beaker-euro-design-1"
+		},
+		{
+			"from": "/product/plastic-griffin-beaker-250-ml-pk-6",
+			"to": "/product/griffin-beaker-plastic"
+		},
+		{
+			"from": "/product/plastic-griffin-beaker-50-ml-pk-12",
+			"to": "/product/plastic-beaker-euro-design-pp"
+		},
+		{
+			"from": "/product/plastic-griffin-beaker-500-ml-pk-4",
+			"to": "/product/plastic-beaker-euro-design-stackable"
+		},
+		{
+			"from": "/product/plastic-handheld-magnifier-1-5-dia-3x",
+			"to": "/product/magnifier-economy"
+		},
+		{
+			"from": "/product/plastic-handheld-magnifier-2-dia-3x-6x",
+			"to": "/product/magnifier-dual-lens-and-handheld"
+		},
+		{
+			"from": "/product/plastic-handheld-magnifier-3-dia-3x-6x-2",
+			"to": "/product/magnifier-dual-lens-and-handheld"
+		},
+		{
+			"from": "/product/plastic-handheld-magnifier-4-dia-2x-4x-magnification-2",
+			"to": "/product/magnifier-dual-lens-and-handheld"
+		},
+		{
+			"from": "/product/plastic-measuring-cylinder-10-ml-1000-ml-set-7",
+			"to": "/product/measuring-cylinder-set-graduated-1000"
+		},
+		{
+			"from": "/product/plastic-measuring-cylinder-10-ml-pk-24",
+			"to": "/product/measuring-cylinder-graduated-pp"
+		},
+		{
+			"from": "/product/plastic-measuring-cylinder-100-ml-pk-12",
+			"to": "/product/measuring-cylinder-graduated-pp"
+		},
+		{
+			"from": "/product/plastic-measuring-cylinder-1000-ml-pk-6",
+			"to": "/product/measuring-cylinder-graduated"
+		},
+		{
+			"from": "/product/plastic-measuring-cylinder-2000-ml-pk-4",
+			"to": "/product/measuring-cylinder-graduated"
+		},
+		{
+			"from": "/product/plastic-measuring-cylinder-25-ml-pk-24",
+			"to": "/product/measuring-cylinder-graduated-pp"
+		},
+		{
+			"from": "/product/plastic-measuring-cylinder-250-ml-pk-12",
+			"to": "/product/measuring-cylinder-graduated"
+		},
+		{
+			"from": "/product/plastic-measuring-cylinder-50-ml-pk-12",
+			"to": "/product/measuring-cylinder-graduated-pp"
+		},
+		{
+			"from": "/product/plastic-measuring-cylinder-500-ml-pk-4",
+			"to": "/product/measuring-cylinder-graduated"
+		},
+		{
+			"from": "/product/plastic-mirror-3-x-4",
+			"to": "/product/acrylic-mirror"
+		},
+		{
+			"from": "/product/plastic-spring-2",
+			"to": "/product/spring"
+		},
+		{
+			"from": "/product/plastic-stackable-weight-set-of-19-2",
+			"to": "/product/weights-set-stackable"
+		},
+		{
+			"from": "/product/plastic-stackable-weight-set-of-33",
+			"to": "/product/weights-set-stackable"
+		},
+		{
+			"from": "/product/plastic-stackable-weight-set-of-35-2",
+			"to": "/product/weights-set-stackable"
+		},
+		{
+			"from": "/product/plastic-stackable-weight-set-of-54-2",
+			"to": "/product/weights-set-stackable"
+		},
+		{
+			"from": "/product/plastic-stackable-weight-set-of-8-2",
+			"to": "/product/weights-set-stackable"
+		},
+		{
+			"from": "/product/plastic-staining-jar-2",
+			"to": "/product/plastic-staining-jar"
+		},
+		{
+			"from": "/product/plastic-tall-griffin-beaker-with-handle-1000-ml-pk-6",
+			"to": "/product/griffin-beaker-with-handle-graduated-tall"
+		},
+		{
+			"from": "/product/plastic-tall-griffin-beaker-with-handle-2000-ml-pk-6",
+			"to": "/product/griffin-beaker-with-handle-graduated-tall"
+		},
+		{
+			"from": "/product/plastic-tall-griffin-beaker-with-handle-500-ml-pk-24",
+			"to": "/product/griffin-beaker-with-handle-graduated-tall"
+		},
+		{
+			"from": "/product/plastic-vernier-caliper",
+			"to": "/product/caliper"
+		},
+		{
+			"from": "/product/plated-steel-crucible-tongs-6-2",
+			"to": "/product/tongs"
+		},
+		{
+			"from": "/product/plated-steel-crucible-tongs-8-2",
+			"to": "/product/tongs"
+		},
+		{
+			"from": "/product/platinum-electrode-pair-for-the-hoffman-electrolysis-2",
+			"to": "/product/electrode"
+		},
+		{
+			"from": "/product/plum-bob",
+			"to": "/product/pendulum-bob"
+		},
+		{
+			"from": "/product/plumb-bob-2",
+			"to": "/product/plumb-bob"
+		},
+		{
+			"from": "/product/pole-marbles-in-tub-pk-100-2",
+			"to": "/product/pole-marbles"
+		},
+		{
+			"from": "/product/pole-marbles-pk-20-2",
+			"to": "/product/pole-marbles"
+		},
+		{
+			"from": "/product/polyethylene-test-tube-rack-6-holes-6-drying-pins-2",
+			"to": "/product/test-tube-rack"
+		},
+		{
+			"from": "/product/polypropylene-reagent-bottles-narrow-mouth-30ml",
+			"to": "/product/reagent-bottles-narrow-mouth-polypropylene"
+		},
+		{
+			"from": "/product/pop-up-butterfly-cage-12-2",
+			"to": "/product/butterfly-pavilion-pop-up-butterfly-cage"
+		},
+		{
+			"from": "/product/pop-up-butterfly-cage-18-2",
+			"to": "/product/butterfly-pavilion-pop-up-butterfly-cage"
+		},
+		{
+			"from": "/product/pop-up-butterfly-cage-24-2",
+			"to": "/product/butterfly-pavilion-pop-up-butterfly-cage"
+		},
+		{
+			"from": "/product/porous-pots-empty-porcelain-75-mm-x-35-mm",
+			"to": "/product/porous-pot-empty"
+		},
+		{
+			"from": "/product/portable-micro-burner-2",
+			"to": "/product/portable-micro-burner"
+		},
+		{
+			"from": "/product/power-supply-3-pin-uk-adapter-only-for-geometric-optics-demo",
+			"to": "/product/power-supply-3-pin-uk-adapter-only-for-geometric"
+		},
+		{
+			"from": "/product/power-supply-adapter-only-for-geometric-optics-demo",
+			"to": "/product/geometric-optics-demo-power-supply-adapter-only"
+		},
+		{
+			"from": "/product/power-supply-for-spectrum-discharge-tubes-dual-voltage-110v-220v-ce-rohs-certified-2",
+			"to": "/product/power-supply-for-spectrum-discharge-tubes-dual-voltage"
+		},
+		{
+			"from": "/product/power-supply-for-spectrum-discharge-tubes-uk-adapter-plug",
+			"to": "/product/power-supply-for-spectrum-discharge-tubes-dual"
+		},
+		{
+			"from": "/product/prepared-slide-set-d-intermediate-biology-set-25-2",
+			"to": "/product/prepared-slide-sets-packs"
+		},
+		{
+			"from": "/product/prepared-slide-set-f-apologia-slides-set-17-2",
+			"to": "/product/prepared-slide-sets-packs"
+		},
+		{
+			"from": "/product/prepared-slide-set-human-animal-set-25-2",
+			"to": "/product/prepared-slide-sets-packs"
+		},
+		{
+			"from": "/product/prepared-slide-streptococcus-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-14-oscillatoria-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-177-budding-yeast-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-63-spirogyra-veg-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-adipose-tissue-sec-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-amoeba-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-anabaena-wm-each",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-aphia-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-artery-and-vein-cs-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-ascaris-cs-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-aspergillus-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-bacteria-smear-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-bed-bug-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-blood-smear-giemsa-stain-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-bread-mold-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-budding-hydra-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-cerebellum-sec-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-cheek-cell-smear-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-chlamydomonas-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-chlorella-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-cockroach-head-and-mouth-parts-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-colon-cs-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-compact-bone-cs-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-cork-section-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-culex-pupa-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-daphnia-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-deciduous-and-evergreen-leaf-cs-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-dicot-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-drosophila-wild-type-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-earthworm-cs-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-euglena-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-feather-3-types-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-fern-prothallium-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-fish-scales-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-flower-bud-cs-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-frog-blood-smear-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-frog-skin-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-fucus-cs-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-grantia-cs-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-grantia-ls-pk-25-2",
+			"to": "/product/prepared-slide-sets-packs"
+		},
+		{
+			"from": "/product/prepared-slides-haemophilus-influenza-smear-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-hair-3-types-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-head-louse-pk-25-2",
+			"to": "/product/prepared-slide-sets-packs"
+		},
+		{
+			"from": "/product/prepared-slides-helianthus-stem-cs-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-hook-worm-pk-25",
+			"to": "/product/prepared-slide-sets-packs"
+		},
+		{
+			"from": "/product/prepared-slides-housefly-head-leg-wing-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-human-blood-smear-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-human-ovary-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-human-skin-sec-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-human-sperm-smear-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-hyaline-cartilage-sec-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-kidney-sec-each",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-letter-e-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-lilac-leaf-cs-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-liver-cs-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-liver-fluke-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-locust-abdomen-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-locust-mouth-parts-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-locust-thorax-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-lung-sec-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-malaria-parasite-signet-ring-pk-25-2",
+			"to": "/product/prepared-slide-sets-packs"
+		},
+		{
+			"from": "/product/prepared-slides-mammal-ovary-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-meiosis-i-in-plant-cell-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-meiosis-ii-in-plant-cell-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-meiosis-in-animal-cell-grasshopper-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-mites-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-mitosis-onion-root-tip-cells-ls-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-mixed-diatoms-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-mixed-protozoa-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-mold-3-types-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-monocot-and-dicot-flower-bud-cs-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-monocot-and-dicot-leaf-cs-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-monocot-and-dicot-root-cs-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-monocot-and-dicot-stem-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-moss-leaf-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-muscles-cardiac-pk-25-2",
+			"to": "/product/prepared-slide-sets-packs"
+		},
+		{
+			"from": "/product/prepared-slides-muscles-skeletal-pk-25-2",
+			"to": "/product/prepared-slide-sets-packs"
+		},
+		{
+			"from": "/product/prepared-slides-muscles-smooth-pk-25-2",
+			"to": "/product/prepared-slide-sets-packs"
+		},
+		{
+			"from": "/product/prepared-slides-muscles-striated-ls-pk-25-2",
+			"to": "/product/prepared-slide-sets-packs"
+		},
+		{
+			"from": "/product/prepared-slides-mushroom-cs-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-mycobas-tuberculosis-smear-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-nerve-cell-sm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-oedogonium-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-pancreas-sec-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-paramecium-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-penicillium-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-pin-worm-wm-pk-25",
+			"to": "/product/prepared-slide-sets-packs"
+		},
+		{
+			"from": "/product/prepared-slides-pinus-leaf-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-planaria-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-plankton-form-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-plant-root-cs-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-plant-stem-cs-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-plasmodium-sp-smear-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-plasmodium-vivax-pk-25-2",
+			"to": "/product/prepared-slide-sets-packs"
+		},
+		{
+			"from": "/product/prepared-slides-porphyra-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-pseudomonas-aeruginosa-smear-each",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-rat-sperm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-rhizopus-stolonifer-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-root-mitosis-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-rotifers-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-sea-urchin-ova-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-small-intestine-ls-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-spider-head-and-mouth-parts-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-spider-w-m-pk-25-2",
+			"to": "/product/prepared-slide-sets-packs"
+		},
+		{
+			"from": "/product/prepared-slides-spinal-cord-cs-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-spirogyra-conjugation-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-spleen-cs-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-squamous-epithelium-sm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-starch-set-12-2",
+			"to": "/product/prepared-slide-sets-packs"
+		},
+		{
+			"from": "/product/prepared-slides-stomach-cs-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-striated-muscle-sec-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-tadpole-pk-25-2",
+			"to": "/product/prepared-slide-sets-packs"
+		},
+		{
+			"from": "/product/prepared-slides-taenia-pisiformis-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-tape-worm-pk-25-2",
+			"to": "/product/prepared-slide-sets-packs"
+		},
+		{
+			"from": "/product/prepared-slides-textile-fibers-3-kinds-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-thyroid-gland-sec-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-tick-wm-pk-25-2",
+			"to": "/product/prepared-slide-sets-packs"
+		},
+		{
+			"from": "/product/prepared-slides-ulothrix-veg-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-volvox-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-vorticella-wm-each-2",
+			"to": "/product/prepared-slides"
+		},
+		{
+			"from": "/product/prepared-slides-wasp-sting-wm-pk-25-2",
+			"to": "/product/prepared-slide-sets-packs"
+		},
+		{
+			"from": "/product/prisms-acrylic-equilateral-triangle-75-mm-face-x-25-mm-thick",
+			"to": "/product/acrylic-equilateral-prism"
+		},
+		{
+			"from": "/product/prisms-equilateral-acrylic-25x50mm-2",
+			"to": "/product/acrylic-equilateral-prism"
+		},
+		{
+			"from": "/product/probe-seeker-small-2",
+			"to": "/product/probe-seeker-small"
+		},
+		{
+			"from": "/product/pull-spring-scale-balance-dual-scale-1-n-100-g",
+			"to": "/product/pull-spring-scale-balance"
+		},
+		{
+			"from": "/product/pull-spring-scale-balance-dual-scale-10-n-1000-g",
+			"to": "/product/pull-spring-scale-balance"
+		},
+		{
+			"from": "/product/pull-spring-scale-balance-dual-scale-2-5-n-250-g",
+			"to": "/product/pull-spring-scale-balance"
+		},
+		{
+			"from": "/product/pull-spring-scale-balance-dual-scale-5-n-500-g",
+			"to": "/product/pull-spring-scale-balance"
+		},
+		{
+			"from": "/product/pull-spring-scale-balance-dual-scale-50-n-5000-g",
+			"to": "/product/pull-spring-scale-balance"
+		},
+		{
+			"from": "/product/pull-spring-scales-spring-balances-metric-newton-dual-scale-20n-2000g-2",
+			"to": "/product/pull-spring-scale-balance"
+		},
+		{
+			"from": "/product/pulley-demonstration-set-2",
+			"to": "/product/pulley-set"
+		},
+		{
+			"from": "/product/pulley-fixed-for-mounting-on-plane-surface-2",
+			"to": "/product/pulley"
+		},
+		{
+			"from": "/product/pulley-for-force-table-2",
+			"to": "/product/pulley"
+		},
+		{
+			"from": "/product/pulley-plastic-quadruple",
+			"to": "/product/pulley"
+		},
+		{
+			"from": "/product/pulley-plastic-tandem-double-2",
+			"to": "/product/pulley"
+		},
+		{
+			"from": "/product/pulley-plastic-tandem-triple-2",
+			"to": "/product/pulley"
+		},
+		{
+			"from": "/product/pulley-student-set-2",
+			"to": "/product/pulley-set"
+		},
+		{
+			"from": "/product/pulley-with-rod-2",
+			"to": "/product/pulley"
+		},
+		{
+			"from": "/product/pulley-with-table-clamp-2",
+			"to": "/product/pulley"
+		},
+		{
+			"from": "/product/pulleys-aluminum-double-parallel-2",
+			"to": "/product/pulley"
+		},
+		{
+			"from": "/product/pulleys-aluminum-tandem-double-2",
+			"to": "/product/pulley"
+		},
+		{
+			"from": "/product/pulleys-plastic-triple-2",
+			"to": "/product/pulley"
+		},
+		{
+			"from": "/product/push-pull-spring-scale-balance-beige-1-kg",
+			"to": "/product/push-pull-spring-scale-balance"
+		},
+		{
+			"from": "/product/push-pull-spring-scale-balance-green-500-g",
+			"to": "/product/push-pull-spring-scale-balance"
+		},
+		{
+			"from": "/product/push-pull-spring-scale-balance-red-2-kg",
+			"to": "/product/push-pull-spring-scale-balance"
+		},
+		{
+			"from": "/product/push-pull-spring-scale-balance-white-3-kg",
+			"to": "/product/push-pull-spring-scale-balance"
+		},
+		{
+			"from": "/product/push-pull-spring-scale-balance-yellow-5-kg",
+			"to": "/product/push-pull-spring-scale-balance"
+		},
+		{
+			"from": "/product/putt-putt-boat-2",
+			"to": "/product/putt-putt-boat"
+		},
+		{
+			"from": "/product/putt-putt-boat-fuel-candles-pk-8-2",
+			"to": "/product/putt-putt-boat-fuel-candles"
+		},
+		{
+			"from": "/product/radiation-cans-set-2-2",
+			"to": "/product/radiation-cans"
+		},
+		{
+			"from": "/product/radiation-cans-set-3-2",
+			"to": "/product/radiation-cans"
+		},
+		{
+			"from": "/product/rainbow-tie-dye-lab-coat-large-2",
+			"to": "/product/lab-coat"
+		},
+		{
+			"from": "/product/rainbow-tie-dye-lab-coat-medium-2",
+			"to": "/product/lab-coat"
+		},
+		{
+			"from": "/product/rainbow-tie-dye-lab-coat-small-2",
+			"to": "/product/lab-coat"
+		},
+		{
+			"from": "/product/rainbow-tie-dye-lab-coat-x-large-2",
+			"to": "/product/lab-coat"
+		},
+		{
+			"from": "/product/rainbow-tie-dye-lab-coat-xx-large-2",
+			"to": "/product/lab-coat"
+		},
+		{
+			"from": "/product/rainbow-tie-dye-lab-coat-xxx-large-2",
+			"to": "/product/lab-coat"
+		},
+		{
+			"from": "/product/rattleback-plastic-multi-color-pk-10",
+			"to": "/product/rattleback"
+		},
+		{
+			"from": "/product/reading-glass-3-2x",
+			"to": "/product/magnifier-reading-glass-hand-held"
+		},
+		{
+			"from": "/product/reading-glass-4-2x-plastic",
+			"to": "/product/magnifier-reading-glass-hand-held"
+		},
+		{
+			"from": "/product/reagent-bottles-narrow-mouth-polypropylene-1000ml",
+			"to": "/product/reagent-bottles-narrow-mouth-polypropylene"
+		},
+		{
+			"from": "/product/reagent-bottles-narrow-mouth-polypropylene-125ml",
+			"to": "/product/reagent-bottles-narrow-mouth-polypropylene"
+		},
+		{
+			"from": "/product/reagent-bottles-narrow-mouth-polypropylene-250ml",
+			"to": "/product/reagent-bottles-narrow-mouth-polypropylene"
+		},
+		{
+			"from": "/product/reagent-bottles-narrow-mouth-polypropylene-500ml",
+			"to": "/product/reagent-bottles-narrow-mouth-polypropylene"
+		},
+		{
+			"from": "/product/reagent-bottles-narrow-mouth-polypropylene-60ml",
+			"to": "/product/reagent-bottles-narrow-mouth-polypropylene"
+		},
+		{
+			"from": "/product/receptacle-for-miniature-lamp-2",
+			"to": "/product/miniature-lamp-holder"
+		},
+		{
+			"from": "/product/rectangular-bar-magnet-pair-58-mm-x-12-6-mm-x-3-mm",
+			"to": "/product/bar-magnet"
+		},
+		{
+			"from": "/product/red-litmus-paper-pk-100-2",
+			"to": "/product/litmus-paper"
+		},
+		{
+			"from": "/product/reduction-adapter-14-20-socket-19-22-cone-2",
+			"to": "/product/reduction-adapter-14-20-socket-19-22-cone"
+		},
+		{
+			"from": "/product/reduction-adapter-19-22-socket-24-40-cone-2",
+			"to": "/product/reduction-adapter-19-22-socket-24-40-cone"
+		},
+		{
+			"from": "/product/refraction-cup-2",
+			"to": "/product/refraction-cup"
+		},
+		{
+			"from": "/product/refraction-cup-with-measurements-2",
+			"to": "/product/refraction-cup-with-measurements"
+		},
+		{
+			"from": "/product/replacement-balloon-2",
+			"to": "/product/balloon-for-balloon-helicopter"
+		},
+		{
+			"from": "/product/replacement-bulb-tube-for-lorentz-force-demo",
+			"to": "/product/bulb-for-lorentz-force-demo"
+		},
+		{
+			"from": "/product/replacement-distillation-glass-flask-1500-ml",
+			"to": "/product/distillation-glass-boiling-flask"
+		},
+		{
+			"from": "/product/replacement-distillation-glass-flask-500-ml",
+			"to": "/product/distillation-glass-flask"
+		},
+		{
+			"from": "/product/replacement-glass-only-for-the-hoffman-electrolysis-2",
+			"to": "/product/glass-only-for-the-hoffman-electrolysis"
+		},
+		{
+			"from": "/product/replacement-wick-pk-12-2",
+			"to": "/product/wick"
+		},
+		{
+			"from": "/product/resonance-apparatus-glass-tube",
+			"to": "/product/resonance-apparatus-acrylic-tube"
+		},
+		{
+			"from": "/product/resonance-bowl-chinese-spouting-bowl-2",
+			"to": "/product/resonance-bowl-chinese-spouting-bowl"
+		},
+		{
+			"from": "/product/resonance-wire-loop-kit-2",
+			"to": "/product/resonance-wire-loop-kit"
+		},
+		{
+			"from": "/product/retractable-measuring-tape-metric-english-10-3-m",
+			"to": "/product/measuring-tape-retractable-metric-english-10"
+		},
+		{
+			"from": "/product/retractable-measuring-tape-metric-english-60-150-cm",
+			"to": "/product/measuring-tape-retractable-metric-english"
+		},
+		{
+			"from": "/product/retractable-meter-measuring-tape-10-feet-3-meters-2",
+			"to": "/product/measuring-tape-retractable-metal-10"
+		},
+		{
+			"from": "/product/revolution-2",
+			"to": "/product/revolution-anti-gravity-demo"
+		},
+		{
+			"from": "/product/right-angle-clamp-holder-2",
+			"to": "/product/stand-clamp"
+		},
+		{
+			"from": "/product/ring-and-ball-apparatus-2",
+			"to": "/product/ring-and-ball-apparatus"
+		},
+		{
+			"from": "/product/ring-and-disk-moment-of-inertia-apparatus-2",
+			"to": "/product/ring-and-disk-moment-of-inertia-apparatus"
+		},
+		{
+			"from": "/product/room-thermometer-with-flat-metal-back-celsius-fahrenheit-2",
+			"to": "/product/thermometer"
+		},
+		{
+			"from": "/product/room-thermometer-with-v-shape-metal-back-celsius",
+			"to": "/product/thermometer"
+		},
+		{
+			"from": "/product/room-thermometer-with-v-shape-metal-back-celsius-fahrenheit-2",
+			"to": "/product/thermometer"
+		},
+		{
+			"from": "/product/round-bottom-flask-100-ml-cap-14-20-joint",
+			"to": "/product/flask-round-bottom-14-20-joint"
+		},
+		{
+			"from": "/product/round-bottom-flask-100-ml-cap-19-22-joint-2",
+			"to": "/product/flask-round-bottom-19-22-joint"
+		},
+		{
+			"from": "/product/round-bottom-flask-1000ml-cap-24-40-joint-2",
+			"to": "/product/flask-round-bottom-24-40-joint"
+		},
+		{
+			"from": "/product/round-bottom-flask-250-ml-cap-19-22-joint",
+			"to": "/product/flask-round-bottom-19-22-joint"
+		},
+		{
+			"from": "/product/round-bottom-flask-500-ml-cap-24-40-joint",
+			"to": "/product/flask-round-bottom-24-40-joint"
+		},
+		{
+			"from": "/product/rubber-grip-for-hot-beakers-2",
+			"to": "/product/rubber-grip-for-hot-beakers-silicone"
+		},
+		{
+			"from": "/product/rubber-tubing-0-19-50-ft",
+			"to": "/product/tubing-50-feet"
+		},
+		{
+			"from": "/product/rubber-tubing-0-25-50-feet",
+			"to": "/product/tubing-50-feet"
+		},
+		{
+			"from": "/product/rubber-tubing-0-31-10-ft",
+			"to": "/product/tubing-10-feet"
+		},
+		{
+			"from": "/product/rubber-tubing-0-31-50-feet",
+			"to": "/product/tubing-50-feet"
+		},
+		{
+			"from": "/product/rubber-tubing-0-38-10-ft",
+			"to": "/product/tubing-10-feet"
+		},
+		{
+			"from": "/product/rubber-tubing-0-38-50-feet",
+			"to": "/product/tubing-50-feet"
+		},
+		{
+			"from": "/product/rubber-tubing-1-4-10-feet-2",
+			"to": "/product/tubing-10-feet"
+		},
+		{
+			"from": "/product/rubber-tubing-3-16-10-feet-2",
+			"to": "/product/tubing-10-feet"
+		},
+		{
+			"from": "/product/rubberized-apron-medium-27-x-42",
+			"to": "/product/rubberized-apron-medium"
+		},
+		{
+			"from": "/product/scalpel-fixed-handle-2",
+			"to": "/product/scalpel-fixed-handle-stainless-steel"
+		},
+		{
+			"from": "/product/scissors-dissecting-straight-125-mm",
+			"to": "/product/scissors-dissecting"
+		},
+		{
+			"from": "/product/screen-for-optical-bench-pk-5-2",
+			"to": "/product/screen-for-optical-bench"
+		},
+		{
+			"from": "/product/screen-support-for-optical-bench-2",
+			"to": "/product/screen-support-for-optical-bench"
+		},
+		{
+			"from": "/product/seismic-accelerator-2",
+			"to": "/product/seismic-accelerator"
+		},
+		{
+			"from": "/product/seismograph-2",
+			"to": "/product/seismograph"
+		},
+		{
+			"from": "/product/separatory-funnel-holder-2",
+			"to": "/product/holder-separatory-funnels"
+		},
+		{
+			"from": "/product/separatory-funnel-pear-shaped-125-ml",
+			"to": "/product/separatory-funnel"
+		},
+		{
+			"from": "/product/separatory-funnels-globe-shape-125-ml",
+			"to": "/product/separatory-funnel"
+		},
+		{
+			"from": "/product/separatory-funnels-globe-shape-250-ml-2",
+			"to": "/product/separatory-funnel"
+		},
+		{
+			"from": "/product/separatory-funnels-globe-shape-50-ml",
+			"to": "/product/separatory-funnel"
+		},
+		{
+			"from": "/product/separatory-funnels-pear-shape-500ml",
+			"to": "/product/separatory-funnel"
+		},
+		{
+			"from": "/product/separatory-funnels-pear-shape-ptfe-stop-cock-500ml-2",
+			"to": "/product/separatory-funnel"
+		},
+		{
+			"from": "/product/separatory-funnels-pear-shaped-250-ml",
+			"to": "/product/separatory-funnel"
+		},
+		{
+			"from": "/product/series-parallel-bulb-holder-2",
+			"to": "/product/miniature-lamp-holder"
+		},
+		{
+			"from": "/product/shaker-container-2",
+			"to": "/product/sand-shaker-container-chladni-plates-kit"
+		},
+		{
+			"from": "/product/simple-bunsen-burner-for-propane-gas-2",
+			"to": "/product/bunsen-burner-for-propane-gas"
+		},
+		{
+			"from": "/product/sine-wave-generator-2",
+			"to": "/product/sine-wave-generator"
+		},
+		{
+			"from": "/product/singing-rods-set-2",
+			"to": "/product/singing-rods"
+		},
+		{
+			"from": "/product/singing-rods-set-2-2",
+			"to": "/product/singing-rods"
+		},
+		{
+			"from": "/product/single-buret-clamp",
+			"to": "/product/stand-clamp"
+		},
+		{
+			"from": "/product/single-lens-eye-loupe-5x-2-5-focal-length-2",
+			"to": "/product/eye-loupe-single-lens-focal-length"
+		},
+		{
+			"from": "/product/single-plastic-pulley-2",
+			"to": "/product/pulley"
+		},
+		{
+			"from": "/product/single-ring-tripod-stand-6-2",
+			"to": "/product/tripod-stand"
+		},
+		{
+			"from": "/product/single-ring-tripod-stand-9-2",
+			"to": "/product/tripod-stand"
+		},
+		{
+			"from": "/product/slides-glass-25mm-x-75mm-pk-12-2",
+			"to": "/product/microscope-slides"
+		},
+		{
+			"from": "/product/slotted-mass-1-g",
+			"to": "/product/slotted-mass"
+		},
+		{
+			"from": "/product/slotted-mass-10-g",
+			"to": "/product/slotted-mass"
+		},
+		{
+			"from": "/product/slotted-mass-100-g",
+			"to": "/product/slotted-mass"
+		},
+		{
+			"from": "/product/slotted-mass-2-g",
+			"to": "/product/slotted-mass"
+		},
+		{
+			"from": "/product/slotted-mass-20-g",
+			"to": "/product/slotted-mass"
+		},
+		{
+			"from": "/product/slotted-mass-200g-2",
+			"to": "/product/slotted-mass"
+		},
+		{
+			"from": "/product/slotted-mass-5-g",
+			"to": "/product/slotted-mass"
+		},
+		{
+			"from": "/product/slotted-mass-50-g",
+			"to": "/product/slotted-mass"
+		},
+		{
+			"from": "/product/slotted-mass-500g-2",
+			"to": "/product/slotted-mass"
+		},
+		{
+			"from": "/product/slotted-masses-spare-1000g-2",
+			"to": "/product/slotted-mass"
+		},
+		{
+			"from": "/product/slotted-weight-set-with-hanger-total-weight-100g",
+			"to": "/product/slotted-weight"
+		},
+		{
+			"from": "/product/small-fast-release-filler",
+			"to": "/product/pipette-pump-filler"
+		},
+		{
+			"from": "/product/small-ferrite-block-magnets-9-x-9-x-40mm-pack-of-20-2",
+			"to": "/product/magnets-block-ferrite"
+		},
+		{
+			"from": "/product/snaky-spring-wave-demonstration-2",
+			"to": "/product/snaky-spring-wave-demonstration"
+		},
+		{
+			"from": "/product/soft-iron-rod-2",
+			"to": "/product/soft-iron-rod"
+		},
+		{
+			"from": "/product/solar-cell-0-5-v-500-ma",
+			"to": "/product/solar-cell"
+		},
+		{
+			"from": "/product/solar-cell-1-v-400-ma",
+			"to": "/product/solar-cell"
+		},
+		{
+			"from": "/product/solar-cell-dolly-transparent",
+			"to": "/product/solar-cell-dolly-transparent-with-battery-with"
+		},
+		{
+			"from": "/product/solar-spectrum-chart-2",
+			"to": "/product/solar-spectrum-chart-18-x-28"
+		},
+		{
+			"from": "/product/solar-uv-beads-pk-1000",
+			"to": "/product/uv-beads-multi-colored"
+		},
+		{
+			"from": "/product/solid-aluminum-ball-3-4-2",
+			"to": "/product/ball-solid"
+		},
+		{
+			"from": "/product/solid-brass-ball-1-2",
+			"to": "/product/ball-solid"
+		},
+		{
+			"from": "/product/solid-brass-ball-3-4-2",
+			"to": "/product/ball-solid"
+		},
+		{
+			"from": "/product/solid-copper-ball-1-2",
+			"to": "/product/ball-solid"
+		},
+		{
+			"from": "/product/solid-copper-ball-3-4-2",
+			"to": "/product/ball-solid"
+		},
+		{
+			"from": "/product/solid-drilled-aluminum-ball-1-2",
+			"to": "/product/ball-drilled"
+		},
+		{
+			"from": "/product/solid-drilled-brass-ball-1-2",
+			"to": "/product/ball-drilled"
+		},
+		{
+			"from": "/product/solid-drilled-copper-ball-1-2",
+			"to": "/product/ball-drilled"
+		},
+		{
+			"from": "/product/solid-drilled-lead-ball-1-2",
+			"to": "/product/ball-drilled"
+		},
+		{
+			"from": "/product/solid-drilled-steel-ball-0-75",
+			"to": "/product/ball-drilled"
+		},
+		{
+			"from": "/product/solid-drilled-steel-ball-1-2",
+			"to": "/product/ball-drilled"
+		},
+		{
+			"from": "/product/solid-drilled-zinc-ball-1-2",
+			"to": "/product/ball-drilled"
+		},
+		{
+			"from": "/product/solid-lead-ball-1-2",
+			"to": "/product/ball-solid"
+		},
+		{
+			"from": "/product/solid-steel-ball-0-5-pk-6",
+			"to": "/product/ball-set-solid-steel"
+		},
+		{
+			"from": "/product/solid-steel-ball-0-63",
+			"to": "/product/ball-solid"
+		},
+		{
+			"from": "/product/solid-steel-ball-0-75",
+			"to": "/product/ball-solid"
+		},
+		{
+			"from": "/product/solid-steel-ball-1-2",
+			"to": "/product/ball-solid"
+		},
+		{
+			"from": "/product/solid-steel-ball-1-5-pair-smashing-steel-sphere-kinetic-energy-demo",
+			"to": "/product/collision-ball-set-1"
+		},
+		{
+			"from": "/product/solid-steel-ball-15-16-2",
+			"to": "/product/ball-solid"
+		},
+		{
+			"from": "/product/solid-steel-ball-7-8-2",
+			"to": "/product/ball-drilled"
+		},
+		{
+			"from": "/product/solid-zinc-ball-1-2",
+			"to": "/product/ball-solid"
+		},
+		{
+			"from": "/product/soxhlet-flask-flat-bottom-1000-ml-joint-29-42",
+			"to": "/product/flask-soxhlet-flat-bottom"
+		},
+		{
+			"from": "/product/soxhlet-flask-flat-bottom-300-ml-joint-24-40",
+			"to": "/product/flask-soxhlet-flat-bottom"
+		},
+		{
+			"from": "/product/spare-belt-for-whimshurst-machine-pair",
+			"to": "/product/belt-for-whimshurst-machine"
+		},
+		{
+			"from": "/product/spare-wick-and-holder-for-alcohol-burner-angular-2",
+			"to": "/product/alcohol-burner"
+		},
+		{
+			"from": "/product/spatula-plastic-8in-2",
+			"to": "/product/spatula-scoopula"
+		},
+		{
+			"from": "/product/spatula-spoon-spatula-double-ended-205-mm",
+			"to": "/product/spatula-scoopula"
+		},
+		{
+			"from": "/product/specific-gravity-block-set-2",
+			"to": "/product/specific-gravity-block-set"
+		},
+		{
+			"from": "/product/specific-gravity-block-with-hook-32mm-lead-2",
+			"to": "/product/specific-gravity-block-with-hook"
+		},
+		{
+			"from": "/product/specific-gravity-bottles-uncalibrated-100ml-2",
+			"to": "/product/specific-gravity-bottles-uncalibrated"
+		},
+		{
+			"from": "/product/specific-gravity-bottles-uncalibrated-10ml-2",
+			"to": "/product/specific-gravity-bottles-uncalibrated"
+		},
+		{
+			"from": "/product/specific-gravity-bottles-uncalibrated-25-ml",
+			"to": "/product/specific-gravity-bottles-uncalibrated"
+		},
+		{
+			"from": "/product/specific-heat-specimen-cylinders-13mm-set-6-2",
+			"to": "/product/specific-heat-specimen-cylinders"
+		},
+		{
+			"from": "/product/spectrometer-advanced-with-diffraction-grating-and-ri-prism",
+			"to": "/product/spectrometer-advanced-with-diffraction-grating-and-ri"
+		},
+		{
+			"from": "/product/spectroscope-direct-vision-wooden-box-2",
+			"to": "/product/spectroscope-direct-vision-wooden-box"
+		},
+		{
+			"from": "/product/spectrum-discharge-tubes-air",
+			"to": "/product/spectrum-discharge-tube"
+		},
+		{
+			"from": "/product/spectrum-discharge-tubes-argon-gas-2",
+			"to": "/product/spectrum-discharge-tube"
+		},
+		{
+			"from": "/product/spectrum-discharge-tubes-bromine",
+			"to": "/product/spectrum-discharge-tube"
+		},
+		{
+			"from": "/product/spectrum-discharge-tubes-carbon-dioxide-2",
+			"to": "/product/spectrum-discharge-tube"
+		},
+		{
+			"from": "/product/spectrum-discharge-tubes-chlorine-gas",
+			"to": "/product/spectrum-discharge-tube"
+		},
+		{
+			"from": "/product/spectrum-discharge-tubes-deuterium-2",
+			"to": "/product/spectrum-discharge-tube"
+		},
+		{
+			"from": "/product/spectrum-discharge-tubes-helium-2",
+			"to": "/product/spectrum-discharge-tube"
+		},
+		{
+			"from": "/product/spectrum-discharge-tubes-hydrogen-2",
+			"to": "/product/spectrum-discharge-tube"
+		},
+		{
+			"from": "/product/spectrum-discharge-tubes-krypton-gas-2",
+			"to": "/product/spectrum-discharge-tube"
+		},
+		{
+			"from": "/product/spectrum-discharge-tubes-mercury-gas-2",
+			"to": "/product/spectrum-discharge-tube"
+		},
+		{
+			"from": "/product/spectrum-discharge-tubes-neon-gas-2",
+			"to": "/product/spectrum-discharge-tube"
+		},
+		{
+			"from": "/product/spectrum-discharge-tubes-nitrogen-gas-2",
+			"to": "/product/spectrum-discharge-tube"
+		},
+		{
+			"from": "/product/spectrum-discharge-tubes-oxygen-2",
+			"to": "/product/spectrum-discharge-tube"
+		},
+		{
+			"from": "/product/spectrum-discharge-tubes-sodium",
+			"to": "/product/spectrum-discharge-tube"
+		},
+		{
+			"from": "/product/spectrum-discharge-tubes-water-vapor-2",
+			"to": "/product/spectrum-discharge-tube"
+		},
+		{
+			"from": "/product/spectrum-discharge-tubes-xenon-2",
+			"to": "/product/spectrum-discharge-tube"
+		},
+		{
+			"from": "/product/spirit-lamp-stainless-steel-2",
+			"to": "/product/alcohol-burner"
+		},
+		{
+			"from": "/product/spray-bottle-15ml",
+			"to": "/product/spray-bottle"
+		},
+		{
+			"from": "/product/spray-bottle-2",
+			"to": "/product/spray-bottle"
+		},
+		{
+			"from": "/product/spring-extension-steel-4",
+			"to": "/product/spring"
+		},
+		{
+			"from": "/product/spring-scale-1000-g-10-n",
+			"to": "/product/spring-scale"
+		},
+		{
+			"from": "/product/spring-scale-2000-g-20-n",
+			"to": "/product/spring-scale"
+		},
+		{
+			"from": "/product/spring-scale-250-g-2-5-n",
+			"to": "/product/spring-scale"
+		},
+		{
+			"from": "/product/spring-scale-3000-g-30-n",
+			"to": "/product/spring-scale"
+		},
+		{
+			"from": "/product/spring-scale-500-g-5-n",
+			"to": "/product/spring-scale"
+		},
+		{
+			"from": "/product/spring-scale-5000-g-50-n",
+			"to": "/product/spring-scale"
+		},
+		{
+			"from": "/product/spring-scales-5000g-50n-2",
+			"to": "/product/spring-scale-spring-balance"
+		},
+		{
+			"from": "/product/spring-scales-500g-5n-2",
+			"to": "/product/spring-scale-spring-balance"
+		},
+		{
+			"from": "/product/spring-scales-pound-newton-56-lb-x-02-lb-2-5n-x-0-1-n-2",
+			"to": "/product/pull-spring-scale-balance"
+		},
+		{
+			"from": "/product/stackable-banana-plug-24-4mm-pk-4-2-red-2-black-2",
+			"to": "/product/banana-plug-connection-cable-stackable-red-black"
+		},
+		{
+			"from": "/product/stainless-steel-blunt-tip-forceps-large-10-2",
+			"to": "/product/forceps"
+		},
+		{
+			"from": "/product/stainless-steel-crucible-tongs-18-2",
+			"to": "/product/tongs"
+		},
+		{
+			"from": "/product/steam-trap-water-trap-2",
+			"to": "/product/steam-trap-water-trap"
+		},
+		{
+			"from": "/product/steel-balls-pk-100-2",
+			"to": "/product/steel-balls"
+		},
+		{
+			"from": "/product/steel-bar-magnet-nickel-plated-6-x-0-75-x-0-25-pair",
+			"to": "/product/bar-magnet"
+		},
+		{
+			"from": "/product/steel-bar-magnet-red-blue-3-x-0-5-x-0-19-pair",
+			"to": "/product/bar-magnet"
+		},
+		{
+			"from": "/product/steel-bar-magnet-red-blue-4-x-0-75-x-0-25-pair",
+			"to": "/product/bar-magnet"
+		},
+		{
+			"from": "/product/steel-bar-magnet-red-blue-6-pair",
+			"to": "/product/bar-magnet"
+		},
+		{
+			"from": "/product/steel-bar-magnet-red-blue-8-pair-2",
+			"to": "/product/bar-magnet"
+		},
+		{
+			"from": "/product/steel-bar-magnet-red-red-3-x-0-5-x-0-19-pair",
+			"to": "/product/bar-magnet"
+		},
+		{
+			"from": "/product/steel-bar-magnet-zinc-plated-6-x-0-75-x-0-25-pair",
+			"to": "/product/bar-magnet"
+		},
+		{
+			"from": "/product/steel-horseshoe-magnet-3",
+			"to": "/product/horseshoe-magnet"
+		},
+		{
+			"from": "/product/steel-horseshoe-magnet-4-2",
+			"to": "/product/horseshoe-magnet"
+		},
+		{
+			"from": "/product/steel-horseshoe-magnet-6-2",
+			"to": "/product/horseshoe-magnet"
+		},
+		{
+			"from": "/product/steel-tuning-fork-in-a-styrofoam-box-set-8",
+			"to": "/product/tuning-fork"
+		},
+		{
+			"from": "/product/steel-tuning-fork-in-a-wooden-box-set-8-2",
+			"to": "/product/tuning-fork"
+		},
+		{
+			"from": "/product/stereo-led-microscope-portable-battery-powered-20x-2",
+			"to": "/product/stereo-microscope-led-portable-battery-powered"
+		},
+		{
+			"from": "/product/stethoscope-teaching-2",
+			"to": "/product/stethoscope-teaching"
+		},
+		{
+			"from": "/product/still-head-with-thermometer-socket-14-20",
+			"to": "/product/still-head-with-thermometer-socket-14-20-cone-for"
+		},
+		{
+			"from": "/product/still-head-with-thermometer-socket-19-22",
+			"to": "/product/still-head-with-thermometer-socket-19-22-cone-for"
+		},
+		{
+			"from": "/product/stirling-generator",
+			"to": "/product/stirling-generator-kit"
+		},
+		{
+			"from": "/product/stopper-closed-both-ends-14-20-cone",
+			"to": "/product/stopper-borosilicate-glass-19-22-cone"
+		},
+		{
+			"from": "/product/stopper-closed-both-ends-19-22-cone",
+			"to": "/product/stopper-borosilicate-glass-14-20-cone"
+		},
+		{
+			"from": "/product/stopper-closed-both-ends-24-40-cone",
+			"to": "/product/stopper-borosilicate-glass-24-40-cone"
+		},
+		{
+			"from": "/product/stopwatch-analog-15-minutes-1-10-second-single-action-2",
+			"to": "/product/stopwatch-analog-single-action-15-minutes-1-10-second"
+		},
+		{
+			"from": "/product/straight-fine-tip-forceps-4-5",
+			"to": "/product/forceps"
+		},
+		{
+			"from": "/product/straight-teasing-needles-with-plastic-handle-pk-12-2",
+			"to": "/product/teasing-needles-straight-plastic-handle"
+		},
+		{
+			"from": "/product/streak-plate-black-10-pk",
+			"to": "/product/streak-plate"
+		},
+		{
+			"from": "/product/stroboscope-hand-driven-simple-model-2",
+			"to": "/product/stroboscope-hand-driven-simple-model"
+		},
+		{
+			"from": "/product/student-blood-pressure-kit-2",
+			"to": "/product/student-blood-pressure-kit"
+		},
+		{
+			"from": "/product/subtractive-color-theory-demonstration-2",
+			"to": "/product/subtractive-color-theory-demo"
+		},
+		{
+			"from": "/product/support-plate-with-clamp-127-mm",
+			"to": "/product/support-plate-with-clamp"
+		},
+		{
+			"from": "/product/support-stand-rectangular-cast-iron-bases-225-mm-x-150-mm",
+			"to": "/product/support-stand"
+		},
+		{
+			"from": "/product/support-stands-rectangular-cast-iron-bases-150x100mm-6x4in",
+			"to": "/product/support-stand"
+		},
+		{
+			"from": "/product/support-stands-rectangular-cast-iron-bases-150x100mm-6x4in-no-rod-2",
+			"to": "/product/support-stand"
+		},
+		{
+			"from": "/product/support-stands-rectangular-cast-iron-bases-150x100mm-6x4in-rod-only-2",
+			"to": "/product/support-stand"
+		},
+		{
+			"from": "/product/support-stands-rectangular-steel-bases-300x150-12x6in-2",
+			"to": "/product/support-stand"
+		},
+		{
+			"from": "/product/sympathetic-differential-tuning-fork-set-2-with-mallet-wooden-block",
+			"to": "/product/tuning-fork"
+		},
+		{
+			"from": "/product/tally-counter-2",
+			"to": "/product/tally-counter"
+		},
+		{
+			"from": "/product/teasing-needles-with-handle-bent-each-2",
+			"to": "/product/teasing-needle-with-handle-bent"
+		},
+		{
+			"from": "/product/technical-frequency-aluminum-tuning-fork-set-4-2",
+			"to": "/product/tuning-fork"
+		},
+		{
+			"from": "/product/teclu-burner-for-propane-gas-2",
+			"to": "/product/teclu-burner-for-propane-gas"
+		},
+		{
+			"from": "/product/test-tube-brushes-12-2",
+			"to": "/product/test-tube-brushes"
+		},
+		{
+			"from": "/product/test-tube-brushes-9-2",
+			"to": "/product/test-tube-brushes"
+		},
+		{
+			"from": "/product/test-tube-holder-cross-pattern-2",
+			"to": "/product/test-tube-holder-cross-pattern"
+		},
+		{
+			"from": "/product/test-tube-peg-rack-2",
+			"to": "/product/test-tube-peg-rack"
+		},
+		{
+			"from": "/product/test-tube-rack-polypropylene-31-tubes-rack-2",
+			"to": "/product/test-tube-rack"
+		},
+		{
+			"from": "/product/thermoelectric-generator-demonstrator-2",
+			"to": "/product/thermoelectric-generator-demonstrator"
+		},
+		{
+			"from": "/product/thermometer-wall-dual-scale-economy-2",
+			"to": "/product/thermometer"
+		},
+		{
+			"from": "/product/thiele-melting-point-tubes-25-mm-x-165-mm",
+			"to": "/product/thiele-melting-point-tubes"
+		},
+		{
+			"from": "/product/tile-overhead-color-1-square-4-color-set-of-52-2",
+			"to": "/product/tile-overhead-color-square-4-color"
+		},
+		{
+			"from": "/product/touch-board-starter-kit-2",
+			"to": "/product/touch-board-starter-kit"
+		},
+		{
+			"from": "/product/tpx-beakers",
+			"to": "/product/beakers-pmp-printed-graduations"
+		},
+		{
+			"from": "/product/transparent-solar-cell-dolly",
+			"to": "/product/solar-cell-dolly-kit-without-batteries-transparent-plastic"
+		},
+		{
+			"from": "/product/triangular-file-4-2",
+			"to": "/product/file-triangular"
+		},
+		{
+			"from": "/product/triangular-file-6-2",
+			"to": "/product/file-triangular"
+		},
+		{
+			"from": "/product/triple-beam-balance-with-weights-2",
+			"to": "/product/balance-triple-beam-with-weights"
+		},
+		{
+			"from": "/product/triple-lens-folding-pocket-magnifier-2",
+			"to": "/product/folding-magnifier"
+		},
+		{
+			"from": "/product/tripod-bases-with-rods",
+			"to": "/product/tripod-stand"
+		},
+		{
+			"from": "/product/tripod-bases-with-rods-100mm-4in-2",
+			"to": "/product/tripod-stand"
+		},
+		{
+			"from": "/product/tripod-magnifier-2",
+			"to": "/product/tripod-stand"
+		},
+		{
+			"from": "/product/tripod-stand-3-5-2",
+			"to": "/product/tripod-stand"
+		},
+		{
+			"from": "/product/tripod-stand-with-concentric-rings-5-2",
+			"to": "/product/tripod-stand"
+		},
+		{
+			"from": "/product/tube-thistle-2",
+			"to": "/product/tube-thistle"
+		},
+		{
+			"from": "/product/tubes-gas-measuring-100ml-2",
+			"to": "/product/gas-measuring-tube"
+		},
+		{
+			"from": "/product/tubes-gas-measuring-50-ml-2",
+			"to": "/product/gas-measuring-tube"
+		},
+		{
+			"from": "/product/tubes-test-with-sidearm-1-x-8",
+			"to": "/product/test-tube-with-side-arm"
+		},
+		{
+			"from": "/product/tubes-test-with-sidearm-20x150mm-2",
+			"to": "/product/test-tube-with-side-arm"
+		},
+		{
+			"from": "/product/tuning-fork-aluminum-premium-technical-adjustable-2",
+			"to": "/product/tuning-fork"
+		},
+		{
+			"from": "/product/tuning-fork-aluminum-standard-128hz-2",
+			"to": "/product/tuning-fork"
+		},
+		{
+			"from": "/product/tuning-fork-aluminum-standard-288hz-2",
+			"to": "/product/tuning-fork"
+		},
+		{
+			"from": "/product/tuning-fork-aluminum-standard-384hz-2",
+			"to": "/product/tuning-fork"
+		},
+		{
+			"from": "/product/tuning-fork-mallet-2",
+			"to": "/product/tuning-fork"
+		},
+		{
+			"from": "/product/tuning-fork-set-10-piece-standard-with-mallet-wooden-box-2",
+			"to": "/product/tuning-fork"
+		},
+		{
+			"from": "/product/tuning-fork-set-13-with-mallet-wooden-box-2",
+			"to": "/product/tuning-fork"
+		},
+		{
+			"from": "/product/tuning-fork-set-4-2",
+			"to": "/product/tuning-fork"
+		},
+		{
+			"from": "/product/tuning-fork-set-8-piece-aluminum-standard-wooden-box-2",
+			"to": "/product/tuning-fork"
+		},
+		{
+			"from": "/product/tuning-fork-set-8-piece-standard-diatonic-cardboard-box-2",
+			"to": "/product/tuning-fork"
+		},
+		{
+			"from": "/product/tuning-fork-steel-standard-100-hz",
+			"to": "/product/tuning-fork"
+		},
+		{
+			"from": "/product/tuning-fork-steel-standard-128-hz",
+			"to": "/product/tuning-fork"
+		},
+		{
+			"from": "/product/tuning-fork-steel-standard-256-hz",
+			"to": "/product/tuning-fork"
+		},
+		{
+			"from": "/product/tuning-fork-steel-standard-261-6-hz-c-with-ball-plastic-pouch",
+			"to": "/product/tuning-fork"
+		},
+		{
+			"from": "/product/tuning-fork-steel-standard-320-hz",
+			"to": "/product/tuning-fork"
+		},
+		{
+			"from": "/product/tuning-fork-steel-standard-329-6-hz-e-with-ball-plastic-pouch",
+			"to": "/product/tuning-fork"
+		},
+		{
+			"from": "/product/tuning-fork-steel-standard-384-hz",
+			"to": "/product/tuning-fork"
+		},
+		{
+			"from": "/product/tuning-fork-steel-standard-440-hz-a-with-ball-plastic-pouch",
+			"to": "/product/tuning-fork"
+		},
+		{
+			"from": "/product/tuning-fork-steel-standard-unmarked-with-ball-plastic-pouch",
+			"to": "/product/tuning-fork"
+		},
+		{
+			"from": "/product/two-potato-clock-2",
+			"to": "/product/potato-clock-kit"
+		},
+		{
+			"from": "/product/two-way-burner-stand-with-wire-mesh-dual-2",
+			"to": "/product/two-way-burner-stand-with-wire-mesh-dual-heights"
+		},
+		{
+			"from": "/product/u-shape-electromagnet-2",
+			"to": "/product/electromagnet-u-shape"
+		},
+		{
+			"from": "/product/u-shaped-drying-tubes-100x13mm-2",
+			"to": "/product/u-shaped-drying-tube"
+		},
+		{
+			"from": "/product/u-shaped-drying-tubes-150x13mm-2",
+			"to": "/product/u-shaped-drying-tube"
+		},
+		{
+			"from": "/product/u-shaped-drying-tubes-with-side-arms",
+			"to": "/product/u-shaped-drying-tube"
+		},
+		{
+			"from": "/product/u-shaped-magnet-3-2",
+			"to": "/product/horseshoe-magnet"
+		},
+		{
+			"from": "/product/unbreakable-measuring-cylinder-100ml-2",
+			"to": "/product/unbreakable-clear-graduated-cylinders-with-base-100"
+		},
+		{
+			"from": "/product/unbreakable-measuring-cylinder-10ml-2",
+			"to": "/product/unbreakable-clear-graduated-cylinders-with-base"
+		},
+		{
+			"from": "/product/unbreakable-measuring-cylinder-250ml-2",
+			"to": "/product/unbreakable-clear-graduated-cylinders-with-base"
+		},
+		{
+			"from": "/product/unbreakable-measuring-cylinder-25ml-2",
+			"to": "/product/unbreakable-clear-graduated-cylinders-with-base"
+		},
+		{
+			"from": "/product/unbreakable-measuring-cylinder-50ml-2",
+			"to": "/product/unbreakable-clear-graduated-cylinders-with-base"
+		},
+		{
+			"from": "/product/unbreakable-measuring-cylinder-set-2",
+			"to": "/product/laboratory-clear-graduated-cylinder-starter-set"
+		},
+		{
+			"from": "/product/universal-adapter-2",
+			"to": "/product/universal-adapter"
+		},
+		{
+			"from": "/product/universal-multi-rack-2",
+			"to": "/product/test-tube-rack-universal-multi-rack"
+		},
+		{
+			"from": "/product/unmounted-spherical-bi-concave-glass-lenses-1-5-dia-x-4-fl",
+			"to": "/product/bi-concave-spherical-lens"
+		},
+		{
+			"from": "/product/unmounted-spherical-bi-convex-glass-lenses-1-1-2-dia-x-12-fl-2",
+			"to": "/product/bi-convex-spherical-lens"
+		},
+		{
+			"from": "/product/unmounted-spherical-bi-convex-glass-lenses-1-5-dia-x-20-fl",
+			"to": "/product/bi-convex-spherical-lens"
+		},
+		{
+			"from": "/product/unmounted-spherical-bi-convex-glass-lenses-2-dia-x-4-fl-2",
+			"to": "/product/bi-convex-spherical-lens"
+		},
+		{
+			"from": "/product/unmounted-spherical-bi-convex-glass-lenses-2-dia-x-8-fl-2",
+			"to": "/product/bi-convex-spherical-lens"
+		},
+		{
+			"from": "/product/unmounted-spherical-bi-convex-glass-lenses-3-dia-x-6-fl-2",
+			"to": "/product/bi-convex-spherical-lens"
+		},
+		{
+			"from": "/product/unmounted-spherical-bi-convex-glass-lenses-3-dia-x-8-fl-2",
+			"to": "/product/bi-convex-spherical-lens"
+		},
+		{
+			"from": "/product/usa-adapter-only-for-spectrum-tube-power-supply",
+			"to": "/product/australia-adapter-only-for-spectrum-tube-power-supply"
+		},
+		{
+			"from": "/product/usb-digital-microscope-2",
+			"to": "/product/digital-microscope-usb"
+		},
+		{
+			"from": "/product/utility-clamp",
+			"to": "/product/stand-clamp"
+		},
+		{
+			"from": "/product/uv-beads-multi-colored-50-pk",
+			"to": "/product/uv-beads-multi-colored"
+		},
+		{
+			"from": "/product/vacuum-bell-jar-demo-2",
+			"to": "/product/vacuum-bell-jar-demo"
+		},
+		{
+			"from": "/product/vacuum-pump-electrical-with-gauge-110-v",
+			"to": "/product/vacuum-pump-electrical-with-gauge-1-4hp"
+		},
+		{
+			"from": "/product/vacuum-pump-electrical-with-gauge-110volts-1-3hp",
+			"to": "/product/vacuum-pump-electrical-with-gauge-1-3hp"
+		},
+		{
+			"from": "/product/vacuum-pump-handheld-with-gauge",
+			"to": "/product/vacuum-pump-hand-held-with-gauge"
+		},
+		{
+			"from": "/product/van-de-graff-generator",
+			"to": "/product/van-de-graaff-generator-spark-length"
+		},
+		{
+			"from": "/product/vernier-caliper-dual-scale-2",
+			"to": "/product/caliper"
+		},
+		{
+			"from": "/product/vernier-caliper-dual-scale-improved-design-wooden-box-with-teachers-guide-2",
+			"to": "/product/caliper"
+		},
+		{
+			"from": "/product/vertical-acceleration-demonstrator-2",
+			"to": "/product/vertical-acceleration-demonstrator"
+		},
+		{
+			"from": "/product/vertical-acceleration-demonstrator-replacement-steel-balls-pair",
+			"to": "/product/vertical-acceleration-demonstrator-steel"
+		},
+		{
+			"from": "/product/volumetric-flask-with-glass-stopper-100-ml-2",
+			"to": "/product/flask-volumetric-with-glass-stopper-borosilicate"
+		},
+		{
+			"from": "/product/volumetric-flask-with-glass-stopper-1000-ml",
+			"to": "/product/flask-volumetric-with-glass-stopper-borosilicate"
+		},
+		{
+			"from": "/product/volumetric-flask-with-glass-stopper-25-ml-2",
+			"to": "/product/flask-volumetric-with-glass-stopper-borosilicate"
+		},
+		{
+			"from": "/product/volumetric-flask-with-glass-stopper-250-ml",
+			"to": "/product/flask-volumetric-with-glass-stopper-borosilicate"
+		},
+		{
+			"from": "/product/volumetric-flask-with-glass-stopper-50-ml-2",
+			"to": "/product/flask-volumetric-with-glass-stopper-borosilicate"
+		},
+		{
+			"from": "/product/volumetric-flask-with-glass-stopper-500-ml",
+			"to": "/product/flask-volumetric-with-glass-stopper-borosilicate"
+		},
+		{
+			"from": "/product/wash-bottle-ldpe-wm-500-ml-unitary",
+			"to": "/product/wash-bottle"
+		},
+		{
+			"from": "/product/wash-bottles-built-in-delivery-tube-125ml",
+			"to": "/product/wash-bottle"
+		},
+		{
+			"from": "/product/wash-bottles-built-in-delivery-tube-500ml",
+			"to": "/product/wash-bottle"
+		},
+		{
+			"from": "/product/wash-bottles-flexible-delivery-tube-125ml",
+			"to": "/product/wash-bottle"
+		},
+		{
+			"from": "/product/wash-bottles-flexible-delivery-tube-125ml-2",
+			"to": "/product/wash-bottle"
+		},
+		{
+			"from": "/product/wash-bottles-flexible-delivery-tube-30ml",
+			"to": "/product/wash-bottle"
+		},
+		{
+			"from": "/product/wash-bottles-flexible-delivery-tube-500ml",
+			"to": "/product/wash-bottle"
+		},
+		{
+			"from": "/product/wash-bottles-flexible-delivery-tube-60ml",
+			"to": "/product/wash-bottle"
+		},
+		{
+			"from": "/product/watch-glasses-3-pk-12-2",
+			"to": "/product/watch-glasses"
+		},
+		{
+			"from": "/product/watch-glasses-4-pk-12-2",
+			"to": "/product/watch-glasses"
+		},
+		{
+			"from": "/product/water-clock-green-2",
+			"to": "/product/water-clock"
+		},
+		{
+			"from": "/product/wave-driver",
+			"to": "/product/wave-driver-with-banana-cable"
+		},
+		{
+			"from": "/product/wheel-and-axle-2",
+			"to": "/product/wheel-and-axle"
+		},
+		{
+			"from": "/product/white-socket-with-base",
+			"to": "/product/miniature-lamp-holder"
+		},
+		{
+			"from": "/product/white-socket-with-base-2",
+			"to": "/product/miniature-lamp-holder"
+		},
+		{
+			"from": "/product/widefield-din-microscope-eyepiece-2",
+			"to": "/product/microscope-eyepiece"
+		},
+		{
+			"from": "/product/wimshurst-machine-2",
+			"to": "/product/wimshurst-machine"
+		},
+		{
+			"from": "/product/wind-vane",
+			"to": "/product/wind-vane-w-x-l-x-h"
+		},
+		{
+			"from": "/product/wire-gauze-squares-4-2",
+			"to": "/product/wire-gauze-square"
+		},
+		{
+			"from": "/product/wire-gauze-squares-5-2",
+			"to": "/product/wire-gauze-square"
+		},
+		{
+			"from": "/product/wire-gauze-squares-6-2",
+			"to": "/product/wire-gauze-square"
+		},
+		{
+			"from": "/product/wire-gauze-squares-with-ceramic-center-4-2",
+			"to": "/product/wire-gauze-square"
+		},
+		{
+			"from": "/product/wire-gauze-squares-with-ceramic-center-5-2",
+			"to": "/product/wire-gauze-square"
+		},
+		{
+			"from": "/product/wire-gauze-squares-with-ceramic-center-6-2",
+			"to": "/product/wire-gauze-square"
+		},
+		{
+			"from": "/product/wireless-digital-microscope-200x-2",
+			"to": "/product/digital-microscope-wireless"
+		},
+		{
+			"from": "/product/wooden-test-tube-clamp-2",
+			"to": "/product/test-tube-clamp"
+		},
+		{
+			"from": "/product/wooden-test-tube-rack-6-holes-6-drying-pins-2",
+			"to": "/product/test-tube-rack"
+		},
+		{
+			"from": "/product/worm-farm-tank-science-experiement-viewer-instructions-light-blocker-in-color-box",
+			"to": "/product/worm-farm-kit"
+		}
+	],
+	"categories": [
+		{
+			"from": "/product-category/laboratory/equipment-access",
+			"to": "/product-category/laboratory/lab-equipment-accessories"
+		},
+		{
+			"from": "/product-category/physics-physical-science/electricity-physics-physical-science",
+			"to": "/product-category/physics-physical-science/electricity"
+		},
+		{
+			"from": "/product-category/physics-physical-science/magnetism-physics-physical-science",
+			"to": "/product-category/physics-physical-science/magnetism"
+		},
+		{
+			"from": "/product-category/physics-physical-science/robotics-physics-physical-science",
+			"to": "/product-category/physics-physical-science/robotics"
+		}
+	]
+}
