@@ -39,20 +39,25 @@ interface SyncResult {
 	mode: "full" | "incremental";
 }
 
+// Incremental lookback window (minutes). Generous so a missed 10-minute tick
+// self-heals; re-upserting a few recent items is cheap and idempotent.
+const INCREMENTAL_LOOKBACK_MIN = 90;
+
 async function runSync(env: SyncEnv, incremental: boolean): Promise<SyncResult> {
 	const startedAt = Date.now();
 	const syncedAt = new Date().toISOString();
 	const account = (env.NS_ACCOUNT ?? "").trim();
 	const client = NetSuiteClient.fromEnv(env as unknown as RawEnv);
 
-	// Incremental only pulls items changed since the last successful run.
-	let modifiedAfter: string | undefined;
-	if (incremental) {
-		const meta = await getSyncMeta(env.DB);
-		modifiedAfter = meta?.lastRun ?? undefined;
-	}
-
-	const records = await fetchFullCatalog(client, account, { modifiedAfter });
+	// Incremental only pulls items changed in the last INCREMENTAL_LOOKBACK_MIN
+	// minutes (NetSuite's own clock). The window is generous so a missed cron tick
+	// self-heals on the next run; re-upserting a few recent items is idempotent and
+	// cheap. Full syncs re-fetch everything (and prune) as the ultimate backstop.
+	const records = await fetchFullCatalog(
+		client,
+		account,
+		incremental ? { sinceMinutes: INCREMENTAL_LOOKBACK_MIN } : {},
+	);
 	const written = await upsertProducts(env.DB, records, syncedAt);
 	// Only a FULL run may prune — an incremental run didn't fetch everything.
 	const pruned = incremental ? 0 : await pruneStale(env.DB, syncedAt);
