@@ -1,8 +1,8 @@
 {
   "summary": {
     "total_items": 1306,
-    "total_pages": 583,
-    "multi_variant_pages": 156,
+    "total_pages": 584,
+    "multi_variant_pages": 157,
     "single_item_pages": 427,
     "items_consolidated_into_multi_pages": 879,
     "pages_flagged_for_review": 7,
@@ -1756,11 +1756,77 @@
     },
     {
       "page_id": "G0432",
-      "product_name": "Pull & Push-Pull Spring Scale",
+      "product_name": "Push-Pull Spring Scale Balance",
+      "family": "Spring Scale",
+      "page_type": "multi-variant",
+      "variant_axis": "Color / Range",
+      "item_count": 6,
+      "item_number_prefixes": "3439",
+      "flag": "",
+      "members": [
+        {
+          "item_number": "3439-33",
+          "netsuite_internal_id": 181,
+          "full_name": "Spring Scale, Push Pull Balance, Blue, 250 g/2.5 N",
+          "store_name": "Push Pull Spring Scale Balance, Blue 250 g",
+          "variant_label": "Push Pull Spring Scale Balance, Blue 250 g",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "3439-34",
+          "netsuite_internal_id": 182,
+          "full_name": "Spring Scale, Push Pull Balance, Green, 500 g/5 N",
+          "store_name": "Push Pull Spring Scale Balance, Green 500 g",
+          "variant_label": "Push Pull Spring Scale Balance, Green 500 g",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "3439-35",
+          "netsuite_internal_id": 183,
+          "full_name": "Spring Scale, Push Pull Balance, Beige, 1000 g/10 N",
+          "store_name": "Push Pull Spring Scale Balance, Beige 1 kg",
+          "variant_label": "Push Pull Spring Scale Balance, Beige 1 kg",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "3439-36",
+          "netsuite_internal_id": 184,
+          "full_name": "Spring Scale, Push Pull Balance, Red, 2000 g/20 N",
+          "store_name": "Push Pull Spring Scale Balance, Red 2 kg",
+          "variant_label": "Push Pull Spring Scale Balance, Red 2 kg",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "3439-37",
+          "netsuite_internal_id": 185,
+          "full_name": "Spring Scale, Push Pull Balance, White, 3000 g/30 N",
+          "store_name": "Push Pull Spring Scale Balance, White 3 kg",
+          "variant_label": "Push Pull Spring Scale Balance, White 3 kg",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "3439-38",
+          "netsuite_internal_id": 186,
+          "full_name": "Spring Scale, Push Pull Balance, Yellow, 5000 g/50 N",
+          "store_name": "Push Pull Spring Scale Balance, Yellow 5 kg",
+          "variant_label": "Push Pull Spring Scale Balance, Yellow 5 kg",
+          "itemtype": "InvtPart",
+          "has_image": true
+        }
+      ]
+    },
+    {
+      "page_id": "G0976",
+      "product_name": "Pull Spring Scale Balance",
       "family": "Spring Scale",
       "page_type": "multi-variant",
       "variant_axis": "Range",
-      "item_count": 13,
+      "item_count": 7,
       "item_number_prefixes": "3439",
       "flag": "",
       "members": [
@@ -1815,60 +1881,6 @@
           "full_name": "Spring Scale, Spring Balance, Dual Scale, 50 N/5000 g",
           "store_name": "Pull Spring Scale Balance Dual Scale, 50 N/5000 g",
           "variant_label": "Pull Spring Scale Balance Dual Scale, 50 N/5000 g",
-          "itemtype": "InvtPart",
-          "has_image": true
-        },
-        {
-          "item_number": "3439-33",
-          "netsuite_internal_id": 181,
-          "full_name": "Spring Scale, Push Pull Balance, Blue, 250 g/2.5 N",
-          "store_name": "Push Pull Spring Scale Balance, Blue 250 g",
-          "variant_label": "Push Pull Spring Scale Balance, Blue 250 g",
-          "itemtype": "InvtPart",
-          "has_image": true
-        },
-        {
-          "item_number": "3439-34",
-          "netsuite_internal_id": 182,
-          "full_name": "Spring Scale, Push Pull Balance, Green, 500 g/5 N",
-          "store_name": "Push Pull Spring Scale Balance, Green 500 g",
-          "variant_label": "Push Pull Spring Scale Balance, Green 500 g",
-          "itemtype": "InvtPart",
-          "has_image": true
-        },
-        {
-          "item_number": "3439-35",
-          "netsuite_internal_id": 183,
-          "full_name": "Spring Scale, Push Pull Balance, Beige, 1000 g/10 N",
-          "store_name": "Push Pull Spring Scale Balance, Beige 1 kg",
-          "variant_label": "Push Pull Spring Scale Balance, Beige 1 kg",
-          "itemtype": "InvtPart",
-          "has_image": true
-        },
-        {
-          "item_number": "3439-36",
-          "netsuite_internal_id": 184,
-          "full_name": "Spring Scale, Push Pull Balance, Red, 2000 g/20 N",
-          "store_name": "Push Pull Spring Scale Balance, Red 2 kg",
-          "variant_label": "Push Pull Spring Scale Balance, Red 2 kg",
-          "itemtype": "InvtPart",
-          "has_image": true
-        },
-        {
-          "item_number": "3439-37",
-          "netsuite_internal_id": 185,
-          "full_name": "Spring Scale, Push Pull Balance, White, 3000 g/30 N",
-          "store_name": "Push Pull Spring Scale Balance, White 3 kg",
-          "variant_label": "Push Pull Spring Scale Balance, White 3 kg",
-          "itemtype": "InvtPart",
-          "has_image": true
-        },
-        {
-          "item_number": "3439-38",
-          "netsuite_internal_id": 186,
-          "full_name": "Spring Scale, Push Pull Balance, Yellow, 5000 g/50 N",
-          "store_name": "Push Pull Spring Scale Balance, Yellow 5 kg",
-          "variant_label": "Push Pull Spring Scale Balance, Yellow 5 kg",
           "itemtype": "InvtPart",
           "has_image": true
         },
