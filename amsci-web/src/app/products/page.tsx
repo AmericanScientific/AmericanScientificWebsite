@@ -18,7 +18,7 @@ export const revalidate = 300;
 
 export default async function ProductsPage({ searchParams }: { searchParams: Promise<{ page?: string }> }) {
 	const allProducts = await getListingProducts();
-	const { items: products, page, totalPages, total } = paginate(allProducts, (await searchParams).page);
+	const { items: products, page, totalPages } = paginate(allProducts, (await searchParams).page);
 	const categories = getTopLevelCategories();
 
 	return (
@@ -26,10 +26,6 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
 			<h1 className="font-display text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
 				All Products
 			</h1>
-			<p className="mt-2 text-slate-500">
-				<span className="font-semibold text-slate-700">{total}</span> products · Sign in
-				for your account pricing and quantity breaks.
-			</p>
 
 			{/* Category quick-jump */}
 			<div className="mt-8 flex flex-wrap gap-2">
