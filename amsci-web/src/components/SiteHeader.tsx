@@ -24,7 +24,7 @@ export function SiteHeader() {
 			{/* Brand announcement strip */}
 			<div className="brand-gradient text-white">
 				<div className="mx-auto flex max-w-7xl items-center justify-center gap-2 px-4 py-1.5 text-center text-xs font-medium sm:justify-between sm:px-6 lg:px-8">
-					<span>Wholesale B2B pricing · Sign in to see your account tier</span>
+					<span>American Scientific is a wholesaler and only capable of selling products to eligible distributors.</span>
 					<span className="hidden sm:inline">📞 888-490-9002 · office@american-scientific.com</span>
 				</div>
 			</div>
