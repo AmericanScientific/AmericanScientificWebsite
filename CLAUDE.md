@@ -365,15 +365,17 @@ still renders a price — delete or gate it before launch (same bucket as the TE
 hash-porting approach). Remaining to finish the pivot on remote:
 1. `wrangler d1 execute amsci-catalog --remote --file=db/migrations/0001_password_setup.sql`
    (adds `must_change_password`, sets it to 1 for all, nulls the password hashes, creates `password_tokens`).
-2. Email: `wrangler email sending enable <sender-domain>` (+ SPF/DKIM/DMARC DNS; auto if the domain is a CF
-   zone), then **uncomment the `send_email` binding** in `wrangler.jsonc` and set `SITE_URL` var to the
-   deployed origin. Until then setup requests succeed but no mail is delivered.
+2. Email: **DONE (Resend, not the Cloudflare `send_email` binding).** `src/lib/auth/email.ts` sends via
+   Resend; `RESEND_API_KEY` is set as a secret on the live `amsci-web` worker and am-sci.com is verified
+   in Resend. `EMAIL_FROM`/`EMAIL_FROM_NAME` are set in `wrangler.jsonc` vars. Only loose end: `SITE_URL`
+   is still commented out, so email links use the request origin — pin it to the final public domain at
+   launch. (Ignore any older reference to a `send_email` binding; that approach was superseded.)
 3. `npm run deploy`. (`private/_testusers.sql` fixtures are **local-only**, not in the seed.)
 Note: remote D1 rejects raw `BEGIN/COMMIT` in `--file` SQL — seeds/migrations must omit transaction statements.
 Note: a direct `--remote` SELECT over the users table is blocked by the auto-mode PII guard; run such reads
 via `!` in the user's session (or have the human run them).
 
-**Still TODO:** wire the Cloudflare Email Service sender domain (blocks real email delivery); self-service
+**Still TODO:** self-service
 signup + Turnstile (the 1,563 pending backlog shows why); NetSuite customer link by email + real
 `price_level`; live tiered/qty `resolvePrice`; "Add To Order" → NetSuite Sales Order; change-password (while
 logged in) + admin approval UI; delete/gate the `/item-preview` scaffold + TEMP diagnostic routes.
