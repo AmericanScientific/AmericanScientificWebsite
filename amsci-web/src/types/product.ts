@@ -63,6 +63,15 @@ export interface Product {
 	 */
 	variantCount?: number;
 	pageSlug?: string;
+
+	/**
+	 * True when this SKU has a working teacher's guide PDF (NetSuite
+	 * `custitem_teachersguide`/`custitemtg_url`, validated in
+	 * `src/data/teacher_guides.json`). Drives the guide buttons under the product
+	 * image. Undefined/false = no button. The PDF itself is served via
+	 * `/api/teacher-guide?sku=…` so the raw NetSuite URL stays server-side.
+	 */
+	teacherGuideAvailable?: boolean;
 }
 
 /** URL-safe slug for a product detail route. SKU is stable and unique, so we key on it. */

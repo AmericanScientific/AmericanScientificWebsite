@@ -23,6 +23,7 @@ import { ProductCard } from "@/components/ProductCard";
 import { ProductVariantView, type VariantOption } from "@/components/ProductVariantView";
 import { ProductPrice } from "@/components/ProductPrice";
 import { CategoryIcon } from "@/components/CategoryIcon";
+import { TeacherGuideButtons } from "@/components/TeacherGuideButtons";
 
 /** Re-read the cron-synced catalog from D1 at most this often (seconds). */
 export const revalidate = 300;
@@ -243,6 +244,7 @@ function SingleProduct({
 					className="aspect-square w-full rounded-3xl shadow-lg shadow-slate-900/5"
 					iconClassName="h-28 w-28"
 				/>
+				<TeacherGuideButtons sku={product.sku} available={product.teacherGuideAvailable} />
 			</div>
 
 			<div className="flex flex-col">
