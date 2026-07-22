@@ -1,5 +1,6 @@
 import { categoryTheme } from "@/lib/categoryTheme";
 import { CategoryIcon } from "@/components/CategoryIcon";
+import { AccountPricingBadge } from "@/components/AccountPricingBadge";
 
 /**
  * Category page banner ("hero").
@@ -48,9 +49,7 @@ export function CategoryHero({
 							<span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-sm font-semibold text-white ring-1 ring-white/25 backdrop-blur [font-variant-numeric:tabular-nums]">
 								{count} {count === 1 ? "product" : "products"}
 							</span>
-							<span className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-sm font-medium text-white/90 ring-1 ring-white/40">
-								Sign in for your account pricing
-							</span>
+							<AccountPricingBadge />
 						</div>
 					</div>
 				</div>
