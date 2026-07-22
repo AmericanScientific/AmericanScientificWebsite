@@ -13,16 +13,22 @@ interface ResourcesData {
 	videos: { sku: string; title: string; youtubeId: string }[];
 }
 
+/** Catalog PDFs (hosted in public/catalogs/). Add entries here as new catalogs land. */
+const CATALOGS = [
+	{
+		title: "American Scientific Catalog (2021)",
+		url: "/catalogs/american-scientific-catalog-2021.pdf",
+		note: "Full product catalog",
+	},
+];
+
 export default function ResourcesPage() {
 	const { guides, videos } = resources as ResourcesData;
 	return (
 		<div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
 			<h1 className="font-display text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Resources</h1>
-			<p className="mt-2 max-w-2xl text-slate-500">
-				Teacher&rsquo;s guides, instruction manuals, and product demonstration videos, all in one place.
-			</p>
 			<div className="mt-8">
-				<ResourcesTabs guides={guides} videos={videos} />
+				<ResourcesTabs guides={guides} videos={videos} catalogs={CATALOGS} />
 			</div>
 		</div>
 	);
