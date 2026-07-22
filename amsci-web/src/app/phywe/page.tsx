@@ -76,7 +76,7 @@ export default function PhywePage() {
 					</p>
 					<div className="mt-8 flex flex-wrap justify-center gap-3">
 						<a
-							href="#featured"
+							href="/phywe/products"
 							className="brand-gradient rounded-full px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-blue/20 transition-all hover:shadow-xl hover:brightness-105"
 						>
 							Explore PHYWE Products
