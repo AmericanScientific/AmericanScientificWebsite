@@ -1,0 +1,533 @@
+{
+	"guides": [
+		{
+			"sku": "3358-20",
+			"title": "Acrylic Lens and Prism, Set/7"
+		},
+		{
+			"sku": "3381-00",
+			"title": "Advanced Spectrometer"
+		},
+		{
+			"sku": "3172-00",
+			"title": "Air Core Solenoid"
+		},
+		{
+			"sku": "3569-00",
+			"title": "Air Puck"
+		},
+		{
+			"sku": "6600-00",
+			"title": "AmSci Stream Table Kit, each"
+		},
+		{
+			"sku": "6577-00",
+			"title": "Anemometer"
+		},
+		{
+			"sku": "AR-510",
+			"title": "Atmospheric Mat with Hook"
+		},
+		{
+			"sku": "7030-00",
+			"title": "Balloon Helicopter, Teacher's Guide Available"
+		},
+		{
+			"sku": "7040-00",
+			"title": "Bernoulli Bag, Green, Pk/4"
+		},
+		{
+			"sku": "6455-55",
+			"title": "Bottle Connector"
+		},
+		{
+			"sku": "9114-48",
+			"title": "Butterfly Cage Pavilion"
+		},
+		{
+			"sku": "3235-00",
+			"title": "Calorimeter Set/2"
+		},
+		{
+			"sku": "3447-00",
+			"title": "Capillary Tube Set (Communicating Capillaries)"
+		},
+		{
+			"sku": "7010-10",
+			"title": "Classic Drinking Bird"
+		},
+		{
+			"sku": "3550-00",
+			"title": "Coin and Feather Demo"
+		},
+		{
+			"sku": "3559-00",
+			"title": "Color Mixing Demo"
+		},
+		{
+			"sku": "9994-18",
+			"title": "Color Paddles, Set/18"
+		},
+		{
+			"sku": "3230-00",
+			"title": "Compound Bar/Strip"
+		},
+		{
+			"sku": "8224-00",
+			"title": "Crookes Radiometer"
+		},
+		{
+			"sku": "3510-02",
+			"title": "Cubes of Six Metals 0.75\", Set/6"
+		},
+		{
+			"sku": "3510-03",
+			"title": "Cubes of Six Metals 1\", Set/6"
+		},
+		{
+			"sku": "3167-11",
+			"title": "DC Motor Kit"
+		},
+		{
+			"sku": "3559-30",
+			"title": "Demonstrator of Combination of 3 Basic Colors"
+		},
+		{
+			"sku": "W-0055",
+			"title": "Doppler Effect Demo Set"
+		},
+		{
+			"sku": "9200-10",
+			"title": "Electric Paint Pen"
+		},
+		{
+			"sku": "3134-01",
+			"title": "Electroscope Pith Ball"
+		},
+		{
+			"sku": "6580-00",
+			"title": "Energy Ball"
+		},
+		{
+			"sku": "3568-00",
+			"title": "Fan Cart"
+		},
+		{
+			"sku": "3486-00",
+			"title": "Ferrofluid Magnetic Display"
+		},
+		{
+			"sku": "1522-00",
+			"title": "Fire Syringe"
+		},
+		{
+			"sku": "3128-07",
+			"title": "Friction Rod Set"
+		},
+		{
+			"sku": "1167-00",
+			"title": "Galileo Thermometer 13\" H (F)"
+		},
+		{
+			"sku": "3210-01",
+			"title": "Gas Convection Apparatus"
+		},
+		{
+			"sku": "5133-00",
+			"title": "Geometric Optics Demo"
+		},
+		{
+			"sku": "9125-12",
+			"title": "Grain of Wheat Bulb, Pk/100"
+		},
+		{
+			"sku": "8211-11",
+			"title": "Hall's Carriage"
+		},
+		{
+			"sku": "2010-10",
+			"title": "Hand Boiler"
+		},
+		{
+			"sku": "4225-00",
+			"title": "Hand Generator"
+		},
+		{
+			"sku": "6080-40",
+			"title": "Harbottle"
+		},
+		{
+			"sku": "3223-00",
+			"title": "Heat Conductometer"
+		},
+		{
+			"sku": "3227-02",
+			"title": "Heat Pack 4\" x 4\""
+		},
+		{
+			"sku": "3227-03",
+			"title": "Heat Pack 8\" x 8\""
+		},
+		{
+			"sku": "3155-01",
+			"title": "Hoffman Electrolysis Apparatus, Complete"
+		},
+		{
+			"sku": "2010-20",
+			"title": "Horizontal Hand Boiler"
+		},
+		{
+			"sku": "3643-00",
+			"title": "Large Acrylic Pendulum Wave Demo"
+		},
+		{
+			"sku": "3481-20",
+			"title": "Large Inclined Plane"
+		},
+		{
+			"sku": "5135-00",
+			"title": "Laser Pointer, Red"
+		},
+		{
+			"sku": "3559-90",
+			"title": "LED Array"
+		},
+		{
+			"sku": "9125-03",
+			"title": "LED Grain of Wheat Bulb, Pk/100"
+		},
+		{
+			"sku": "AR-105",
+			"title": "Lenz Law Apparatus"
+		},
+		{
+			"sku": "3030-11",
+			"title": "Leslie's Cube with Accessories"
+		},
+		{
+			"sku": "2120-00",
+			"title": "Lightning Ball 8\", 110V"
+		},
+		{
+			"sku": "2120-00-220",
+			"title": "Lightning Ball 8\", 220V"
+		},
+		{
+			"sku": "3638-01",
+			"title": "Long Metal Spring 3\" x 6\""
+		},
+		{
+			"sku": "3563-00",
+			"title": "Magdeburg Hemisphere"
+		},
+		{
+			"sku": "3114-01",
+			"title": "Magnet, Neodymium, 14mm x 6mm, pair"
+		},
+		{
+			"sku": "3119-00",
+			"title": "Magnetic Model Field"
+		},
+		{
+			"sku": "3196-00",
+			"title": "Magnetic Thinking Putty"
+		},
+		{
+			"sku": "9447-15",
+			"title": "Making Dew Kit (Classroom pack)"
+		},
+		{
+			"sku": "3638-02",
+			"title": "Metal Spring 3\" x 2.33\""
+		},
+		{
+			"sku": "4007-37",
+			"title": "Miniature LED Lights, Pk/10"
+		},
+		{
+			"sku": "5146-00",
+			"title": "Newton's Apples, Pk/6"
+		},
+		{
+			"sku": "3564-00",
+			"title": "Newton's Cradle with Silver Base"
+		},
+		{
+			"sku": "1001-01-30",
+			"title": "Nitinol Memory Wire 1 ft, pk/30"
+		},
+		{
+			"sku": "3544-00",
+			"title": "Pascal's Principle Demonstrator"
+		},
+		{
+			"sku": "3645-00",
+			"title": "Pendulum Wave Demo"
+		},
+		{
+			"sku": "9115-12",
+			"title": "Pop-Up Butterfly Cage 12\""
+		},
+		{
+			"sku": "9115-18",
+			"title": "Pop-Up Butterfly Cage 18\""
+		},
+		{
+			"sku": "9115-24",
+			"title": "Pop-Up Butterfly Cage 24\""
+		},
+		{
+			"sku": "3472-05",
+			"title": "Pulley Demonstration Set"
+		},
+		{
+			"sku": "9222-23",
+			"title": "Rattleback, Plastic, Multi Color, Pk/10"
+		},
+		{
+			"sku": "3350-01",
+			"title": "Refraction Cup"
+		},
+		{
+			"sku": "6579-00",
+			"title": "Resonance Bowl (Chinese Spouting Bowl)"
+		},
+		{
+			"sku": "3164-00",
+			"title": "Revolution"
+		},
+		{
+			"sku": "3226-00",
+			"title": "Ring and Ball Apparatus"
+		},
+		{
+			"sku": "7050-00",
+			"title": "Seismic Accelerator"
+		},
+		{
+			"sku": "3637-00",
+			"title": "Singing Rods set/2"
+		},
+		{
+			"sku": "3640-00",
+			"title": "Snaky Spring Wave Demonstration"
+		},
+		{
+			"sku": "1000-01",
+			"title": "Solar Cell, 1 V/400 mA"
+		},
+		{
+			"sku": "ASB-1000",
+			"title": "Solar UV Beads, Pk/1000"
+		},
+		{
+			"sku": "3484-38",
+			"title": "Solid Steel Ball, 1.5\", Pair (Smashing Steel Sphere Kinetic Energy Demo)"
+		},
+		{
+			"sku": "3372-00",
+			"title": "Spectroscope, Direct Vision, Wooden Box"
+		},
+		{
+			"sku": "5456-00",
+			"title": "Spirit Lamp Stainless Steel"
+		},
+		{
+			"sku": "3646-52",
+			"title": "Student Blood Pressure Kit"
+		},
+		{
+			"sku": "9200-60",
+			"title": "Touch Board Starter Kit"
+		},
+		{
+			"sku": "3165-01",
+			"title": "U Shape Electromagnet"
+		},
+		{
+			"sku": "6076-11",
+			"title": "Vacuum Pump, Handheld with Gauge"
+		},
+		{
+			"sku": "3131-01",
+			"title": "Wimshurst Machines"
+		}
+	],
+	"videos": [
+		{
+			"sku": "3381-00",
+			"title": "Advanced Spectrometer",
+			"youtubeId": "THzTc_JmsXI"
+		},
+		{
+			"sku": "3569-00",
+			"title": "Air Puck",
+			"youtubeId": "JQLS_rAuPSA"
+		},
+		{
+			"sku": "AR-510",
+			"title": "Atmospheric Mat with Hook",
+			"youtubeId": "KxJTIw0AJ_s"
+		},
+		{
+			"sku": "7010-10",
+			"title": "Classic Drinking Bird",
+			"youtubeId": "qsDN32yoKMQ"
+		},
+		{
+			"sku": "7200-00",
+			"title": "Edu-Drum",
+			"youtubeId": "dGOvX-M0trA"
+		},
+		{
+			"sku": "1113-10",
+			"title": "Electric Energy Set",
+			"youtubeId": "A9kP1ZnvupI"
+		},
+		{
+			"sku": "6580-00",
+			"title": "Energy Ball",
+			"youtubeId": "1OjneJUm4Gw"
+		},
+		{
+			"sku": "3568-00",
+			"title": "Fan Cart",
+			"youtubeId": "qRJ0ck0N0_o"
+		},
+		{
+			"sku": "3486-00",
+			"title": "Ferrofluid Magnetic Display",
+			"youtubeId": "WDPL7z1PBdE"
+		},
+		{
+			"sku": "1522-00",
+			"title": "Fire Syringe",
+			"youtubeId": "kRrOmVdmF7g"
+		},
+		{
+			"sku": "1167-00",
+			"title": "Galileo Thermometer 13\" H (F)",
+			"youtubeId": "EoW20hgMjOg"
+		},
+		{
+			"sku": "2010-10",
+			"title": "Hand Boiler",
+			"youtubeId": "Vucs_OYFbpg"
+		},
+		{
+			"sku": "3227-02",
+			"title": "Heat Pack 4\" x 4\"",
+			"youtubeId": "F4ohzIgKCtw"
+		},
+		{
+			"sku": "3643-00",
+			"title": "Large Acrylic Pendulum Wave Demo",
+			"youtubeId": "l-pC927dl0I"
+		},
+		{
+			"sku": "3481-20",
+			"title": "Large Inclined Plane",
+			"youtubeId": "YplQJyJfIUYwidth"
+		},
+		{
+			"sku": "6332-00",
+			"title": "Laser Refraction Tank with Geometric Optics",
+			"youtubeId": "c5xTMgVpc8Q"
+		},
+		{
+			"sku": "9110-30",
+			"title": "LED Ant Habitat",
+			"youtubeId": "VWdoOXOWTTI"
+		},
+		{
+			"sku": "2120-00",
+			"title": "Lightning Ball 8\", 110V",
+			"youtubeId": "lmSxlu1smr4"
+		},
+		{
+			"sku": "3737-00",
+			"title": "Lorentz Force Demo",
+			"youtubeId": "Ma3GVYfVjsM"
+		},
+		{
+			"sku": "TR-12",
+			"title": "Magnetic Pole Finder",
+			"youtubeId": "_QFHVnrTI9A"
+		},
+		{
+			"sku": "3196-00",
+			"title": "Magnetic Thinking Putty",
+			"youtubeId": "rqcem5hdO3o"
+		},
+		{
+			"sku": "8830-00",
+			"title": "Micro:bot",
+			"youtubeId": "2sD6G3AA3xw"
+		},
+		{
+			"sku": "3134-03",
+			"title": "Millikan Oil Drop Apparatus",
+			"youtubeId": "EV3BtoMGA9c"
+		},
+		{
+			"sku": "3338-01",
+			"title": "Mini Ripple Tank",
+			"youtubeId": "RSdRJbTHYm4"
+		},
+		{
+			"sku": "5146-00",
+			"title": "Newton's Apples, Pk/6",
+			"youtubeId": "kCer34uBf3c"
+		},
+		{
+			"sku": "3376-00D",
+			"title": "Power Supply for Spectrum Discharge Tubes, Dual Voltage (110V/220V), CE/RoHS Certified",
+			"youtubeId": "-1JcSaovkYg"
+		},
+		{
+			"sku": "9222-23",
+			"title": "Rattleback, Plastic, Multi Color, Pk/10",
+			"youtubeId": "6F4Q6dQgpcQ"
+		},
+		{
+			"sku": "6579-00",
+			"title": "Resonance Bowl (Chinese Spouting Bowl)",
+			"youtubeId": "7i3JTeh7VXs"
+		},
+		{
+			"sku": "7050-00",
+			"title": "Seismic Accelerator",
+			"youtubeId": "7knZSpwM3kM"
+		},
+		{
+			"sku": "8410-00",
+			"title": "Sine Wave Generator, 110v",
+			"youtubeId": "NvsXEXSMynI"
+		},
+		{
+			"sku": "8820-00",
+			"title": "Sixteen Piece Starter Chemistry Kit",
+			"youtubeId": "Yq4WkJPblIU"
+		},
+		{
+			"sku": "1000-14",
+			"title": "Stirling Generator",
+			"youtubeId": "cgmn91Ecry8"
+		},
+		{
+			"sku": "1000-12",
+			"title": "Thermoelectric Generator Demonstrator",
+			"youtubeId": "tHbdzxW0Y7c"
+		},
+		{
+			"sku": "9456-40",
+			"title": "Water Clock, Green",
+			"youtubeId": "k0hCuzHFq9Q"
+		},
+		{
+			"sku": "3131-01",
+			"title": "Wimshurst Machines",
+			"youtubeId": "Tc_0_xi9cMQ"
+		}
+	]
+}
