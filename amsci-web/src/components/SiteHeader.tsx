@@ -132,6 +132,20 @@ export function SiteHeader() {
 									</li>
 								);
 							})}
+
+							{/* Resources — pushed to the far right */}
+							<li className="ml-auto">
+								<Link
+									href="/resources"
+									className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 font-semibold text-slate-700 transition-colors hover:bg-slate-100"
+								>
+									<svg viewBox="0 0 24 24" className="h-4 w-4 text-slate-400" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+										<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+										<path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+									</svg>
+									Resources
+								</Link>
+							</li>
 						</ul>
 					</nav>
 
@@ -149,6 +163,9 @@ export function SiteHeader() {
 								{category.name}
 							</Link>
 						))}
+						<Link href="/resources" className="whitespace-nowrap rounded-full bg-slate-100 px-3 py-1.5 text-sm font-medium text-slate-700">
+							Resources
+						</Link>
 					</nav>
 				</div>
 			</div>
