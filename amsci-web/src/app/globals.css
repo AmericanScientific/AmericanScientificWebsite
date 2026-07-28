@@ -579,6 +579,20 @@ body {
 	}
 }
 
+/* Always-on shine: sweeps periodically without needing hover. */
+.brand-gradient.shine-loop::after {
+	animation: btn-shine-loop 3.4s ease-in-out infinite;
+}
+@keyframes btn-shine-loop {
+	0% {
+		transform: translateX(-130%);
+	}
+	24%,
+	100% {
+		transform: translateX(130%);
+	}
+}
+
 /* Shimmer loading skeleton (replaces the plain pulse on price loads). */
 .skeleton-shimmer {
 	position: relative;
@@ -618,6 +632,7 @@ body {
 	.brand-gradient-text,
 	.brand-gradient-text-light,
 	.brand-gradient:hover::after,
+	.brand-gradient.shine-loop::after,
 	.skeleton-shimmer::after,
 	.page-transition {
 		animation: none;
