@@ -2,27 +2,16 @@ import { categoryTheme } from "@/lib/categoryTheme";
 import { CategoryIcon } from "@/components/CategoryIcon";
 import { AccountPricingBadge } from "@/components/AccountPricingBadge";
 import { CountUp } from "@/components/CountUp";
-import { CategoryHeroMotif } from "@/components/CategoryHeroMotif";
+import { CategoryParticles } from "@/components/CategoryParticles";
 
 /**
  * Category page banner ("hero").
  *
  * Layered over the category's own theme gradient: a light bloom + fine dot grid
- * (`.cat-hero` in globals.css), a sweeping sheen, drifting particles, and a big
- * ghosted, ANIMATED science motif unique to each top-level category
- * (<CategoryHeroMotif>). `eyebrow` shows the parent family on leaf pages.
+ * (`.cat-hero` in globals.css), a sweeping sheen, and a full-bleed, mouse-reactive
+ * particle field unique per category (<CategoryParticles>). `eyebrow` shows the
+ * parent family on leaf pages.
  */
-
-/** Deterministic particle field (fixed so SSR/CSR match). */
-const PARTICLES = [
-	{ left: "14%", size: 6, delay: "0s", dur: "9s" },
-	{ left: "28%", size: 4, delay: "2.4s", dur: "11s" },
-	{ left: "41%", size: 8, delay: "1.2s", dur: "8s" },
-	{ left: "55%", size: 5, delay: "3.6s", dur: "12s" },
-	{ left: "67%", size: 3, delay: "0.8s", dur: "10s" },
-	{ left: "78%", size: 6, delay: "4.2s", dur: "9.5s" },
-	{ left: "88%", size: 4, delay: "1.8s", dur: "13s" },
-];
 
 export function CategoryHero({
 	themeSlug,
@@ -40,18 +29,9 @@ export function CategoryHero({
 
 	return (
 		<div className={`cat-hero bg-gradient-to-br text-white ${theme.tile}`}>
-			{/* Sweeping sheen + animated motif + particles (all decorative, z-0). */}
+			{/* Mouse-reactive particle field + a sweeping sheen (decorative, z-0). */}
+			<CategoryParticles variant={themeSlug} />
 			<div className="cat-hero-sheen" aria-hidden="true" />
-			<CategoryHeroMotif slug={themeSlug} />
-			<div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
-				{PARTICLES.map((p, i) => (
-					<span
-						key={i}
-						className="cat-particle"
-						style={{ left: p.left, width: p.size, height: p.size, animationDelay: p.delay, animationDuration: p.dur }}
-					/>
-				))}
-			</div>
 
 			<div className="cat-hero-content relative z-10 mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-20 lg:px-8">
 				{eyebrow ? (
