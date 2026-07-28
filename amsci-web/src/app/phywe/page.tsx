@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PhyweLeadForm } from "@/components/PhyweLeadForm";
+import { CountUp } from "@/components/CountUp";
 
 export const metadata: Metadata = {
 	title: "PHYWE · German Innovation, American Expertise",
@@ -94,7 +95,9 @@ export default function PhywePage() {
 					<div className="mx-auto grid max-w-5xl grid-cols-2 divide-x divide-white/10 px-4 sm:grid-cols-4 sm:px-6 lg:px-8">
 						{STATS.map((s) => (
 							<div key={s.l} className="px-4 py-6 text-center">
-								<p className="font-display text-2xl font-bold text-white sm:text-3xl">{s.n}</p>
+								<p className="font-display text-2xl font-bold text-white sm:text-3xl">
+									<CountUp value={s.n} />
+								</p>
 								<p className="mt-1 text-xs leading-snug text-slate-400">{s.l}</p>
 							</div>
 						))}

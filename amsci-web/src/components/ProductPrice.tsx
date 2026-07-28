@@ -55,10 +55,10 @@ export function ProductPrice({
 	return (
 		<div className="mt-6 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
 			{state.kind === "loading" && (
-				<div className="animate-pulse" aria-hidden>
-					<div className="h-10 w-40 rounded-lg bg-slate-200" />
-					<div className="mt-3 h-4 w-64 rounded bg-slate-100" />
-					<div className="mt-5 h-12 w-full rounded-full bg-slate-100" />
+				<div aria-hidden>
+					<div className="skeleton-shimmer h-10 w-40 rounded-lg" />
+					<div className="skeleton-shimmer mt-3 h-4 w-64 rounded" />
+					<div className="skeleton-shimmer mt-5 h-12 w-full rounded-full" />
 				</div>
 			)}
 

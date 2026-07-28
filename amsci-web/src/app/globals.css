@@ -379,3 +379,92 @@ body {
 		transform: scale(1);
 	}
 }
+
+/* ── Flourish pack ───────────────────────────────────────────────────────────
+   "Turn it up" animation batch: flowing gradient headlines, button shine sweep,
+   shimmer skeletons, and route-change entrances. All gated by reduced-motion. */
+
+/* Gradient headlines slowly flow across the text fill. */
+.brand-gradient-text,
+.brand-gradient-text-light {
+	background-size: 220% auto;
+	animation: gradient-flow 7s ease-in-out infinite;
+}
+@keyframes gradient-flow {
+	0%,
+	100% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+}
+
+/* Light sweeps across gradient CTAs on hover. */
+.brand-gradient {
+	position: relative;
+	overflow: hidden;
+	isolation: isolate;
+}
+.brand-gradient::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	background: linear-gradient(105deg, transparent 30%, rgba(255, 255, 255, 0.5) 48%, transparent 66%);
+	transform: translateX(-130%);
+	pointer-events: none;
+}
+.brand-gradient:hover::after {
+	animation: btn-shine 0.9s ease;
+}
+@keyframes btn-shine {
+	to {
+		transform: translateX(130%);
+	}
+}
+
+/* Shimmer loading skeleton (replaces the plain pulse on price loads). */
+.skeleton-shimmer {
+	position: relative;
+	overflow: hidden;
+	background: #e2e8f0;
+}
+.skeleton-shimmer::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	transform: translateX(-100%);
+	background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.65), transparent);
+	animation: skeleton-shimmer-sweep 1.5s infinite;
+}
+@keyframes skeleton-shimmer-sweep {
+	to {
+		transform: translateX(100%);
+	}
+}
+
+/* Route-change entrance (applied by app/template.tsx). */
+.page-transition {
+	animation: page-in 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+@keyframes page-in {
+	from {
+		opacity: 0;
+		transform: translateY(14px);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.brand-gradient-text,
+	.brand-gradient-text-light,
+	.brand-gradient:hover::after,
+	.skeleton-shimmer::after,
+	.page-transition {
+		animation: none;
+	}
+}

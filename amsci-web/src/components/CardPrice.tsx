@@ -93,7 +93,7 @@ export function CardPrice({ sku, isGroup }: { sku: string; isGroup?: boolean }) 
 		return <span className="text-xs font-semibold text-brand-blue">Sign in for price</span>;
 	}
 	if (!cache.has(sku)) {
-		return <span className="inline-block h-5 w-16 animate-pulse rounded bg-slate-100" aria-hidden />;
+		return <span className="skeleton-shimmer inline-block h-5 w-16 rounded" aria-hidden />;
 	}
 	const price = cache.get(sku) ?? null;
 	return (

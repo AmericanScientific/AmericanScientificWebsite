@@ -9,6 +9,8 @@ import { CategoryIcon } from "@/components/CategoryIcon";
 import { HeroCategoryTiles } from "@/components/HeroCategoryTiles";
 import { HeroNetwork } from "@/components/HeroNetwork";
 import { GuestCtaBand } from "@/components/GuestCtaBand";
+import { CountUp } from "@/components/CountUp";
+import { ScrollParallax } from "@/components/ScrollParallax";
 import { RevealOnScroll } from "@/components/RevealOnScroll";
 import { SecretCircles } from "@/components/SecretCircles";
 import type { BubbleItem } from "@/components/CategoryBubbles";
@@ -65,7 +67,9 @@ export default async function Home() {
 					}}
 					aria-hidden="true"
 				>
-					<HeroNetwork fill showLabel={false} />
+					<ScrollParallax speed={0.22} className="h-full w-full">
+						<HeroNetwork fill showLabel={false} />
+					</ScrollParallax>
 				</div>
 				<div className="relative mx-auto grid max-w-7xl gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:py-28 lg:px-8">
 					<div>
@@ -115,7 +119,9 @@ export default async function Home() {
 							{ n: "Tiered", l: "Account pricing" },
 						].map((s) => (
 							<div key={s.l} className="px-2 py-6 text-center sm:py-8">
-								<p className="font-display text-2xl font-bold text-white sm:text-3xl">{s.n}</p>
+								<p className="font-display text-2xl font-bold text-white sm:text-3xl">
+									<CountUp value={s.n} />
+								</p>
 								<p className="mt-1 text-xs uppercase tracking-wider text-slate-400">{s.l}</p>
 							</div>
 						))}
