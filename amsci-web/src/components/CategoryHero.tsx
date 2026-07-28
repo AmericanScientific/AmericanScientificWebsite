@@ -1,6 +1,7 @@
 import { categoryTheme } from "@/lib/categoryTheme";
 import { CategoryIcon } from "@/components/CategoryIcon";
 import { AccountPricingBadge } from "@/components/AccountPricingBadge";
+import { CountUp } from "@/components/CountUp";
 
 /**
  * Category page banner ("hero").
@@ -47,7 +48,7 @@ export function CategoryHero({
 						</h1>
 						<div className="mt-3 flex flex-wrap items-center gap-2">
 							<span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-sm font-semibold text-white ring-1 ring-white/25 backdrop-blur [font-variant-numeric:tabular-nums]">
-								{count} {count === 1 ? "product" : "products"}
+								<CountUp value={String(count)} /> {count === 1 ? "product" : "products"}
 							</span>
 							<AccountPricingBadge />
 						</div>

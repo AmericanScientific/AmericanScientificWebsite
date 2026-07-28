@@ -1,10 +1,10 @@
-import Link from "next/link";
 import type { Product } from "@/types/product";
 import { productSlug } from "@/types/product";
 import { getCategoryName } from "@/data/categories";
 import { categoryTheme } from "@/lib/categoryTheme";
 import { ProductImage } from "@/components/ProductImage";
 import { CardPrice } from "@/components/CardPrice";
+import { TiltLink } from "@/components/TiltLink";
 
 /** Catalog card: accent tile, category chip, title, SKU, and login-gated price. */
 export function ProductCard({ product }: { product: Product }) {
@@ -14,9 +14,9 @@ export function ProductCard({ product }: { product: Product }) {
 	const href = `/product/${product.pageSlug ?? productSlug(product)}`;
 
 	return (
-		<Link
+		<TiltLink
 			href={href}
-			className="card-hover group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5"
+			className="card-hover group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/5"
 		>
 			<div className="relative">
 				<ProductImage product={product} className="aspect-[4/3] w-full" iconClassName="h-14 w-14" />
@@ -49,6 +49,6 @@ export function ProductCard({ product }: { product: Product }) {
 					</span>
 				</div>
 			</div>
-		</Link>
+		</TiltLink>
 	);
 }
