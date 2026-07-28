@@ -90,7 +90,7 @@ export function OrderControls({
 				<button
 					type="button"
 					onClick={handleAdd}
-					className="brand-gradient group inline-flex flex-1 items-center justify-center gap-2 rounded-full px-6 text-sm font-semibold text-white shadow-lg shadow-brand-blue/20 transition-all hover:shadow-xl hover:brightness-105 active:scale-[0.99]"
+					className="brand-gradient shine-loop group inline-flex flex-1 items-center justify-center gap-2 rounded-full px-6 text-sm font-semibold text-white shadow-lg shadow-brand-blue/20 transition-all hover:shadow-xl hover:brightness-105 active:scale-[0.99]"
 				>
 					{added ? (
 						<>
