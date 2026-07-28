@@ -332,6 +332,161 @@ body {
 	mask-image: linear-gradient(105deg, #000, transparent 62%);
 }
 
+/* ── Category hero: animated per-category science motifs ─────────────────────
+   A big ghosted motif (right), a sweeping sheen, and drifting particles. Motif
+   markup lives in <CategoryHeroMotif>. All motion gated by reduced-motion. */
+
+.cat-hero-sheen {
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	pointer-events: none;
+	background: linear-gradient(105deg, transparent 42%, rgba(255, 255, 255, 0.16) 50%, transparent 58%);
+	transform: translateX(-60%);
+	animation: cat-sheen 7.5s ease-in-out infinite;
+}
+@keyframes cat-sheen {
+	0% { transform: translateX(-70%); }
+	55%, 100% { transform: translateX(170%); }
+}
+
+.cat-motif {
+	position: absolute;
+	right: clamp(-40px, -2vw, 0px);
+	top: 50%;
+	z-index: 0;
+	width: min(44%, 480px);
+	aspect-ratio: 1;
+	transform: translateY(-50%);
+	color: #fff;
+	pointer-events: none;
+	-webkit-mask-image: radial-gradient(115% 115% at 78% 50%, #000 55%, transparent 82%);
+	mask-image: radial-gradient(115% 115% at 78% 50%, #000 55%, transparent 82%);
+}
+.cat-motif svg {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+.cat-motif .m-stroke {
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 2.5;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	opacity: 0.38;
+}
+.cat-motif .m-soft {
+	fill: currentColor;
+	opacity: 0.12;
+}
+.cat-motif .m-dot {
+	fill: #fff;
+	opacity: 0.85;
+}
+
+/* chemistry — bubbles rising in the flask */
+.m-bubble {
+	fill: rgba(255, 255, 255, 0.7);
+	transform-box: fill-box;
+	transform-origin: center;
+	animation: m-rise 3.4s ease-in infinite;
+}
+@keyframes m-rise {
+	0% { transform: translateY(6px) scale(0.5); opacity: 0; }
+	20% { opacity: 0.85; }
+	100% { transform: translateY(-62px) scale(1.05); opacity: 0; }
+}
+
+/* physics — orbiting electrons */
+.m-orbit {
+	transform-box: fill-box;
+	transform-origin: center;
+	animation: m-spin 16s linear infinite;
+}
+.m-orbit.rev { animation-duration: 22s; animation-direction: reverse; }
+@keyframes m-spin { to { transform: rotate(360deg); } }
+
+/* special — twinkling sparkles */
+.m-twinkle {
+	transform-box: fill-box;
+	transform-origin: center;
+	animation: m-twinkle 2.8s ease-in-out infinite;
+}
+@keyframes m-twinkle {
+	0%, 100% { opacity: 0.25; transform: scale(0.7) rotate(0deg); }
+	50% { opacity: 0.95; transform: scale(1.15) rotate(45deg); }
+}
+
+/* phywe — pulsing energy rings */
+.m-ring {
+	transform-box: fill-box;
+	transform-origin: center;
+	animation: m-ring 3.2s ease-out infinite;
+}
+@keyframes m-ring {
+	0% { transform: scale(0.35); opacity: 0.7; }
+	100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* laboratory — sloshing liquid */
+.m-wave { animation: m-wave 5s ease-in-out infinite; }
+@keyframes m-wave {
+	0%, 100% { transform: translateX(-7px); }
+	50% { transform: translateX(7px); }
+}
+
+/* life-science — DNA rungs shimmer */
+.m-rung {
+	transform-box: fill-box;
+	transform-origin: center;
+	animation: m-rung 3s ease-in-out infinite;
+}
+@keyframes m-rung {
+	0%, 100% { opacity: 0.15; }
+	50% { opacity: 0.75; }
+}
+
+/* drifting particles */
+.cat-particle {
+	position: absolute;
+	bottom: -12px;
+	border-radius: 9999px;
+	background: rgba(255, 255, 255, 0.55);
+	pointer-events: none;
+	animation: cat-float linear infinite;
+}
+@keyframes cat-float {
+	0% { transform: translateY(0); opacity: 0; }
+	12% { opacity: 0.7; }
+	100% { transform: translateY(-190px); opacity: 0; }
+}
+
+/* subtle entrance for the hero content */
+.cat-hero-content {
+	animation: cat-hero-in 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+@keyframes cat-hero-in {
+	from { opacity: 0; transform: translateY(16px); }
+	to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.cat-hero-sheen,
+	.cat-particle {
+		display: none;
+	}
+	.m-bubble,
+	.m-orbit,
+	.m-twinkle,
+	.m-ring,
+	.m-wave,
+	.m-rung,
+	.cat-hero-content {
+		animation: none;
+	}
+}
+
 @keyframes floaty {
 	0%,
 	100% {
