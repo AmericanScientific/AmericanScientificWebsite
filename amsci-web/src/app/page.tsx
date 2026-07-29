@@ -73,12 +73,10 @@ export default async function Home() {
 				</div>
 				<div className="relative mx-auto grid max-w-7xl gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:py-28 lg:px-8">
 					<div>
-						<span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium text-slate-200 backdrop-blur">
-							<span className="pulse-dot h-1.5 w-1.5 rounded-full bg-emerald-400 text-emerald-400" />
-							Wholesale direct · Distributor &amp; manufacturer
-						</span>
-						<h1 className="mt-6 font-display text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
-							Scientific supply,
+						<h1 className="font-display text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
+							Wholesale
+							<br />
+							scientific supply,
 							<br />
 							<span className="brand-gradient-text-light">engineered for educators.</span>
 						</h1>

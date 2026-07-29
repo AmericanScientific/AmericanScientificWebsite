@@ -9,8 +9,8 @@ export function SiteFooter() {
 		<footer className="mt-20 bg-ink text-slate-300">
 			<div className="brand-gradient h-1 w-full" />
 			<div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-				<div className="grid grid-cols-2 gap-10 md:grid-cols-4">
-					<div className="col-span-2 md:col-span-1">
+				<div className="grid grid-cols-1 gap-10 sm:grid-cols-2">
+					<div>
 						<p className="font-display text-xl font-bold tracking-tight text-white">
 							American<span className="brand-gradient-text-light"> Scientific</span>
 						</p>
@@ -49,26 +49,6 @@ export function SiteFooter() {
 									</Link>
 								</li>
 							))}
-						</ul>
-					</div>
-
-					<div>
-						<h3 className="text-xs font-semibold uppercase tracking-wider text-slate-500">Company</h3>
-						<ul className="mt-4 space-y-2 text-sm">
-							<li><span className="text-slate-400">About</span></li>
-							<li><span className="text-slate-400">Wholesale Accounts</span></li>
-							<li><span className="text-slate-400">Teacher Resources</span></li>
-							<li><span className="text-slate-400">Catalog PDFs</span></li>
-						</ul>
-					</div>
-
-					<div>
-						<h3 className="text-xs font-semibold uppercase tracking-wider text-slate-500">Ordering</h3>
-						<ul className="mt-4 space-y-2 text-sm">
-							<li><span className="text-slate-400">B2B account pricing</span></li>
-							<li><span className="text-slate-400">Quantity breaks</span></li>
-							<li><span className="text-slate-400">Purchase orders</span></li>
-							<li><span className="text-slate-400">Export &amp; international</span></li>
 						</ul>
 					</div>
 				</div>
