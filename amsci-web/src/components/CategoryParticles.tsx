@@ -14,7 +14,7 @@ import { useEffect, useRef } from "react";
  * draws a single static frame (no loop).
  */
 
-type Mode = "bubbles" | "constellation" | "cells" | "sparkles";
+type Mode = "bubbles" | "constellation" | "cells" | "sparkles" | "trail";
 
 function modeFor(variant: string): Mode {
 	switch (variant) {
@@ -25,8 +25,10 @@ function modeFor(variant: string): Mode {
 			return "cells";
 		case "special":
 			return "sparkles";
+		case "laboratory":
+			return "trail";
 		default:
-			return "bubbles"; // chemistry, laboratory, fallback
+			return "bubbles"; // chemistry + fallback
 	}
 }
 
@@ -53,9 +55,10 @@ export function CategoryParticles({ variant }: { variant: string }) {
 		let parts: any[] = [];
 
 		function counts(): number {
-			if (mode === "bubbles") return Math.round(Math.min(480, w / 2.6));
+			if (mode === "bubbles") return Math.round(Math.min(900, w / 1.6));
 			if (mode === "constellation") return Math.round(Math.min(260, w / 4.2));
 			if (mode === "cells") return Math.round(Math.min(140, w / 7.5));
+			if (mode === "trail") return Math.round(Math.min(80, w / 16)); // sparse ambient motes
 			return Math.round(Math.min(220, w / 5)); // sparkles
 		}
 		function mkBubble(seed: boolean) {
@@ -71,6 +74,8 @@ export function CategoryParticles({ variant }: { variant: string }) {
 				for (let i = 0; i < n; i++) parts.push({ x: rand(0, w), y: rand(0, h), vx: rand(-0.3, 0.3), vy: rand(-0.3, 0.3), r: rand(1.3, 2.8), e: i < 6 });
 			} else if (mode === "cells") {
 				for (let i = 0; i < n; i++) parts.push({ x: rand(0, w), y: rand(0, h), vx: rand(-0.25, 0.25), vy: rand(-0.2, 0.2), r: rand(8, 24), ph: rand(0, 6.28) });
+			} else if (mode === "trail") {
+				for (let i = 0; i < n; i++) parts.push({ x: rand(0, w), y: rand(0, h), vx: rand(-0.15, 0.15), vy: rand(-0.15, 0.15), r: rand(1, 2.5) });
 			} else {
 				for (let i = 0; i < n; i++) parts.push({ x: rand(0, w), y: rand(0, h), vx: rand(-0.15, 0.15), vy: rand(-0.15, 0.15), r: rand(2.5, 7), ph: rand(0, 6.28), sp: rand(0.02, 0.06) });
 			}
@@ -91,10 +96,19 @@ export function CategoryParticles({ variant }: { variant: string }) {
 		ro.observe(parent);
 
 		const mouse = { x: -9999, y: -9999 };
+		// Trail-mode: particles spawned at the cursor as it moves (laboratory).
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		const trail: any[] = [];
 		const onMove = (e: MouseEvent) => {
 			const r = canvas.getBoundingClientRect();
 			mouse.x = e.clientX - r.left;
 			mouse.y = e.clientY - r.top;
+			if (mode === "trail") {
+				for (let k = 0; k < 3; k++) {
+					trail.push({ x: mouse.x, y: mouse.y, vx: rand(-0.8, 0.8), vy: rand(-1.2, 0.2), life: 1, r: rand(1.5, 4) });
+				}
+				if (trail.length > 400) trail.splice(0, trail.length - 400);
+			}
 		};
 		const onLeave = () => {
 			mouse.x = -9999;
@@ -185,12 +199,46 @@ export function CategoryParticles({ variant }: { variant: string }) {
 			}
 		}
 
+		function drawTrail() {
+			// Quiet ambient motes so the banner isn't dead when idle.
+			for (const p of parts) {
+				p.x += p.vx;
+				p.y += p.vy;
+				if (p.x < -8) p.x = w + 8;
+				if (p.x > w + 8) p.x = -8;
+				if (p.y < -8) p.y = h + 8;
+				if (p.y > h + 8) p.y = -8;
+				ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.2832); ctx.fillStyle = "rgba(255,255,255,0.22)"; ctx.fill();
+			}
+			// Soft light following the cursor.
+			if (mouse.x > -9000) {
+				const g = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 90);
+				g.addColorStop(0, "rgba(255,255,255,0.18)");
+				g.addColorStop(1, "rgba(255,255,255,0)");
+				ctx.fillStyle = g;
+				ctx.fillRect(mouse.x - 90, mouse.y - 90, 180, 180);
+			}
+			// Glowing molecule trail spawned by cursor movement; drifts + fades.
+			for (let i = trail.length - 1; i >= 0; i--) {
+				const t = trail[i];
+				t.life -= 0.02;
+				if (t.life <= 0) { trail.splice(i, 1); continue; }
+				t.x += t.vx;
+				t.y += t.vy;
+				t.vy += 0.02;
+				ctx.globalAlpha = Math.max(0, t.life);
+				ctx.beginPath(); ctx.arc(t.x, t.y, t.r * t.life + 0.5, 0, 6.2832); ctx.fillStyle = "rgba(255,255,255,0.85)"; ctx.fill();
+				ctx.globalAlpha = 1;
+			}
+		}
+
 		let raf = 0;
 		const draw = () => {
 			ctx.clearRect(0, 0, w, h);
 			if (mode === "bubbles") drawBubbles();
 			else if (mode === "constellation") drawConstellation();
 			else if (mode === "cells") drawCells();
+			else if (mode === "trail") drawTrail();
 			else drawSparkles();
 			raf = requestAnimationFrame(draw);
 		};
