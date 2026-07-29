@@ -557,9 +557,16 @@ body {
 
 /* Light sweeps across gradient CTAs on hover. */
 .brand-gradient {
-	position: relative;
 	overflow: hidden;
 	isolation: isolate;
+}
+/* Positioning context for the shine ::after — placed in the components layer so a
+   position UTILITY (e.g. the chat launcher's `fixed`) overrides it, since Tailwind
+   utilities layer after components. Plain gradient buttons still get `relative`. */
+@layer components {
+	.brand-gradient {
+		position: relative;
+	}
 }
 .brand-gradient::after {
 	content: "";
