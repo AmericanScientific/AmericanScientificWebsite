@@ -7,7 +7,7 @@ import { useEffect, useRef } from "react";
  * behind the banner, with a behavior unique per category `variant`:
  *   - bubbles       (chemistry):    dense effervescence rising + popping
  *   - constellation (physics,phywe): drifting nodes linked by lines + electrons
- *   - cells         (life-science): soft drifting cells with nuclei + tendrils
+ *   - biolum        (life-science): glowing plankton that pulse, drift, and gather to the cursor
  *   - trail         (laboratory):   quiet field + a lingering molecule trail on
  *                                   hover, over a faint graph-paper texture
  *   - diamonds      (special):      floating diamonds; hover grows the nearest to
@@ -18,7 +18,7 @@ import { useEffect, useRef } from "react";
  * viewport width, and prefers-reduced-motion draws a single static frame.
  */
 
-type Mode = "bubbles" | "constellation" | "cells" | "trail" | "diamonds";
+type Mode = "bubbles" | "constellation" | "biolum" | "trail" | "diamonds";
 
 function modeFor(variant: string): Mode {
 	switch (variant) {
@@ -26,7 +26,7 @@ function modeFor(variant: string): Mode {
 		case "phywe":
 			return "constellation";
 		case "life-science":
-			return "cells";
+			return "biolum";
 		case "special":
 			return "diamonds";
 		case "laboratory":
@@ -68,7 +68,7 @@ export function CategoryParticles({ variant }: { variant: string }) {
 		function counts(): number {
 			if (mode === "bubbles") return Math.round(Math.min(900, w / 1.6));
 			if (mode === "constellation") return Math.round(Math.min(260, w / 4.2));
-			if (mode === "cells") return Math.round(Math.min(140, w / 7.5));
+			if (mode === "biolum") return Math.round(Math.min(120, w / 12));
 			if (mode === "trail") return Math.round(Math.min(80, w / 16));
 			return Math.round(Math.min(100, w / 17)); // diamonds
 		}
@@ -86,8 +86,8 @@ export function CategoryParticles({ variant }: { variant: string }) {
 				for (let i = 0; i < n; i++) parts.push(mkBubble(true));
 			} else if (mode === "constellation") {
 				for (let i = 0; i < n; i++) parts.push({ x: rand(0, w), y: rand(0, h), vx: rand(-0.3, 0.3), vy: rand(-0.3, 0.3), r: rand(1.3, 2.8), e: i < 6 });
-			} else if (mode === "cells") {
-				for (let i = 0; i < n; i++) parts.push({ x: rand(0, w), y: rand(0, h), vx: rand(-0.25, 0.25), vy: rand(-0.2, 0.2), r: rand(8, 24), ph: rand(0, 6.28) });
+			} else if (mode === "biolum") {
+				for (let i = 0; i < n; i++) parts.push({ x: rand(0, w), y: rand(0, h), vx: rand(-0.2, 0.2), vy: rand(-0.2, 0.2), r: rand(1.5, 3.6), ph: rand(0, 6.28), sp: rand(0.02, 0.05) });
 			} else if (mode === "trail") {
 				for (let i = 0; i < n; i++) parts.push({ x: rand(0, w), y: rand(0, h), vx: rand(-0.15, 0.15), vy: rand(-0.15, 0.15), r: rand(1, 2.5) });
 			} else {
@@ -196,25 +196,33 @@ export function CategoryParticles({ variant }: { variant: string }) {
 				if (p.e) { ctx.beginPath(); ctx.arc(p.x, p.y, p.r + 6, 0, 6.2832); ctx.strokeStyle = "rgba(255,255,255,0.25)"; ctx.lineWidth = 1; ctx.stroke(); }
 			}
 		}
-		function drawCells() {
-			for (let i = 0; i < parts.length; i++) {
-				for (let j = i + 1; j < parts.length; j++) {
-					const a = parts[i], b = parts[j], d = Math.hypot(a.x - b.x, a.y - b.y);
-					if (d < 130) { ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.strokeStyle = `rgba(255,255,255,${0.13 * (1 - d / 130)})`; ctx.lineWidth = 1; ctx.stroke(); }
+		function drawBiolum() {
+			for (const o of parts) {
+				o.ph += o.sp;
+				o.x += o.vx;
+				o.y += o.vy;
+				// Drawn toward the cursor (like organisms to light) + brighten near it.
+				let near = 0;
+				if (mouse.x > -9000) {
+					const dx = mouse.x - o.x, dy = mouse.y - o.y, d2 = dx * dx + dy * dy, R = 150;
+					if (d2 < R * R) { const d = Math.sqrt(d2) || 1, f = (R - d) / R; o.vx += (dx / d) * f * 0.04; o.vy += (dy / d) * f * 0.04; near = f; }
 				}
-			}
-			for (const c of parts) {
-				c.x += c.vx; c.y += c.vy; c.ph += 0.02;
-				const dx = c.x - mouse.x, dy = c.y - mouse.y, d2 = dx * dx + dy * dy, R = 130;
-				if (d2 < R * R) { const d = Math.sqrt(d2) || 1, f = (R - d) / R; c.x += (dx / d) * f * 1.6; c.y += (dy / d) * f * 1.6; }
-				if (c.x < -30) c.x = w + 30;
-				if (c.x > w + 30) c.x = -30;
-				if (c.y < -30) c.y = h + 30;
-				if (c.y > h + 30) c.y = -30;
-				const rr = c.r + Math.sin(c.ph) * 2;
-				ctx.beginPath(); ctx.arc(c.x, c.y, rr, 0, 6.2832); ctx.fillStyle = "rgba(255,255,255,0.06)"; ctx.fill();
-				ctx.lineWidth = 1.2; ctx.strokeStyle = "rgba(255,255,255,0.3)"; ctx.stroke();
-				ctx.beginPath(); ctx.arc(c.x, c.y, 2.2, 0, 6.2832); ctx.fillStyle = "rgba(255,255,255,0.75)"; ctx.fill();
+				o.vx *= 0.98;
+				o.vy *= 0.98;
+				if (o.x < -12) o.x = w + 12;
+				if (o.x > w + 12) o.x = -12;
+				if (o.y < -12) o.y = h + 12;
+				if (o.y > h + 12) o.y = -12;
+				const pulse = 0.5 + 0.5 * Math.sin(o.ph);
+				const bright = Math.min(1, 0.32 + 0.5 * pulse + near * 0.6);
+				const r = o.r * (0.8 + 0.4 * pulse);
+				// Soft bioluminescent glow (minty cyan) + a bright core.
+				const g = ctx.createRadialGradient(o.x, o.y, 0, o.x, o.y, r * 4.5);
+				g.addColorStop(0, `rgba(190,255,225,${0.5 * bright})`);
+				g.addColorStop(1, "rgba(190,255,225,0)");
+				ctx.fillStyle = g;
+				ctx.beginPath(); ctx.arc(o.x, o.y, r * 4.5, 0, 6.2832); ctx.fill();
+				ctx.beginPath(); ctx.arc(o.x, o.y, r, 0, 6.2832); ctx.fillStyle = `rgba(240,255,248,${bright})`; ctx.fill();
 			}
 		}
 		function drawTrail() {
@@ -339,7 +347,7 @@ export function CategoryParticles({ variant }: { variant: string }) {
 			ctx.clearRect(0, 0, w, h);
 			if (mode === "bubbles") drawBubbles();
 			else if (mode === "constellation") drawConstellation();
-			else if (mode === "cells") drawCells();
+			else if (mode === "biolum") drawBiolum();
 			else if (mode === "trail") drawTrail();
 			else drawDiamonds();
 			raf = requestAnimationFrame(draw);
