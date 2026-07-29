@@ -14,11 +14,12 @@ import { useEffect, useRef } from "react";
  * draws a single static frame (no loop).
  */
 
-type Mode = "bubbles" | "constellation" | "cells" | "sparkles" | "trail";
+type Mode = "bubbles" | "constellation" | "cells" | "sparkles" | "trail" | "magnet";
 
 function modeFor(variant: string): Mode {
 	switch (variant) {
 		case "physics-physical-science":
+			return "magnet";
 		case "phywe":
 			return "constellation";
 		case "life-science":
@@ -59,6 +60,7 @@ export function CategoryParticles({ variant }: { variant: string }) {
 			if (mode === "constellation") return Math.round(Math.min(260, w / 4.2));
 			if (mode === "cells") return Math.round(Math.min(140, w / 7.5));
 			if (mode === "trail") return Math.round(Math.min(80, w / 16)); // sparse ambient motes
+			if (mode === "magnet") return Math.round(Math.min(80, w / 15));
 			return Math.round(Math.min(220, w / 5)); // sparkles
 		}
 		function mkBubble(seed: boolean) {
@@ -76,6 +78,8 @@ export function CategoryParticles({ variant }: { variant: string }) {
 				for (let i = 0; i < n; i++) parts.push({ x: rand(0, w), y: rand(0, h), vx: rand(-0.25, 0.25), vy: rand(-0.2, 0.2), r: rand(8, 24), ph: rand(0, 6.28) });
 			} else if (mode === "trail") {
 				for (let i = 0; i < n; i++) parts.push({ x: rand(0, w), y: rand(0, h), vx: rand(-0.15, 0.15), vy: rand(-0.15, 0.15), r: rand(1, 2.5) });
+			} else if (mode === "magnet") {
+				for (let i = 0; i < n; i++) parts.push({ x: rand(0, w), y: rand(0, h), vx: 0, vy: 0, angle: rand(0, 6.28) });
 			} else {
 				for (let i = 0; i < n; i++) parts.push({ x: rand(0, w), y: rand(0, h), vx: rand(-0.15, 0.15), vy: rand(-0.15, 0.15), r: rand(2.5, 7), ph: rand(0, 6.28), sp: rand(0.02, 0.06) });
 			}
@@ -232,6 +236,62 @@ export function CategoryParticles({ variant }: { variant: string }) {
 			}
 		}
 
+		function drawMagnet() {
+			const has = mouse.x > -9000;
+			for (const p of parts) {
+				if (has) {
+					const dx = mouse.x - p.x, dy = mouse.y - p.y, d = Math.hypot(dx, dy) || 1;
+					// Pulled toward the cursor-magnet, but hold a little distance so
+					// they swarm around/behind it rather than collapsing to a point.
+					p.vx += (dx / d) * 0.55;
+					p.vy += (dy / d) * 0.55;
+					if (d < 46) { p.vx -= (dx / d) * 0.9; p.vy -= (dy / d) * 0.9; }
+					p.angle = Math.atan2(dy, dx); // north tip points at the magnet
+				} else {
+					p.vx += (Math.random() - 0.5) * 0.06;
+					p.vy += (Math.random() - 0.5) * 0.06;
+					p.angle += 0.004;
+				}
+				p.vx *= 0.86;
+				p.vy *= 0.86;
+				const sp = Math.hypot(p.vx, p.vy);
+				if (sp > 6) { p.vx = (p.vx / sp) * 6; p.vy = (p.vy / sp) * 6; }
+				p.x += p.vx;
+				p.y += p.vy;
+				if (p.x < -10) p.x = w + 10;
+				if (p.x > w + 10) p.x = -10;
+				if (p.y < -10) p.y = h + 10;
+				if (p.y > h + 10) p.y = -10;
+				// Little bar magnet: red north half (toward the cursor) + blue south.
+				ctx.save();
+				ctx.translate(p.x, p.y);
+				ctx.rotate(p.angle);
+				ctx.fillStyle = "rgba(255,95,95,0.9)";
+				ctx.fillRect(0, -2, 7, 4);
+				ctx.fillStyle = "rgba(120,180,255,0.9)";
+				ctx.fillRect(-7, -2, 7, 4);
+				ctx.restore();
+			}
+			// The magnet under the cursor: a glowing bar magnet.
+			if (has) {
+				const g = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 60);
+				g.addColorStop(0, "rgba(255,255,255,0.22)");
+				g.addColorStop(1, "rgba(255,255,255,0)");
+				ctx.fillStyle = g;
+				ctx.fillRect(mouse.x - 60, mouse.y - 60, 120, 120);
+				ctx.save();
+				ctx.translate(mouse.x, mouse.y);
+				ctx.fillStyle = "rgba(255,95,95,0.95)";
+				ctx.fillRect(0, -6, 15, 12);
+				ctx.fillStyle = "rgba(120,180,255,0.95)";
+				ctx.fillRect(-15, -6, 15, 12);
+				ctx.strokeStyle = "rgba(255,255,255,0.5)";
+				ctx.lineWidth = 1.2;
+				ctx.strokeRect(-15, -6, 30, 12);
+				ctx.restore();
+			}
+		}
+
 		let raf = 0;
 		const draw = () => {
 			ctx.clearRect(0, 0, w, h);
@@ -239,6 +299,7 @@ export function CategoryParticles({ variant }: { variant: string }) {
 			else if (mode === "constellation") drawConstellation();
 			else if (mode === "cells") drawCells();
 			else if (mode === "trail") drawTrail();
+			else if (mode === "magnet") drawMagnet();
 			else drawSparkles();
 			raf = requestAnimationFrame(draw);
 		};
