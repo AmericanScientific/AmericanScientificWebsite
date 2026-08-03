@@ -1,8 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
-import { TransitionLink } from "@/components/TransitionLink";
 
 /**
  * A top-level category nav link with the rolling-gradient treatment.
@@ -30,13 +30,13 @@ export function NavCategoryLink({
 	const active = activeTopSlug(pathname) === matchSlug;
 
 	return (
-		<TransitionLink
+		<Link
 			href={href}
 			aria-current={active ? "page" : undefined}
 			className={`nav-category${active ? " nav-category-active" : ""} ${className}`}
 		>
 			{children}
-		</TransitionLink>
+		</Link>
 	);
 }
 

@@ -1,13 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { getTopLevelCategories } from "@/data/categories";
 import { categoryTheme } from "@/lib/categoryTheme";
 import { CategoryIcon } from "@/components/CategoryIcon";
 import { CategoryBubbles, type BubbleItem } from "@/components/CategoryBubbles";
-import { TransitionLink } from "@/components/TransitionLink";
-import { useTransitionNavigate } from "@/components/ViewTransitions";
 
 const cx = (...c: (string | false | null | undefined)[]) => c.filter(Boolean).join(" ");
 
@@ -28,9 +27,6 @@ export function HeroCategoryTiles({ bubblesByCategory }: { bubblesByCategory: Re
 	const categories = getTopLevelCategories();
 	const [active, setActive] = useState<string | null>(null);
 	const router = useRouter();
-	// The panel-background click below isn't a link, so it needs the same
-	// transition-aware navigate the <TransitionLink>s use.
-	const navigate = useTransitionNavigate();
 
 	return (
 		<div
@@ -54,13 +50,12 @@ export function HeroCategoryTiles({ bubblesByCategory }: { bubblesByCategory: Re
 							onClick={(e) => {
 								// A click on the panel background (not a bubble/title/shrink) opens the category.
 								if ((e.target as HTMLElement).closest("a,button")) return;
-								if (navigate) navigate(href);
-								else router.push(href);
+								router.push(href);
 							}}
 							className="absolute -inset-x-8 -inset-y-12 z-20 flex cursor-pointer flex-col overflow-hidden rounded-3xl border border-white/30 bg-white/[0.12] p-3 shadow-2xl backdrop-blur-md animate-[catMorphIn_0.4s_cubic-bezier(0.2,0.7,0.2,1)]"
 						>
 							{/* Category title — click to go to the category page. */}
-							<TransitionLink
+							<Link
 								href={href}
 								className="group/hdr z-10 mr-24 inline-flex items-center gap-3 self-start rounded-2xl px-3 py-2 transition-colors hover:bg-white/10"
 							>
@@ -71,7 +66,7 @@ export function HeroCategoryTiles({ bubblesByCategory }: { bubblesByCategory: Re
 								<svg viewBox="0 0 24 24" className="h-5 w-5 text-white/70 transition-transform group-hover/hdr:translate-x-1" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
 									<path d="M5 12h14M13 6l6 6-6 6" />
 								</svg>
-							</TransitionLink>
+							</Link>
 
 							<div className="relative mt-2 min-h-0 flex-1">
 								<CategoryBubbles items={bubblesByCategory[category.slug] ?? []} />
@@ -81,7 +76,7 @@ export function HeroCategoryTiles({ bubblesByCategory }: { bubblesByCategory: Re
 				}
 
 				return (
-					<TransitionLink
+					<Link
 						key={category.slug}
 						href={category.external ? `/${category.slug}` : `/product-category/${category.slug}`}
 						onMouseEnter={() => setActive(category.slug)}
@@ -96,7 +91,7 @@ export function HeroCategoryTiles({ bubblesByCategory }: { bubblesByCategory: Re
 						</span>
 						<p className="mt-3 text-sm font-semibold text-white">{category.name}</p>
 						<p className="text-xs text-slate-400">{childCount ? `${childCount} subcategories` : "Explore"}</p>
-					</TransitionLink>
+					</Link>
 				);
 			})}
 

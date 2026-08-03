@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { getTopLevelCategories } from "@/data/categories";
-import { TransitionLink } from "@/components/TransitionLink";
 
 /** Dark, multi-column footer with a brand gradient rule. */
 export function SiteFooter() {
@@ -44,12 +43,12 @@ export function SiteFooter() {
 							</li>
 							{categories.map((c) => (
 								<li key={c.slug}>
-									<TransitionLink
+									<Link
 										href={c.external ? `/${c.slug}` : `/product-category/${c.slug}`}
 										className="text-slate-400 transition-colors hover:text-white"
 									>
 										{c.name}
-									</TransitionLink>
+									</Link>
 								</li>
 							))}
 						</ul>
