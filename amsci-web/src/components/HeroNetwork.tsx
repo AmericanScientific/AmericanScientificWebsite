@@ -10,6 +10,11 @@ import { useEffect, useRef } from "react";
  *
  * Colors are the am-sci ramp red(#c1121f) → plum(#7a2f8f) → blue(#1391d5);
  * the ring dots use the lighter hero-gradient stops so they read on ink.
+ *
+ * The pointer is treated as one more node in the network: nodes inside its
+ * reach bond to it, brighten, and lean toward it, then relax when it leaves.
+ * Nothing is drawn AT the pointer — the converging bonds mark the spot, and the
+ * OS cursor is already there, so a drawn dot would just read as a second one.
  */
 type RGB = [number, number, number];
 
@@ -80,8 +85,40 @@ export function HeroNetwork({
 				vy: ((((i * 31) % 100) / 100) - 0.5) * 0.00028,
 				r: 1.6 + (((i * 17) % 30) / 10),
 				c: ramp(((i * 37) % 100) / 100),
+				/*
+				 * Lean toward the pointer, held separately from (x, y) so the drift
+				 * and the attraction never fight each other: drift keeps mutating
+				 * the home position while this offset eases in and back out.
+				 */
+				hx: 0,
+				hy: 0,
 			};
 		});
+
+		/*
+		 * Pointer tracking. The canvas itself can't listen — its container is
+		 * `pointer-events-none` so the hero's links stay clickable — so we track on
+		 * the window and convert into canvas space per frame. Coarse pointers get
+		 * nothing to react to, so they skip the listener entirely.
+		 */
+		const fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+		const interactive = fine && !reduce;
+		/** Client coords; -1 once the pointer has left the canvas. */
+		let clientX = -1;
+		let clientY = -1;
+		const onPointerMove = (e: PointerEvent) => {
+			clientX = e.clientX;
+			clientY = e.clientY;
+		};
+		if (interactive) {
+			window.addEventListener("pointermove", onPointerMove, { passive: true });
+		}
+
+		/* Pointer position in normalized space, and whether it's in range at all. */
+		let px = 0;
+		let py = 0;
+		let pOn = false;
+		let pInit = false;
 
 		const rings = [
 			{ rx: 0.44, ry: 0.17, rot: -0.35, speed: 0.00022, phase: 0, c: [255, 128, 135] as RGB },
@@ -123,6 +160,47 @@ export function HeroNetwork({
 				ctx.restore();
 			}
 
+			/*
+			 * Resolve the pointer into normalized space. The rect is measured every
+			 * frame rather than cached on scroll, because <ScrollParallax> translates
+			 * this element continuously — a rect cached on scroll events would drift
+			 * out of step with the transform. One getBoundingClientRect on one
+			 * element per frame is cheap; a stale offset would be visible.
+			 */
+			const REACH = W * 0.26;
+			pOn = false;
+			if (interactive && clientX >= 0 && W > 0 && H > 0) {
+				const r = canvas.getBoundingClientRect();
+				const lx = clientX - r.left;
+				const ly = clientY - r.top;
+				/*
+				 * Allow a REACH-wide margin outside the canvas so edge nodes start
+				 * reaching as the pointer approaches, instead of the whole field
+				 * snapping on at the boundary.
+				 */
+				if (lx >= -REACH && lx <= r.width + REACH && ly >= -REACH && ly <= r.height + REACH) {
+					const tx = lx / r.width;
+					const ty = ly / r.height;
+					if (!pInit) {
+						px = tx;
+						py = ty;
+						pInit = true;
+					} else {
+						/*
+						 * ~6-frame tail. Chasing the raw pointer reads cheap; trailing it
+						 * reads like the field is responding to something with mass.
+						 */
+						px += (tx - px) * 0.16;
+						py += (ty - py) * 0.16;
+					}
+					pOn = true;
+				} else {
+					pInit = false;
+				}
+			} else {
+				pInit = false;
+			}
+
 			for (const n of nodes) {
 				if (!reduce) {
 					n.x += n.vx;
@@ -130,40 +208,85 @@ export function HeroNetwork({
 					if (n.x < 0.06 || n.x > 0.94) n.vx *= -1;
 					if (n.y < 0.06 || n.y > 0.94) n.vy *= -1;
 				}
+
+				/* Up to 12px of lean toward the pointer, easing back to rest when it goes. */
+				let wantX = 0;
+				let wantY = 0;
+				if (pOn) {
+					const dx = (px - n.x) * W;
+					const dy = (py - n.y) * H;
+					const d = Math.hypot(dx, dy);
+					if (d < REACH && d > 0.001) {
+						const pull = (1 - d / REACH) * 12;
+						wantX = ((dx / d) * pull) / W;
+						wantY = ((dy / d) * pull) / H;
+					}
+				}
+				n.hx += (wantX - n.hx) * 0.08;
+				n.hy += (wantY - n.hy) * 0.08;
 			}
+
+			/** How strongly the pointer is holding a node, 0…1. */
+			const grip = (n: (typeof nodes)[number]) => {
+				if (!pOn) return 0;
+				const d = Math.hypot((px - (n.x + n.hx)) * W, (py - (n.y + n.hy)) * H);
+				return d < REACH ? 1 - d / REACH : 0;
+			};
 
 			for (let i = 0; i < N; i++) {
 				for (let j = i + 1; j < N; j++) {
 					const a = nodes[i];
 					const b = nodes[j];
-					const dx = (a.x - b.x) * W;
-					const dy = (a.y - b.y) * H;
+					const dx = (a.x + a.hx - (b.x + b.hx)) * W;
+					const dy = (a.y + a.hy - (b.y + b.hy)) * H;
 					const d = Math.hypot(dx, dy);
 					if (d < W * 0.22) {
 						const alpha = (1 - d / (W * 0.22)) * 0.28;
 						ctx.strokeStyle = `rgba(150,180,230,${alpha})`;
 						ctx.lineWidth = 1;
 						ctx.beginPath();
-						ctx.moveTo(a.x * W, a.y * H);
-						ctx.lineTo(b.x * W, b.y * H);
+						ctx.moveTo((a.x + a.hx) * W, (a.y + a.hy) * H);
+						ctx.lineTo((b.x + b.hx) * W, (b.y + b.hy) * H);
 						ctx.stroke();
 					}
 				}
 			}
 
+			/*
+			 * Pointer bonds. Drawn in the node's own ramp colour rather than the
+			 * neutral link blue, so the pointer reads as having joined the structure
+			 * instead of being a light shining on it.
+			 */
+			if (pOn) {
+				for (const n of nodes) {
+					const s = grip(n);
+					if (s <= 0) continue;
+					ctx.strokeStyle = `rgba(${n.c[0]},${n.c[1]},${n.c[2]},${(s * 0.7).toFixed(3)})`;
+					ctx.lineWidth = 0.6 + s * 1.4;
+					ctx.beginPath();
+					ctx.moveTo((n.x + n.hx) * W, (n.y + n.hy) * H);
+					ctx.lineTo(px * W, py * H);
+					ctx.stroke();
+				}
+				ctx.lineWidth = 1;
+			}
+
 			for (const n of nodes) {
-				const x = n.x * W;
-				const y = n.y * H;
-				const g = ctx.createRadialGradient(x, y, 0, x, y, n.r * 4);
-				g.addColorStop(0, `rgba(${n.c[0]},${n.c[1]},${n.c[2]},0.9)`);
+				const x = (n.x + n.hx) * W;
+				const y = (n.y + n.hy) * H;
+				/* Held nodes swell and their halo widens — the bond has a cost. */
+				const s = grip(n);
+				const halo = n.r * 4 * (1 + s * 0.9);
+				const g = ctx.createRadialGradient(x, y, 0, x, y, halo);
+				g.addColorStop(0, `rgba(${n.c[0]},${n.c[1]},${n.c[2]},${(0.9 + s * 0.1).toFixed(3)})`);
 				g.addColorStop(1, `rgba(${n.c[0]},${n.c[1]},${n.c[2]},0)`);
 				ctx.fillStyle = g;
 				ctx.beginPath();
-				ctx.arc(x, y, n.r * 4, 0, Math.PI * 2);
+				ctx.arc(x, y, halo, 0, Math.PI * 2);
 				ctx.fill();
 				ctx.fillStyle = `rgba(${n.c[0]},${n.c[1]},${n.c[2]},1)`;
 				ctx.beginPath();
-				ctx.arc(x, y, n.r, 0, Math.PI * 2);
+				ctx.arc(x, y, n.r + s * 1.2, 0, Math.PI * 2);
 				ctx.fill();
 			}
 
@@ -174,6 +297,7 @@ export function HeroNetwork({
 		return () => {
 			cancelAnimationFrame(raf);
 			window.removeEventListener("resize", size);
+			window.removeEventListener("pointermove", onPointerMove);
 		};
 	}, []);
 
