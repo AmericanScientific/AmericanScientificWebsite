@@ -8,7 +8,9 @@ import { OrderControls } from "@/components/OrderControls";
 type State =
 	| { kind: "loading" }
 	| { kind: "guest" }
-	| { kind: "authed"; price: number | null; priceLevel: number };
+	// No priceLevel: which negotiated tier the account sits on is internal
+	// commercial information and is deliberately not sent to the browser.
+	| { kind: "authed"; price: number | null };
 
 /**
  * Login-gated price block. Prices are never baked into the (ISR-cached, public)
@@ -33,8 +35,8 @@ export function ProductPrice({
 			.then(async (res) => {
 				if (!alive) return;
 				if (res.status === 200) {
-					const data = (await res.json()) as { price: number | null; priceLevel: number };
-					setState({ kind: "authed", price: data.price, priceLevel: data.priceLevel });
+					const data = (await res.json()) as { price: number | null };
+					setState({ kind: "authed", price: data.price });
 				} else {
 					setState({ kind: "guest" });
 				}
@@ -93,8 +95,7 @@ export function ProductPrice({
 					</div>
 					<p className="mt-2 flex items-center gap-1.5 text-xs text-slate-500">
 						{LockIcon}
-						Your price{state.priceLevel > 1 ? ` (tier ${state.priceLevel})` : ""}. Volume pricing
-						confirmed at order review.
+						Your price. Volume pricing confirmed at order review.
 					</p>
 					<div className="mt-5">
 						<OrderControls sku={sku} unitPrice={state.price} title={title} imageUrl={imageUrl} />
