@@ -20,19 +20,18 @@ import { supportsViewTransitions, type DocumentWithViewTransitions } from "@/lib
  * experimental-channel only and absent from React 19.2, which is what we ship.)
  */
 /**
- * Route transitions are currently OFF.
+ * Route transitions are ON, running the "stage slide" treatment (the incoming page
+ * slides in from the right while the outgoing one drops back and away). The
+ * animation itself lives in `globals.css` under "Route transitions: STAGE SLIDE".
  *
- * The slide-and-fade shipped in #58 wasn't liked, so navigation is instant again.
- * The machinery below is deliberately left in place rather than reverted: the hard
- * part was never the animation, it was the commit-timing problem documented above.
- * With this flag and the `::view-transition-*` rules in globals.css both parked, a
- * different transition becomes a CSS change plus flipping this to `true` — not a
- * rebuild.
+ * Keeping this as a flag earned its keep: the first treatment was rejected, and
+ * turning it off and back on with a different animation cost one boolean and a CSS
+ * block rather than a rebuild of the commit-timing machinery documented above.
  *
- * While it is `false` nothing calls `startViewTransition`, so no transition starts
+ * Set to `false` and nothing calls `startViewTransition`, so no transition starts
  * and the browser's own default crossfade never kicks in either.
  */
-const ROUTE_TRANSITIONS_ENABLED = false;
+const ROUTE_TRANSITIONS_ENABLED = true;
 
 const NavigateContext = createContext<((href: string) => void) | null>(null);
 
