@@ -6,7 +6,9 @@ export function SiteFooter() {
 	const categories = getTopLevelCategories();
 
 	return (
-		<footer className="mt-20 bg-ink text-slate-300">
+		// data-pointer-light: the footer is on every route, so this is what makes the
+		// pointer light site-wide rather than a homepage flourish.
+		<footer className="mt-20 overflow-hidden bg-ink text-slate-300" data-pointer-light>
 			<div className="brand-gradient h-1 w-full" />
 			<div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
 				<div className="grid grid-cols-1 gap-10 sm:grid-cols-2">

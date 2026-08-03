@@ -49,7 +49,13 @@ export default async function Home() {
 			<RevealOnScroll />
 
 			{/* ── Hero ─────────────────────────────────────────────────────────── */}
-			<section className="hero-surface relative overflow-hidden">
+			{/*
+			 * data-pointer-light gives the hero a response across its FULL width. The
+			 * HeroNetwork bonding below is masked to the right side and sits at 60%
+			 * opacity, so on its own the left half of the hero — where the headline
+			 * is — reacts to nothing. The mask stays as it is; this lights the rest.
+			 */}
+			<section className="hero-surface relative overflow-hidden" data-pointer-light>
 				{/* Ambient: three brand blobs breathing behind the content */}
 				<div className="hero-mesh" aria-hidden="true">
 					<span className="hero-blob hero-blob-red" />

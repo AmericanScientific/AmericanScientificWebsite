@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/SiteHeader";
+import { PointerLight } from "@/components/PointerLight";
 import { SiteFooter } from "@/components/SiteFooter";
 import { CartProvider } from "@/lib/cart/cart-context";
 import { ChatWidget } from "@/components/ChatWidget";
@@ -44,6 +45,8 @@ export default function RootLayout({
 					<main>{children}</main>
 					<SiteFooter />
 					<ChatWidget />
+					{/* One global pointer listener driving every [data-pointer-light] panel. */}
+					<PointerLight />
 				</CartProvider>
 			</body>
 		</html>
