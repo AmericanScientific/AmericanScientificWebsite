@@ -332,10 +332,14 @@ body {
 	}
 }
 
-/* ── Route transitions (View Transitions API) ─────────────────────────────────
-   Driven by <TransitionLink> / <ViewTransitions>. The outgoing page lifts and
-   fades while the incoming one rises into place, so a category click reads as
-   moving forward rather than as a hard cut.
+/* ── Route transitions (View Transitions API) — PARKED ────────────────────────
+   ⚠️ Currently INERT: `ROUTE_TRANSITIONS_ENABLED` is false in ViewTransitions.tsx,
+   so no transition ever starts and none of these rules match. Kept as the starting
+   point for a replacement treatment rather than deleted — this is the part you
+   rewrite, the timing machinery in ViewTransitions.tsx is the part you keep.
+
+   What it did: the outgoing page lifted and faded while the incoming one rose into
+   place, so a category click read as moving forward rather than as a hard cut.
 
    The category banner is named separately (below), which pulls it OUT of the
    root snapshot: navigating category → category morphs the banner in place while
