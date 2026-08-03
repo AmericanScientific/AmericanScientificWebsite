@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/SiteHeader";
+import { ViewTransitions } from "@/components/ViewTransitions";
 import { SiteFooter } from "@/components/SiteFooter";
 import { CartProvider } from "@/lib/cart/cart-context";
 import { ChatWidget } from "@/components/ChatWidget";
@@ -39,12 +40,19 @@ export default function RootLayout({
 				<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 			</head>
 			<body className="min-h-screen bg-[#f6f7fb] font-sans text-slate-900 antialiased">
-				<CartProvider>
-					<SiteHeader />
-					<main>{children}</main>
-					<SiteFooter />
-					<ChatWidget />
-				</CartProvider>
+				{/*
+				 * Wraps the header and footer too, not just <main>: the category nav
+				 * lives in the header, and those links need the transition-aware
+				 * navigate from this provider's context.
+				 */}
+				<ViewTransitions>
+					<CartProvider>
+						<SiteHeader />
+						<main>{children}</main>
+						<SiteFooter />
+						<ChatWidget />
+					</CartProvider>
+				</ViewTransitions>
 			</body>
 		</html>
 	);

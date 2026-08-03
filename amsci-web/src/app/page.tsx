@@ -7,6 +7,7 @@ import { mediaProxyUrl } from "@/lib/media";
 import { ProductCard } from "@/components/ProductCard";
 import { CategoryIcon } from "@/components/CategoryIcon";
 import { HeroCategoryTiles } from "@/components/HeroCategoryTiles";
+import { TransitionLink } from "@/components/TransitionLink";
 import { HeroNetwork } from "@/components/HeroNetwork";
 import { GuestCtaBand } from "@/components/GuestCtaBand";
 import { CountUp } from "@/components/CountUp";
@@ -147,7 +148,7 @@ export default async function Home() {
 						const childCount = category.children?.length ?? 0;
 						const productCount = category.children?.reduce((n, c) => n + (counts[c.slug] ?? 0), 0) ?? 0;
 						return (
-							<Link
+							<TransitionLink
 								key={category.slug}
 								href={category.external ? `/${category.slug}` : `/product-category/${category.slug}`}
 								className="card-hover group relative flex items-center gap-4 overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:border-slate-300 hover:shadow-lg"
@@ -168,7 +169,7 @@ export default async function Home() {
 								<svg viewBox="0 0 24 24" className="ml-auto h-5 w-5 shrink-0 text-slate-300 transition-all group-hover:translate-x-1 group-hover:text-slate-500" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
 									<path d="M5 12h14M13 6l6 6-6 6" />
 								</svg>
-							</Link>
+							</TransitionLink>
 						);
 					})}
 				</div>
