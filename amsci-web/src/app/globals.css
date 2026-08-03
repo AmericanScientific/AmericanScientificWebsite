@@ -326,6 +326,52 @@ body {
 	}
 }
 
+/* ── Route transitions (View Transitions API) ─────────────────────────────────
+   Driven by <TransitionLink> / <ViewTransitions>. The outgoing page lifts and
+   fades while the incoming one rises into place, so a category click reads as
+   moving forward rather than as a hard cut.
+
+   The category banner is named separately (below), which pulls it OUT of the
+   root snapshot: navigating category → category morphs the banner in place while
+   the product grid beneath it slides. That contrast is the whole effect.
+
+   Browsers without the API get a plain navigation; there is nothing to fall back
+   to and nothing breaks.                                                      */
+@media (prefers-reduced-motion: no-preference) {
+	::view-transition-old(root) {
+		animation: 300ms cubic-bezier(0.4, 0, 1, 1) both vt-page-out;
+	}
+	::view-transition-new(root) {
+		/* Starts slightly late so the two don't cross-dissolve into mush. */
+		animation: 420ms cubic-bezier(0.22, 0.61, 0.36, 1) 60ms both vt-page-in;
+	}
+	::view-transition-group(cat-hero) {
+		animation-duration: 460ms;
+		animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+	}
+}
+@keyframes vt-page-out {
+	to {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+}
+@keyframes vt-page-in {
+	from {
+		opacity: 0;
+		transform: translateY(14px);
+	}
+}
+/* Motion-sensitive visitors: the JS never starts a transition, and this makes
+   sure a UA-default one can't animate either. */
+@media (prefers-reduced-motion: reduce) {
+	::view-transition-group(*),
+	::view-transition-old(*),
+	::view-transition-new(*) {
+		animation: none !important;
+	}
+}
+
 /* ── Faint dot grid for light sections ───────────────────────────────────── */
 .dot-grid {
 	background-image: radial-gradient(rgba(15, 23, 42, 0.055) 1px, transparent 1px);
@@ -379,6 +425,13 @@ body {
 	position: relative;
 	isolation: isolate;
 	overflow: hidden;
+	/*
+	 * Named so the banner transitions as its own element instead of dissolving with
+	 * the rest of the page: category → category MORPHS it (both pages carry the
+	 * name), and home → category animates it in. One banner per page, so the name
+	 * stays unique as `view-transition-name` requires.
+	 */
+	view-transition-name: cat-hero;
 }
 .cat-hero::before {
 	content: "";
