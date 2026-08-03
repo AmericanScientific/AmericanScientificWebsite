@@ -15,8 +15,6 @@ export default async function AccountPage() {
 	const user = await getCurrentUser();
 	if (!user) redirect("/login?next=/account");
 
-	const tierLabel = user.priceLevel > 1 ? `Tier ${user.priceLevel}` : "Base";
-
 	return (
 		<main className="mx-auto max-w-2xl px-4 py-16 sm:px-6">
 			<h1 className="font-display text-2xl font-bold tracking-tight text-slate-900">My Account</h1>
@@ -30,10 +28,12 @@ export default async function AccountPage() {
 					<dt className="text-sm text-slate-500">Email</dt>
 					<dd className="text-sm font-medium text-slate-900">{user.email}</dd>
 				</div>
-				<div className="flex justify-between py-3">
-					<dt className="text-sm text-slate-500">Pricing tier</dt>
-					<dd className="text-sm font-medium text-slate-900">{tierLabel}</dd>
-				</div>
+				{/*
+				 * No price tier here. Which negotiated tier an account sits on is
+				 * internal commercial information: it invites "why am I on 3 when
+				 * they're on 4", and the number means nothing to the customer anyway.
+				 * Their prices are already shown on the products themselves.
+				 */}
 			</dl>
 
 			<div className="mt-8 flex items-center justify-between gap-4">
