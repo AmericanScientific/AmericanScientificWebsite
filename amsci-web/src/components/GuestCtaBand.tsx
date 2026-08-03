@@ -27,7 +27,10 @@ export function GuestCtaBand() {
 
 	return (
 		<section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-			<div className="hero-surface relative overflow-hidden rounded-3xl px-8 py-12 text-center sm:px-16 sm:py-16">
+			<div
+				className="hero-surface relative overflow-hidden rounded-3xl px-8 py-12 text-center sm:px-16 sm:py-16"
+				data-pointer-light
+			>
 				<div className="grid-overlay absolute inset-0" />
 				<div className="relative mx-auto max-w-2xl">
 					<h2 className="font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">
