@@ -290,86 +290,71 @@ body {
 [data-pointer-light][data-lit="1"]::after {
 	opacity: 1;
 }
-/* ── Ambient pointer wash for the LIGHT pages ─────────────────────────────────
-   `screen` adds nothing over white, so the light grounds need a different
-   mechanism: a very faint brand tint at normal blend, on one fixed viewport
-   layer behind all page content.
+/* ── Site-wide cursor trail ───────────────────────────────────────────────────
+   Canvas painted by <PointerLight>, matching the laboratory category hero's
+   molecule trail so the whole site shares one cursor language.
 
-   `z-index: -1` keeps it behind content: it paints above the propagated #f6f7fb
-   canvas but below every in-flow element, so white cards, panels and the
-   header/footer occlude it and the wash reads as light in the empty space rather
-   than a film over the UI.
+   This replaced a large soft radial wash. That wash sat BEHIND content, which
+   capped how visible it could ever be — occluded by every card, only showing in
+   the gutters — and making it bigger only made it vaguer. The trail is the
+   opposite trade: much smaller area, fully opaque dots, painted ABOVE content so
+   it is never occluded.
 
-   ⚠️ On the alphas: the first pass used 13%/7% and was effectively invisible.
-   Behind-content placement means a dense product grid leaves only the gutters and
-   the margins outside `max-w-7xl` to show it, so the tint has to be strong enough
-   to register in a thin strip — a value that looks about right in isolation
-   disappears once cards cover 80% of the viewport. These are tuned for that, not
-   for how they'd look on a blank page.                                        */
-.pointer-ambient {
+   z-index sits above the header (z-50) and the chat launcher (z-60) so the trail
+   is continuous wherever the cursor goes; a trail that vanished over the sticky
+   header would read as a bug. Non-interactive, so it can sit on top safely.    */
+.pointer-trail {
 	position: fixed;
 	inset: 0;
-	z-index: -1;
+	z-index: 70;
+	width: 100%;
+	height: 100%;
 	pointer-events: none;
-	opacity: 0;
-	transition: opacity 700ms cubic-bezier(0.22, 0.61, 0.36, 1);
-	background: radial-gradient(
-		34rem circle at var(--ax, 50%) var(--ay, 50%),
-		color-mix(in oklab, var(--color-brand-blue) 32%, transparent),
-		color-mix(in oklab, var(--color-brand-plum) 18%, transparent) 42%,
-		transparent 72%
-	);
-}
-.pointer-ambient[data-seen="1"] {
-	opacity: 1;
 }
 
-/* Pointer-driven, so there is nothing to freeze — neither layer ever activates. */
+/* Pointer-driven, so there is nothing to freeze — neither ever activates. */
 @media (prefers-reduced-motion: reduce) {
 	[data-pointer-light]::after,
-	.pointer-ambient {
+	.pointer-trail {
 		display: none;
 	}
 }
 
-/* ── Route transitions (View Transitions API) — PARKED ────────────────────────
-   ⚠️ Currently INERT: `ROUTE_TRANSITIONS_ENABLED` is false in ViewTransitions.tsx,
-   so no transition ever starts and none of these rules match. Kept as the starting
-   point for a replacement treatment rather than deleted — this is the part you
-   rewrite, the timing machinery in ViewTransitions.tsx is the part you keep.
+/* ── Route transitions: STAGE SLIDE ───────────────────────────────────────────
+   The incoming page slides in from the right while the outgoing one drops back
+   and away, like a slide being pushed onto a microscope stage. The outgoing page
+   scaling down is what makes it read as depth rather than as a carousel.
 
-   What it did: the outgoing page lifted and faded while the incoming one rose into
-   place, so a category click read as moving forward rather than as a hard cut.
+   The whole page moves as ONE unit: nothing carries its own
+   `view-transition-name`, so everything is captured in the root snapshot and
+   travels together. An earlier version named the category banner separately so it
+   morphed while the grid slid; that split is exactly what made the previous
+   treatment feel busy, so it is gone.
 
-   The category banner is named separately (below), which pulls it OUT of the
-   root snapshot: navigating category → category morphs the banner in place while
-   the product grid beneath it slides. That contrast is the whole effect.
+   Durations are the ones signed off in the lab: 420ms out, 460ms in.
 
-   Browsers without the API get a plain navigation; there is nothing to fall back
-   to and nothing breaks.                                                      */
+   Browsers without the API get a plain navigation; nothing to fall back to and
+   nothing breaks.                                                             */
 @media (prefers-reduced-motion: no-preference) {
 	::view-transition-old(root) {
-		animation: 300ms cubic-bezier(0.4, 0, 1, 1) both vt-page-out;
+		animation: 420ms cubic-bezier(0.22, 0.61, 0.36, 1) both vt-stage-out;
 	}
 	::view-transition-new(root) {
-		/* Starts slightly late so the two don't cross-dissolve into mush. */
-		animation: 420ms cubic-bezier(0.22, 0.61, 0.36, 1) 60ms both vt-page-in;
-	}
-	::view-transition-group(cat-hero) {
-		animation-duration: 460ms;
-		animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+		animation: 460ms cubic-bezier(0.22, 0.61, 0.36, 1) both vt-stage-in;
 	}
 }
-@keyframes vt-page-out {
+@keyframes vt-stage-out {
 	to {
+		transform: translateX(-32%) scale(0.94);
 		opacity: 0;
-		transform: translateY(-10px);
 	}
 }
-@keyframes vt-page-in {
+@keyframes vt-stage-in {
 	from {
-		opacity: 0;
-		transform: translateY(14px);
+		transform: translateX(100%);
+	}
+	to {
+		transform: translateX(0);
 	}
 }
 /* Motion-sensitive visitors: the JS never starts a transition, and this makes
@@ -436,12 +421,11 @@ body {
 	isolation: isolate;
 	overflow: hidden;
 	/*
-	 * Named so the banner transitions as its own element instead of dissolving with
-	 * the rest of the page: category → category MORPHS it (both pages carry the
-	 * name), and home → category animates it in. One banner per page, so the name
-	 * stays unique as `view-transition-name` requires.
+	 * NOT given a `view-transition-name`. It used to have one so the banner morphed
+	 * independently while the grid slid beneath it — and that split is what made the
+	 * old transition feel busy. Under the stage slide the whole page has to travel as
+	 * one unit, which means nothing may opt itself out of the root snapshot.
 	 */
-	view-transition-name: cat-hero;
 }
 .cat-hero::before {
 	content: "";
