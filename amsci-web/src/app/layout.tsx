@@ -3,6 +3,7 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/SiteHeader";
 import { PointerLight } from "@/components/PointerLight";
+import { ViewTransitions } from "@/components/ViewTransitions";
 import { SiteFooter } from "@/components/SiteFooter";
 import { CartProvider } from "@/lib/cart/cart-context";
 import { ChatWidget } from "@/components/ChatWidget";
@@ -40,14 +41,25 @@ export default function RootLayout({
 				<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 			</head>
 			<body className="min-h-screen bg-[#f6f7fb] font-sans text-slate-900 antialiased">
-				<CartProvider>
-					<SiteHeader />
-					<main>{children}</main>
-					<SiteFooter />
-					<ChatWidget />
-					{/* One global pointer listener driving every [data-pointer-light] panel. */}
-					<PointerLight />
-				</CartProvider>
+				{/*
+				 * ViewTransitions wraps the header and footer too, not just <main>: the
+				 * category nav lives in the header, and those links need the
+				 * transition-aware navigate from its context.
+				 *
+				 * PointerLight sits INSIDE it but is not a link consumer — it just needs
+				 * to be mounted exactly once, and it also renders the fixed ambient wash
+				 * layer, so it stays last in the body.
+				 */}
+				<ViewTransitions>
+					<CartProvider>
+						<SiteHeader />
+						<main>{children}</main>
+						<SiteFooter />
+						<ChatWidget />
+						{/* One global pointer listener driving every [data-pointer-light] panel. */}
+						<PointerLight />
+					</CartProvider>
+				</ViewTransitions>
 			</body>
 		</html>
 	);
