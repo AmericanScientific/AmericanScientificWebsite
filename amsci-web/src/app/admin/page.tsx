@@ -3,6 +3,7 @@ import { notFound, redirect } from "next/navigation";
 import { getCurrentUser } from "@/lib/auth/session";
 import { getDb, listUsersByStatus } from "@/lib/auth/db";
 import { AdminPendingList, type PendingUser } from "@/components/AdminPendingList";
+import { AdminTabs } from "@/components/AdminTabs";
 
 export const metadata: Metadata = {
 	title: "Account requests · Admin",
@@ -32,15 +33,10 @@ export default async function AdminPage() {
 
 	return (
 		<main className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
-			<div className="flex items-end justify-between gap-4">
-				<h1 className="font-display text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
-					Account requests
-				</h1>
-				<span className="text-sm text-slate-400">
-					{pending.length} pending
-				</span>
-			</div>
-			<p className="mt-2 text-sm text-slate-500">
+			<h1 className="font-display text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Accounts</h1>
+			<AdminTabs active="requests" pendingCount={pending.length} />
+
+			<p className="mt-6 text-sm text-slate-500">
 				Approve a request to activate the account and set its price tier. The applicant is emailed that
 				they can sign in. Denied accounts stay blocked.
 			</p>

@@ -1,16 +1,22 @@
-import { approveUser, denyUser, getDb, getUserById } from "@/lib/auth/db";
+import { approveUser, denyUser, getDb, getUserById, setUserPriceLevel } from "@/lib/auth/db";
 import { getCurrentUser } from "@/lib/auth/session";
 import { sendAccountApprovedEmail, siteBaseUrl } from "@/lib/auth/email";
 
 /**
- * POST /api/admin/user  { userId, action: "approve" | "deny", priceLevel? }
+ * POST /api/admin/user  { userId, action: "approve" | "deny" | "set-tier", priceLevel? }
  *
  * Admin-only (is_admin). Approves a pending account (setting its price tier) or
  * denies it. On approval, emails the applicant that they can sign in.
+ *
+ * `set-tier` retiers an account that is ALREADY live, from the Current accounts
+ * directory. It is a separate action rather than a re-approve because it must
+ * not touch `status` and must not send the approval email to someone who has
+ * been signing in for months.
  */
 export const dynamic = "force-dynamic";
 
 const VALID_LEVELS = new Set([1, 2, 3, 4, 7, 8]); // NetSuite price levels (CLAUDE.md §2)
+const ACTIONS = new Set(["approve", "deny", "set-tier"]);
 
 export async function POST(request: Request): Promise<Response> {
 	const admin = await getCurrentUser();
@@ -25,8 +31,8 @@ export async function POST(request: Request): Promise<Response> {
 	}
 
 	const userId = Number(body.userId);
-	const action = body.action;
-	if (!Number.isInteger(userId) || (action !== "approve" && action !== "deny")) {
+	const action = typeof body.action === "string" ? body.action : "";
+	if (!Number.isInteger(userId) || !ACTIONS.has(action)) {
 		return Response.json({ error: "Invalid request." }, { status: 400 });
 	}
 
@@ -39,6 +45,15 @@ export async function POST(request: Request): Promise<Response> {
 	if (action === "deny") {
 		await denyUser(db, userId, now);
 		return Response.json({ ok: true, status: "denied" });
+	}
+
+	if (action === "set-tier") {
+		const level = Number(body.priceLevel);
+		if (!VALID_LEVELS.has(level)) {
+			return Response.json({ error: "Choose a valid price level (1, 2, 3, 4, 7, or 8)." }, { status: 400 });
+		}
+		await setUserPriceLevel(db, userId, level, now);
+		return Response.json({ ok: true, priceLevel: level });
 	}
 
 	// approve

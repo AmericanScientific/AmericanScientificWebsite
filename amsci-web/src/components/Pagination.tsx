@@ -5,11 +5,16 @@ import { pageWindow } from "@/lib/pagination";
  * Page navigation for listing grids. Server component (plain links), so it works
  * without client JS and keeps each page a crawlable URL. Page 1 links to the
  * clean base href (no ?page=) so the canonical listing stays param-free.
+ *
+ * `baseHref` may already carry a query string (the admin account directory
+ * passes its filters through it); the page param is joined with `&` in that case
+ * so the filters survive paging.
  */
 export function Pagination({ page, totalPages, baseHref }: { page: number; totalPages: number; baseHref: string }) {
 	if (totalPages <= 1) return null;
 
-	const href = (p: number) => (p <= 1 ? baseHref : `${baseHref}?page=${p}`);
+	const sep = baseHref.includes("?") ? "&" : "?";
+	const href = (p: number) => (p <= 1 ? baseHref : `${baseHref}${sep}page=${p}`);
 	const base =
 		"inline-flex h-10 min-w-10 items-center justify-center rounded-xl px-3 text-sm font-medium transition-colors";
 	const idle = "border border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50";
