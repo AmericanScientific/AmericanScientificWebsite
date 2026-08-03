@@ -19,6 +19,21 @@ import { supportsViewTransitions, type DocumentWithViewTransitions } from "@/lib
  * (React's `unstable_ViewTransition` would handle this, but it is
  * experimental-channel only and absent from React 19.2, which is what we ship.)
  */
+/**
+ * Route transitions are currently OFF.
+ *
+ * The slide-and-fade shipped in #58 wasn't liked, so navigation is instant again.
+ * The machinery below is deliberately left in place rather than reverted: the hard
+ * part was never the animation, it was the commit-timing problem documented above.
+ * With this flag and the `::view-transition-*` rules in globals.css both parked, a
+ * different transition becomes a CSS change plus flipping this to `true` — not a
+ * rebuild.
+ *
+ * While it is `false` nothing calls `startViewTransition`, so no transition starts
+ * and the browser's own default crossfade never kicks in either.
+ */
+const ROUTE_TRANSITIONS_ENABLED = false;
+
 const NavigateContext = createContext<((href: string) => void) | null>(null);
 
 /** Returns a transition-aware navigate, or null outside the provider. */
@@ -57,7 +72,7 @@ export function ViewTransitions({ children }: { children: React.ReactNode }) {
 		(href: string) => {
 			const doc = document as DocumentWithViewTransitions;
 			const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-			if (!supportsViewTransitions() || reduce) {
+			if (!ROUTE_TRANSITIONS_ENABLED || !supportsViewTransitions() || reduce) {
 				router.push(href);
 				return;
 			}
