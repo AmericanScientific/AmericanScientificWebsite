@@ -7,16 +7,16 @@ import { useEffect, useRef } from "react";
  *
  * Two parts:
  *
- *  1. TRAIL — a lingering molecule trail following the cursor everywhere,
- *     deliberately matched to the laboratory category hero (`CategoryParticles`,
- *     `trail` mode) so the site speaks ONE cursor language instead of two. Same
- *     spawn count, lifetime, damping and drift. The one change is colour: the hero
- *     draws white on a saturated gradient, which is invisible on `#f6f7fb`, so
- *     these use the brand ramp, which reads on both grounds.
+ *  1. TRAIL — a light molecule trail following the cursor everywhere, built on the
+ *     laboratory category hero's model (`CategoryParticles`, `trail` mode) so the
+ *     site speaks one cursor language. Same spawn/damp/drift/decay behaviour, but
+ *     turned well down for site-wide use — see the intensity block below, which is
+ *     the only thing worth tuning. Colour differs too: the hero draws white on a
+ *     saturated gradient, invisible on `#f6f7fb`, so these use the brand ramp.
  *
- *     This replaces a large soft radial wash that was both too big and too faint.
- *     Sitting behind content at 32% it was barely there, and widening it only made
- *     it vaguer — a tight trail of solid dots is legible at a fraction of the area.
+ *     It replaced a large soft radial wash that was both too big and too faint —
+ *     the same problem, since sitting behind content capped how visible it could
+ *     ever be and widening it only made it vaguer.
  *
  *  2. PANELS — the dark ink surfaces (`data-pointer-light`: footer, home hero, CTA
  *     band) keep their screen-blended brand radial, which only works on dark
@@ -55,8 +55,29 @@ interface Particle {
 	c: [number, number, number];
 }
 
-/** Bounded so a fast sweep can't grow the field without limit (hero uses 800). */
-const MAX_PARTICLES = 500;
+/*
+ * ── Trail intensity ──────────────────────────────────────────────────────────
+ * All the tuning in one place; these are the only numbers worth touching.
+ *
+ * The first pass copied the laboratory hero's values exactly (5 spawns, 0.01
+ * decay, 1.5–4.5 radius, 0.9 alpha) and site-wide that was far too loud. What
+ * works inside one hero band does not work across every page: the hero's trail is
+ * confined to a section you look at once, whereas this follows you everywhere and
+ * is on top of the content you are trying to read.
+ *
+ * So the MODEL is still the hero's — same spawn/damp/drift/decay behaviour — but
+ * the intensity is roughly a third of it: fewer dots, smaller, fainter, dying
+ * sooner. Consequence worth knowing: it is no longer parameter-identical to the
+ * laboratory hero, so the two read as related rather than the same.
+ */
+const SPAWN_PER_MOVE = 2; // was 5
+const DECAY_PER_FRAME = 0.016; // was 0.01 — shorter tail
+const RADIUS_MIN = 0.9; // was 1.5
+const RADIUS_MAX = 2.4; // was 4.5
+const PEAK_ALPHA = 0.42; // was 0.9
+
+/** Bounded so a fast sweep can't grow the field without limit. */
+const MAX_PARTICLES = 220; // was 500
 
 export function PointerLight() {
 	const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -106,9 +127,8 @@ export function PointerLight() {
 				ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
 				for (let i = particles.length - 1; i >= 0; i--) {
 					const p = particles[i];
-					// Lifetime, damping and drift copied from the laboratory hero, so the
-					// two decay identically rather than merely looking similar.
-					p.life -= 0.01;
+					// Damping and drift are still the hero's; only the decay rate is faster.
+					p.life -= DECAY_PER_FRAME;
 					if (p.life <= 0) {
 						particles.splice(i, 1);
 						continue;
@@ -119,7 +139,7 @@ export function PointerLight() {
 					p.vy *= 0.985;
 					p.vy += 0.01;
 					const r = p.r * (0.4 + 0.6 * p.life) + 0.4;
-					ctx.globalAlpha = Math.max(0, p.life) * 0.9;
+					ctx.globalAlpha = Math.max(0, p.life) * PEAK_ALPHA;
 					ctx.beginPath();
 					ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
 					ctx.fillStyle = `rgb(${p.c[0]},${p.c[1]},${p.c[2]})`;
@@ -155,15 +175,17 @@ export function PointerLight() {
 			cx = e.clientX;
 			cy = e.clientY;
 
-			// 5 per move, same as the hero's trail mode.
-			for (let k = 0; k < 5; k++) {
+			for (let k = 0; k < SPAWN_PER_MOVE; k++) {
 				particles.push({
 					x: cx,
 					y: cy,
+					// Launch velocities left at the hero's values: these set the SHAPE of
+					// the trail, and narrowing them would make it read as a rigid line
+					// rather than a dispersing puff. Intensity is turned down elsewhere.
 					vx: rand(-2, 2),
 					vy: rand(-2.6, 1.2),
 					life: 1,
-					r: rand(1.5, 4.5),
+					r: rand(RADIUS_MIN, RADIUS_MAX),
 					c: ramp(Math.random()),
 				});
 			}
