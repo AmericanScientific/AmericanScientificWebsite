@@ -295,11 +295,17 @@ body {
    mechanism: a very faint brand tint at normal blend, on one fixed viewport
    layer behind all page content.
 
-   `z-index: -1` is what makes this subtle rather than gaudy. It paints above the
-   propagated #f6f7fb canvas but below every in-flow element, so white cards,
-   panels and the header/footer occlude it — the wash only ever shows in the
-   gutters between them. Tinting the empty space is the whole idea, which is why
-   there is no attempt to lift it above content.                               */
+   `z-index: -1` keeps it behind content: it paints above the propagated #f6f7fb
+   canvas but below every in-flow element, so white cards, panels and the
+   header/footer occlude it and the wash reads as light in the empty space rather
+   than a film over the UI.
+
+   ⚠️ On the alphas: the first pass used 13%/7% and was effectively invisible.
+   Behind-content placement means a dense product grid leaves only the gutters and
+   the margins outside `max-w-7xl` to show it, so the tint has to be strong enough
+   to register in a thin strip — a value that looks about right in isolation
+   disappears once cards cover 80% of the viewport. These are tuned for that, not
+   for how they'd look on a blank page.                                        */
 .pointer-ambient {
 	position: fixed;
 	inset: 0;
@@ -308,9 +314,9 @@ body {
 	opacity: 0;
 	transition: opacity 700ms cubic-bezier(0.22, 0.61, 0.36, 1);
 	background: radial-gradient(
-		30rem circle at var(--ax, 50%) var(--ay, 50%),
-		color-mix(in oklab, var(--color-brand-blue) 13%, transparent),
-		color-mix(in oklab, var(--color-brand-plum) 7%, transparent) 42%,
+		34rem circle at var(--ax, 50%) var(--ay, 50%),
+		color-mix(in oklab, var(--color-brand-blue) 32%, transparent),
+		color-mix(in oklab, var(--color-brand-plum) 18%, transparent) 42%,
 		transparent 72%
 	);
 }
