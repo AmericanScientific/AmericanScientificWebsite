@@ -129,7 +129,17 @@ function Row({ row }: { row: AccountListRow }) {
 				{row.hasSetPassword ? (
 					<Badge tone="good">Set</Badge>
 				) : (
-					<Badge tone="warn">Awaiting setup</Badge>
+					<>
+						<Badge tone="warn">Awaiting setup</Badge>
+						{/*
+						 * Only offered where the server will actually allow it: a pending
+						 * account needs approving (which sends its own email) and a denied
+						 * one has nothing to set up, so both would be refused.
+						 */}
+						{row.status !== "pending" && row.status !== "denied" && (
+							<ResendSetupLink userId={row.id} email={row.email} />
+						)}
+					</>
 				)}
 			</td>
 
@@ -160,6 +170,77 @@ function Row({ row }: { row: AccountListRow }) {
 
 			<td className="whitespace-nowrap px-4 py-3 text-slate-500 tabular-nums">{row.createdLabel}</td>
 		</tr>
+	);
+}
+
+/**
+ * Re-send the one-time password setup link to someone who hasn't completed it.
+ *
+ * Deliberately two-step: this sends real mail to a real customer, and the button
+ * sits in a dense table of 50 rows where a mis-click is easy. Nothing leaves the
+ * browser until the confirm is pressed.
+ */
+function ResendSetupLink({ userId, email }: { userId: number; email: string }) {
+	const [phase, setPhase] = useState<"idle" | "confirm" | "sending" | "sent">("idle");
+	const [error, setError] = useState<string | null>(null);
+
+	async function send() {
+		setPhase("sending");
+		setError(null);
+		try {
+			const res = await fetch("/api/admin/user", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ userId, action: "resend-setup" }),
+			});
+			const j = (await res.json().catch(() => ({}))) as { error?: string; delivered?: boolean };
+			if (!res.ok) {
+				setError(j.error ?? "Could not send the link.");
+				setPhase("idle");
+				return;
+			}
+			setPhase("sent");
+		} catch {
+			setError("Network error.");
+			setPhase("idle");
+		}
+	}
+
+	if (phase === "sent") {
+		return <p className="mt-1.5 text-xs font-semibold text-emerald-600">Link sent</p>;
+	}
+
+	return (
+		<div className="mt-1.5">
+			{phase === "confirm" ? (
+				<div className="flex items-center gap-2">
+					<button
+						type="button"
+						onClick={send}
+						className="rounded-full bg-brand-blue px-2.5 py-1 text-xs font-semibold text-white transition-colors hover:bg-brand-blue-deep"
+					>
+						Email {email.length > 22 ? "them" : email}?
+					</button>
+					<button
+						type="button"
+						onClick={() => setPhase("idle")}
+						className="text-xs font-medium text-slate-500 underline underline-offset-2 hover:text-slate-700"
+					>
+						Cancel
+					</button>
+				</div>
+			) : (
+				<button
+					type="button"
+					onClick={() => setPhase("confirm")}
+					disabled={phase === "sending"}
+					className="text-xs font-semibold text-brand-blue-deep underline underline-offset-2 transition-colors hover:text-brand-blue disabled:opacity-60"
+				>
+					{phase === "sending" ? "Sending…" : "Send setup link"}
+				</button>
+			)}
+			{error && <p className="mt-1 max-w-[16rem] whitespace-normal text-xs text-red-600">{error}</p>}
+		</div>
 	);
 }
 

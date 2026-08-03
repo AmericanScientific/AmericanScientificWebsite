@@ -108,8 +108,9 @@ export default async function AdminAccountsPage({ searchParams }: { searchParams
 
 			<p className="mt-6 text-sm text-slate-500">
 				Every registered account. <strong className="font-semibold text-slate-700">Password</strong> shows
-				whether someone has set a password on the new site yet — until they do, they can&rsquo;t sign in, even
-				though the account is approved. Changing a price tier saves immediately and does not email anyone.
+				whether someone has set a password on the new site yet. Until they do they can&rsquo;t sign in, even
+				though the account is approved, so those rows offer a button to re-send their setup link. Changing a
+				price tier saves immediately and emails nobody.
 			</p>
 
 			<dl className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
