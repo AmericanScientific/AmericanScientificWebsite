@@ -30,12 +30,14 @@ export async function GET(request: Request): Promise<Response> {
 	// including variant members that fall out of the collapsed product map.
 	// TODO(tiers): fold in user.priceLevel/qty → live NetSuite resolvePrice.
 	const prices = await resolvePrices([sku]);
+	// The resolved PRICE goes to the browser; the tier that produced it does not.
+	// Which negotiated level an account sits on is internal commercial
+	// information, and the number is meaningless to the customer.
 	return Response.json(
 		{
 			authenticated: true,
 			sku,
 			price: prices[sku] ?? null,
-			priceLevel: user.priceLevel,
 		},
 		{ headers: { "Cache-Control": "private, no-store" } },
 	);
