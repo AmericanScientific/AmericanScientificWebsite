@@ -320,53 +320,6 @@ body {
 	}
 }
 
-/* ── Route transitions: STAGE SLIDE ───────────────────────────────────────────
-   The incoming page slides in from the right while the outgoing one drops back
-   and away, like a slide being pushed onto a microscope stage. The outgoing page
-   scaling down is what makes it read as depth rather than as a carousel.
-
-   The whole page moves as ONE unit: nothing carries its own
-   `view-transition-name`, so everything is captured in the root snapshot and
-   travels together. An earlier version named the category banner separately so it
-   morphed while the grid slid; that split is exactly what made the previous
-   treatment feel busy, so it is gone.
-
-   Durations are the ones signed off in the lab: 420ms out, 460ms in.
-
-   Browsers without the API get a plain navigation; nothing to fall back to and
-   nothing breaks.                                                             */
-@media (prefers-reduced-motion: no-preference) {
-	::view-transition-old(root) {
-		animation: 420ms cubic-bezier(0.22, 0.61, 0.36, 1) both vt-stage-out;
-	}
-	::view-transition-new(root) {
-		animation: 460ms cubic-bezier(0.22, 0.61, 0.36, 1) both vt-stage-in;
-	}
-}
-@keyframes vt-stage-out {
-	to {
-		transform: translateX(-32%) scale(0.94);
-		opacity: 0;
-	}
-}
-@keyframes vt-stage-in {
-	from {
-		transform: translateX(100%);
-	}
-	to {
-		transform: translateX(0);
-	}
-}
-/* Motion-sensitive visitors: the JS never starts a transition, and this makes
-   sure a UA-default one can't animate either. */
-@media (prefers-reduced-motion: reduce) {
-	::view-transition-group(*),
-	::view-transition-old(*),
-	::view-transition-new(*) {
-		animation: none !important;
-	}
-}
-
 /* ── Faint dot grid for light sections ───────────────────────────────────── */
 .dot-grid {
 	background-image: radial-gradient(rgba(15, 23, 42, 0.055) 1px, transparent 1px);
@@ -420,12 +373,6 @@ body {
 	position: relative;
 	isolation: isolate;
 	overflow: hidden;
-	/*
-	 * NOT given a `view-transition-name`. It used to have one so the banner morphed
-	 * independently while the grid slid beneath it — and that split is what made the
-	 * old transition feel busy. Under the stage slide the whole page has to travel as
-	 * one unit, which means nothing may opt itself out of the root snapshot.
-	 */
 }
 .cat-hero::before {
 	content: "";
