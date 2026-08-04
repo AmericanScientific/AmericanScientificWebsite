@@ -58,10 +58,15 @@
 	// EMAIL_FROM must be an address on the Resend-verified domain. Set SITE_URL to
 	// the deployed origin so links in emails are absolute (falls back to the
 	// request origin if unset). RESEND_API_KEY is a SECRET, not a var.
+	// SITE_URL is now PINNED for launch. It was unset, which meant links in
+	// password setup/reset emails were built from the request origin — fine while
+	// the only origin was the workers.dev URL, but wrong the moment a link is
+	// generated from anywhere other than the public domain. A "set your password"
+	// email pointing at staging.phywe-usa.com is one a customer will not trust.
 	"vars": {
 		"EMAIL_FROM": "hello@am-sci.com",
-		"EMAIL_FROM_NAME": "American Scientific"
-		// "SITE_URL": "https://<your-deployed-origin>"
+		"EMAIL_FROM_NAME": "American Scientific",
+		"SITE_URL": "https://www.american-scientific.com"
 	},
 	"observability": {
 		"enabled": true
