@@ -63,10 +63,20 @@
 	// the only origin was the workers.dev URL, but wrong the moment a link is
 	// generated from anywhere other than the public domain. A "set your password"
 	// email pointing at staging.phywe-usa.com is one a customer will not trust.
+	// TURNSTILE_SITE_KEY is the PUBLIC widget key — it ships to the browser by
+	// design, so it belongs in vars, not secrets. Its partner
+	// TURNSTILE_SECRET_KEY is a secret (`wrangler secret put`) and is what
+	// actually enforces anything: with the site key set but the secret missing,
+	// the widget renders and the visitor solves it while the server accepts every
+	// submission regardless (see verifyTurnstile — no secret means skip). Both or
+	// neither; the site key alone is decoration.
+	// Widget hostnames: american-scientific.com + phywe-usa.com (subdomains
+	// included), so signup verifies on the staging host before the DNS cutover.
 	"vars": {
 		"EMAIL_FROM": "hello@am-sci.com",
 		"EMAIL_FROM_NAME": "American Scientific",
-		"SITE_URL": "https://www.american-scientific.com"
+		"SITE_URL": "https://www.american-scientific.com",
+		"TURNSTILE_SITE_KEY": "0x4AAAAAAEGMtTkfgY3zbNWq"
 	},
 	"observability": {
 		"enabled": true
