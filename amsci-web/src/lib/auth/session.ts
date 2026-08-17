@@ -68,6 +68,19 @@ export async function endSession(): Promise<void> {
 }
 
 /**
+ * The `sessions.id` of the current request's session, or null.
+ *
+ * Exposed so a password change can revoke every OTHER session while keeping the
+ * one making the request alive — the caller has just proved they know the
+ * password, so signing them out of their own browser would be pointless friction.
+ */
+export async function currentSessionId(): Promise<string | null> {
+	const jar = await cookies();
+	const token = jar.get(SESSION_COOKIE)?.value;
+	return token ? await hashToken(token) : null;
+}
+
+/**
  * Resolve the current request's user, or null. Wrapped in React `cache()` so
  * multiple server components in one render share a single D1 read.
  */
