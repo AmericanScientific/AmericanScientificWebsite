@@ -120,23 +120,30 @@ export async function fetchTierPrices(
 	for (let i = 0; i < itemIds.length; i += chunk) {
 		const ids = itemIds.slice(i, i + chunk).filter(Boolean);
 		if (ids.length === 0) continue;
-		// One row per (item, level). A 200-item chunk can return up to ~6x that,
-		// so the page limit has to allow for every level, not just one per item.
-		const page = await client.suiteql<{
-			item: string | number;
-			pricelevel: string | number;
-			unitprice: string | number;
-		}>(
+		const select =
 			`SELECT item AS item, pricelevel AS pricelevel, unitprice AS unitprice FROM pricing ` +
-				`WHERE priceqty = 1 AND item IN (${ids.join(",")})`,
-			{ limit: chunk * 8 },
-		);
-		for (const r of page.items) {
-			const level = Number(r.pricelevel);
-			const price = Number(r.unitprice);
-			const id = String(r.item);
-			if (!id || !Number.isFinite(level) || !Number.isFinite(price)) continue;
-			out.push({ internalId: id, priceLevel: level, unitPrice: price });
+			`WHERE priceqty = 1 AND item IN (${ids.join(",")})`;
+
+		// This query returns one row per (item, LEVEL) — about six per item — so a
+		// 200-item chunk is ~1,200 rows, well over a single page. NetSuite caps
+		// `limit` at PAGE, so it must be paginated on offset/hasMore rather than
+		// asked for in one oversized page: too high a limit is rejected outright,
+		// and a limit that merely fits would silently truncate to the page size and
+		// drop real prices with no error at all.
+		for (let offset = 0; ; offset += PAGE) {
+			const page = await client.suiteql<{
+				item: string | number;
+				pricelevel: string | number;
+				unitprice: string | number;
+			}>(select, { limit: PAGE, offset });
+			for (const r of page.items) {
+				const level = Number(r.pricelevel);
+				const price = Number(r.unitprice);
+				const id = String(r.item);
+				if (!id || !Number.isFinite(level) || !Number.isFinite(price)) continue;
+				out.push({ internalId: id, priceLevel: level, unitPrice: price });
+			}
+			if (!page.hasMore) break;
 		}
 	}
 	return out;
