@@ -35,7 +35,22 @@ export async function POST(request: Request): Promise<Response> {
 	const purpose = user.must_change_password === 1 || !user.password_hash ? "setup" : "reset";
 	const token = await createPasswordToken(db, user.id, purpose);
 	const link = `${siteBaseUrl(request)}/set-password?token=${token}`;
-	await sendPasswordEmail(email, user.display_name || "", link, purpose);
+	const sent = await sendPasswordEmail(email, user.display_name || "", link, purpose);
+
+	// The RESPONSE stays generic either way — telling the caller that delivery
+	// failed would leak that the address has an account. But a silent failure
+	// here is indistinguishable from success to US as well, which is how a mail
+	// outage becomes "nobody can get into the new site" with nothing in the logs.
+	// So the signal goes to observability instead, where it can't leak.
+	if (!sent.delivered) {
+		console.warn(
+			`[auth/request-setup] ${purpose} link NOT delivered (user=${user.id}, ` +
+				`devFallback=${sent.devFallback}). ` +
+				(sent.devFallback
+					? "RESEND_API_KEY is unset — the link was only logged."
+					: "The mail provider rejected the send."),
+		);
+	}
 
 	// Only surface the link when explicitly enabled for local testing (never prod).
 	return Response.json(devLinksEnabled() ? { ...GENERIC, devLink: link } : GENERIC);
