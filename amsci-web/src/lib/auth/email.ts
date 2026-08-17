@@ -37,11 +37,42 @@ export function devLinksEnabled(): boolean {
 	return mailEnv().AUTH_DEV_LINKS === "1";
 }
 
-/** Absolute base URL for links in emails: SITE_URL if set, else the request origin. */
+/**
+ * Hosts that are ours-only: the workers.dev deploy target, the Access-gated
+ * staging domain, and local dev. A request arriving on one of these did not come
+ * from a customer, so a link built for it should point back at the same place.
+ */
+const INTERNAL_HOSTS = [/\.workers\.dev$/i, /^staging\.phywe-usa\.com$/i, /^localhost$/i, /^127\.0\.0\.1$/];
+
+function isInternalHost(hostname: string): boolean {
+	return INTERNAL_HOSTS.some((re) => re.test(hostname));
+}
+
+/**
+ * Absolute base URL for links in emails.
+ *
+ * `SITE_URL` wins for customer-facing requests: a "set your password" email must
+ * point at the canonical domain, never at whatever host happened to serve the
+ * request. That is why it was pinned.
+ *
+ * But pinning it unconditionally made every link generated from an internal host
+ * unusable, because `SITE_URL` names the launch domain — which serves the OLD
+ * WordPress site until DNS cuts over. So every setup and reset link built after
+ * the pin 404'd, and nothing failed loudly: the API returned success, Resend
+ * delivered the mail, and only a customer clicking the button would find out.
+ *
+ * Resolving internal hosts to their own origin fixes both halves. Testing from
+ * workers.dev or staging produces a link that actually works, customer traffic
+ * on the real domain still gets the canonical URL, and there is no temporary
+ * override to remember to revert on cutover day.
+ */
 export function siteBaseUrl(request: Request): string {
 	const env = mailEnv();
-	if (env.SITE_URL) return env.SITE_URL.replace(/\/$/, "");
-	return new URL(request.url).origin;
+	const origin = new URL(request.url);
+	if (env.SITE_URL && !isInternalHost(origin.hostname)) {
+		return env.SITE_URL.replace(/\/$/, "");
+	}
+	return origin.origin;
 }
 
 const COPY: Record<TokenPurpose, { subject: string; heading: string; intro: string; cta: string; expiry: string }> = {
