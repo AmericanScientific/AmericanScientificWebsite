@@ -1,9 +1,11 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import type { Product } from "@/types/product";
 import { categoryTheme } from "@/lib/categoryTheme";
+import { paginate } from "@/lib/pagination";
 import { ProductGrid } from "@/components/ProductGrid";
+import { PaginationControls } from "@/components/PaginationControls";
 
 export interface SubcategoryOption {
 	slug: string;
@@ -19,6 +21,10 @@ export interface SubcategoryOption {
  *
  * Active pills take the parent category's gradient (`themeSlug`) so the control
  * reads as part of the category, matching the hero.
+ *
+ * The grid is paginated at the shared PAGE_SIZE. Because the visible set is
+ * client state, paging is too — see `PaginationControls` for why this one can't
+ * use crawlable ?page= URLs the way the all-products listing does.
  */
 export function CategorySubfilter({
 	themeSlug,
@@ -33,9 +39,15 @@ export function CategorySubfilter({
 	initialSelected?: string[];
 }) {
 	const [selected, setSelected] = useState<Set<string>>(() => new Set(initialSelected));
+	const [page, setPage] = useState(1);
+	const gridTop = useRef<HTMLDivElement>(null);
 	const theme = categoryTheme(themeSlug);
 
+	// Any filter change invalidates the current page number — being on page 3 of
+	// 5 and then narrowing to a single subcategory with one page of results would
+	// otherwise show an empty grid.
 	const toggle = (slug: string) => {
+		setPage(1);
 		setSelected((prev) => {
 			const next = new Set(prev);
 			if (next.has(slug)) next.delete(slug);
@@ -44,10 +56,26 @@ export function CategorySubfilter({
 		});
 	};
 
+	const clear = () => {
+		setPage(1);
+		setSelected(new Set());
+	};
+
 	const shown = useMemo(
 		() => (selected.size === 0 ? products : products.filter((p) => selected.has(p.category))),
 		[products, selected],
 	);
+
+	// The largest categories run past 200 products; rendering all of them meant a
+	// very long document and one bulk pricing request covering every card on it.
+	const paged = useMemo(() => paginate(shown, String(page)), [shown, page]);
+
+	const goToPage = (next: number) => {
+		setPage(next);
+		// Without this you land at the bottom of the new page, where the control
+		// you just clicked used to be.
+		gridTop.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+	};
 
 	return (
 		<div>
@@ -82,7 +110,7 @@ export function CategorySubfilter({
 					{selected.size > 0 ? (
 						<button
 							type="button"
-							onClick={() => setSelected(new Set())}
+							onClick={clear}
 							className="ml-1 inline-flex items-center gap-1 rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:text-slate-800"
 						>
 							<svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round">
@@ -94,14 +122,28 @@ export function CategorySubfilter({
 				</div>
 			) : null}
 
-			{selected.size > 0 ? (
-				<p className="mt-3 text-sm text-slate-500">
-					Showing <span className="font-semibold text-slate-700">{shown.length}</span> of {products.length}{" "}
-					products
-				</p>
-			) : null}
+			<div ref={gridTop} className="scroll-mt-24">
+				{/*
+				 * Two different counts, deliberately. Filtered: how much the pills
+				 * narrowed things. Paginated: where you are in the full set, which
+				 * matters once a category spills past one page.
+				 */}
+				{selected.size > 0 ? (
+					<p className="mt-3 text-sm text-slate-500">
+						Showing <span className="font-semibold text-slate-700">{shown.length}</span> of {products.length}{" "}
+						products
+					</p>
+				) : paged.totalPages > 1 ? (
+					<p className="mt-3 text-sm text-slate-500">
+						Page <span className="font-semibold text-slate-700">{paged.page}</span> of {paged.totalPages} ·{" "}
+						{paged.total} products
+					</p>
+				) : null}
 
-			<ProductGrid products={shown} />
+				<ProductGrid products={paged.items} />
+
+				<PaginationControls page={paged.page} totalPages={paged.totalPages} onPageChange={goToPage} />
+			</div>
 		</div>
 	);
 }

@@ -1,5 +1,11 @@
 import Link from "next/link";
-import { pageWindow } from "@/lib/pagination";
+import {
+	PAGE_BTN,
+	PAGE_BTN_ACTIVE,
+	PAGE_BTN_DISABLED,
+	PAGE_BTN_IDLE,
+	pageWindow,
+} from "@/lib/pagination";
 
 /**
  * Page navigation for listing grids. Server component (plain links), so it works
@@ -15,11 +21,10 @@ export function Pagination({ page, totalPages, baseHref }: { page: number; total
 
 	const sep = baseHref.includes("?") ? "&" : "?";
 	const href = (p: number) => (p <= 1 ? baseHref : `${baseHref}${sep}page=${p}`);
-	const base =
-		"inline-flex h-10 min-w-10 items-center justify-center rounded-xl px-3 text-sm font-medium transition-colors";
-	const idle = "border border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50";
-	const active = "border border-brand-blue bg-brand-blue text-white";
-	const disabled = "cursor-not-allowed border border-slate-100 bg-slate-50 text-slate-300";
+	const base = PAGE_BTN;
+	const idle = PAGE_BTN_IDLE;
+	const active = PAGE_BTN_ACTIVE;
+	const disabled = PAGE_BTN_DISABLED;
 
 	return (
 		<nav aria-label="Pagination" className="mt-10 flex flex-wrap items-center justify-center gap-2">
