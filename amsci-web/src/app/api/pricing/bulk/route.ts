@@ -34,9 +34,9 @@ export async function POST(request: Request): Promise<Response> {
 		? body.skus.filter((s): s is string => typeof s === "string").slice(0, MAX_SKUS)
 		: [];
 
-	// One indexed D1 query for all requested SKUs (not a full-catalog scan).
-	// TODO(tiers): fold in user.priceLevel/qty → live NetSuite resolvePrice.
-	const prices = await resolvePrices(skus);
+	// One indexed D1 query for all requested SKUs (not a full-catalog scan),
+	// at the level from the SESSION — never a client-supplied one.
+	const prices = await resolvePrices(skus, user.priceLevel);
 
 	return Response.json({ authenticated: true, prices }, { headers: { "Cache-Control": "private, no-store" } });
 }

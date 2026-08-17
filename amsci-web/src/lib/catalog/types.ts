@@ -40,3 +40,23 @@ export interface CatalogRecord {
 	/** lastmodifieddate — drives incremental sync. */
 	lastModified: string | null;
 }
+
+/**
+ * One item's price at one NetSuite price level, quantity 1.
+ *
+ * Stored in D1 `product_prices` and joined at request time to resolve what a
+ * signed-in customer on a negotiated tier should pay. Level 1 rows are included
+ * for completeness, but `products.price` remains the authoritative base and the
+ * fallback when an item has no row at the customer's level.
+ *
+ * Quantity is not a dimension: NetSuite has no usable volume schedules (only
+ * qty-1 and dirty qty-2 rows), so everything here is qty 1.
+ */
+export interface TierPriceRecord {
+	/** NetSuite item id — matches `CatalogRecord.internalId` / `products.internal_id`. */
+	internalId: string;
+	/** NetSuite price level: 1 = base/list; 2, 3, 4, 7, 8 = negotiated tiers. */
+	priceLevel: number;
+	/** Unit price at quantity 1. */
+	unitPrice: number;
+}

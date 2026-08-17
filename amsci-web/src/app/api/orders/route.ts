@@ -49,8 +49,9 @@ export async function POST(request: Request): Promise<Response> {
 		const user = await getUserById(db, sessionUser.id);
 		if (!user) return Response.json({ error: "Please sign in to place an order." }, { status: 401 });
 
-		// Authoritative pricing/titles — never trust client values.
-		const totals = await resolveOrderLines(items);
+		// Authoritative pricing/titles — never trust client values. The level comes
+		// from the user row, so the quote matches the prices they were shown.
+		const totals = await resolveOrderLines(items, user.price_level);
 		if (totals.lines.length === 0) {
 			return Response.json({ error: "None of the items could be found. Please refresh and try again." }, { status: 400 });
 		}

@@ -5,10 +5,9 @@ import { resolvePrices } from "@/lib/pricing";
  * GET /api/pricing?sku=SKU — the price a logged-in customer should see.
  *
  * Guests get 401 with no price (prices are never baked into public pages).
- * For now every logged-in user is on base pricing (level 1), so this returns
- * the catalog base price. This is the single seam where real tiered/qty
- * resolution — resolvePrice(sku, user.priceLevel, qty) against NetSuite — will
- * plug in later without touching the UI.
+ * Signed-in customers get their negotiated tier price, resolved from the price
+ * matrix synced into D1, falling back to base for items with no row at their
+ * level.
  */
 export const dynamic = "force-dynamic";
 
@@ -28,8 +27,9 @@ export async function GET(request: Request): Promise<Response> {
 
 	// One indexed D1 lookup (not a full-catalog scan), and it resolves ANY SKU —
 	// including variant members that fall out of the collapsed product map.
-	// TODO(tiers): fold in user.priceLevel/qty → live NetSuite resolvePrice.
-	const prices = await resolvePrices([sku]);
+	// The level comes from the SESSION, never the request — a client-supplied
+	// level would let anyone ask for the deepest tier.
+	const prices = await resolvePrices([sku], user.priceLevel);
 	// The resolved PRICE goes to the browser; the tier that produced it does not.
 	// Which negotiated level an account sits on is internal commercial
 	// information, and the number is meaningless to the customer.

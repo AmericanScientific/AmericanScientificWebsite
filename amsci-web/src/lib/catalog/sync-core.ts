@@ -14,7 +14,7 @@
  */
 import type { NetSuiteClient } from "../netsuite/client";
 import { buildFileUrlMap, parseFileId } from "../netsuite/images";
-import type { CatalogRecord } from "./types";
+import type { CatalogRecord, TierPriceRecord } from "./types";
 
 type Row = Record<string, unknown>;
 
@@ -97,6 +97,49 @@ async function fetchBasePrices(client: NetSuiteClient, itemIds: string[]): Promi
 		}
 	}
 	return map;
+}
+
+/**
+ * Fetch every price level for a set of item ids (quantity 1 only).
+ *
+ * Deliberately separate from `fetchFullCatalog` rather than folded into it: the
+ * catalog and the price matrix have different shapes and different write
+ * targets, and keeping this callable on its own means a price-only refresh
+ * doesn't require re-reading item bodies and re-resolving File Cabinet images.
+ *
+ * `priceqty = 1` is not a simplification — NetSuite has no usable volume
+ * schedules, and its qty-2 rows are dirty enough that surfacing them would show
+ * customers wrong numbers. See the note in db/migrations/0007_tier_pricing.sql.
+ */
+export async function fetchTierPrices(
+	client: NetSuiteClient,
+	itemIds: string[],
+): Promise<TierPriceRecord[]> {
+	const out: TierPriceRecord[] = [];
+	const chunk = 200;
+	for (let i = 0; i < itemIds.length; i += chunk) {
+		const ids = itemIds.slice(i, i + chunk).filter(Boolean);
+		if (ids.length === 0) continue;
+		// One row per (item, level). A 200-item chunk can return up to ~6x that,
+		// so the page limit has to allow for every level, not just one per item.
+		const page = await client.suiteql<{
+			item: string | number;
+			pricelevel: string | number;
+			unitprice: string | number;
+		}>(
+			`SELECT item AS item, pricelevel AS pricelevel, unitprice AS unitprice FROM pricing ` +
+				`WHERE priceqty = 1 AND item IN (${ids.join(",")})`,
+			{ limit: chunk * 8 },
+		);
+		for (const r of page.items) {
+			const level = Number(r.pricelevel);
+			const price = Number(r.unitprice);
+			const id = String(r.item);
+			if (!id || !Number.isFinite(level) || !Number.isFinite(price)) continue;
+			out.push({ internalId: id, priceLevel: level, unitPrice: price });
+		}
+	}
+	return out;
 }
 
 /**
