@@ -312,6 +312,24 @@ export async function setUserPassword(db: D1Database, id: number, modernHash: st
 		.run();
 }
 
+/**
+ * Revoke every session for a user EXCEPT the one given.
+ *
+ * Called after a password change: if the reason for changing it was that someone
+ * else had access, leaving their 30-day session alive would defeat the point.
+ * Passing `null` for `keepSessionId` revokes all of them.
+ */
+export async function deleteOtherSessions(
+	db: D1Database,
+	userId: number,
+	keepSessionId: string | null,
+): Promise<number> {
+	const res = keepSessionId
+		? await db.prepare("DELETE FROM sessions WHERE user_id = ?1 AND id != ?2").bind(userId, keepSessionId).run()
+		: await db.prepare("DELETE FROM sessions WHERE user_id = ?1").bind(userId).run();
+	return res.meta?.changes ?? 0;
+}
+
 export async function createSession(
 	db: D1Database,
 	sessionId: string,
