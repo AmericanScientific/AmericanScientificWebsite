@@ -2,6 +2,7 @@ import "server-only";
 import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { getCatalogLinesBySku } from "@/lib/catalog/d1";
 import { getProductBySku } from "@/data/products";
+import { BASE_PRICE_LEVEL, resolvePrices } from "@/lib/pricing";
 
 /** A priced order line, resolved authoritatively server-side. */
 export interface OrderLine {
@@ -25,9 +26,17 @@ export interface OrderTotals {
  * Resolve requested { sku, qty } items into authoritative priced lines. Titles
  * and prices come from D1 (falling back to the catalog map at build/dev), NEVER
  * from the client — the browser only says which SKU and how many. Unknown SKUs
- * are dropped. TODO(tiers): fold user.priceLevel/qty into live NetSuite pricing.
+ * are dropped.
+ *
+ * Prices come from the SAME `resolvePrices` the storefront uses, at the
+ * customer's own level. That shared path is the point: if the order resolved
+ * price independently, a divergence between the two would show up as an order
+ * confirmation that disagrees with the cart the customer just approved.
  */
-export async function resolveOrderLines(items: { sku: string; qty: number }[]): Promise<OrderTotals> {
+export async function resolveOrderLines(
+	items: { sku: string; qty: number }[],
+	priceLevel: number = BASE_PRICE_LEVEL,
+): Promise<OrderTotals> {
 	const skus = items.map((i) => i.sku);
 	let info: Record<string, { title: string; price: number | null }> = {};
 	try {
@@ -38,6 +47,9 @@ export async function resolveOrderLines(items: { sku: string; qty: number }[]): 
 		// No Cloudflare context (build / plain Node) → fall back to the catalog map.
 	}
 
+	// Tier-resolved prices, keyed by requested SKU. `info` still supplies titles.
+	const tierPrices = await resolvePrices(skus, priceLevel);
+
 	const lines: OrderLine[] = [];
 	for (const { sku, qty } of items) {
 		let entry = info[sku];
@@ -46,7 +58,10 @@ export async function resolveOrderLines(items: { sku: string; qty: number }[]): 
 			if (product) entry = { title: product.title, price: product.price };
 		}
 		if (!entry) continue; // unknown SKU — drop it
-		const unitPrice = typeof entry.price === "number" && Number.isFinite(entry.price) ? entry.price : null;
+		// Prefer the tier-resolved price; fall back to the catalog line's base
+		// price only if the resolver had nothing for this SKU.
+		const resolved = tierPrices[sku] ?? entry.price;
+		const unitPrice = typeof resolved === "number" && Number.isFinite(resolved) ? resolved : null;
 		lines.push({
 			sku,
 			title: entry.title || sku,

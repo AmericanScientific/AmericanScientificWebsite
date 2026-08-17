@@ -17,8 +17,16 @@
  */
 import type { RawEnv } from "../src/lib/netsuite/env";
 import { NetSuiteClient } from "../src/lib/netsuite/client";
-import { fetchFullCatalog } from "../src/lib/catalog/sync-core";
-import { upsertProducts, pruneStale, getSyncMeta, setSyncMeta } from "../src/lib/catalog/d1";
+import { fetchFullCatalog, fetchTierPrices } from "../src/lib/catalog/sync-core";
+import {
+	upsertProducts,
+	upsertTierPrices,
+	pruneStale,
+	pruneStaleTierPrices,
+	countTierPrices,
+	getSyncMeta,
+	setSyncMeta,
+} from "../src/lib/catalog/d1";
 
 export interface SyncEnv {
 	DB: D1Database;
@@ -59,8 +67,43 @@ async function runSync(env: SyncEnv, incremental: boolean): Promise<SyncResult> 
 		incremental ? { sinceMinutes: INCREMENTAL_LOOKBACK_MIN } : {},
 	);
 	const written = await upsertProducts(env.DB, records, syncedAt);
+
+	// Per-tier prices for whatever this run touched. Fetched separately from the
+	// item bodies because the price matrix is a different shape (one row per
+	// item AND level) with its own table and its own pruning rule.
+	const tierPrices = await fetchTierPrices(
+		client,
+		records.map((r) => r.internalId),
+	);
+	const pricesWritten = await upsertTierPrices(env.DB, tierPrices, syncedAt);
+
 	// Only a FULL run may prune — an incremental run didn't fetch everything.
+	// Pruning prices matters as much as pruning items: a negotiated level that
+	// ENDS in NetSuite leaves a stale row that would otherwise keep quoting the
+	// old discount forever.
 	const pruned = incremental ? 0 : await pruneStale(env.DB, syncedAt);
+
+	// Prices get a floor that products don't. NetSuite throttles under load
+	// ("Script Execution Usage Limit Exceeded"), and a full run that fetched only
+	// part of the matrix before being cut off would prune everything it never
+	// looked at — silently reverting tiered customers to list price, which is the
+	// exact bug this table exists to fix. A partial fetch is worth keeping stale
+	// rows for; it is not worth deleting good ones. Under the floor, log loudly
+	// and let the next hourly full run try again.
+	let prunedPrices = 0;
+	let priceNote = "";
+	if (!incremental) {
+		const existing = await countTierPrices(env.DB);
+		if (existing === 0 || tierPrices.length >= existing * 0.5) {
+			prunedPrices = await pruneStaleTierPrices(env.DB, syncedAt);
+		} else {
+			priceNote = ` PRICE PRUNE SKIPPED (fetched ${tierPrices.length} vs ${existing} existing)`;
+			console.warn(
+				`[sync] price prune skipped: fetched ${tierPrices.length} rows but ${existing} exist. ` +
+					`Suspected partial NetSuite read — keeping stale rows rather than deleting good ones.`,
+			);
+		}
+	}
 
 	const totalRow = await env.DB.prepare("SELECT COUNT(*) AS n FROM products").first<{ n: number }>();
 	const total = totalRow?.n ?? written;
@@ -70,7 +113,9 @@ async function runSync(env: SyncEnv, incremental: boolean): Promise<SyncResult> 
 		lastRun: syncedAt,
 		itemCount: total,
 		status: "ok",
-		message: `${incremental ? "incremental" : "full"}: wrote ${written}, pruned ${pruned}`,
+		message:
+			`${incremental ? "incremental" : "full"}: wrote ${written}, pruned ${pruned}, ` +
+			`prices ${pricesWritten}/${prunedPrices}${priceNote}`,
 		durationMs,
 	});
 

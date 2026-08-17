@@ -6,7 +6,7 @@
  * `synced_at` stamps every row with the run that wrote it, so a full sync can
  * prune items that fell out of the catalog with a single cheap DELETE.
  */
-import type { CatalogRecord } from "./types";
+import type { CatalogRecord, TierPriceRecord } from "./types";
 
 /** Shape of a `products` row as returned by D1. */
 interface ProductRow {
@@ -165,6 +165,106 @@ export async function upsertProducts(
 export async function pruneStale(db: D1Database, syncedAt: string): Promise<number> {
 	const res = await db.prepare("DELETE FROM products WHERE synced_at < ?1 OR synced_at IS NULL").bind(syncedAt).run();
 	return res.meta?.changes ?? 0;
+}
+
+/*
+ * ── Per-tier pricing ─────────────────────────────────────────────────────────
+ */
+
+const UPSERT_PRICE_SQL =
+	"INSERT INTO product_prices (internal_id, price_level, unit_price, synced_at) VALUES (?1,?2,?3,?4) " +
+	"ON CONFLICT(internal_id, price_level) DO UPDATE SET unit_price = excluded.unit_price, synced_at = excluded.synced_at";
+
+/**
+ * Upsert tier price rows in batches, stamping each with the current sync run.
+ *
+ * Batched larger than `upsertProducts` because a price row is four small columns
+ * rather than a full item body: the catalog is ~1,300 rows, the price matrix
+ * ~7,900 (about six levels per item), and the bigger batch keeps that inside a
+ * comparable number of round trips.
+ */
+export async function upsertTierPrices(
+	db: D1Database,
+	records: TierPriceRecord[],
+	syncedAt: string,
+	batchSize = 100,
+): Promise<number> {
+	const stmt = db.prepare(UPSERT_PRICE_SQL);
+	let written = 0;
+	for (let i = 0; i < records.length; i += batchSize) {
+		const batch = records
+			.slice(i, i + batchSize)
+			.map((r) => stmt.bind(r.internalId, r.priceLevel, r.unitPrice, syncedAt));
+		await db.batch(batch);
+		written += batch.length;
+	}
+	return written;
+}
+
+/**
+ * Delete price rows not touched by the current full-sync run.
+ *
+ * This matters more than pruning products: a price level REMOVED in NetSuite
+ * (a customer's negotiated discount ending) leaves a stale row that would keep
+ * quoting the old, lower price indefinitely. Only ever call this after a FULL
+ * sync — an incremental run touches a subset, so pruning on one would delete
+ * every price it didn't happen to look at.
+ */
+export async function pruneStaleTierPrices(db: D1Database, syncedAt: string): Promise<number> {
+	const res = await db
+		.prepare("DELETE FROM product_prices WHERE synced_at < ?1 OR synced_at IS NULL")
+		.bind(syncedAt)
+		.run();
+	return res.meta?.changes ?? 0;
+}
+
+/** Current number of rows in `product_prices` (used to sanity-check a prune). */
+export async function countTierPrices(db: D1Database): Promise<number> {
+	const row = await db.prepare("SELECT COUNT(*) AS n FROM product_prices").first<{ n: number }>();
+	return row?.n ?? 0;
+}
+
+/**
+ * Resolve prices for a set of SKUs at one price level.
+ *
+ * A single indexed query per chunk: `products` supplies the base price and the
+ * sku → internal_id mapping, and a LEFT JOIN picks up the tier override where
+ * one exists. Falling back to base in SQL (rather than issuing a second query)
+ * means an item with no row at the customer's level still resolves, which is the
+ * common case — most items are priced only at base.
+ */
+export async function getTierPricesBySku(
+	db: D1Database,
+	skus: string[],
+	priceLevel: number,
+): Promise<Record<string, number | null>> {
+	const out: Record<string, number | null> = {};
+	if (skus.length === 0) return out;
+
+	const CHUNK = 100;
+	for (let i = 0; i < skus.length; i += CHUNK) {
+		const batch = skus.slice(i, i + CHUNK);
+		// ?1 is the price level; SKUs start at ?2.
+		const placeholders = batch.map((_, j) => `?${j + 2}`).join(",");
+		const { results } = await db
+			.prepare(
+				`SELECT p.sku AS sku, p.price AS base, pp.unit_price AS tier ` +
+					`FROM products p ` +
+					`LEFT JOIN product_prices pp ON pp.internal_id = p.internal_id AND pp.price_level = ?1 ` +
+					`WHERE p.sku COLLATE NOCASE IN (${placeholders})`,
+			)
+			.bind(priceLevel, ...batch)
+			.all<{ sku: string; base: number | null; tier: number | null }>();
+
+		const byLower = new Map<string, number | null>();
+		for (const r of results ?? []) {
+			// A tier row wins when present; otherwise the customer pays base.
+			byLower.set((r.sku ?? "").toLowerCase(), r.tier ?? r.base ?? null);
+		}
+		// Key by the REQUESTED sku so callers can look up what they asked for.
+		for (const sku of batch) out[sku] = byLower.get(sku.toLowerCase()) ?? null;
+	}
+	return out;
 }
 
 export interface SyncMeta {
