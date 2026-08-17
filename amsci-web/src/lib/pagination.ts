@@ -21,6 +21,20 @@ export function paginate<T>(all: T[], pageParam: string | undefined, perPage = P
 }
 
 /**
+ * Shared control styling. Lives here rather than in a component because there
+ * are two renderers — the link-based `Pagination` for server-rendered listings
+ * with crawlable ?page= URLs, and the button-based `PaginationControls` for the
+ * client-filtered category grid, where a URL param can't describe the view.
+ * Keeping the classes in one place is what stops the two from drifting apart.
+ */
+export const PAGE_BTN =
+	"inline-flex h-10 min-w-10 items-center justify-center rounded-xl px-3 text-sm font-medium transition-colors";
+export const PAGE_BTN_IDLE =
+	"border border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50";
+export const PAGE_BTN_ACTIVE = "border border-brand-blue bg-brand-blue text-white";
+export const PAGE_BTN_DISABLED = "cursor-not-allowed border border-slate-100 bg-slate-50 text-slate-300";
+
+/**
  * Compact page-number sequence for the control: first, a window around the
  * current page, and last, with `"…"` gaps. e.g. [1,"…",5,6,7,"…",21].
  */
