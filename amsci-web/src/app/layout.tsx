@@ -56,9 +56,13 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
-			<head>
-				<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-			</head>
+			{/*
+			 * No manual <link rel="icon"> here. src/app/icon.png and
+			 * src/app/apple-icon.png are picked up by Next's file convention, which
+			 * emits the tags with content hashes. A hand-written link alongside them
+			 * competes for the same slot and is how the old Next.js default kept
+			 * winning the browser tab.
+			 */}
 			<body className="min-h-screen bg-[#f6f7fb] font-sans text-slate-900 antialiased">
 				<CartProvider>
 					<SiteHeader />
