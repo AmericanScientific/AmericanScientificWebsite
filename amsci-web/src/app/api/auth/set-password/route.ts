@@ -1,5 +1,6 @@
-import { getDb, getUserById, toSessionUser } from "@/lib/auth/db";
+import { getDb, getUserById, toSessionUser, type UserRow } from "@/lib/auth/db";
 import { setUserPassword } from "@/lib/auth/db";
+import { sendAccountTransferEmail } from "@/lib/auth/email";
 import { hashPassword } from "@/lib/auth/password";
 import { consumePasswordToken } from "@/lib/auth/tokens";
 import { startSession } from "@/lib/auth/session";
@@ -14,6 +15,39 @@ import { startSession } from "@/lib/auth/session";
 export const dynamic = "force-dynamic";
 
 const MIN_LEN = 10;
+
+/**
+ * Fire the internal "account moved to the new site" notification.
+ *
+ * Swallows every failure by design. The customer's password is already committed
+ * by the time this runs, so a mail outage must not surface as an error on a
+ * transfer that actually succeeded. Non-delivery is logged instead — the same
+ * reasoning as the warning in request-setup, and for the same reason: a silent
+ * mail failure is indistinguishable from "nobody has transferred yet".
+ */
+async function notifyAccountTransfer(user: UserRow, signedIn: boolean, now: Date): Promise<void> {
+	try {
+		const delivered = await sendAccountTransferEmail({
+			name: user.display_name || "",
+			email: user.email,
+			company: user.company,
+			accountType: user.account_type,
+			status: user.status,
+			wpUserId: user.wp_user_id,
+			priceLevel: user.price_level,
+			signedIn,
+			dateLabel: now.toISOString().replace("T", " ").slice(0, 16) + " UTC",
+		});
+		if (!delivered) {
+			console.warn(`[auth/set-password] transfer notification NOT delivered for user=${user.id}`);
+		}
+	} catch (err) {
+		console.warn(
+			`[auth/set-password] transfer notification threw for user=${user.id}:`,
+			err instanceof Error ? err.message : err,
+		);
+	}
+}
 
 export async function POST(request: Request): Promise<Response> {
 	let body: { token?: unknown; password?: unknown };
@@ -54,11 +88,26 @@ export async function POST(request: Request): Promise<Response> {
 			return Response.json({ error: "Account not found." }, { status: 400 });
 		}
 
-		await setUserPassword(db, user.id, await hashPassword(password), new Date().toISOString());
+		const now = new Date();
+		await setUserPassword(db, user.id, await hashPassword(password), now.toISOString());
 		console.log(`[auth/set-password] password set for user=${user.id}, status=${user.status}`);
 
 		// Denied/pending accounts get a password but no session (still gated).
-		if (user.status === "pending" || user.status === "denied") {
+		const blocked = user.status === "pending" || user.status === "denied";
+
+		// Tell the team this account has moved across — but only for a `setup`
+		// token. A `reset` is someone who already had a password here and forgot
+		// it; counting that as a transfer would bury the real migration signal in
+		// routine noise.
+		//
+		// Best-effort and AFTER the password is committed: this is an internal
+		// notification, and a mail failure must never cost the customer the
+		// password they just set, nor turn a successful transfer into an error page.
+		if (consumed.purpose === "setup") {
+			await notifyAccountTransfer(user, !blocked, now);
+		}
+
+		if (blocked) {
 			return Response.json({ ok: true, loggedIn: false, status: user.status });
 		}
 
