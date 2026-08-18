@@ -52,6 +52,16 @@
 	//
 	// Rollback: delete these two entries, redeploy. DNS returns to the Flywheel
 	// records within the 300s TTL.
+	// Adding `routes` turns the workers.dev subdomain OFF by default, which took
+	// amsci-web.office-1db.workers.dev to 404 the moment the custom domains were
+	// declared. Both of these must be explicit alongside routes:
+	//   workers_dev  - keeps the workers.dev hostname serving, which is how the
+	//                  site is reached for verification when the custom domain is
+	//                  behind Access or not yet attached.
+	//   preview_urls - keeps per-version preview URLs working (`npm run upload`),
+	//                  the staged-deploy safety net for post-launch changes.
+	"workers_dev": true,
+	"preview_urls": true,
 	"routes": [
 		{ "pattern": "www.american-scientific.com", "custom_domain": true },
 		{ "pattern": "american-scientific.com", "custom_domain": true }
