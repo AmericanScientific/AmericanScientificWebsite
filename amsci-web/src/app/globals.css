@@ -712,3 +712,15 @@ body {
 		animation: none;
 	}
 }
+
+/*
+ * The chat panel expands upward into the slot the BackToTop button occupies.
+ * ChatWidget marks the document while the panel is open (data-chat-open) and
+ * this hides the button, so the two floating controls never overlap without
+ * either component needing to know about the other in React.
+ */
+html[data-chat-open="true"] .back-to-top {
+	opacity: 0;
+	pointer-events: none;
+	transform: translateY(0.5rem);
+}

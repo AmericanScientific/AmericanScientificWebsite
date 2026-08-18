@@ -6,6 +6,7 @@ import { PointerLight } from "@/components/PointerLight";
 import { SiteFooter } from "@/components/SiteFooter";
 import { CartProvider } from "@/lib/cart/cart-context";
 import { ChatWidget } from "@/components/ChatWidget";
+import { BackToTop } from "@/components/BackToTop";
 import { SITE_ORIGIN } from "@/lib/site";
 
 const inter = Inter({
@@ -69,6 +70,7 @@ export default function RootLayout({
 					<main>{children}</main>
 					<SiteFooter />
 					<ChatWidget />
+					<BackToTop />
 					{/* One global pointer listener driving the trail + every [data-pointer-light] panel. */}
 					<PointerLight />
 				</CartProvider>

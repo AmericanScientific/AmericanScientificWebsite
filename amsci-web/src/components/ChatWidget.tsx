@@ -154,6 +154,19 @@ export function ChatWidget() {
 		scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
 	}, [messages, open, busy]);
 
+	// Mark the document while the panel is open. The BackToTop button occupies the
+	// space this panel expands into, and a CSS rule in globals.css hides it based
+	// on this attribute -- cheaper than lifting `open` into shared state or a
+	// context just so one decorative control can get out of the way.
+	useEffect(() => {
+		const root = document.documentElement;
+		if (open) root.dataset.chatOpen = "true";
+		else delete root.dataset.chatOpen;
+		return () => {
+			delete root.dataset.chatOpen;
+		};
+	}, [open]);
+
 	async function send() {
 		const text = input.trim();
 		if (!text || busy) return;
