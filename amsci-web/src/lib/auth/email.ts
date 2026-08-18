@@ -18,6 +18,8 @@ interface MailEnv {
 	AUTH_DEV_LINKS?: string;
 	/** Where new-account requests are emailed (defaults to sales@american-scientific.com). */
 	SALES_NOTIFY_EMAIL?: string;
+	/** Where "account moved to the new site" notifications go. Default marketing@american-scientific.com. */
+	TRANSFER_NOTIFY_EMAIL?: string;
 }
 
 function mailEnv(): MailEnv {
@@ -283,6 +285,84 @@ export async function sendNewAccountEmail(d: AccountRequestDetails): Promise<boo
 		rows.map(([k, v]) => `${k}: ${v || "—"}`).join("\n") +
 		`\n\nReview and approve in the admin queue, then set the customer's price tier.`;
 	return sendMail(to, "American Scientific - New account request", html, text);
+}
+
+/** Details of a customer who has just moved their account onto the new site. */
+export interface AccountTransferDetails {
+	name: string;
+	email: string;
+	company: string | null;
+	accountType: string | null;
+	/** Account moderation status at the moment the password was set. */
+	status: string | null;
+	/** Non-null = migrated from WordPress; null = signed up on the new site. */
+	wpUserId: number | null;
+	priceLevel: number;
+	/** Whether a session was opened (false for pending/denied — they still can't sign in). */
+	signedIn: boolean;
+	dateLabel: string;
+}
+
+/**
+ * Notify the team when a customer completes the transfer to the new site — that
+ * is, redeems a `setup` link and sets their first password here.
+ *
+ * Deliberately NOT sent for `reset` links. A customer who already had a password
+ * on the new site and simply forgot it has not transferred anything, and mixing
+ * the two would turn a meaningful migration signal into routine noise.
+ *
+ * Recipient = TRANSFER_NOTIFY_EMAIL, default marketing@american-scientific.com. Returns
+ * whether it was delivered.
+ */
+export async function sendAccountTransferEmail(d: AccountTransferDetails): Promise<boolean> {
+	const to = mailEnv().TRANSFER_NOTIFY_EMAIL || "marketing@american-scientific.com";
+
+	// Blocked accounts get a loud banner: someone in this state now HAS a working
+	// password but still cannot sign in, so the team may need to act.
+	const blocked = d.status === "pending" || d.status === "denied";
+
+	const rows: [string, string][] = [
+		["Name", d.name || "—"],
+		["Email", d.email],
+		["Company", d.company || "—"],
+		["Account type", d.accountType || "—"],
+		["Status", d.status || "approved (legacy)"],
+		["Came from", d.wpUserId != null ? `WordPress (old user #${d.wpUserId})` : "New-site signup"],
+		["Price tier", String(d.priceLevel)],
+		["Signed in", d.signedIn ? "Yes" : "No — still blocked at login"],
+		["When", d.dateLabel],
+	];
+	const htmlRows = rows
+		.map(
+			([k, v]) =>
+				`<tr><td style="padding:6px 12px;background:#f1f5f9;font-weight:600;font-size:13px;color:#334155;white-space:nowrap;vertical-align:top;">${esc(k)}</td>` +
+				`<td style="padding:6px 12px;font-size:14px;color:#0b1220;white-space:pre-line;">${esc(v)}</td></tr>`,
+		)
+		.join("");
+
+	const banner = blocked
+		? `<tr><td style="padding:12px 24px;background:#fef2f2;border-bottom:1px solid #fecaca;font-size:13px;color:#991b1b;">` +
+			`This account is <strong>${esc(d.status || "")}</strong>. They now have a password but still cannot sign in.</td></tr>`
+		: "";
+
+	const html = `<!doctype html><html><body style="margin:0;background:#f6f7fb;font-family:${font};">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:24px 16px;">
+    <table role="presentation" width="560" cellpadding="0" cellspacing="0" style="width:560px;max-width:100%;background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;">
+      <tr><td style="height:6px;background:${BRAND_BLUE_DEEP};background-image:${BRAND_GRADIENT};font-size:0;line-height:0;">&nbsp;</td></tr>
+      <tr><td style="padding:20px 24px;border-bottom:1px solid #eef2f7;font-size:16px;font-weight:700;color:#0a0f1c;">Account moved to the new site</td></tr>
+      ${banner}
+      <tr><td style="padding:16px 12px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">${htmlRows}</table></td></tr>
+      <tr><td style="padding:14px 24px;background:#f8fafc;border-top:1px solid #eef2f7;font-size:12px;color:#64748b;">They set a new password using the emailed link. Their old website password no longer applies.</td></tr>
+    </table>
+  </td></tr></table></body></html>`;
+
+	const text =
+		`Account moved to the new site\n\n` +
+		(blocked ? `NOTE: this account is ${d.status} - they have a password but cannot sign in yet.\n\n` : "") +
+		rows.map(([k, v]) => `${k}: ${v}`).join("\n") +
+		`\n\nThey set a new password using the emailed link. Their old website password no longer applies.`;
+
+	return sendMail(to, `American Scientific - Account moved: ${d.email}`, html, text);
 }
 
 /** One priced line in an order email. */
