@@ -32,6 +32,30 @@
 			"service": "amsci-web"
 		}
 	],
+	// ── LAUNCH: the public domain ────────────────────────────────────────────────
+	// These two entries ARE the cutover. Declaring them here rather than clicking
+	// "Connect Worker" in the dashboard means the live hostnames are version
+	// controlled, reviewable, and revertable — removing them is a revert plus a
+	// deploy, not a memory of what was clicked.
+	//
+	// `custom_domain: true` makes Cloudflare manage the DNS record and the
+	// certificate for each hostname, replacing the grey-cloud A records that
+	// currently point at Flywheel. Existing records for OTHER names (MX,
+	// autodiscover, mail, campaigns) are untouched — this only claims these two.
+	//
+	// Both www AND apex are claimed deliberately. Attaching only www would leave
+	// the bare domain serving the old WordPress site, so anyone typing
+	// american-scientific.com would get the pre-launch site with no indication
+	// anything had changed. Serving both from the Worker is the lesser evil; the
+	// follow-up is a Cloudflare Redirect Rule sending apex → www so there is one
+	// canonical host (www, matching SITE_URL and the SEO redirect map).
+	//
+	// Rollback: delete these two entries, redeploy. DNS returns to the Flywheel
+	// records within the 300s TTL.
+	"routes": [
+		{ "pattern": "www.american-scientific.com", "custom_domain": true },
+		{ "pattern": "american-scientific.com", "custom_domain": true }
+	],
 	// Catalog cache, populated by the `amsci-sync` Worker on a cron schedule.
 	// Create once (`wrangler d1 create amsci-catalog`) and paste the id here AND
 	// in sync-worker/wrangler.jsonc. The storefront reads this at runtime via
