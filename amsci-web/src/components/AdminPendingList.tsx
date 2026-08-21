@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { PRICE_LEVELS, PRICE_LEVEL_HELP } from "@/lib/price-levels";
 
 export interface PendingUser {
 	id: number;
@@ -12,15 +13,6 @@ export interface PendingUser {
 	accountType: string;
 	createdAt: string;
 }
-
-const PRICE_LEVELS = [
-	{ value: 1, label: "Tier 1 — Base / list" },
-	{ value: 2, label: "Tier 2" },
-	{ value: 3, label: "Tier 3" },
-	{ value: 4, label: "Tier 4" },
-	{ value: 7, label: "Tier 7" },
-	{ value: 8, label: "Tier 8" },
-];
 
 /** Interactive queue of pending account requests with approve (set tier) / deny. */
 export function AdminPendingList({ initial }: { initial: PendingUser[] }) {
@@ -35,11 +27,14 @@ export function AdminPendingList({ initial }: { initial: PendingUser[] }) {
 	}
 
 	return (
-		<ul className="flex flex-col gap-4">
-			{rows.map((u) => (
-				<AdminRow key={u.id} user={u} onResolved={() => setRows((r) => r.filter((x) => x.id !== u.id))} />
-			))}
-		</ul>
+		<div>
+			<p className="mb-3 text-xs text-slate-500">{PRICE_LEVEL_HELP}</p>
+			<ul className="flex flex-col gap-4">
+				{rows.map((u) => (
+					<AdminRow key={u.id} user={u} onResolved={() => setRows((r) => r.filter((x) => x.id !== u.id))} />
+				))}
+			</ul>
+		</div>
 	);
 }
 
@@ -109,7 +104,9 @@ function AdminRow({ user, onResolved }: { user: PendingUser; onResolved: () => v
 					className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-800 focus:border-brand-blue focus:outline-none focus:ring-2 focus:ring-brand-blue/20"
 				>
 					{PRICE_LEVELS.map((p) => (
-						<option key={p.value} value={p.value}>{p.label}</option>
+						<option key={p.value} value={p.value} title={p.description}>
+							{p.label}
+						</option>
 					))}
 				</select>
 
