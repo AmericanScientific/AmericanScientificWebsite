@@ -40,6 +40,16 @@ interface CartValue {
 	/** True once localStorage has been read (avoids SSR/hydration mismatch). */
 	hydrated: boolean;
 	addItem: (item: Omit<CartItem, "qty">, qty?: number) => void;
+	/**
+	 * Add items the customer already had elsewhere (currently: a cart rescued
+	 * from the old WooCommerce site) WITHOUT disturbing what is in the cart now.
+	 *
+	 * Unlike `addItem`, a SKU already present is left completely alone rather
+	 * than having quantities summed. The quantity in the live cart is the more
+	 * recent deliberate choice, and silently doubling it would be worse than
+	 * restoring nothing. Returns how many lines were actually added.
+	 */
+	mergeItems: (incoming: CartItem[]) => number;
 	setQty: (sku: string, qty: number) => void;
 	removeItem: (sku: string) => void;
 	clear: () => void;
@@ -123,6 +133,19 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 		});
 	}, []);
 
+	const mergeItems = useCallback((incoming: CartItem[]) => {
+		const clean = incoming.filter(isValidItem);
+		if (clean.length === 0) return 0;
+		let added = 0;
+		setItems((prev) => {
+			const have = new Set(prev.map((x) => x.sku));
+			const fresh = clean.filter((x) => !have.has(x.sku));
+			added = fresh.length;
+			return fresh.length === 0 ? prev : [...prev, ...fresh];
+		});
+		return added;
+	}, []);
+
 	const setQty = useCallback((sku: string, qty: number) => {
 		const n = Math.floor(qty);
 		setItems((prev) =>
@@ -169,12 +192,13 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 			lineCount: items.length,
 			hydrated,
 			addItem,
+			mergeItems,
 			setQty,
 			removeItem,
 			clear,
 			flyToCart,
 		}),
-		[items, hydrated, addItem, setQty, removeItem, clear, flyToCart],
+		[items, hydrated, addItem, mergeItems, setQty, removeItem, clear, flyToCart],
 	);
 
 	return (

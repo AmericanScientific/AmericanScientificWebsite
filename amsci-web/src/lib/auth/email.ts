@@ -541,3 +541,46 @@ export async function sendPhyweLeadEmail(d: PhyweLeadDetails): Promise<boolean> 
 		`\n\nFollow up within one business day.`;
 	return sendMail(to, "PHYWE - Potential Lead Inquiry", html, text);
 }
+
+/**
+ * Tell a migrated customer their old cart is waiting, with a link that restores it.
+ *
+ * The link is reusable until it expires (see `src/lib/cart/recovery.ts`), so it
+ * survives a mail gateway pre-fetching it and works on a second device.
+ */
+export async function sendCartRecoveryEmail(
+	to: string,
+	name: string,
+	restoreUrl: string,
+	lineCount: number,
+): Promise<boolean> {
+	const greeting = name ? `Hi ${esc(name)},` : "Hello,";
+	const what = lineCount === 1 ? "1 item" : `${lineCount} items`;
+	const html = `<!doctype html><html><body style="margin:0;background:#f6f7fb;font-family:${font};">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:32px 16px;">
+    <table role="presentation" width="560" cellpadding="0" cellspacing="0" style="width:560px;max-width:100%;background:#fff;border:1px solid #e2e8f0;border-radius:16px;overflow:hidden;">
+      <tr><td style="height:6px;background:${BRAND_BLUE_DEEP};background-image:${BRAND_GRADIENT};font-size:0;line-height:0;">&nbsp;</td></tr>
+      <tr><td style="padding:32px 40px;color:#0b1220;">
+        <h1 style="margin:0 0 16px;font-size:22px;color:#0a0f1c;">Your saved cart is waiting</h1>
+        <p style="margin:0 0 14px;font-size:15px;line-height:1.6;">${greeting}</p>
+        <p style="margin:0 0 14px;font-size:15px;line-height:1.6;color:#334155;">We recently moved American Scientific to a new website. You had ${esc(what)} saved in your cart on the old site, and we did not want you to lose the work of putting it together.</p>
+        <p style="margin:0 0 28px;font-size:15px;line-height:1.6;color:#334155;">Click below and we will put everything back in your cart.</p>
+        <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 28px;"><tr>
+          <td align="center" bgcolor="${BRAND_BLUE_DEEP}" style="border-radius:9999px;background-image:${BRAND_GRADIENT};">
+            <a href="${restoreUrl}" style="display:inline-block;padding:14px 32px;font-size:15px;font-weight:700;color:#fff;text-decoration:none;border-radius:9999px;">Restore my cart</a>
+          </td>
+        </tr></table>
+        <p style="margin:0 0 14px;font-size:13px;line-height:1.6;color:#64748b;">A small number of products from the old site are no longer in our catalog. If any of yours are affected we will tell you on the next screen, and you can call us on 888-490-9002 for an equivalent.</p>
+        <p style="margin:0;font-size:12px;color:#94a3b8;">If the button doesn't work, copy this into your browser: ${esc(restoreUrl)}</p>
+      </td></tr>
+      <tr><td style="padding:20px 40px;background:#f8fafc;border-top:1px solid #eef2f7;font-size:12px;color:#94a3b8;line-height:1.7;">American Scientific, LLC<br>888-490-9002 &middot; office@american-scientific.com &middot; Columbus, OH</td></tr>
+    </table>
+  </td></tr></table></body></html>`;
+	const text =
+		`${name ? `Hi ${name},` : "Hello,"}\n\n` +
+		`We recently moved American Scientific to a new website. You had ${what} saved in your cart on the old site.\n\n` +
+		`Restore your cart: ${restoreUrl}\n\n` +
+		`A small number of products from the old site are no longer in our catalog. If any of yours are affected we will tell you on the next screen, and you can call us on 888-490-9002 for an equivalent.\n\n` +
+		`American Scientific, LLC\n888-490-9002 | office@american-scientific.com`;
+	return sendMail(to, "Your saved American Scientific cart is waiting", html, text);
+}
