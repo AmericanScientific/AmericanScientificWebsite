@@ -8,7 +8,22 @@ const SESSION_COOKIE = "amsci_session";
  * guests to /login without a flash of protected content. The authoritative
  * session validation still happens in each protected page via getCurrentUser().
  */
+/**
+ * Routes under a guarded prefix that must stay reachable signed-out.
+ *
+ * /cart/restore hands a customer back a cart rescued from the old WooCommerce
+ * site. Many of those people still have to set a password on the new site, so
+ * bouncing them to /login is the exact wall the link exists to get them past.
+ * It carries its own expiring, single-purpose token and grants nothing else —
+ * the cart lands in localStorage, and prices still require signing in.
+ */
+const PUBLIC_PATHS = new Set(["/cart/restore"]);
+
 export function middleware(request: NextRequest) {
+	if (PUBLIC_PATHS.has(request.nextUrl.pathname)) {
+		return NextResponse.next();
+	}
+
 	const hasCookie = request.cookies.has(SESSION_COOKIE);
 	if (!hasCookie) {
 		const url = new URL("/login", request.url);

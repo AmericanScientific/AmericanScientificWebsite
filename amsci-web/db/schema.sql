@@ -139,3 +139,26 @@ CREATE TABLE IF NOT EXISTS password_tokens (
 );
 
 CREATE INDEX IF NOT EXISTS idx_password_tokens_user ON password_tokens (user_id);
+
+-- Carts rescued from the old WooCommerce site after the headless cutover.
+-- WooCommerce kept a logged-in customer's cart in wp_usermeta; the new
+-- storefront keeps it in the browser (localStorage "amsci-cart-v1"), so this is
+-- the server-side landing spot, redeemed via an emailed /cart/restore?token= link.
+-- `id` is the SHA-256 of the raw token, never the token itself.
+-- Reusable until expiry (NOT single-use like password_tokens): mail gateways
+-- pre-fetch links to scan them, which would burn a single-use token before the
+-- customer ever clicked. See src/lib/cart/recovery.ts.
+CREATE TABLE IF NOT EXISTS recovered_carts (
+  id            TEXT PRIMARY KEY,            -- SHA-256 of the raw token
+  user_id       INTEGER,                     -- NULL when no new-site account matched
+  email         TEXT NOT NULL,
+  items         TEXT NOT NULL,               -- JSON: CartItem[] ({sku,title,imageUrl,qty})
+  unavailable   TEXT NOT NULL DEFAULT '[]',  -- JSON: [{sku,title,qty}] no longer in the catalog
+  created_at    TEXT NOT NULL,
+  expires_at    TEXT NOT NULL,
+  first_used_at TEXT,
+  use_count     INTEGER NOT NULL DEFAULT 0
+);
+
+CREATE INDEX IF NOT EXISTS idx_recovered_carts_email ON recovered_carts (email);
+CREATE INDEX IF NOT EXISTS idx_recovered_carts_user ON recovered_carts (user_id);
