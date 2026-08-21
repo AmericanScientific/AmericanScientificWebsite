@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { PRICE_LEVEL_HELP, withCurrentLevel } from "@/lib/price-levels";
 
 /**
  * One account in the admin directory.
@@ -25,8 +26,6 @@ export interface AccountListRow {
 	createdLabel: string;
 }
 
-const PRICE_LEVELS = [1, 2, 3, 4, 7, 8];
-
 export function AdminAccountsTable({ rows }: { rows: AccountListRow[] }) {
 	if (rows.length === 0) {
 		return (
@@ -39,6 +38,7 @@ export function AdminAccountsTable({ rows }: { rows: AccountListRow[] }) {
 	return (
 		// The table is wider than a phone; it scrolls in its own container so the
 		// page body never scrolls sideways.
+		<div>
 		<div className="overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-sm">
 			<table className="w-full min-w-[54rem] border-collapse text-sm">
 				<thead>
@@ -57,6 +57,8 @@ export function AdminAccountsTable({ rows }: { rows: AccountListRow[] }) {
 					))}
 				</tbody>
 			</table>
+		</div>
+		<p className="mt-2 px-1 text-xs text-slate-500">{PRICE_LEVEL_HELP}</p>
 		</div>
 	);
 }
@@ -155,10 +157,9 @@ function Row({ row }: { row: AccountListRow }) {
 						disabled={state === "saving"}
 						className="rounded-lg border border-slate-300 bg-white px-2.5 py-1.5 text-sm font-medium text-slate-800 focus:border-brand-blue focus:outline-none focus:ring-2 focus:ring-brand-blue/20 disabled:opacity-60"
 					>
-						{PRICE_LEVELS.map((p) => (
-							<option key={p} value={p}>
-								Tier {p}
-								{p === 1 ? " (base)" : ""}
+						{withCurrentLevel(level).map((p) => (
+							<option key={p.value} value={p.value} title={p.description}>
+								{p.label}
 							</option>
 						))}
 					</select>
