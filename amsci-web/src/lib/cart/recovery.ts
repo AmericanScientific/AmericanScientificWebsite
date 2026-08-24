@@ -125,3 +125,53 @@ export async function redeemRecoveredCart(db: D1Database, raw: string): Promise<
 		cart: { email: row.email, userId: row.user_id, items, unavailable, expiresAt: row.expires_at },
 	};
 }
+
+export type ClaimResult = { claimed: false } | { claimed: true; items: CartItem[]; unavailable: UnavailableLine[] };
+
+/**
+ * Hand a signed-in customer their rescued cart, once.
+ *
+ * This is the path that actually matters: the customer signs in, the storefront
+ * asks whether anything is waiting for them, and their cart is simply there. No
+ * emailed link, no token to lose. The link flow above stays as a manual fallback
+ * for a rep on the phone, but nobody should need it.
+ *
+ * Matched on user id OR email, because a cart imported before its account was
+ * linked can carry a null user_id. Claimed rows are stamped so this fires once
+ * and never silently re-adds items the customer has since deleted.
+ */
+export async function claimPendingCart(
+	db: D1Database,
+	userId: number,
+	email: string,
+): Promise<ClaimResult> {
+	const row = await db
+		.prepare(
+			"SELECT id, items, unavailable FROM recovered_carts " +
+				"WHERE (user_id = ?1 OR email = ?2) AND first_used_at IS NULL " +
+				"ORDER BY created_at LIMIT 1",
+		)
+		.bind(userId, email.toLowerCase())
+		.first<{ id: string; items: string; unavailable: string }>();
+
+	if (!row) return { claimed: false };
+
+	// Stamp BEFORE returning, and guard on first_used_at still being null so two
+	// tabs loading at once can't both be handed the same cart.
+	const nowIso = new Date().toISOString();
+	const res = await db
+		.prepare("UPDATE recovered_carts SET first_used_at = ?2, use_count = use_count + 1 WHERE id = ?1 AND first_used_at IS NULL")
+		.bind(row.id, nowIso)
+		.run();
+	if ((res.meta?.changes ?? 0) === 0) return { claimed: false };
+
+	try {
+		const items = JSON.parse(row.items) as CartItem[];
+		const unavailable = JSON.parse(row.unavailable) as UnavailableLine[];
+		if (!Array.isArray(items) || items.length === 0) return { claimed: false };
+		return { claimed: true, items, unavailable: Array.isArray(unavailable) ? unavailable : [] };
+	} catch {
+		console.error(`[cart/recovery] malformed pending cart row ${row.id}`);
+		return { claimed: false };
+	}
+}
