@@ -111,6 +111,42 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 		}
 	}, [items, hydrated]);
 
+	// Pull down a cart rescued from the old WooCommerce site, if one is waiting.
+	//
+	// Runs after hydration so it merges into the customer's real cart rather than
+	// the empty pre-hydrate state. Fires once per full page load, which is enough:
+	// login and set-password both navigate with window.location.assign, so the
+	// provider remounts and the cart is there the moment they land. The endpoint
+	// answers {claimed:false} for guests and stamps the row server-side, so a
+	// customer is handed their cart exactly once and never has deleted items
+	// silently reappear.
+	const claimedRef = useRef(false);
+	useEffect(() => {
+		if (!hydrated || claimedRef.current) return;
+		claimedRef.current = true;
+
+		let alive = true;
+		fetch("/api/cart/pending", { credentials: "same-origin" })
+			.then((r) => (r.ok ? (r.json() as Promise<{ claimed?: boolean; items?: CartItem[] }>) : null))
+			.then((data) => {
+				if (!alive || !data?.claimed || !Array.isArray(data.items)) return;
+				const clean = data.items.filter(isValidItem);
+				if (clean.length === 0) return;
+				setItems((prev) => {
+					const have = new Set(prev.map((x) => x.sku));
+					const fresh = clean.filter((x) => !have.has(x.sku));
+					return fresh.length === 0 ? prev : [...prev, ...fresh];
+				});
+			})
+			.catch(() => {
+				// Offline or the endpoint is unhappy. The row stays unclaimed only if
+				// the server never stamped it; either way the cart is unaffected.
+			});
+		return () => {
+			alive = false;
+		};
+	}, [hydrated]);
+
 	// Keep multiple tabs in sync.
 	useEffect(() => {
 		function onStorage(e: StorageEvent) {
