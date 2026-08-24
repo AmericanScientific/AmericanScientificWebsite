@@ -106,8 +106,72 @@ export function isFlagged(page: VariantPage): boolean {
 	return page.flag === "verify-broad-key";
 }
 
-/** The canonical URL slug for a page. */
+/**
+ * Marks a page synthesized on the fly for a catalog item that has no entry in
+ * `product_groups.json`.
+ *
+ * That file is a static build-time artifact: it was generated once from a
+ * NetSuite analysis and covers the catalog as it stood then. The cron sync,
+ * meanwhile, keeps adding items to D1 whenever someone flips "Display in Web
+ * Site" on. Without a fallback those items are findable in search and priced
+ * correctly but have no page to land on, so every newly published product 404s
+ * until somebody regenerates the file and redeploys. Synthesizing a single-item
+ * page closes that gap: grouping stays authoritative wherever it has an opinion,
+ * and anything it has never heard of simply renders as its own product.
+ */
+const SYNTHETIC_PREFIX = "SKU:";
+
+/** True for a page invented for an item missing from `product_groups.json`. */
+export function isSyntheticPage(page: VariantPage): boolean {
+	return page.page_id.startsWith(SYNTHETIC_PREFIX);
+}
+
+/**
+ * A one-member page standing in for an ungrouped catalog item.
+ *
+ * Deliberately `page_type: "single"` with an empty axis, so every downstream
+ * check (`isMultiVariant`, label derivation, the variant selector) treats it as
+ * an ordinary single product and no option UI appears.
+ */
+export function syntheticPageForSku(
+	sku: string,
+	title: string,
+	opts?: { internalId?: number; itemType?: string; hasImage?: boolean },
+): VariantPage {
+	return {
+		page_id: `${SYNTHETIC_PREFIX}${sku}`,
+		product_name: title || sku,
+		family: "",
+		page_type: "single",
+		variant_axis: "",
+		item_count: 1,
+		item_number_prefixes: sku,
+		flag: "",
+		members: [
+			{
+				item_number: sku,
+				netsuite_internal_id: opts?.internalId ?? 0,
+				full_name: title || sku,
+				store_name: title || null,
+				variant_label: null,
+				itemtype: opts?.itemType ?? "",
+				has_image: opts?.hasImage ?? false,
+			},
+		],
+	};
+}
+
+/**
+ * The canonical URL slug for a page.
+ *
+ * Synthetic pages are keyed by SKU rather than a kebabed title, so their
+ * canonical URL matches the `/product/<sku>` path they are reached by. Deriving
+ * it from the title instead would advertise a canonical the router cannot serve.
+ */
 export function slugForPage(page: VariantPage): string {
+	if (isSyntheticPage(page)) {
+		return page.page_id.slice(SYNTHETIC_PREFIX.length).toLowerCase();
+	}
 	return slugByPageId.get(page.page_id) ?? kebab(page.product_name);
 }
 
