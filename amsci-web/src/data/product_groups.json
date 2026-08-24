@@ -1,10 +1,10 @@
 {
   "summary": {
-    "total_items": 1312,
-    "total_pages": 585,
-    "multi_variant_pages": 158,
+    "total_items": 1326,
+    "total_pages": 586,
+    "multi_variant_pages": 159,
     "single_item_pages": 427,
-    "items_consolidated_into_multi_pages": 885,
+    "items_consolidated_into_multi_pages": 899,
     "pages_flagged_for_review": 7,
     "related_family_clusters": 131
   },
@@ -19680,6 +19680,144 @@
           "full_name": "Softoleum Printing Block - 12 in. x 18 in. - 1/4 in.",
           "store_name": "Printing Block (12 × 18 in.)",
           "variant_label": "12 × 18 in.",
+          "itemtype": "InvtPart",
+          "has_image": true
+        }
+      ]
+    },
+    {
+      "page_id": "M0002",
+      "product_name": "Double Sided Printing Block",
+      "family": "Double Sided Printing Block",
+      "page_type": "multi-variant",
+      "variant_axis": "Size",
+      "item_count": 14,
+      "item_number_prefixes": "97",
+      "flag": "",
+      "members": [
+        {
+          "item_number": "9725793",
+          "netsuite_internal_id": 5935,
+          "full_name": "Safety-Kut Printmaking Circle - 4 in. dia.",
+          "store_name": "Double Sided Printing Block (4 in. dia.)",
+          "variant_label": "4 in. dia.",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "9731147",
+          "netsuite_internal_id": 5637,
+          "full_name": "Safety-Kut SQUARE Printmaking Material -4x4X3/4”",
+          "store_name": "Double Sided Printing Block (4 × 4 in.)",
+          "variant_label": "4 × 4 in.",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "9704655",
+          "netsuite_internal_id": 5639,
+          "full_name": "Safety-Kut Printmaking Material - 4x6x3/4”",
+          "store_name": "Double Sided Printing Block (4 × 6 in.)",
+          "variant_label": "4 × 6 in.",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "9739797",
+          "netsuite_internal_id": 5645,
+          "full_name": "Safety-Kut Printmaking Material - 5x7x3/4”",
+          "store_name": "Double Sided Printing Block (5 × 7 in.)",
+          "variant_label": "5 × 7 in.",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "9731146",
+          "netsuite_internal_id": 5647,
+          "full_name": "Safety-Kut SQUARE Printmaking Material - 6x6x3/4\"",
+          "store_name": "Double Sided Printing Block (6 × 6 in.)",
+          "variant_label": "6 × 6 in.",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "9705051",
+          "netsuite_internal_id": 5636,
+          "full_name": "SAFETY-KUT PRINTBLOCK 6x12x3x4”",
+          "store_name": "Double Sided Printing Block (6 × 12 in.)",
+          "variant_label": "6 × 12 in.",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "9729095",
+          "netsuite_internal_id": 5640,
+          "full_name": "Safety-Kut Printmaking Material - 8 in. x 10 in.",
+          "store_name": "Double Sided Printing Block (8 × 10 in.)",
+          "variant_label": "8 × 10 in.",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "9714659",
+          "netsuite_internal_id": 5644,
+          "full_name": "Safety-Kut Printmaking Material - 9x12x3/4”",
+          "store_name": "Double Sided Printing Block (9 × 12 in.)",
+          "variant_label": "9 × 12 in.",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "9705052",
+          "netsuite_internal_id": 5641,
+          "full_name": "Safety-Kut Printmaking Material - 12x12x3/4”",
+          "store_name": "Double Sided Printing Block (12 × 12 in.)",
+          "variant_label": "12 × 12 in.",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "9709803",
+          "netsuite_internal_id": 5643,
+          "full_name": "Safety-Kut Printmaking Material - 12x18x3/4”",
+          "store_name": "Double Sided Printing Block (12 × 18 in.)",
+          "variant_label": "12 × 18 in.",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "9706150",
+          "netsuite_internal_id": 5642,
+          "full_name": "Safety-Kut Big Sheet - 18 in. x 26 in.",
+          "store_name": "Double Sided Printing Block (18 × 26 in.)",
+          "variant_label": "18 × 26 in.",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "9716678",
+          "netsuite_internal_id": 5646,
+          "full_name": "Safety-Kut Monster Sheet - 26 in. x 30 in.",
+          "store_name": "Double Sided Printing Block (26 × 30 in.)",
+          "variant_label": "26 × 30 in.",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "9719455",
+          "netsuite_internal_id": 5934,
+          "full_name": "Safety-Kut, Artist Carving Blanks Classroom Pack of 36...",
+          "store_name": "Double Sided Printing Block (2 × 3 in., Pack of 36)",
+          "variant_label": "2 × 3 in., Pack of 36",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "9708183",
+          "netsuite_internal_id": 5933,
+          "full_name": "Safety-Kut, material Artist Carving Blanks Classroom, 2...",
+          "store_name": "Double Sided Printing Block (2 × 3 in., Pack of 104)",
+          "variant_label": "2 × 3 in., Pack of 104",
           "itemtype": "InvtPart",
           "has_image": true
         }
