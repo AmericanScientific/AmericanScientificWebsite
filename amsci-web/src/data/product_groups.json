@@ -1,10 +1,10 @@
 {
   "summary": {
-    "total_items": 1306,
-    "total_pages": 584,
-    "multi_variant_pages": 157,
+    "total_items": 1312,
+    "total_pages": 585,
+    "multi_variant_pages": 158,
     "single_item_pages": 427,
-    "items_consolidated_into_multi_pages": 879,
+    "items_consolidated_into_multi_pages": 885,
     "pages_flagged_for_review": 7,
     "related_family_clusters": 131
   },
@@ -19614,6 +19614,72 @@
           "full_name": "Worm Farm Kit",
           "store_name": "Worm Farm (Tank, Science Experiement Viewer, Instructions, Light Blocker, In Color Box)",
           "variant_label": null,
+          "itemtype": "InvtPart",
+          "has_image": true
+        }
+      ]
+    },
+    {
+      "page_id": "M0001",
+      "product_name": "Printing Block",
+      "family": "Printing Block",
+      "page_type": "multi-variant",
+      "variant_axis": "Size",
+      "item_count": 6,
+      "item_number_prefixes": "9719193",
+      "flag": "",
+      "members": [
+        {
+          "item_number": "9719193A",
+          "netsuite_internal_id": 5648,
+          "full_name": "Softoleum Printing Block - 3 in. x 4 in. - 1/4 in. Thick",
+          "store_name": "Printing Block (3 × 4 in.)",
+          "variant_label": "3 × 4 in.",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "9719193B",
+          "netsuite_internal_id": 5649,
+          "full_name": "Softoleum Printing Block - 4 in. x 6 in. - 1/4 in. Thick",
+          "store_name": "Printing Block (4 × 6 in.)",
+          "variant_label": "4 × 6 in.",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "9719193C",
+          "netsuite_internal_id": 5638,
+          "full_name": "Softoleum Printing Block - 6x12x1/4” .",
+          "store_name": "Printing Block (6 × 12 in.)",
+          "variant_label": "6 × 12 in.",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "9719193D",
+          "netsuite_internal_id": 5650,
+          "full_name": "Softoleum Printing Block - 9 in. x 12 in. - 1/4 in. Thick",
+          "store_name": "Printing Block (9 × 12 in.)",
+          "variant_label": "9 × 12 in.",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "9719193E",
+          "netsuite_internal_id": 5651,
+          "full_name": "Softoleum Printing Block - 12 in. x 12 in. - 1/4 in. Thick",
+          "store_name": "Printing Block (12 × 12 in.)",
+          "variant_label": "12 × 12 in.",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "9719193F",
+          "netsuite_internal_id": 5652,
+          "full_name": "Softoleum Printing Block - 12 in. x 18 in. - 1/4 in.",
+          "store_name": "Printing Block (12 × 18 in.)",
+          "variant_label": "12 × 18 in.",
           "itemtype": "InvtPart",
           "has_image": true
         }
