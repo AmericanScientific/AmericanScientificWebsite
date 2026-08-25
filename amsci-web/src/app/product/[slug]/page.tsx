@@ -8,7 +8,6 @@ import {
 	pageForSku,
 	slugForPage,
 	isMultiVariant,
-	defaultMember,
 	axisParts,
 	splitLabel,
 	labelsAreUsable,
@@ -62,6 +61,27 @@ async function resolvePage(slug: string): Promise<VariantPage | null> {
 	});
 }
 
+/**
+ * The page's representative catalog product: the first member that still EXISTS
+ * in the catalog, not blindly `members[0]`.
+ *
+ * Deactivating an item in NetSuite drops it from the catalog while leaving it in
+ * the (static) grouping file. Keying the page off `members[0]` meant a single
+ * discontinued variant 404'd the whole page and took its live siblings with it:
+ * ASB-50 going inactive made the Solar UV Beads page unreachable, so the very
+ * much active ASB-1000 could not be viewed or ordered at all.
+ *
+ * Sequential on purpose — it short-circuits on the first hit, which is the
+ * overwhelmingly common case, and pages have at most a couple of dozen members.
+ */
+async function representativeProduct(page: VariantPage): Promise<Product | undefined> {
+	for (const m of page.members) {
+		const product = await getProductBySku(m.item_number);
+		if (product) return product;
+	}
+	return undefined;
+}
+
 export async function generateMetadata({
 	params,
 }: {
@@ -73,7 +93,7 @@ export async function generateMetadata({
 
 	// Canonical metadata reflects the default member (the ?sku= variants are
 	// non-canonical and applied client-side).
-	const product = await getProductBySku(defaultMember(page).item_number);
+	const product = await representativeProduct(page);
 
 	return {
 		title: product?.title ?? page.product_name,
@@ -109,7 +129,8 @@ export default async function ProductPage({
 	}
 
 	// Category chrome is constant across a page's members (same product).
-	const defaultProduct = await getProductBySku(defaultMember(page).item_number);
+	// Resolved across ALL members so one discontinued variant cannot 404 the page.
+	const defaultProduct = await representativeProduct(page);
 	if (!defaultProduct) notFound();
 	const category = defaultProduct.category;
 	const leafName = getCategoryName(category);
