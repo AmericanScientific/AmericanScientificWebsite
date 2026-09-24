@@ -81,9 +81,24 @@
 	// rate limiting — in-memory at the edge, no storage cost, per-colo. BURST
 	// blocks rapid-fire abuse; SUSTAINED bounds per-minute volume. See
 	// src/lib/chat/guard.ts. namespace_id is an arbitrary unique number per limiter.
+	//
+	// LEAD_RL_* guards the public PHYWE lead form (/api/phywe-lead) and
+	// AUTH_RL_* the password setup/reset request (/api/auth/request-setup).
+	// Both turn a request into a Resend send, so both are metered per IP. The
+	// limits are deliberately tight: a human fills one lead form once, and asks
+	// for one reset link at a time. See src/lib/leads/guard.ts.
+	//
+	// `period` accepts ONLY 10 or 60 (wrangler rejects anything else), so these
+	// bind the per-10s and per-minute rate and nothing longer. That leaves a
+	// slow drip — one IP staying under 3/min all day — unbounded here, which is
+	// exactly what the D1 daily cap in leads/guard.ts exists to catch.
 	"ratelimits": [
 		{ "name": "CHAT_RL_BURST", "namespace_id": "2001", "simple": { "limit": 6, "period": 10 } },
-		{ "name": "CHAT_RL_SUSTAINED", "namespace_id": "2002", "simple": { "limit": 30, "period": 60 } }
+		{ "name": "CHAT_RL_SUSTAINED", "namespace_id": "2002", "simple": { "limit": 30, "period": 60 } },
+		{ "name": "LEAD_RL_BURST", "namespace_id": "2003", "simple": { "limit": 1, "period": 10 } },
+		{ "name": "LEAD_RL_SUSTAINED", "namespace_id": "2004", "simple": { "limit": 3, "period": 60 } },
+		{ "name": "AUTH_RL_BURST", "namespace_id": "2005", "simple": { "limit": 2, "period": 10 } },
+		{ "name": "AUTH_RL_SUSTAINED", "namespace_id": "2006", "simple": { "limit": 3, "period": 60 } }
 	],
 	// Transactional email (password setup/reset links) via Resend — see
 	// src/lib/auth/email.ts. Setup: verify the sender domain (am-sci.com) in

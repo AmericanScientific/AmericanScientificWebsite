@@ -1,6 +1,7 @@
 import { getDb, getUserByEmail } from "@/lib/auth/db";
 import { createPasswordToken } from "@/lib/auth/tokens";
 import { devLinksEnabled, sendPasswordEmail, siteBaseUrl } from "@/lib/auth/email";
+import { checkAuthEmailRateLimit, clientIp } from "@/lib/leads/guard";
 
 /**
  * POST /api/auth/request-setup  { email }
@@ -23,6 +24,13 @@ export async function POST(request: Request): Promise<Response> {
 	}
 	const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
 	if (!email) return Response.json({ error: "Email is required." }, { status: 400 });
+
+	// Per-IP rate limit. Returns the SAME generic body as every other path so a
+	// throttled caller learns nothing about whether the address has an account;
+	// the 429 is about the caller's rate, never about the address.
+	if (!(await checkAuthEmailRateLimit(clientIp(request)))) {
+		return Response.json(GENERIC, { status: 429, headers: { "Retry-After": "60" } });
+	}
 
 	const db = getDb();
 	const user = await getUserByEmail(db, email);
