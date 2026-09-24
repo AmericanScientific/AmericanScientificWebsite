@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import Link from "next/link";
 import { LoginForm } from "@/components/LoginForm";
+import { turnstileSiteKey } from "@/lib/auth/turnstile";
 
 export const metadata: Metadata = {
 	title: "Sign In · American Scientific",
@@ -50,7 +51,7 @@ export default function LoginPage() {
 
 			<div className="mt-5 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
 				<Suspense fallback={<div className="h-64 animate-pulse rounded-xl bg-slate-50" />}>
-					<LoginForm />
+					<LoginForm siteKey={turnstileSiteKey()} />
 				</Suspense>
 			</div>
 

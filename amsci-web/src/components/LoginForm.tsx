@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 
+import { TurnstileWidget } from "@/components/TurnstileWidget";
+
 /** Local-path-only redirect target (prevents open-redirect via ?next=). */
 function safeNext(next: string | null): string {
 	if (next && next.startsWith("/") && !next.startsWith("//")) return next;
@@ -11,9 +13,16 @@ function safeNext(next: string | null): string {
 
 type Mode = "signin" | "request";
 
-export function LoginForm() {
+/**
+ * Turnstile gates the "email me a link" mode ONLY, never sign-in. That mode is
+ * the one that spends a Resend send on every submission; sign-in costs nothing
+ * and is the path every returning customer walks, so a challenge there would be
+ * friction charged to the wrong people.
+ */
+export function LoginForm({ siteKey }: { siteKey: string | null }) {
 	const params = useSearchParams();
 	const [mode, setMode] = useState<Mode>("signin");
+	const [token, setToken] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState<string | null>(null);
@@ -67,7 +76,7 @@ export function LoginForm() {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				credentials: "same-origin",
-				body: JSON.stringify({ email }),
+				body: JSON.stringify({ email, turnstileToken: token }),
 			});
 			const data = (await res.json().catch(() => ({}))) as { message?: string; devLink?: string };
 			setNotice(data.message ?? "If that email has an account, we've sent a link to set your password.");
@@ -133,7 +142,8 @@ export function LoginForm() {
 						<label htmlFor="reqemail" className="block text-sm font-medium text-slate-700">Email</label>
 						<input id="reqemail" type="email" autoComplete="email" required value={email} onChange={(e) => setEmail(e.target.value)} className={inputCls} />
 					</div>
-					<button type="submit" disabled={busy} className={btnCls}>{busy ? "Sending…" : "Email me a link"}</button>
+					{siteKey && <TurnstileWidget siteKey={siteKey} onToken={setToken} />}
+					<button type="submit" disabled={busy || (!!siteKey && !token)} className={btnCls}>{busy ? "Sending…" : "Email me a link"}</button>
 					<button
 						type="button"
 						onClick={() => { setMode("signin"); setError(null); setNotice(null); setDevLink(null); }}

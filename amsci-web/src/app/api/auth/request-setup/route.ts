@@ -2,6 +2,7 @@ import { getDb, getUserByEmail } from "@/lib/auth/db";
 import { createPasswordToken } from "@/lib/auth/tokens";
 import { devLinksEnabled, sendPasswordEmail, siteBaseUrl } from "@/lib/auth/email";
 import { checkAuthEmailRateLimit, clientIp } from "@/lib/leads/guard";
+import { verifyTurnstile } from "@/lib/auth/turnstile";
 
 /**
  * POST /api/auth/request-setup  { email }
@@ -16,7 +17,7 @@ export const dynamic = "force-dynamic";
 const GENERIC = { ok: true, message: "If that email has an account, we've sent a link to set your password." };
 
 export async function POST(request: Request): Promise<Response> {
-	let body: { email?: unknown };
+	let body: { email?: unknown; turnstileToken?: unknown };
 	try {
 		body = await request.json();
 	} catch {
@@ -24,12 +25,22 @@ export async function POST(request: Request): Promise<Response> {
 	}
 	const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
 	if (!email) return Response.json({ error: "Email is required." }, { status: 400 });
+	const turnstileToken = typeof body.turnstileToken === "string" ? body.turnstileToken : "";
 
 	// Per-IP rate limit. Returns the SAME generic body as every other path so a
 	// throttled caller learns nothing about whether the address has an account;
 	// the 429 is about the caller's rate, never about the address.
-	if (!(await checkAuthEmailRateLimit(clientIp(request)))) {
+	const ip = clientIp(request);
+	if (!(await checkAuthEmailRateLimit(ip))) {
 		return Response.json(GENERIC, { status: 429, headers: { "Retry-After": "60" } });
+	}
+
+	// Turnstile. The rate limiter above is a soft layer -- Cloudflare's limiters
+	// are approximate and lag under a burst -- so this is what actually bounds
+	// the endpoint. It runs BEFORE the lookup, so a rejection says nothing about
+	// whether the address has an account; it is strictly about the caller.
+	if (!(await verifyTurnstile(turnstileToken, ip))) {
+		return Response.json({ error: "Verification failed. Please try again." }, { status: 403 });
 	}
 
 	const db = getDb();
