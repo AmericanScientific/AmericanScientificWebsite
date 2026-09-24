@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PhyweLeadForm } from "@/components/PhyweLeadForm";
 import { CountUp } from "@/components/CountUp";
+import { turnstileSiteKey } from "@/lib/auth/turnstile";
 
 export const metadata: Metadata = {
 	title: "PHYWE · German Innovation, American Expertise",
@@ -181,7 +182,7 @@ export default function PhywePage() {
 						</div>
 					</div>
 					<div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-						<PhyweLeadForm />
+						<PhyweLeadForm siteKey={turnstileSiteKey()} />
 					</div>
 				</div>
 			</section>
