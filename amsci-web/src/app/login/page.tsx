@@ -46,6 +46,12 @@ export default function LoginPage() {
 				<p className="mt-2 text-sm leading-relaxed text-slate-600">
 					Your account, your company details and your pricing all carry over. You only need to choose a new password.
 				</p>
+				<p className="mt-2 text-sm leading-relaxed text-slate-600">
+					<strong className="font-semibold text-slate-900">Did our team create an account for you?</strong>{" "}
+					Use the same{" "}
+					<span className="font-medium text-slate-800">&ldquo;First time here, or forgot your password?&rdquo;</span>{" "}
+					option with the email address we set up, and we will send you a link to choose your password.
+				</p>
 			</section>
 
 			<div className="mt-5 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
