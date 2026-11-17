@@ -24,6 +24,8 @@ import { ProductVariantView, type VariantOption } from "@/components/ProductVari
 import { ProductPrice } from "@/components/ProductPrice";
 import { CategoryIcon } from "@/components/CategoryIcon";
 import { TeacherGuideButtons } from "@/components/TeacherGuideButtons";
+import { ProductDescription } from "@/components/ProductDescription";
+import { descriptionPlainText, trimForMeta } from "@/lib/content";
 
 /** Re-read the cron-synced catalog from D1 at most this often (seconds). */
 export const revalidate = 300;
@@ -95,10 +97,24 @@ export async function generateMetadata({
 	// non-canonical and applied client-side).
 	const product = await representativeProduct(page);
 
+	const title = product?.title ?? page.product_name;
+	// Plain text only: no tags, entities or glued-together bullets in meta/OG.
+	const description = trimForMeta(descriptionPlainText(product?.description)) || undefined;
+
 	return {
-		title: product?.title ?? page.product_name,
-		description: product?.description || undefined,
+		title,
+		description,
 		alternates: { canonical: pagePath(page) },
+		// Set per product; otherwise every product page inherits the site-wide
+		// OG/Twitter description and an og:url of "/".
+		openGraph: {
+			type: "website",
+			siteName: "American Scientific",
+			title,
+			description,
+			url: pagePath(page),
+		},
+		twitter: { card: "summary", title, description },
 	};
 }
 
@@ -312,9 +328,7 @@ function SingleProduct({
 				</h1>
 				<p className="mt-2 text-sm text-slate-400">SKU {product.sku}</p>
 
-				{product.description && (
-					<p className="mt-6 text-sm leading-relaxed text-slate-600">{product.description}</p>
-				)}
+				<ProductDescription description={product.description} />
 
 				<ProductPrice sku={product.sku} title={product.title} imageUrl={product.imageUrl} />
 

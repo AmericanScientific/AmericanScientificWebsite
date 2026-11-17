@@ -7,6 +7,7 @@ import { ProductImage } from "@/components/ProductImage";
 import { ProductPrice } from "@/components/ProductPrice";
 import { CategoryIcon } from "@/components/CategoryIcon";
 import { TeacherGuideButtons } from "@/components/TeacherGuideButtons";
+import { ProductDescription } from "@/components/ProductDescription";
 import { categoryTheme } from "@/lib/categoryTheme";
 
 /** One selectable variant: its cached render data + option values per axis. */
@@ -159,9 +160,7 @@ export function ProductVariantView({
 				</div>
 
 				{/* Description sits above the price card, below the variant selectors. */}
-				{product.description && (
-					<p className="mt-6 text-sm leading-relaxed text-slate-600">{product.description}</p>
-				)}
+				<ProductDescription description={product.description} />
 
 				{/* Price card — login-gated; key on SKU so it re-fetches per variant */}
 				<ProductPrice

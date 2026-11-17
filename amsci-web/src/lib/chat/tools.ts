@@ -4,6 +4,7 @@ import { getProductBySku } from "@/data/products";
 import { getAllLeafCategories, getCategoryName, getTopLevelCategories } from "@/data/categories";
 import { pageForSku, slugForPage } from "@/data/variant-groups";
 import { formatPrice } from "@/lib/format";
+import { descriptionPlainText } from "@/lib/content";
 
 /**
  * Tools the AI assistant can call. All of these run SERVER-side inside the
@@ -157,7 +158,7 @@ export async function runTool(
 		const out: Record<string, unknown> = {
 			sku: p.sku,
 			title: p.title,
-			description: p.description || undefined,
+			description: descriptionPlainText(p.description) || undefined,
 			category: getCategoryName(p.category),
 			grades: p.grades,
 			url: productUrl(p.sku, p.pageSlug),

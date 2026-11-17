@@ -3,6 +3,7 @@ import { getAllProducts, collapseToPages } from "@/data/products";
 import { getCatalog } from "@/data/catalog-source";
 import { cache } from "react";
 import { getCategoryName, getTopLevelSlug } from "@/data/categories";
+import { descriptionPlainText } from "@/lib/content";
 
 /**
  * Catalog search — in-memory scoring over the synced catalog (~1.3k items), so it
@@ -67,7 +68,7 @@ function hasWordStartingWith(haystack: string, term: string): boolean {
 function scoreProduct(p: Product, keywords: string, terms: string[], fullQuery: string): number {
 	const sku = p.sku.toLowerCase();
 	const title = p.title.toLowerCase();
-	const desc = p.description.toLowerCase();
+	const desc = descriptionPlainText(p.description).toLowerCase();
 	const cat = getCategoryName(p.category).toLowerCase();
 	const grades = p.grades.join(" ").toLowerCase();
 
