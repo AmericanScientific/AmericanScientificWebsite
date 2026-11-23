@@ -81,7 +81,11 @@ const getProductsBySku = cache(async (): Promise<Map<string, Product>> => {
  * title is the group name, price is the MIN base across members ("from …"), and
  * `variantCount`/`pageSlug` drive the card's badge + group link.
  */
-function buildPageCard(page: VariantPage, bySku: Map<string, Product>): Product | null {
+function buildPageCard(page: VariantPage, bySku: Map<string, Product>, matched?: Product): Product | null {
+	// Search: show the SKU that matched (its own name/image/price) and deep-link it.
+	if (matched) {
+		return { ...matched, variantCount: page.members.length, pageSlug: slugForPage(page), variantSku: matched.sku };
+	}
 	const base = bySku.get(defaultMember(page).item_number.toLowerCase());
 	if (!base) return null; // default member missing from cache — skip defensively
 	let min = base.price;
@@ -102,7 +106,10 @@ function buildPageCard(page: VariantPage, bySku: Map<string, Product>): Product 
  * Collapse a product list so each multi-variant page appears once (as a group
  * card) and singles pass through unchanged. Order follows first appearance.
  */
-export async function collapseToPages(products: Product[]): Promise<Product[]> {
+export async function collapseToPages(
+	products: Product[],
+	mode: "listing" | "search" = "listing",
+): Promise<Product[]> {
 	const bySku = await getProductsBySku();
 	const out: Product[] = [];
 	const seen = new Set<string>();
@@ -115,7 +122,7 @@ export async function collapseToPages(products: Product[]): Promise<Product[]> {
 		}
 		if (seen.has(page.page_id)) continue;
 		seen.add(page.page_id);
-		const card = buildPageCard(page, bySku);
+		const card = buildPageCard(page, bySku, mode === "search" ? p : undefined);
 		out.push(card ?? p);
 	}
 	return out;

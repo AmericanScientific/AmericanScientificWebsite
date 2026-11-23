@@ -141,7 +141,11 @@ export async function searchCatalog(filters: SearchFilters): Promise<SearchOutco
 
 	// Collapse variant members to one group card each (keeps the highest-ranked
 	// member's position), so results show one card per product linking to its page.
-	const results = await collapseToPages(scored.map((s) => s.p));
+	// Grouped hits link to the matched SKU's own option (?sku=), not the default.
+	const results = await collapseToPages(
+		scored.map((s) => s.p),
+		"search",
+	);
 	return { results, total: results.length, filters };
 }
 

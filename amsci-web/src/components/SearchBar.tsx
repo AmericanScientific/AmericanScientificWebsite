@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 
 interface Suggestion {
 	slug: string;
+	/** Full link, incl. ?sku= for one option of a grouped product. */
+	href?: string;
 	title: string;
 	sku: string;
 	category: string;
@@ -83,7 +85,7 @@ export function SearchBar({ className = "" }: { className?: string }) {
 
 	function goTo(s: Suggestion) {
 		setOpen(false);
-		router.push(`/product/${encodeURIComponent(s.slug)}`);
+		router.push(s.href ?? `/product/${encodeURIComponent(s.slug)}`);
 	}
 
 	function onKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {

@@ -1967,7 +1967,7 @@
       "family": "Wash Bottle",
       "page_type": "multi-variant",
       "variant_axis": "Type",
-      "item_count": 9,
+      "item_count": 11,
       "item_number_prefixes": "7001, 7002, 7003",
       "flag": "",
       "members": [
@@ -1986,6 +1986,15 @@
           "full_name": "Wash bottles, flexible delivery tube, Plastic,125ml, pk/12",
           "store_name": "Wash bottles, Flexible Delivery Tube, 125ml",
           "variant_label": "bottles, Flexible Delivery Tube, 125ml",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "7002-02",
+          "netsuite_internal_id": 5756,
+          "full_name": "",
+          "store_name": null,
+          "variant_label": null,
           "itemtype": "InvtPart",
           "has_image": true
         },
@@ -2040,6 +2049,15 @@
           "full_name": "Wash bottles, Built in delivery tube, ,125ml,pk/12",
           "store_name": "Wash Bottles, Built in delivery tube, 125ml",
           "variant_label": "Bottles, Built in delivery tube, 125ml",
+          "itemtype": "InvtPart",
+          "has_image": true
+        },
+        {
+          "item_number": "7003-02",
+          "netsuite_internal_id": 5760,
+          "full_name": "",
+          "store_name": null,
+          "variant_label": null,
           "itemtype": "InvtPart",
           "has_image": true
         },

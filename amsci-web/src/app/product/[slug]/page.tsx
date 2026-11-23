@@ -8,10 +8,8 @@ import {
 	pageForSku,
 	slugForPage,
 	isMultiVariant,
-	axisParts,
-	splitLabel,
-	labelsAreUsable,
-	deriveVariantLabels,
+	axisHeading,
+	liveVariantLabels,
 	syntheticPageForSku,
 	type VariantPage,
 } from "@/data/variant-groups";
@@ -252,31 +250,18 @@ async function MultiVariant({
 
 	if (members.length === 0) notFound();
 
-	// Prefer the grouping's own labels, but only when they actually distinguish
-	// the members. Otherwise derive from titles (fixes the "all labelled the
-	// same" / truncated cases) and present as a single selector.
-	const provided = members.map(({ m }) => m.variant_label ?? "");
-	let axes = axisParts(page);
-	let options: VariantOption[];
-
-	if (labelsAreUsable(provided)) {
-		options = members.map(({ m, product }) => {
-			const values = splitLabel(m);
-			const label = m.variant_label ?? product.title;
-			return { product, label, values: values.length ? values : [label] };
-		});
-	} else {
-		const derived =
-			deriveVariantLabels(members.map(({ product }) => product.title)) ??
-			members.map(({ product }) => product.sku);
-		// Single selector under one heading (the whole axis string, or "Option").
-		axes = [page.variant_axis || "Option"];
-		options = members.map(({ product }, i) => ({
-			product,
-			label: derived[i],
-			values: [derived[i]],
-		}));
-	}
+	// Labels come from each member's current NetSuite name (product.title),
+	// not the July snapshot in product_groups.json.
+	const labels = liveVariantLabels(
+		members.map(({ product }) => product.title),
+		members.map(({ product }) => product.sku),
+	);
+	const axes = [axisHeading(page)];
+	const options: VariantOption[] = members.map(({ product }, i) => ({
+		product,
+		label: labels[i],
+		values: [labels[i]],
+	}));
 
 	return (
 		<ProductVariantView

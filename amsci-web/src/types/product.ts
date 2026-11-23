@@ -63,6 +63,8 @@ export interface Product {
 	 */
 	variantCount?: number;
 	pageSlug?: string;
+	/** Search results only: the grouped SKU this card represents (linked with ?sku=). */
+	variantSku?: string;
 
 	/**
 	 * True when this SKU has a working teacher's guide PDF (NetSuite
@@ -72,6 +74,14 @@ export interface Product {
 	 * `/api/teacher-guide?sku=…` so the raw NetSuite URL stays server-side.
 	 */
 	teacherGuideAvailable?: boolean;
+}
+
+/** Where a card or suggestion links: grouped search hits open their own option via ?sku=. */
+export function productHref(product: Product): string {
+	if (!product.pageSlug) return `/product/${productSlug(product)}`;
+	return product.variantSku
+		? `/product/${product.pageSlug}?sku=${encodeURIComponent(product.variantSku)}`
+		: `/product/${product.pageSlug}`;
 }
 
 /** URL-safe slug for a product detail route. SKU is stable and unique, so we key on it. */

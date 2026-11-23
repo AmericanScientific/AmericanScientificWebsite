@@ -194,51 +194,32 @@ export function defaultMember(page: VariantPage): VariantMember {
 	return page.members[0];
 }
 
-/**
- * Split a combination string on the axis separator " / " ONLY (whitespace on
- * both sides), so a value containing a bare fraction — 3/4", 1/2", 10/pk — is
- * left intact. Splitting on a naked "/" would shred those.
- */
-const AXIS_SEP = /\s+\/\s+/;
-
-/** Axis names for a page, e.g. "Material / Size" → ["Material","Size"]. [] for singles. */
-export function axisParts(page: VariantPage): string[] {
-	if (!page.variant_axis) return [];
-	return page.variant_axis.split(AXIS_SEP).map((s) => s.trim()).filter(Boolean);
-}
-
-/** A member's option values, aligned to axisParts order. */
-export function splitLabel(member: VariantMember): string[] {
-	if (!member.variant_label) return [];
-	return member.variant_label.split(AXIS_SEP).map((s) => s.trim());
+/** Dropdown heading: the page's axis, or "Option" for multi-axis combos ("Material / Size"). */
+export function axisHeading(page: VariantPage): string {
+	const axis = page.variant_axis?.trim();
+	return axis && !/\s\/\s/.test(axis) ? axis : "Option";
 }
 
 /**
- * Whether a set of variant labels actually distinguishes the members. The
- * grouping data sometimes hands us useless labels — all identical (e.g. six
- * flasks all labelled "Borosilicate…") or truncated with an ellipsis. When this
- * returns false, derive labels from the catalog titles instead.
+ * Dropdown labels from each member's CURRENT NetSuite name (storedisplayname),
+ * never from the `variant_label` snapshot in product_groups.json, so a rename in
+ * NetSuite shows up in the dropdown on the next sync.
+ *
+ * Strips the leading words every name shares ("Wash Bottles, …" → "Bottles, …").
+ * If that would leave a label empty or two labels identical, uses the full names.
+ * Exact-duplicate NetSuite names get the SKU appended so options stay distinct.
  */
-export function labelsAreUsable(labels: string[]): boolean {
-	if (labels.some((l) => !l || l.endsWith("..."))) return false;
-	return new Set(labels).size === labels.length;
-}
-
-/**
- * Derive distinguishing option labels from member catalog titles by stripping
- * the shared leading words (the differing tail — "50 ml", "Polypropylene",
- * "Iris, 4.5\"" — is the option). Falls back to full titles, then null (caller
- * uses the SKU) if the titles can't be told apart.
- */
-export function deriveVariantLabels(titles: string[]): string[] | null {
-	if (titles.length < 2) return null;
-	const words = titles.map((t) => t.trim().split(/\s+/));
+export function liveVariantLabels(titles: string[], skus: string[]): string[] {
+	const clean = titles.map((t) => (t ?? "").replace(/\s+/g, " ").trim());
+	if (clean.length < 2) return clean.map((t, i) => t || skus[i]);
+	const words = clean.map((t) => t.split(" "));
 	const minLen = Math.min(...words.map((w) => w.length));
 	let k = 0;
-	while (k < minLen && words.every((w) => w[k] === words[0][k])) k++;
-	const clean = (parts: string[]) => parts.join(" ").replace(/^[\s,;:/-]+/, "").trim();
-	const tail = words.map((w) => clean(w.slice(k)));
-	if (tail.every(Boolean) && new Set(tail).size === tail.length) return tail;
-	if (new Set(titles).size === titles.length) return titles.map((t) => t.trim());
-	return null;
+	while (k < minLen && words.every((w) => w[k].toLowerCase() === words[0][k].toLowerCase())) k++;
+	const stripped = words.map((w) => w.slice(k).join(" ").replace(/^[\s,;:/\-–—]+/, "").trim());
+	const ok = stripped.every(Boolean) && new Set(stripped.map((x) => x.toLowerCase())).size === stripped.length;
+	const labels = ok ? stripped : clean.map((t, i) => t || skus[i]);
+	const counts = new Map<string, number>();
+	for (const l of labels) counts.set(l.toLowerCase(), (counts.get(l.toLowerCase()) ?? 0) + 1);
+	return labels.map((l, i) => ((counts.get(l.toLowerCase()) ?? 0) > 1 ? `${l} (${skus[i]})` : l));
 }

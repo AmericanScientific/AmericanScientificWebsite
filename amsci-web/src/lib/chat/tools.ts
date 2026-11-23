@@ -2,7 +2,8 @@ import "server-only";
 import { parseSearchFilters, searchCatalog } from "@/data/search";
 import { getProductBySku } from "@/data/products";
 import { getAllLeafCategories, getCategoryName, getTopLevelCategories } from "@/data/categories";
-import { pageForSku, slugForPage } from "@/data/variant-groups";
+import { pageForSku, slugForPage, liveVariantLabels } from "@/data/variant-groups";
+import { productHref } from "@/types/product";
 import { formatPrice } from "@/lib/format";
 import { descriptionPlainText } from "@/lib/content";
 
@@ -83,7 +84,6 @@ export const CHAT_TOOLS = [
 	},
 ] as const;
 
-const productUrl = (sku: string, pageSlug?: string) => `/product/${pageSlug ?? sku.toLowerCase()}`;
 
 /**
  * Variant members of the page a SKU belongs to, each with its own deep-link URL.
@@ -91,14 +91,22 @@ const productUrl = (sku: string, pageSlug?: string) => `/product/${pageSlug ?? s
  * SKUs hidden behind a variant dropdown (e.g. SH-2 consolidated onto the SH-1
  * page) — the collapsed search listing only shows the representative member.
  */
-function variantsForSku(sku: string, cap = 24): { sku: string; label: string; url: string }[] {
+async function variantsForSku(sku: string, cap = 24): Promise<{ sku: string; label: string; url: string }[]> {
 	const page = pageForSku(sku);
 	if (!page || page.members.length <= 1) return [];
 	const slug = slugForPage(page);
-	return page.members.slice(0, cap).map((m) => ({
-		sku: m.item_number,
-		label: m.variant_label || m.item_number,
-		url: `/product/${slug}?sku=${encodeURIComponent(m.item_number)}`,
+	const live = (await Promise.all(page.members.map((m) => getProductBySku(m.item_number)))).filter(
+		(p): p is NonNullable<typeof p> => p !== undefined,
+	);
+	// Same live labels the dropdown shows (current NetSuite names).
+	const labels = liveVariantLabels(
+		live.map((p) => p.title),
+		live.map((p) => p.sku),
+	);
+	return live.slice(0, cap).map((p, i) => ({
+		sku: p.sku,
+		label: labels[i],
+		url: `/product/${slug}?sku=${encodeURIComponent(p.sku)}`,
 	}));
 }
 
@@ -132,22 +140,22 @@ export async function runTool(
 		const filters = parseSearchFilters({ q: query });
 		const { results, total } = await searchCatalog(filters);
 		const limit = Math.min(Math.max(1, Number(input.limit) || 5), 8);
-		const items = results.slice(0, limit).map((p) => {
+		const items = await Promise.all(results.slice(0, limit).map(async (p) => {
 			const item: Record<string, unknown> = {
 				sku: p.sku,
 				title: p.title,
 				category: getCategoryName(p.category),
 				grades: p.grades,
-				url: productUrl(p.sku, p.pageSlug),
+				url: productHref(p),
 			};
 			if (ctx.authed && typeof p.price === "number") item.price = formatPrice(p.price);
-			const variants = variantsForSku(p.sku, 8);
+			const variants = await variantsForSku(p.sku, 8);
 			if (variants.length) {
 				item.note = "Multiple variants — each is separately orderable via its own SKU in `variants`.";
 				item.variants = variants;
 			}
 			return item;
-		});
+		}));
 		return JSON.stringify({ total, showing: items.length, items });
 	}
 
@@ -161,10 +169,10 @@ export async function runTool(
 			description: descriptionPlainText(p.description) || undefined,
 			category: getCategoryName(p.category),
 			grades: p.grades,
-			url: productUrl(p.sku, p.pageSlug),
+			url: productHref(p),
 		};
 		if (ctx.authed && typeof p.price === "number") out.price = formatPrice(p.price);
-		const variants = variantsForSku(p.sku);
+		const variants = await variantsForSku(p.sku);
 		if (variants.length) out.variants = variants;
 		return JSON.stringify(out);
 	}
@@ -198,22 +206,22 @@ export async function runTool(
 		const filters = parseSearchFilters({ q: query, category: category ?? undefined, sort: "name" });
 		const { results, total } = await searchCatalog(filters);
 		const page = results.slice(offset, offset + limit);
-		const items = page.map((p) => {
+		const items = await Promise.all(page.map(async (p) => {
 			const item: Record<string, unknown> = {
 				sku: p.sku,
 				title: p.title,
-				url: productUrl(p.sku, p.pageSlug),
+				url: productHref(p),
 			};
 			if (ctx.authed && typeof p.price === "number") item.price = formatPrice(p.price);
 			// Include the variant members (sku + label) so the model can list actual
 			// options — not just "N variants". Compact (no per-variant URL) to bound tokens.
-			const variants = variantsForSku(p.sku, 12);
+			const variants = await variantsForSku(p.sku, 12);
 			if (variants.length) {
 				item.variantCount = variants.length;
 				item.variants = variants.map((v) => ({ sku: v.sku, label: v.label }));
 			}
 			return item;
-		});
+		}));
 		return JSON.stringify({
 			total,
 			offset,

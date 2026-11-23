@@ -1,4 +1,4 @@
-import { productSlug } from "@/types/product";
+import { productHref, productSlug } from "@/types/product";
 import { getCategoryName } from "@/data/categories";
 import { parseSearchFilters, searchCatalog } from "@/data/search";
 
@@ -34,6 +34,7 @@ export async function GET(request: Request): Promise<Response> {
 	// exposed on a public, unauthenticated endpoint.
 	const suggestions = results.slice(0, limit).map((p) => ({
 		slug: p.pageSlug ?? productSlug(p),
+		href: productHref(p),
 		title: p.title,
 		sku: p.sku,
 		category: getCategoryName(p.category),

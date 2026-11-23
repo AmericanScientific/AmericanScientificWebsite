@@ -1,5 +1,5 @@
 import type { Product } from "@/types/product";
-import { productSlug } from "@/types/product";
+import { productHref } from "@/types/product";
 import { getCategoryName } from "@/data/categories";
 import { categoryTheme } from "@/lib/categoryTheme";
 import { ProductImage } from "@/components/ProductImage";
@@ -9,9 +9,10 @@ import { TiltLink } from "@/components/TiltLink";
 /** Catalog card: accent tile, category chip, title, SKU, and login-gated price. */
 export function ProductCard({ product }: { product: Product }) {
 	const theme = categoryTheme(product.category);
-	const isGroup = (product.variantCount ?? 0) > 1;
-	// Prefer the consolidated page slug; fall back to the SKU slug (which redirects).
-	const href = `/product/${product.pageSlug ?? productSlug(product)}`;
+	const hasOptions = (product.variantCount ?? 0) > 1;
+	// A search hit for one option shows that option's own SKU and price.
+	const isGroup = hasOptions && !product.variantSku;
+	const href = productHref(product);
 
 	return (
 		<TiltLink
@@ -25,7 +26,7 @@ export function ProductCard({ product }: { product: Product }) {
 				>
 					{getCategoryName(product.category)}
 				</span>
-				{isGroup && (
+				{hasOptions && (
 					<span className="absolute right-2.5 top-2.5 inline-flex items-center rounded-full bg-slate-900/80 px-2.5 py-1 text-[11px] font-semibold text-white backdrop-blur-sm">
 						{product.variantCount} options
 					</span>
