@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { OrganizationJsonLd } from "@/components/JsonLd";
+import { canonicalMeta } from "@/lib/site";
 import Link from "next/link";
 import { getTopLevelCategories } from "@/data/categories";
 import { categoryTheme } from "@/lib/categoryTheme";
@@ -39,7 +41,7 @@ async function buildBubbleData(): Promise<Record<string, BubbleItem[]>> {
 /** Re-read the cron-synced catalog from D1 at most this often (seconds). */
 export const revalidate = 300;
 
-export const metadata: Metadata = { alternates: { canonical: "/" } };
+export const metadata: Metadata = canonicalMeta("/");
 
 export default async function Home() {
 	const featured = (await getListingProducts()).slice(0, 4);
@@ -49,6 +51,7 @@ export default async function Home() {
 
 	return (
 		<>
+			<OrganizationJsonLd />
 			<RevealOnScroll />
 
 			{/* ── Hero ─────────────────────────────────────────────────────────── */}

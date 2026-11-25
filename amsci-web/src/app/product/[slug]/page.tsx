@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
 import { getProductBySku, getProductsByLeaf } from "@/data/products";
@@ -100,7 +101,8 @@ export async function generateMetadata({
 	const description = trimForMeta(descriptionPlainText(product?.description)) || undefined;
 
 	return {
-		title,
+		// <title> only; og/twitter keep the bare product name.
+		title: `${title} - Wholesale`,
 		description,
 		alternates: { canonical: pagePath(page) },
 		// Set per product; otherwise every product page inherits the site-wide
@@ -161,6 +163,14 @@ export default async function ProductPage({
 
 	return (
 		<div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+			<BreadcrumbJsonLd
+				items={[
+					["Catalog", "/products"],
+					...(parent ? [[parent.name, `/product-category/${parent.slug}`] as [string, string]] : []),
+					[leafName, categoryHref],
+					[defaultProduct.title, pagePath(page)],
+				]}
+			/>
 			<nav className="mb-8 text-sm text-slate-400" aria-label="Breadcrumb">
 				<Link href="/products" className="hover:text-slate-700">
 					Catalog

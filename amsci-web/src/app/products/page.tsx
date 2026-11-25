@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { canonicalMeta } from "@/lib/site";
 import Link from "next/link";
 import { getTopLevelCategories } from "@/data/categories";
 import { categoryTheme } from "@/lib/categoryTheme";
@@ -17,7 +18,7 @@ export async function generateMetadata({
 	return {
 		title: "Catalog",
 		description: "Browse American Scientific's wholesale catalog of STEM and laboratory products.",
-		alternates: { canonical: page > 1 ? `/products?page=${page}` : "/products" },
+		...canonicalMeta(page > 1 ? `/products?page=${page}` : "/products"),
 	};
 }
 

@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { BreadcrumbJsonLd } from "@/components/JsonLd";
+import { canonicalMeta } from "@/lib/site";
 import { notFound } from "next/navigation";
 import { getTopLevelCategories, getChildCategory } from "@/data/categories";
 import { getProductsByParent, getProductsByLeaf, getLeafProductCounts } from "@/data/products";
@@ -32,7 +34,7 @@ export async function generateMetadata({
 	return {
 		title: category.name,
 		description: `Browse ${category.name} products in the American Scientific wholesale catalog.`,
-		alternates: { canonical: `/product-category/${parent.toLowerCase()}/${category.slug}` },
+		...canonicalMeta(`/product-category/${parent.toLowerCase()}/${category.slug}`),
 	};
 }
 
@@ -54,6 +56,13 @@ export default async function LeafCategoryPage({
 
 	return (
 		<div>
+			<BreadcrumbJsonLd
+				items={[
+					["Catalog", "/products"],
+					[parentCategory.name, `/product-category/${parentCategory.slug}`],
+					[category.name, `/product-category/${parentCategory.slug}/${category.slug}`],
+				]}
+			/>
 			<CategoryHero
 				themeSlug={parentCategory.slug}
 				title={category.name}

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { canonicalMeta } from "@/lib/site";
 import resources from "@/data/resources.json";
 import { ResourcesTabs } from "@/components/ResourcesTabs";
 
@@ -6,7 +7,7 @@ export const metadata: Metadata = {
 	title: "Resources · Teacher's Guides & Product Videos",
 	description:
 		"Teacher's guides, instruction manuals, and product demonstration videos for American Scientific products.",
-	alternates: { canonical: "/resources" },
+	...canonicalMeta("/resources"),
 };
 
 interface ResourcesData {

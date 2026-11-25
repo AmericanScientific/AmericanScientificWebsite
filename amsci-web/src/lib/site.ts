@@ -19,3 +19,30 @@ export const SITE_ORIGIN = "https://www.american-scientific.com";
 export function absoluteUrl(path: string): string {
 	return `${SITE_ORIGIN}${path.startsWith("/") ? path : `/${path}`}`;
 }
+
+export const SITE_TITLE = "American Scientific — Wholesale STEM & Laboratory Supply";
+
+export const SITE_DESCRIPTION =
+	"American Scientific is a wholesale distributor, manufacturer, and exporter of scientific and STEM educational products for schools, districts, and institutions.";
+
+/** Site-wide Open Graph defaults (the root layout's). */
+export const SITE_OPEN_GRAPH = {
+	type: "website",
+	siteName: "American Scientific",
+	title: SITE_TITLE,
+	description: SITE_DESCRIPTION,
+} as const;
+
+/**
+ * Canonical + og:url for a page, kept identical. A page that sets `openGraph`
+ * replaces the layout's whole object, so the site defaults are spread back in.
+ */
+export function canonicalMeta(path: string) {
+	return { alternates: { canonical: path }, openGraph: { ...SITE_OPEN_GRAPH, url: path } };
+}
+
+/**
+ * Google Search Console HTML-tag verification code (the `content` value only).
+ * Empty = no tag rendered. Paste the code from Search Console here.
+ */
+export const GOOGLE_SITE_VERIFICATION = "";
