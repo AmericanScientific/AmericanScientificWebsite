@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getTopLevelCategories } from "@/data/categories";
 import { categoryTheme } from "@/lib/categoryTheme";
@@ -37,6 +38,8 @@ async function buildBubbleData(): Promise<Record<string, BubbleItem[]>> {
 
 /** Re-read the cron-synced catalog from D1 at most this often (seconds). */
 export const revalidate = 300;
+
+export const metadata: Metadata = { alternates: { canonical: "/" } };
 
 export default async function Home() {
 	const featured = (await getListingProducts()).slice(0, 4);

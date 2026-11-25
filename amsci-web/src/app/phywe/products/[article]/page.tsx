@@ -26,6 +26,7 @@ export async function generateMetadata({
 	if (!p) return { title: "PHYWE product not found" };
 	return {
 		title: `${p.name} · PHYWE`,
+		robots: { index: false, follow: true },
 		description: p.description ? p.description.slice(0, 155) : `PHYWE ${p.name} (Art. ${p.articleNo}) — available by quote from American Scientific.`,
 	};
 }

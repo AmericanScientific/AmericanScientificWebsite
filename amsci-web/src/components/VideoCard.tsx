@@ -30,7 +30,7 @@ export function VideoCard({ id, title }: { id: string; title: string }) {
 						{/* eslint-disable-next-line @next/next/no-img-element */}
 						<img
 							src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`}
-							alt=""
+							alt={title}
 							loading="lazy"
 							className="h-full w-full object-cover opacity-95 transition group-hover:opacity-100"
 						/>

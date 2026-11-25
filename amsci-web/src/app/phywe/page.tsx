@@ -6,6 +6,7 @@ export const metadata: Metadata = {
 	title: "PHYWE · German Innovation, American Expertise",
 	description:
 		"PHYWE precision physics and laboratory apparatus from American Scientific — Cobra SMARTsense, TESS experiment systems, XR 4.0 X-ray, and 20+ Nobel Prize experiment sets. Talk to a product advisor.",
+	alternates: { canonical: "/phywe" },
 };
 
 /**

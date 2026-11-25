@@ -8,10 +8,18 @@ import { Pagination } from "@/components/Pagination";
 import { paginate } from "@/lib/pagination";
 import { CategoryIcon } from "@/components/CategoryIcon";
 
-export const metadata: Metadata = {
-	title: "Catalog",
-	description: "Browse American Scientific's wholesale catalog of STEM and laboratory products.",
-};
+export async function generateMetadata({
+	searchParams,
+}: {
+	searchParams: Promise<{ page?: string }>;
+}): Promise<Metadata> {
+	const page = Math.floor(Number((await searchParams).page));
+	return {
+		title: "Catalog",
+		description: "Browse American Scientific's wholesale catalog of STEM and laboratory products.",
+		alternates: { canonical: page > 1 ? `/products?page=${page}` : "/products" },
+	};
+}
 
 /** Re-read the cron-synced catalog from D1 at most this often (seconds). */
 export const revalidate = 300;

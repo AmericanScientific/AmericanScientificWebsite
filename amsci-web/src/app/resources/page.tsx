@@ -6,6 +6,7 @@ export const metadata: Metadata = {
 	title: "Resources · Teacher's Guides & Product Videos",
 	description:
 		"Teacher's guides, instruction manuals, and product demonstration videos for American Scientific products.",
+	alternates: { canonical: "/resources" },
 };
 
 interface ResourcesData {

@@ -33,6 +33,7 @@ export async function generateMetadata({
 	return {
 		title: category.name,
 		description: `Browse ${category.name} products in the American Scientific wholesale catalog.`,
+		alternates: { canonical: `/product-category/${category.slug}` },
 	};
 }
 

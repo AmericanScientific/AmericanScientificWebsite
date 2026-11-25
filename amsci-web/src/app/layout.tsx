@@ -34,13 +34,11 @@ export const metadata: Metadata = {
 		template: "%s | American Scientific",
 	},
 	description: SITE_DESCRIPTION,
-	alternates: { canonical: "/" },
 	openGraph: {
 		type: "website",
 		siteName: "American Scientific",
 		title: "American Scientific — Wholesale STEM & Laboratory Supply",
 		description: SITE_DESCRIPTION,
-		url: "/",
 	},
 	twitter: {
 		card: "summary",
